@@ -272,6 +272,9 @@ module Devise
   mattr_accessor :token_generator
   @@token_generator = nil
 
+  # Configure lastseenable interval to update last_seen_at every two minutes
+  config.lastseenable_interval = 2
+
   # Default way to setup Devise. Run rails generate devise_install to create
   # a fresh initializer with all configuration values.
   def self.setup

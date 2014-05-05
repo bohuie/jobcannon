@@ -12,12 +12,12 @@ class FriendshipsController < ApplicationController
     @friends.each do |r|
       if r.receiver_id==@user.user_id
         @friend = User.find_by(user_id: r.sender_id)
-         if @friend.last_seen_at > 5.minutes.ago
+         if @friend.online
           @online.push(r)
         end
       else
         @friend = User.find_by(user_id: r.receiver_id)
-         if @friend.last_seen_at > 5.minutes.ago
+         if @friend.online
           @online.push(r)
         end
       end

@@ -5,13 +5,25 @@ namespace :db do
 
   User.create!(email: 'employer@test.ca', username: 'employer', 
     password: 'testtest', password_confirmation: 'testtest', 
-    fname: 'employer', lname: 'employer', employer: true)
+    fname: 'Mr.', lname: 'Money', employer: true)
+  User.create!(email: 'employer1@test.ca', username: 'employer1', 
+    password: 'testtest', password_confirmation: 'testtest', 
+    fname: 'Cpt.', lname: 'Cash', employer: true)
   User.create!(email: 'employee@test.ca', username: 'employee', 
     password: 'testtest', password_confirmation: 'testtest', 
-    fname: 'employee', lname: 'employee')
+    fname: 'Jane', lname: 'Doe')
   User.create!(email: 'employee1@test.ca', username: 'employee1', 
     password: 'testtest', password_confirmation: 'testtest', 
-    fname: 'employee1', lname: 'employee')
+    fname: 'John', lname: 'Smith')
+  User.create!(email: 'employee2@test.ca', username: 'employee2', 
+    password: 'testtest', password_confirmation: 'testtest', 
+    fname: 'Eric', lname: 'Einstein')
+  User.create!(email: 'employee3@test.ca', username: 'employee3', 
+    password: 'testtest', password_confirmation: 'testtest', 
+    fname: 'Hank', lname: 'Henshaw')
+  User.create!(email: 'employee4@test.ca', username: 'employee4', 
+    password: 'testtest', password_confirmation: 'testtest', 
+    fname: 'Aaron', lname: 'Adams')
   Skilllabel.create!(label: "Java")
   Skilllabel.create!(label: "Ruby")
   Skilllabel.create!(label: "Educational development")

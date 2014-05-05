@@ -101,7 +101,7 @@
                 <td style = "padding-left: 1em;">
                   Recommendations
                   <ul>
-                    <% if !@postings.empty? %>
+                    <% if !@postings.empty? && !@posting.nil? %>
                       <% if @postings.size >= 1 %>
                         <li><%= @postings[0].title %></li>
                       <% end %>

@@ -3,6 +3,8 @@ class ProfileController < ApplicationController
 
   def index
    	@user = current_user
+    @user.update_attribute(:online, true)
+    puts @user
     @owner = User.find(params[:id])
     if(@owner.employer?)
       @postings = Posting.where(:user_id => @owner.user_id).paginate(page: params[:page])
@@ -17,7 +19,8 @@ class ProfileController < ApplicationController
   def show
       @user = current_user
     @owner = User.find(params[:id])
-
+    @user.update_attribute(:online, true)
+    puts @user
     @friendsadded = Friendship.where(sender_id: @owner.user_id, accepted: true)
     @friendsaccepted = Friendship.where(receiver_id: @owner.user_id, accepted: true)
     @friends = (@friendsaccepted + @friendsadded)

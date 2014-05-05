@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.string   "uid"
     t.string   "provider"
     t.datetime "last_seen_at"
+    t.boolean  "online"
   end
 
 end
