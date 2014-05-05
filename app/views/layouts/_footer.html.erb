@@ -1,57 +1,85 @@
-<nav class="navbar" role="navigation" >
-  <!-- Brand and toggle get grouped for better mobile display -->
-  
+<head>
+</head>
+<body>
+  <nav class="navbar" role="navigation" >
+    <!-- Brand and toggle get grouped for better mobile display -->
+    
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 88em">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 88em">
 
-    <ul class="nav pull-left">
+      <ul class="nav pull-left">
+        <% if user_signed_in?%>
+        <p style = "height: 30px;"></p>
+      <!--    <li><%= link_to "Survey", survey_path(@user), id: "brand",  style:"text-shadow:none;" %></li>
+          <li><%= link_to "Reccomended", {controller: "skills", action: "reccomend"}, id: "brand",  style:"text-shadow:none;" %></li>-->
+          <% end %>
+      </ul>
+
+      <ul class="nav pull-right">
       <% if user_signed_in?%>
-      <p style = "height: 30px;"></p>
-    <!--    <li><%= link_to "Survey", survey_path(@user), id: "brand",  style:"text-shadow:none;" %></li>
-        <li><%= link_to "Reccomended", {controller: "skills", action: "reccomend"}, id: "brand",  style:"text-shadow:none;" %></li>-->
-        <% end %>
-    </ul>
-
-    <ul class="nav pull-right">
-    <% if user_signed_in?%>
-      <%
-      @newmessages = Message.where(receiver_id: @user.user_id)
-      @newmessages.each do |r|
-        @lastviewed = "2013-02-23 19:49:25"
-        @chatviews = Chatview.where(id1: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC") + Chatview.where(id2: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC")
-        if !@chatviews.empty?
-          @lastviewed =  @chatviews.first.last_viewed_at
-        end
-        @newmessages.delete_if {|s| s.sent_at < @lastviewed}
-      end
-      %>
-
-    <%if !@newmessages.empty?%>
-      <li> <%= link_to "New Message(s)", network_path, id: "brand",  style:"text-shadow:none;" %> </li>
-      <%end%>
-      <% @friends = Friendship.where(receiver_id: @user.user_id, accepted: true) %>
-      <% @friends = @friends + Friendship.where(sender_id: @user.user_id, accepted: true) %>
-      <% @online = Array.new %>
-      <% 
-      @friends.each do |r|
-        if r.receiver_id==@user.user_id
-          @friend = User.find_by(user_id: r.sender_id)
-           if !@friend.nil? && !@friend.last_seen_at.nil? && @friend.last_seen_at > 2.minutes.ago
-            @online.push(@friend)
+        <%
+        @newmessages = Message.where(receiver_id: @user.user_id)
+        @newmessages.each do |r|
+          @lastviewed = "2013-02-23 19:49:25"
+          @chatviews = Chatview.where(id1: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC") + Chatview.where(id2: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC")
+          if !@chatviews.empty?
+            @lastviewed =  @chatviews.first.last_viewed_at
           end
-        else
-          @friend = User.find_by(user_id: r.receiver_id)
-          if !@friend.nil? && !@friend.last_seen_at.nil? && @friend.last_seen_at > 2.minutes.ago
-            @online.push(@friend)
+          @newmessages.delete_if {|s| s.sent_at < @lastviewed}
+        end
+        %>
+
+      <%if !@newmessages.empty?%>
+        <li> <%= link_to "New Message(s)", network_path, id: "brand",  style:"text-shadow:none;" %> </li>
+        <%end%>
+        <% @friends = Friendship.where(receiver_id: @user.user_id, accepted: true) %>
+        <% @friends = @friends + Friendship.where(sender_id: @user.user_id, accepted: true) %>
+        <% @online = Array.new %>
+        <% @offline = Array.new %>
+        <% 
+        @friends.each do |r|
+          if r.receiver_id==@user.user_id
+            @friend = User.find_by(user_id: r.sender_id)
+            if @friend.online
+              @online.push(@friend)
+            else
+              @offline.push(@friend)
+            end
+          else
+            @friend = User.find_by(user_id: r.receiver_id)
+            if @friend.online
+              @online.push(@friend)
+            else
+              @offline.push(@friend)
+            end
           end
         end
-      end
-      %>       
-      <li> <%= link_to "Online("+@online.size.to_s+")", network_path, id: "brand",  style:"text-shadow:none;" %> </li>
-    <% end %>
-    </ul>
+        %>       
+        <li class="dropup" id="accountmenu">  
+          <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Friends<b class="caret"></b></a>  
+          <ul class="dropdown-menu">  
+            <li role="presentation" class="dropdown-header">Online Friends</li>
+            <% @online.each do |r| %>
+              <li><%= link_to r.fname+" "+r.lname, profile_path(r) %></li>
+            <% end %>
+            <% if @online.empty? %>
+              <li role = "presentation" class = "divider"></li>
+            <% end %>
+            <li role="presentation" class="dropdown-header">Offline Friends</li>
+            <% @offline.each do |t| %>
+              <li><%= link_to t.fname+" "+t.lname, profile_path(t) %></li>
+            <% end %>
+            <% if @offline.empty? %>
+              <li role = "presentation" class = "divider"></li>
+            <% end %>
+            <li><%= link_to "All friends", network_path%> </li>
+          </ul>              
+        </li>
+      <% end %>
+      </ul>
 
-  </div><!-- /.navbar-collapse -->
+    </div><!-- /.navbar-collapse -->
 
-</nav>
+  </nav>
+</body>
