@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body class = "portfolio">
+	<div class ="center">
+	
+	<% if !user_signed_in? %>
+  <div class ="welcome">
+    Welcome to Job Cannon!!
+  </div>
+   	
+  <% end %>
+
+  <%= link_to "Log in with Facebook", "/auth/facebook" %>
+	
+
+</div>
+</body>
+</html>
+
+
+
