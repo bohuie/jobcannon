@@ -1,6 +1,4 @@
-Raffi's Test push
-
-a version of JobCannon.. tweaks needed, some things still not working
+A version of JobCannon.. tweaks needed, some things still not working
 perfectly
 
 The site URL is at:
