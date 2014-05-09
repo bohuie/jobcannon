@@ -2,6 +2,7 @@ class FriendshipsController < ApplicationController
 
   def index
 
+    @left = true  #used to determin where to postion the list of friends
     @user = current_user
     @userID = current_user.user_id
     @requests = Friendship.where(receiver_id: @user.user_id, accepted: false)

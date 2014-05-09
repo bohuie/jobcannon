@@ -1,10 +1,74 @@
+<!--
+	This partial works by checking the @left attribute. if it is true it generates the friend on the left side of the row. if it is false it generates the friend on the right side of the row and ends the row.
+-->
+
+<head>
+	<style>
+
+	.pic{
+
+		border: 0px solid #54B5D6;
+
+
+	}
+
+	</style>
+</head>
+
 <% if @user.user_id == friendslist.receiver_id %>
 	<% @friend = User.find_by(user_id: friendslist.sender_id) %>
 <% else %>
 	<% @friend = User.find_by(user_id: friendslist.receiver_id) %>
 <% end %>
-<%= link_to @friend.fname+" "+@friend.lname, profile_path(@friend) %> 
 
-<%= link_to "Chat", {controller: "messages", action: "privatechat", id1: @user.user_id, id2: @friend.user_id}, class: "btn btn-small btn-primary" %>
-<%= link_to "Remove", friendslist, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
-</p>
+<% if @left %>
+	<div class="row">
+		<div class = "col-lg-1"></div>
+		<div class = "col-lg-5">
+			<div style = "border: 1px solid grey; width: 32em; margin-top: 20px;">
+				<div style = "width: 200px; margin: 5px">
+				    <%= image_tag('prof.jpeg', :class => "pic") %>
+				</div>
+
+				<div style = "border: 1px solid grey; margin: 5px; padding: 2px; width: 30em; background-color:#D8D8DC; height: 3em;">
+					<%= link_to @friend.fname+" "+@friend.lname, profile_path(@friend), :style=>"" %> 
+					<div style= "position: relative; float:right;">
+					<%= link_to "Chat", {controller: "messages", action: "privatechat", id1: @user.user_id, id2: @friend.user_id}, class: "btn btn-small btn-primary" %>
+					<%= link_to "Remove", friendslist, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
+				</div>
+				</div>
+			</div>
+		</div>
+		<% @left = false %>
+<% else %>
+	<div class = "col-lg-5">
+		<div style = "border: 1px solid black; width: 32em; margin-top: 20px; background-color: white">
+			<table>
+				<tr>
+					<td width ="40%">
+						<div style = "width: 200px; margin: 5px">
+						    <%= image_tag('prof.jpeg', :class => "pic") %>
+						</div>
+					</td>
+					<td valign="top" width = "40%">
+						<%= link_to @friend.fname+" "+@friend.lname, profile_path(@friend), :style=>"" %> 
+					</td>
+					<td width = "20%">
+						<%= link_to "Chat", {controller: "messages", action: "privatechat", id1: @user.user_id, id2: @friend.user_id}, class: "btn btn-small btn-default", style: "width:100%" %>
+					
+						<%= link_to "Remove", friendslist, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-default", style: "width:100%" %>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class = "col-lg-1"></div>
+	<% @left = true %>
+	</div>
+<% end %>
+
+
+
+
+
+
