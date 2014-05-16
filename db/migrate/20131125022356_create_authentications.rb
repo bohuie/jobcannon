@@ -55,6 +55,8 @@ class CreateAuthentications < ActiveRecord::Migration
     t.integer :experience_id,              null: false
   end
 
+=begin
+
   create_table :messages do |t|
     t.integer  :sender_id,   default: 0,  null: false
     t.integer  :receiver_id, default: 0,  null: false
@@ -62,6 +64,8 @@ class CreateAuthentications < ActiveRecord::Migration
     t.text     :message,     default: "", null: false
     t.string   :sender_name
   end
+
+=end
 
   create_table :links do |t|
     t.integer :project_id, null: false
