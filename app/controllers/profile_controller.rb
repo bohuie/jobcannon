@@ -16,6 +16,9 @@ class ProfileController < ApplicationController
     end
   end
 
+  def online
+  end
+
   def show
       @user = current_user
     @owner = User.find(params[:id])
