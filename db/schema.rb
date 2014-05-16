@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "link_id",    null: false
     t.string  "url",        null: false
   end
+=begin
 
   create_table "messages", force: true do |t|
     #t.integer  "sender_id",   default: 0,  null: false
@@ -73,6 +74,8 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.text     "message",     default: "", null: false
     t.string   "sender_name"
   end
+
+=end
 
   create_table "postings", force: true do |t|
     t.string  "title",       default: "", null: false
