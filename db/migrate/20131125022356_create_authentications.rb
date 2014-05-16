@@ -163,6 +163,7 @@ class CreateAuthentications < ActiveRecord::Migration
     t.boolean  :admin,                  default: false, null: false
     t.string   :uid
     t.string   :provider
+    t.boolean  :online
     t.datetime :last_seen_at
   end
   end
