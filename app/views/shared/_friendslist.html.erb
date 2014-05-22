@@ -35,40 +35,42 @@
 					<div style= "position: relative; float:right;">
 					<%= link_to "Chat", {controller: "messages", action: "privatechat", id1: @user.user_id, id2: @friend.user_id}, class: "btn btn-small btn-primary" %>
 					<%= link_to "Remove", friendslist, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
-				</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<% @left = false %>
 <% else %>
-	<div class = "col-lg-5">
-		<div style = "border: 1px solid black; width: 32em; margin-top: 20px; background-color: white">
-			<table>
-				<tr>
-					<td width ="40%">
-						<div style = "width: 200px; margin: 5px">
-						    <%= image_tag('prof.jpeg', :class => "pic") %>
-						</div>
-					</td>
-					<td valign="top" width = "40%">
-						<%= link_to @friend.fname+" "+@friend.lname, profile_path(@friend), :style=>"" %> 
-					</td>
-					<td width = "20%">
-						<%= link_to "Chat", {controller: "messages", action: "privatechat", id1: @user.user_id, id2: @friend.user_id}, class: "btn btn-small btn-default", style: "width:100%" %>
-					
-						<%= link_to "Remove", friendslist, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-default", style: "width:100%" %>
-					</td>
-				</tr>
-			</table>
+		<div class = "col-lg-5">
+			<div style = "border: 1px solid black; width: 32em; height:10em; margin-top: 20px; background-color: white;">
+					<div class="col-lg-4" style = "width: 200px; margin: 5px;">
+						<%= image_tag('prof.jpeg', :class => "pic") %>
+					</div>
+					<table height="100%">
+						<tr>
+							<td valign="top">
+								<div style = "margin:5px;">
+									<%= link_to @friend.fname+" "+@friend.lname, profile_path(@friend), :style=>"" %> 
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td valign ="bottom">
+								<div style = "margin:5px;">
+									<%= link_to "Chat", {controller: "messages", action: "privatechat", id1: @user.user_id, id2: @friend.user_id}, class: "btn btn-small btn-primary" %>
+								</div>
+							</td>
+
+							<td valign="bottom">
+								<div style = "margin:5px;">
+									<%= link_to "Remove", friendslist, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
+								</div>
+							</td>
+						</tr>
+					</table>						
+			</div>
 		</div>
-	</div>
-	<div class = "col-lg-1"></div>
+		<div class = "col-lg-1"></div>
+	  </div>
 	<% @left = true %>
-	</div>
 <% end %>
-
-
-
-
-
-

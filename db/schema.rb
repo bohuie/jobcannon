@@ -65,17 +65,14 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "link_id",    null: false
     t.string  "url",        null: false
   end
-=begin
 
   create_table "messages", force: true do |t|
-    #t.integer  "sender_id",   default: 0,  null: false
+    t.integer  "sender_id",   default: 0,  null: false
     t.integer  "receiver_id", default: 0,  null: false
     t.datetime "sent_at",                  null: false
     t.text     "message",     default: "", null: false
     t.string   "sender_name"
   end
-
-=end
 
   create_table "postings", force: true do |t|
     t.string  "title",       default: "", null: false
@@ -161,6 +158,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.string   "uid"
     t.string   "provider"
     t.datetime "last_seen_at"
+    t.string   "info"
     t.boolean  "online"
   end
 

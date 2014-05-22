@@ -1,6 +1,5 @@
 class ProfileController < ApplicationController
 
-
   def index
    	@user = current_user
     @user.update_attribute(:online, true)
@@ -17,16 +16,26 @@ class ProfileController < ApplicationController
   end
 
   def online
+
+  end
+
+  def update
+    @user = current_user
+    @owner = User.find(params[:id])
+
+    @owner.update_attributes(info_params)
+    redirect_to root_path
   end
 
   def show
-      @user = current_user
+    @user = current_user
     @owner = User.find(params[:id])
     @user.update_attribute(:online, true)
     puts @user
     @friendsadded = Friendship.where(sender_id: @owner.user_id, accepted: true)
     @friendsaccepted = Friendship.where(receiver_id: @owner.user_id, accepted: true)
     @friends = (@friendsaccepted + @friendsadded)
+    gon.info = @owner.info
     
     if(@owner.employer?)
       @postings = Posting.where(:user_id => @owner.user_id).paginate(page: params[:page])
@@ -79,4 +88,11 @@ class ProfileController < ApplicationController
     end
     return postings
   end
+
+  private
+
+  def info_params
+    params.require(:user).permit(:info)
+  end
+
 end

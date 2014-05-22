@@ -41,5 +41,13 @@ namespace :db do
   Skill.create!(label: "Educational development", user_id: 1, posting_id: 3, mandatory: true)
   Skill.create!(label: "Typing", user_id: 1, posting_id: 3, mandatory: true)
   Friendship.create!(friendship_id: 1, sender_id: 2, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
+
+
+
+  #Data for Raffi
+  User.create!(email: 'peterwest@uft.ca', username: 'peterwest', 
+    password: 'peterpeter', password_confirmation: 'peterpeter', 
+    fname: 'Peter', lname: 'West')
+
   end
 end

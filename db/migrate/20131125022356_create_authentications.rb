@@ -168,6 +168,7 @@ class CreateAuthentications < ActiveRecord::Migration
     t.string   :uid
     t.string   :provider
     t.boolean  :online
+    t.string   :info
     t.datetime :last_seen_at
   end
   end
