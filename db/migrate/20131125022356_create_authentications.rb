@@ -55,18 +55,6 @@ class CreateAuthentications < ActiveRecord::Migration
     t.integer :experience_id,              null: false
   end
 
-=begin
-
-  create_table :messages do |t|
-    t.integer  :sender_id,   default: 0,  null: false
-    t.integer  :receiver_id, default: 0,  null: false
-    t.datetime :sent_at,                  null: false
-    t.text     :message,     default: "", null: false
-    t.string   :sender_name
-  end
-
-=end
-
   create_table :links do |t|
     t.integer :project_id, null: false
     t.integer :link_id,    null: false
@@ -123,15 +111,14 @@ class CreateAuthentications < ActiveRecord::Migration
     t.boolean :mandatory
   end
 
-  create_table :surveys do |t|
+  create_table :surveyProfiles, force:true do |t|
     t.integer :user_id,   default: 0, null: false
     t.integer :survey_id, default: 0, null: false
-    t.integer :question1
-    t.integer :question2
-    t.integer :question3
-    t.integer :question4
-    t.integer :question5
+    t.string :postalcode
+    t.string :education
   end
+
+  create_table :survey
 
   create_table :users do |t|
     t.integer  :user_id,                default: 0,     null: false

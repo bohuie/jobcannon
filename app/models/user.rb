@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   after_create :do_setID
+  has_one :language, dependent: :destroy
 
   has_many :authentications, dependent: :destroy
   has_many :friendships, dependent: :destroy

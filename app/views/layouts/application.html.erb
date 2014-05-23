@@ -31,6 +31,9 @@
     <div class = "container">
       <%= yield %>  
       <% if user_signed_in? %>
+
+        <div style="height:5em">
+        </div>
         <%= render 'layouts/footer' %>
       <% end %>  
     </div>

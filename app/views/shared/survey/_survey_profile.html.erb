@@ -1,0 +1,17 @@
+
+<%= form_for (@profile) do |f| %>
+      
+
+     <!--t.string "location"
+    t.string "postalcode"
+    t.string "gender"
+    t.string "birthday"
+    t.string "education"-->
+
+    <% @l = "What is Your Postal code" %>
+
+    <%= f.label @l %><br>
+    <%= f.text_field :postalcode %><br> <br>
+
+    <%= f.submit "Add", class: "btn btn-large btn-primary" %>       
+<% end %>

@@ -5,9 +5,10 @@ class SurveysController < ApplicationController
 		@survey = Survey.new
 	end
 	def show
+		@profile = Surveyprofile.new
 		@user = current_user
-		@survey = Survey.new
 		@user.save
+		@survey_type = params[:type]
 	end
 	def create
 		if(user_signed_in? && !current_user.employer)

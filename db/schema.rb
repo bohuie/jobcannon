@@ -113,14 +113,15 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.boolean "mandatory"
   end
 
-  create_table "surveys", force: true do |t|
+  create_table "surveyprofiles", force:true do |t|
     t.integer "user_id",   default: 0, null: false
     t.integer "survey_id", default: 0, null: false
-    t.integer "question1"
-    t.integer "question2"
-    t.integer "question3"
-    t.integer "question4"
-    t.integer "question5"
+    t.string "postalcode"
+    t.string "education"
+    t.string   "city"
+    t.string   "province"    
+    t.string   "gender"
+    t.datetime "birthday"
   end
 
   create_table "users", force: true do |t|
@@ -141,25 +142,90 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "phone_number"
-    t.string   "city"
-    t.string   "province"
-    t.string   "country"
-    t.string   "gender"
-    t.datetime "birthday"
+    t.string   "last_sign_in_ip"   
     t.boolean  "employee",               default: true
-    t.string   "goals",                  default: "",    null: false
+    #t.string   "goals",                  default: "",    null: false
     t.boolean  "employer",               default: false, null: false
-    t.string   "company_name",           default: ""
-    t.string   "company_address",        default: ""
-    t.string   "field",                  default: ""
+    #t.string   "company_name",           default: ""
+    #t.string   "company_address",        default: ""
+    #t.string   "field",                  default: ""
     t.boolean  "admin",                  default: false, null: false
-    t.string   "uid"
-    t.string   "provider"
+    #t.string   "uid"
+    #t.string   "provider"
+    t.string   "city"
+    t.string   "province"    
+    t.string   "gender"
     t.datetime "last_seen_at"
-    t.string   "info"
+    t.string   "info"  #user personal info that goes onto main page
     t.boolean  "online"
   end
+
+ create_table "languages", force: true do |t|
+
+  t.boolean "eng_speak", default: false
+  t.boolean "eng_read", default: false
+  t.boolean "eng_write", default: false
+  t.boolean "eng_formal", default: false
+
+  t.boolean "fren_speak", default: false
+  t.boolean "fren_read", default: false
+  t.boolean "fren_write", default: false
+  t.boolean "fren_formal", default: false
+
+  t.boolean "span_speak", default: false
+  t.boolean "span_read", default: false
+  t.boolean "span_write", default: false
+  t.boolean "span_formal", default: false
+
+  t.boolean "tagalog_speak", default: false
+  t.boolean "tagalog_read", default: false
+  t.boolean "tagalog_write", default: false
+  t.boolean "tagalog_formal", default: false
+
+
+  t.boolean "mandarin_speak", default: false
+  t.boolean "mandarin_read", default: false
+  t.boolean "mandarin_write", default: false
+  t.boolean "mandarin_formal", default: false
+
+  t.boolean "cantonese_speak", default: false
+  t.boolean "cantonese_read", default: false
+  t.boolean "cantonese_write", default: false
+  t.boolean "cantonese_formal", default: false
+
+  t.boolean "punjabi_speak", default: false
+  t.boolean "punjabi_read", default: false
+  t.boolean "punjabi_write", default: false
+  t.boolean "punjabi_formal", default: false
+
+  t.boolean "urdu_speak", default: false
+  t.boolean "urdu_read", default: false
+  t.boolean "urdu_write", default: false
+  t.boolean "urdu_formal", default: false
+
+  t.boolean "tamil_speak", default: false
+  t.boolean "tamil_read", default: false
+  t.boolean "tamil_write", default: false
+  t.boolean "tamil_formal", default: false
+
+  t.boolean "persian_speak", default: false
+  t.boolean "persian_read", default: false
+  t.boolean "persian_write", default: false
+  t.boolean "persian_formal", default: false
+
+  t.boolean "italian_speak", default: false
+  t.boolean "italian_read", default: false
+  t.boolean "italian_write", default: false
+  t.boolean "italian_formal", default: false
+
+  t.string "other", default: false
+  t.boolean "other_read", default: false
+  t.boolean "other_write", default: false
+  t.boolean "other_formal", default: false
+
+  t.integer "user_id"
+  t.integer "language_id"
+ end
+
 
 end

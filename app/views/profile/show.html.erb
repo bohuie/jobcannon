@@ -15,20 +15,7 @@
       padding-bottom: 1em;
 
     }
-    .content{
-
-      margin-top: 1em;
-      background-color: #E6E6E6;
-      border-radius: 5px;
-      padding-left: 0.5em;
-      padding-top: 0.5em;
-      height:11em;
-      padding-bottom: 0.5em;
-      margin-bottom: 1em;
-      padding: 1em;
-
-    }
-
+    
     .change{
       background-color: #E6E6E6;
       height: 7em;
@@ -43,10 +30,12 @@
     .btnChange{
       background: none;
       border: none;
-
-
     }
 
+    #survey_pic{
+      width: 6em;
+      height: 5em;
+    }
 
   </style>
 
@@ -64,14 +53,11 @@ function save()
 
     alert(<%= @o %>);
   }
-
   
   </script>
 </head>
 
-
 <body>
-
   <% if  @owner.employer?%>
       <div border = 0 style ="margin-left: 5.5em" >
         <div class = "row" height = 30px style = "padding-left: 1.5em;">
@@ -183,7 +169,6 @@ function save()
         <li><a href="#ref" data-toggle="tab">References</a></li>
       </ul>
 
-
       <div class="tab-content">
         <div class="tab-pane fade in active content" id="skills" style = ""> 
           <% @array = @skills.to_a %>
@@ -208,8 +193,28 @@ function save()
         </div>
 
         <div class ="tab-pane fade content" id = "survey">
-          Take our survey to see how we are doing
-          <br>
+
+          <div class="row">
+              <div class = "col-lg-3">              
+                  <%= link_to image_tag('exp.png'), survey_path(@user,:type=> 0), class: "btn btn-default", id: "survey_pic"%>           
+                  Experiences       
+              </div>
+
+              <div class = "col-lg-3">
+                <%= link_to image_tag('per.png'), survey_path(@user,:type=> 1), class: "btn btn-default", id: "survey_pic"%>
+                Personality
+              </div>
+
+              <div class = "col-lg-3">
+                <%= link_to image_tag('account.png'), survey_path(@user,:type=>2), class: "btn btn-default", id: "survey_pic"%>
+                Profile
+              </div>
+
+              <div class = "col-lg-3">
+                <%= link_to image_tag('tech.png'), survey_path(@user,:type=>3), class: "btn btn-default", id: "survey_pic"%>
+                Technology
+              </div>
+          </div>
           <%= link_to "Take Survey Here", survey_path(@user), id: "more",  style:"text-shadow:none;" %>
         </div>
 
