@@ -1,4 +1,13 @@
+<script type="text/javascript">
 
+    $('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+</script>
+
+<link rel="stylesheet" href="bootstrap.vertical-tabs.css">
 <%= form_for (@profile) do |f| %>
       
 
@@ -7,11 +16,70 @@
     t.string "gender"
     t.string "birthday"
     t.string "education"-->
+    <% @STATUS = [['Other','other'],['Male','male'],['Female','female']] %>
+    <% @EDUCATION =[['Grade 9','grade 9'], ['Grade 10','grade 10'],['Grade 11','grade 11'], ['Grade 12','grade 12'],
+					['High School','high school'], ['Some College','some college'], ['College','College'], 
+					['Some University','some University'], ['Some Graduate Studies','some grad studies'], 
+					['Masters','masters'], ['Doctorial Degree','doctorial degree']] %>
 
-    <% @l = "What is Your Postal code" %>
+	<% @school = "What Level of Education do you have" %>
+    <% @postalcode = "What is Your Postal code" %>
+    <% @gender = "Your Gender" %>
+    <% @province = "What Province do you live in" %>
+    <% @city = "What City do you Live in" %>
+    <% @birthday = "When were you Born" %>
 
-    <%= f.label @l %><br>
-    <%= f.text_field :postalcode %><br> <br>
+    <div class = "col-lg-2">
+	    <ul class="nav nav-pills nav-stacked" style = "margin-top: 10px">
+	        <li class = "active"><a href="#you" data-toggle="tab">You</a></li>
+	        <li><a href="#location" data-toggle="tab">Location</a></li>
+	        <li><a href="#language" data-toggle="tab">Language</a></li>
+	    </ul>
+	</div>
+<div class ="col-lg-10">
+    <div class = "tab-content">
+    	<div class="tab-pane fade in active content survey-tabs" id="you"> 
+    		<div class = "row">
+    			<div class = "col-lg-3">
+		    		<%= f.label @birthday %><br />
+		  			<%= f.date_field :birthday %>
+		    		<br>
+		    		<br>
+		    		<%= f.label @gender %>
+		    		<%= f.select :gender, @STATUS%>
+		    		<br>
+		    		<br>
+		    		<%= f.label @school %>
+		    		<%= f.select :education, @EDUCATION%>
+		    	</div>
 
-    <%= f.submit "Add", class: "btn btn-large btn-primary" %>       
+	    	</div>
+	    </div>
+    	<div class="tab-pane fade in content survey-tabs" id="location"> 
+    		<div class = "row">
+    			<div class = "col-lg-4">
+    				<%= f.label @province%>
+    				<%= f.text_field :province%>
+    				<br>
+    				<br>
+    				<%= f.label @city%>
+    				<%= f.text_field :city%>
+    				<br>
+    				<br>
+    				<%= f.label @postalcode%>
+    				<%= f.text_field :postalcode%>
+    				<br>
+    				<br>
+    				
+    			</div>
+    		</div>
+    	</div>
+    	<div class="tab-pane fade in content survey-tabs" id="language"> 
+    		Exp
+    	</div> 
+    </div>
+</div>
+
+
+    <% f.submit "Add", class: "btn btn-large btn-primary" %>       
 <% end %>

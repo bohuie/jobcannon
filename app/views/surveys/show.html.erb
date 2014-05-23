@@ -26,7 +26,6 @@
 
 </div>
 
-<div class = "questions">
 	<% if @survey_type == '0' %>
 		<%= render 'shared/survey/survey_exp' %>
 	<% elsif @survey_type == '1' %>
@@ -36,4 +35,3 @@
 	<% elsif @survey_type == '3' %>
 		<%= render 'shared/survey/survey_tech' %>
 	<% end %>
-</div>
