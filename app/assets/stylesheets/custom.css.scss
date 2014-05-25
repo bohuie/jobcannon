@@ -3,6 +3,32 @@
 
 /* Questions for the Survey */
 
+#lang{
+  td{
+    width: 7em;
+    text-align: left;
+    padding: 3px;    
+    border-bottom: 1px solid black;
+
+    }
+    th{
+      width: 7em;
+    }
+    tr{
+      
+    }
+}
+
+#lang_other{
+  
+  td{
+    border: 0px;
+
+  }
+
+}
+
+
 .questions{
   background-color: #E6E6E6;
   border-radius: 5px;

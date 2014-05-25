@@ -15,21 +15,23 @@
     <%= render 'layouts/shim' %>
   </head>
   <body>
-    <div class="container">
+    <div class="container" style = "width: 100%; padding: 0px">
       <%= render 'layouts/header' %>
     </div>
     
-    <div class="container-fluid" style = "padding-left:6em;padding-right:6em;">
+    <div class="container">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
-      <div>
-     </div>
+    </div>
+
+    <div class="container" style = "width: 80%; padding 10%">
+        <%=yield%>
     </div>
 
 
-    <div class = "container">
-      <%= yield %>  
+    <div class = "container" style = "width: 100%; padding: 0px">
+        
       <% if user_signed_in? %>
 
         <div style="height:5em">

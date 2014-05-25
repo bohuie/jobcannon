@@ -1,5 +1,3 @@
-
-
 <div class="row">
 	
 	<div class="col-lg-2">
@@ -26,12 +24,14 @@
 
 </div>
 
-	<% if @survey_type == '0' %>
-		<%= render 'shared/survey/survey_exp' %>
-	<% elsif @survey_type == '1' %>
-		<%= render 'shared/survey/survey_per' %>
-	<% elsif @survey_type == '2' %>
-		<%= render 'shared/survey/survey_profile' %>
-	<% elsif @survey_type == '3' %>
-		<%= render 'shared/survey/survey_tech' %>
-	<% end %>
+	<div id="partial" >
+		<% if @survey_type == '0' %>
+			<%= render 'shared/survey/survey_exp' %>
+		<% elsif @survey_type == '1' %>
+			<%= render 'shared/survey/survey_per' %>
+		<% elsif @survey_type == '2' %>
+			<%= render 'shared/survey/survey_profile' %>
+		<% elsif @survey_type == '3' %>
+			<%= render 'shared/survey/survey_tech' %>
+		<% end %>
+	</div>

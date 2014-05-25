@@ -172,10 +172,10 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   t.boolean "fren_write", default: false
   t.boolean "fren_formal", default: false
 
-  t.boolean "span_speak", default: false
-  t.boolean "span_read", default: false
-  t.boolean "span_write", default: false
-  t.boolean "span_formal", default: false
+  t.boolean "spnish_speak", default: false
+  t.boolean "spnish_read", default: false
+  t.boolean "spnish_write", default: false
+  t.boolean "spnish_formal", default: false
 
   t.boolean "tagalog_speak", default: false
   t.boolean "tagalog_read", default: false
@@ -218,8 +218,9 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   t.boolean "italian_write", default: false
   t.boolean "italian_formal", default: false
 
-  t.string "other", default: false
+  t.string "other"
   t.boolean "other_read", default: false
+  t.boolean "other_speak", default: false
   t.boolean "other_write", default: false
   t.boolean "other_formal", default: false
 

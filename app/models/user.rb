@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   after_create :do_setID
   has_one :language, dependent: :destroy
 
+  has_one :surveyprofile, dependent: :destroy 
   has_many :authentications, dependent: :destroy
   has_many :friendships, dependent: :destroy
 
@@ -51,9 +52,5 @@ class User < ActiveRecord::Base
       
       newID = self.id
       self.update_attributes(:user_id => newID)
-
-
     end
-
- 
 end

@@ -21,6 +21,7 @@ First_Website::Application.routes.draw do
   resources :messages
   resources :friendships
   resources :surveyprofiles
+  resources :languages
   #resources :users
 
   match '/search', to: 'search#search', via: 'get'
