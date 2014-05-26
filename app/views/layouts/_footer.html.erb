@@ -7,14 +7,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 100%;margin-top:10px;">
 
-      <ul class="nav pull-left">
-        <% if user_signed_in?%>
-        <p style = "height: 30px;"></p>
-      <!--    <li><%= link_to "Survey", survey_path(@user), id: "brand",  style:"text-shadow:none;" %></li>
-          <li><%= link_to "Reccomended", {controller: "skills", action: "reccomend"}, id: "brand",  style:"text-shadow:none;" %></li>-->
-          <% end %>
-      </ul>
-
       <ul class="nav pull-right">
       <% if user_signed_in?%>
         <%
@@ -54,7 +46,7 @@
             end
           end
         end
-        %>       
+        %>  
         <li class="dropup" id="accountmenu">  
           <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Friends<b class="caret"></b></a>  
           <ul class="dropdown-menu">  
