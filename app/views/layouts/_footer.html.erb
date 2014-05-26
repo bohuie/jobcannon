@@ -9,6 +9,25 @@
         NAME.className = "dropup open";  // Otherwise, use `second_name`
     }
 }
+$(function() {
+  var faye = new Faye.Client('http://localhost:9292/faye');
+  faye.subscribe('<%=@channel%>', function(data) {
+    eval(data);
+  });
+});
+
+
+
+
+function hold(){
+
+  document.getElementsByTagName("html")[0].setAttribute("style","overflow:hidden");
+}
+
+function scroll(){
+
+  document.getElementsByTagName("html")[0].setAttribute("style","overflow:scroll");
+}
   </script>
 </head>
   <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style = "border: 0px solid white; background: rgba(255,255,255,0); width: 100%" >
@@ -43,6 +62,7 @@
         end
         %>  
         <% @other = User.find(4) %>
+        <% @channel = "/"+3.to_s+"chatwith"+ 4.to_s %>
         <% @messages = Message.where(sender_id: @other.user_id, receiver_id: @user.user_id)
            @messages = @messages + Message.where(sender_id: @user.user_id, receiver_id: @other.user_id)
            @messages = @messages.sort_by { |obj| obj.sent_at } #loads all the past messages, ordered by date
@@ -52,31 +72,16 @@
             <%= @other.fname + " " + @other.lname%>
             <b class="caret"></b>
           </a> 
-          <div class = "row dropdown-menu dropdown-menu-chat"> 
-            <ul id="chat" style = "overflow: scroll; max-height: 400px">
-              <%= render @messages %>
-            </ul>
-            <div class = "row" style = "width = 450px;">
-              <% if !@other.nil? %>
-                <%= simple_form_for Message.new, :id => "new_message", :controller => "messages", :action => "create", :remote => true do |f| %>
-                  <div class = "col-md-8">
-                    <%= f.text_field :message, :autocomplete => "off", :autofocus => true %>
-                  </div>
-                  <%= f.hidden_field :sender_id, :value => @user.user_id %>
-                  <%= f.hidden_field :receiver_id, :value => @other.user_id %>
-                  <%= f.hidden_field :sent_at, :value => Time.now %>
-                  <%= f.hidden_field :sender_name, :value => @user.fname+' '+@user.lname %>
-                  <div class = "col-md-2">
-                    <%= f.submit "Send", class: "btn btn-sm btn-primary", style: "margin: 0px;" %> 
-                  </div>  
-                <% end %>
-              <% end %>
+          <div class = "dropdown-menu dropdown-menu-chat"> 
+            <div onmouseover = "hold();" onmouseout = "scroll();" style = "overflow: scroll; max-height: 400px;">
+              <%= render 'messages/privatechat' %>
             </div>
+              <%= render 'messages/privatechatform' %>
           </div>
         </li>     
-        <li class="dropup" id="accountmenu">  
-          <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Friends<b class="caret"></b></a>  
-          <ul class="dropdown-menu">  
+        <li class="dropup" id="accountmenu" style = "width: 100px; text-align: right;">  
+          <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Chat<b class="caret"></b></a>  
+          <ul class="dropdown-menu" style = "text-align: left;">  
             <li role="presentation" class="dropdown-header">Online Friends</li>
             <% @online.each do |r| %>
               <li><%= link_to r.fname+" "+r.lname, profile_path(r) %></li>

@@ -1,5 +1,7 @@
-<li>
+<li style = "list-style-type: none; padding: 0px; margin: 0px;">
+	<% if message.sender_id == @user.user_id %>
+	<% end %>
 	<b><%= message.sender_name %></b>
-  	<span class="created_at"> : <%= message.sent_at.strftime("%H:%M") %> : </span>
+  	<div> : <%= message.sent_at.strftime("%H:%M") %> : </div>
   	<%= message.message %>
 </li>
