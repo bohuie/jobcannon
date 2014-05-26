@@ -25722,18 +25722,12 @@ $(function() {
     }
 
   }
-   function() {
-    // Setup drop down menu
-    $('.dropdown-toggle').dropdown()
-
-    // Fix input element click problem
-    $('.dropdown-menu')..find('form').click(function(e) {
-      e.stopPropagation();
-    })
-  }
 
   function clearMenus() {
-   
+    $('.dropdown-backdrop').remove()
+    $(toggle).each(function () {
+      getParent($(this)).removeClass('open')
+    })
   }
 
   function getParent($this) {
@@ -25783,13 +25777,8 @@ $(function() {
    * =================================== */
 
   $(document)
-.bind('click', function(e) {
-    var $clicked = $(e.target);
-    if (!$clicked.hasClass("dropdown-menu") &&
-            !$clicked.parents().hasClass("dropdown-menu")){
-        clearMenus();
-    }
-}    .on('click.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.dropdown.data-api', clearMenus)
+    .on('click.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
     .on('keydown.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 
@@ -27995,6 +27984,15 @@ $(function() {
           }*/
         });
       });
+$(function() {
+    // Setup drop down menu
+    $('.dropdown-toggle').dropdown();
+
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+    });
+  });
 /*!
  * jQuery JavaScript Library v1.9.1
  * http://jquery.com/
@@ -52601,6 +52599,7 @@ return isNaN(t)?c:t},m=p(d[0]),f=Math.max(m,p(d[1]||"")),m=a?Math.max(m,a.getFul
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 
 
 

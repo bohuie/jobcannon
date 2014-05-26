@@ -10610,7 +10610,15 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
  * limitations under the License.
  * ============================================================ */
 
+$(function() {
+    // Setup drop down menu
+    $('.dropdown-toggle').dropdown();
 
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+    });
+  });
 
 !function ($) {
 
@@ -10723,6 +10731,13 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 
     return $parent
   }
+  $(function() {
+
+    // Fix input element click problem
+    $('.dropdown-menu-chat).click(function(e) {
+      e.stopPropagation();
+    });
+  });
 
 
   /* DROPDOWN PLUGIN DEFINITION

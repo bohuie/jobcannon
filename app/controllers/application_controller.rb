@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     @user = current_user
     current_user.online = true
     current_user.save
+    @other = User.find(4)
   end
 
   protected

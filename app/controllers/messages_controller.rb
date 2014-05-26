@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
   def create
     @user = current_user
     @message = Message.new(msg_params)
-    @message.sent_at = Time.now
+    @message.sent_at = DateTime.now
     @temp1 = @message.sender_id
     @temp2 = @message.receiver_id
     if @temp1<@temp2  #lesser id comes first in the chat path and channel path

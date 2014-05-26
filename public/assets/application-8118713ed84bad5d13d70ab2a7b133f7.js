@@ -25624,7 +25624,15 @@ $.widget( "ui.tooltip", {
  * limitations under the License.
  * ============================================================ */
 
+$(function() {
+    // Setup drop down menu
+    $('.dropdown-toggle').dropdown();
 
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagaPtion();
+    });
+  });
 
 !function ($) {
 
@@ -25714,12 +25722,18 @@ $.widget( "ui.tooltip", {
     }
 
   }
+  function() {
+    // Setup drop down menu
+    $('.dropdown-toggle').dropdown()
+
+    // Fix input element click problem
+    $('.dropdown-menu').find('form').click(function(e) {
+      e.stopPropagation();
+    })
+  }
 
   function clearMenus() {
-    $('.dropdown-backdrop').remove()
-    $(toggle).each(function () {
-      getParent($(this)).removeClass('open')
-    })
+    
   }
 
   function getParent($this) {
@@ -25769,7 +25783,13 @@ $.widget( "ui.tooltip", {
    * =================================== */
 
   $(document)
-    .on('click.dropdown.data-api', clearMenus)
+    .bind('click', function(e) {
+    var $clicked = $(e.target);
+    if (!$clicked.hasClass("dropdown-menu") &&
+            !$clicked.parents().hasClass("dropdown-menu")){
+        clearMenus();
+    }
+}
     .on('click.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
     .on('keydown.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)

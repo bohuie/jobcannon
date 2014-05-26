@@ -45,9 +45,30 @@ namespace :db do
 
 
   #Data for Raffi
+
+  #user id 8
   User.create!(email: 'peterwest@uft.ca', username: 'peterwest', 
     password: 'peterpeter', password_confirmation: 'peterpeter', 
     fname: 'Peter', lname: 'West')
+
+  #user id 9
+  User.create!(email: 'henrynorth@uvic.ca', username: 'henrynorth', 
+    password: 'henryhenry', password_confirmation: 'henryhenry', 
+    fname: 'Henry', lname: 'North')
+
+  #user id 10
+  User.create!(email: 'marrybond.@ubc.ca', username: 'marrybond', 
+    password: 'marrymarry', password_confirmation: 'marrymarry', 
+    fname: 'Marry', lname: 'Bond')
+
+  #user id 11
+  User.create!(email: 'jamesblack@gmail.ca', username: 'jamesblack', 
+    password: 'jamesjames', password_confirmation: 'jamesjames', 
+    fname: 'James', lname: 'Black')
+
+  Friendship.create!(friendship_id: 8, sender_id: 9, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 8, sender_id: 10, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 8, sender_id: 11, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
 
   end
 end

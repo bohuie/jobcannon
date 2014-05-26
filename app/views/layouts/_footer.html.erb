@@ -1,4 +1,31 @@
 <head>
+  <script language = "javascript">
+    function change_chatbox(){
+    var NAME = document.getElementById("chatbox");
+    var currentClass = NAME.className;
+    if (currentClass == "dropup open") { // Check the current class name
+        NAME.className = "dropup";   // Set other class name
+    } else {
+        NAME.className = "dropup open";  // Otherwise, use `second_name`
+    }
+}
+$(function() {
+  var faye = new Faye.Client('http://localhost:9292/faye');
+  faye.subscribe('<%=@channel%>', function(data) {
+    eval(data);
+  });
+});
+
+function hold(){
+
+  document.getElementsByTagName("html")[0].setAttribute("style","overflow:hidden");
+}
+
+function scroll(){
+
+  document.getElementsByTagName("html")[0].setAttribute("style","overflow:scroll");
+}
+  </script>
 </head>
   <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style = "border: 0px solid white; background: rgba(255,255,255,0); width: 100%" >
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -9,21 +36,6 @@
 
       <ul class="nav pull-right">
       <% if user_signed_in?%>
-        <%
-        @newmessages = Message.where(receiver_id: @user.user_id)
-        @newmessages.each do |r|
-          @lastviewed = "2013-02-23 19:49:25"
-          @chatviews = Chatview.where(id1: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC") + Chatview.where(id2: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC")
-          if !@chatviews.empty?
-            @lastviewed =  @chatviews.first.last_viewed_at
-          end
-          @newmessages.delete_if {|s| s.sent_at < @lastviewed}
-        end
-        %>
-
-      <%if !@newmessages.empty?%>
-        <li> <%= link_to "New Message(s)", network_path, id: "brand",  style:"text-shadow:none;" %> </li>
-        <%end%>
         <% @friends = Friendship.where(receiver_id: @user.user_id, accepted: true) %>
         <% @friends = @friends + Friendship.where(sender_id: @user.user_id, accepted: true) %>
         <% @online = Array.new %>
@@ -47,9 +59,31 @@
           end
         end
         %>  
+
         <li class="dropup" id="accountmenu">  
           <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Friends<b class="caret"></b></a>  
           <ul class="dropdown-menu">  
+        <% @other = User.find(4) %>
+        <% @channel = "/"+3.to_s+"chatwith"+ 4.to_s %>
+        <% @messages = Message.where(sender_id: @other.user_id, receiver_id: @user.user_id)
+           @messages = @messages + Message.where(sender_id: @user.user_id, receiver_id: @other.user_id)
+           @messages = @messages.sort_by { |obj| obj.sent_at } #loads all the past messages, ordered by date
+        %>
+        <li class="dropup" id="chatbox" style = "width = auto">  
+          <a id = "brand" style = "text-shadow: none; cursor:pointer; width = 450px;", onClick = "change_chatbox()" > 
+            <%= @other.fname + " " + @other.lname%>
+            <b class="caret"></b>
+          </a> 
+          <div class = "dropdown-menu dropdown-menu-chat"> 
+            <div onmouseover = "hold();" onmouseout = "scroll();" style = "overflow: scroll; max-height: 400px;">
+              <%= render 'messages/privatechat' %>
+            </div>
+              <%= render 'messages/privatechatform' %>
+          </div>
+        </li>     
+        <li class="dropup" id="accountmenu" style = "width: 100px; text-align: right;">  
+          <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Chat<b class="caret"></b></a>  
+          <ul class="dropdown-menu" style = "text-align: left;">  
             <li role="presentation" class="dropdown-header">Online Friends</li>
             <% @online.each do |r| %>
               <li><%= link_to r.fname+" "+r.lname, profile_path(r) %></li>
