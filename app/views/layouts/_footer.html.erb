@@ -33,6 +33,7 @@ function scroll(){
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 100%;margin-top:10px;">
+
       <ul class="nav pull-right">
       <% if user_signed_in?%>
         <% @friends = Friendship.where(receiver_id: @user.user_id, accepted: true) %>
@@ -57,7 +58,7 @@ function scroll(){
             end
           end
         end
-        %>
+        %>  
         <li id = "testchat">
         </li>
         <li class="dropup" id="accountmenu" style = "width: 160px; text-align: right;">  
