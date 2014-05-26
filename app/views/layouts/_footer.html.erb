@@ -1,4 +1,15 @@
 <head>
+  <script language = "javascript">
+    function change_chatbox(){
+    var NAME = document.getElementById("chatbox");
+    var currentClass = NAME.className;
+    if (currentClass == "dropup open") { // Check the current class name
+        NAME.className = "dropup";   // Set other class name
+    } else {
+        NAME.className = "dropup open";  // Otherwise, use `second_name`
+    }
+}
+  </script>
 </head>
   <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style = "border: 0px solid white; background: rgba(255,255,255,0); width: 100%" >
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -6,32 +17,8 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 100%;margin-top:10px;">
-
-      <ul class="nav pull-left">
-        <% if user_signed_in?%>
-        <p style = "height: 30px;"></p>
-      <!--    <li><%= link_to "Survey", survey_path(@user), id: "brand",  style:"text-shadow:none;" %></li>
-          <li><%= link_to "Reccomended", {controller: "skills", action: "reccomend"}, id: "brand",  style:"text-shadow:none;" %></li>-->
-          <% end %>
-      </ul>
-
       <ul class="nav pull-right">
       <% if user_signed_in?%>
-        <%
-        @newmessages = Message.where(receiver_id: @user.user_id)
-        @newmessages.each do |r|
-          @lastviewed = "2013-02-23 19:49:25"
-          @chatviews = Chatview.where(id1: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC") + Chatview.where(id2: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC")
-          if !@chatviews.empty?
-            @lastviewed =  @chatviews.first.last_viewed_at
-          end
-          @newmessages.delete_if {|s| s.sent_at < @lastviewed}
-        end
-        %>
-
-      <%if !@newmessages.empty?%>
-        <li> <%= link_to "New Message(s)", network_path, id: "brand",  style:"text-shadow:none;" %> </li>
-        <%end%>
         <% @friends = Friendship.where(receiver_id: @user.user_id, accepted: true) %>
         <% @friends = @friends + Friendship.where(sender_id: @user.user_id, accepted: true) %>
         <% @online = Array.new %>
@@ -54,7 +41,39 @@
             end
           end
         end
-        %>       
+        %>  
+        <% @other = User.find(4) %>
+        <% @messages = Message.where(sender_id: @other.user_id, receiver_id: @user.user_id)
+           @messages = @messages + Message.where(sender_id: @user.user_id, receiver_id: @other.user_id)
+           @messages = @messages.sort_by { |obj| obj.sent_at } #loads all the past messages, ordered by date
+        %>
+        <li class="dropup" id="chatbox" style = "width = auto">  
+          <a id = "brand" style = "text-shadow: none; cursor:pointer; width = 450px;", onClick = "change_chatbox()" > 
+            <%= @other.fname + " " + @other.lname%>
+            <b class="caret"></b>
+          </a> 
+          <div class = "row dropdown-menu dropdown-menu-chat"> 
+            <ul id="chat" style = "overflow: scroll; max-height: 400px">
+              <%= render @messages %>
+            </ul>
+            <div class = "row" style = "width = 450px;">
+              <% if !@other.nil? %>
+                <%= simple_form_for Message.new, :id => "new_message", :controller => "messages", :action => "create", :remote => true do |f| %>
+                  <div class = "col-md-8">
+                    <%= f.text_field :message, :autocomplete => "off", :autofocus => true %>
+                  </div>
+                  <%= f.hidden_field :sender_id, :value => @user.user_id %>
+                  <%= f.hidden_field :receiver_id, :value => @other.user_id %>
+                  <%= f.hidden_field :sent_at, :value => Time.now %>
+                  <%= f.hidden_field :sender_name, :value => @user.fname+' '+@user.lname %>
+                  <div class = "col-md-2">
+                    <%= f.submit "Send", class: "btn btn-sm btn-primary", style: "margin: 0px;" %> 
+                  </div>  
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </li>     
         <li class="dropup" id="accountmenu">  
           <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Friends<b class="caret"></b></a>  
           <ul class="dropdown-menu">  
