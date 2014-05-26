@@ -23,13 +23,6 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.datetime "updated_at"
   end
 
-  create_table "chatviews", force: true do |t|
-    t.integer  "id1",            default: 0, null: false
-    t.integer  "id2",            default: 0, null: false
-    t.integer  "viewer",         default: 0, null: false
-    t.datetime "last_viewed_at",             null: false
-  end
-
   create_table "experiences", force: true do |t|
     t.string   "title",            default: "", null: false
     t.string   "description",      default: "", null: false
@@ -177,14 +170,11 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"   
     t.boolean  "employee",               default: true
-    #t.string   "goals",                  default: "",    null: false
     t.boolean  "employer",               default: false, null: false
-    #t.string   "company_name",           default: ""
-    #t.string   "company_address",        default: ""
-    #t.string   "field",                  default: ""
+    t.string   "company_name",           default: ""
+    t.string   "company_address",        default: ""
+    t.string   "field",                  default: ""
     t.boolean  "admin",                  default: false, null: false
-    #t.string   "uid"
-    #t.string   "provider"
     t.string   "city"
     t.string   "province"    
     t.string   "gender"

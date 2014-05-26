@@ -35,11 +35,6 @@
     <ul class="nav pull-right">
       <% if user_signed_in? %>
           <li> <%= link_to "Home", profile_path(@user), id: "brand",  style:"text-shadow:none;" %> </li>
-        <% if @user.employer? %>
-          <li> <%= link_to "Postings", postings_path, id: "brand",  style:"text-shadow:none;" %> </li>
-          <li> <%= link_to'Sign Out', destroy_user_session_path, :method => :delete, id:"brand" %>  </li> 
-        <% else %>
-          
           <li class="dropdown" id="accountmenu">  
             <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Account<b class="caret"></b></a>  
             <ul class="dropdown-menu">  
@@ -47,7 +42,6 @@
                  <li><%= link_to'Sign Out', destroy_user_session_path, :method => :delete, id:"brand", style:"text-shadow:none; color: black" %>  </li>
               </ul>              
           </li>
-        <% end %>
       <% else %>
           <li><%= link_to "Sign In", new_user_session_path, id: "brand",  style:"text-shadow:none;"%></li>
           <li><%= link_to "Sign Up", new_user_registration_path, id: "brand",  style:"text-shadow:none;" %></li>

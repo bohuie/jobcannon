@@ -53,86 +53,28 @@
   </div>
 
   <div class="row">
-  <div class="rform1"><%= f.label "Phone Number" %><br />
-  <%= f.phone_field :phone_number, :autofocus => true %></div></div>
-
-  <div class="row">
-  <div class="rform1"><%= f.label "City" %><br />
-  <%= f.text_field :city, :autofocus => true %></div>
-
-  <div class="rform1"><%= f.label "State/ province" %><br />
-  <%= f.text_field :province, :autofocus => true %></div>
-
-  <div class="rform1"><%= f.label "Country" %><br />
-  <%= f.text_field :country, :autofocus => true %></div></div>
-
-  <div class="row">
-  <div class="rform1">
-    <%= f.input :gender, collection: ['I am..', :Male, :Female, :Other],:default => 1 %>
-  </div></div>
-
-  <div class="row">
-  <div class="rform1"><%= f.label "Birthday" %><br />
-  <%= f.date_field :birthday, :autofocus => true %></div></div>
-
- 
-
-
-  <div class="row">
   <div class="rform1">
     <%= f.input :employer, collection: [['Looking for work', false], ['Looking to hire',true]], :default => 1, label: "I am" , :input_html => {id: "employer_select",  onchange: "myFunction()"} %>
   </div></div>
 
   <%if @user.employer?%>
-  <div id= 'employee_form', style = "display: none">
-    <div class="row">
-      <div class="rform1"><%= f.label "Goals" %><br />
-        <%= f.text_field :goals, :autofocus => true %>
+    <div id= 'employer_form'>
+      <div class="row">
+        <div class="rform1"><%= f.label "Company Name" %><br />
+          <%= f.text_field :company_name, :autofocus => true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="rform1"><%= f.label "Company Address" %><br />
+          <%= f.text_field :company_address, :autofocus => true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="rform1"><%= f.label "Field" %><br />
+          <%= f.text_field :field, :autofocus => true %>
+        </div>
       </div>
     </div>
-  </div>
-  <div id= 'employer_form'>
-    <div class="row">
-      <div class="rform1"><%= f.label "Company Name" %><br />
-        <%= f.text_field :company_name, :autofocus => true %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="rform1"><%= f.label "Company Address" %><br />
-        <%= f.text_field :company_address, :autofocus => true %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="rform1"><%= f.label "Field" %><br />
-        <%= f.text_field :field, :autofocus => true %>
-      </div>
-    </div>
-  </div>
-  <%else%>
-  <div id= 'employee_form'>
-    <div class="row">
-      <div class="rform1"><%= f.label "Goals" %><br />
-        <%= f.text_field :goals, :autofocus => true %>
-      </div>
-    </div>
-  </div>
-  <div id= 'employer_form', style = "display: none">
-    <div class="row">
-      <div class="rform1"><%= f.label "Company Name" %><br />
-        <%= f.text_field :company_name, :autofocus => true %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="rform1"><%= f.label "Company Address" %><br />
-        <%= f.text_field :company_address, :autofocus => true %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="rform1"><%= f.label "Field" %><br />
-        <%= f.text_field :field, :autofocus => true %>
-      </div>
-    </div>
-  </div>
   <%end%>
 
 
