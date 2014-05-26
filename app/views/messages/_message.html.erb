@@ -1,7 +1,27 @@
-<li style = "list-style-type: none; padding: 0px; margin: 0px;">
-	<% if message.sender_id == @user.user_id %>
-	<% end %>
-	<b><%= message.sender_name %></b>
-  	<div> : <%= message.sent_at.strftime("%H:%M") %> : </div>
-  	<%= message.message %>
-</li>
+<% if !message.message.eql? "" %>
+	<li style = "list-style-type: none; padding: 0px; margin: 0px;">
+		<% if message.sender_id == @user.user_id %>
+			<div class = "sender-message">
+				<div class = "message-body-sender"><%= message.message %></div>
+				<div class = "message-time-sender"> 
+					<% if message.sent_at > Date.yesterday %>
+						Sent at: <%= message.sent_at.strftime("%H:%M") %>
+					<% else %>
+						Sent on: <%= message.sent_at.strftime("%b . %-d") %>
+					<% end %>
+				</div>
+			</div>
+		<% else %>
+			<div class = "reciever-message">
+				<div class = "message-body-reciever"><%= message.message %></div>
+				<div class = "message-time-reciever"> 
+					<% if message.sent_at > Date.yesterday %>
+						Sent at: <%= message.sent_at.strftime("%H:%M") %>
+					<% else %>
+						Sent on: <%= message.sent_at.strftime("%b . %-d") %>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</li>
+<% end %>

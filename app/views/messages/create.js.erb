@@ -1,4 +1,5 @@
 <% broadcast @channel do %>
   $("#chat").load('messages/_privatechatform.html.erb').append("<%= escape_javascript render(@message) %>");
+  $("#chatbox2").load('layouts/_chat.html.erb').scrollTop($("#chatbox2").load('layouts/_chat.html.erb')[0].scrollHeight);
 <% end %>
 $("#new_message")[0].reset();

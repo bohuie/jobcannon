@@ -8,17 +8,14 @@ $(function() {
   });
 });
 </script>
-<div class = "row">
+<div class = "row" style = "width:99%; padding:0px; height: auto;">
   <%= simple_form_for Message.new, :id => "new_message", :controller => "messages", :action => "create", :remote => true do |f| %>
-  <div class = "col-md-8">
-    <%= f.text_field :message, :autocomplete => "off", :autofocus => true %>
+  <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
+    <%= f.text_field :message, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
   </div>
   <%= f.hidden_field :sender_id, :value => @user.user_id %>
   <%= f.hidden_field :receiver_id, :value => @other.user_id %>
   <%= f.hidden_field :sent_at, :value => Time.now %>
   <%= f.hidden_field :sender_name, :value => @user.fname+' '+@user.lname %>
-  <div class = "col-md-2">
-    <%= f.submit "Send", class: "btn btn-sm btn-primary", style: "margin: 0px;" %> 
-  </div>  
-<% end %>
+  <% end %>
 </div>

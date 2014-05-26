@@ -22,6 +22,7 @@ First_Website::Application.routes.draw do
   resources :friendships
   resources :surveyprofiles
   resources :languages
+  resources :layouts
   #resources :users
 
   match '/search', to: 'search#search', via: 'get'
@@ -31,6 +32,7 @@ First_Website::Application.routes.draw do
   match '/details', to: 'experiences#details', via: 'get'
   match '/one_ref', to: 'references#one_ref', via: 'get'
   match '/add_exp', to: "experiences#add", via: 'get'
+  get 'privatechat', to: "layouts#privatechat", via: 'get'
     
   match '/auth/:provider/callback', to: 'authentications#create', via: 'get'
   resources :authentications

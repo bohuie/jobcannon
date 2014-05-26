@@ -16,9 +16,6 @@ $(function() {
   });
 });
 
-
-
-
 function hold(){
 
   document.getElementsByTagName("html")[0].setAttribute("style","overflow:hidden");
@@ -60,31 +57,15 @@ function scroll(){
             end
           end
         end
-        %>  
-        <% @other = User.find(4) %>
-        <% @channel = "/"+3.to_s+"chatwith"+ 4.to_s %>
-        <% @messages = Message.where(sender_id: @other.user_id, receiver_id: @user.user_id)
-           @messages = @messages + Message.where(sender_id: @user.user_id, receiver_id: @other.user_id)
-           @messages = @messages.sort_by { |obj| obj.sent_at } #loads all the past messages, ordered by date
         %>
-        <li class="dropup" id="chatbox" style = "width = auto">  
-          <a id = "brand" style = "text-shadow: none; cursor:pointer; width = 450px;", onClick = "change_chatbox()" > 
-            <%= @other.fname + " " + @other.lname%>
-            <b class="caret"></b>
-          </a> 
-          <div class = "dropdown-menu dropdown-menu-chat"> 
-            <div onmouseover = "hold();" onmouseout = "scroll();" style = "overflow: scroll; max-height: 400px;">
-              <%= render 'messages/privatechat' %>
-            </div>
-              <%= render 'messages/privatechatform' %>
-          </div>
-        </li>     
-        <li class="dropup" id="accountmenu" style = "width: 100px; text-align: right;">  
+        <li id = "testchat">
+        </li>
+        <li class="dropup" id="accountmenu" style = "width: 160px; text-align: right;">  
           <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Chat<b class="caret"></b></a>  
-          <ul class="dropdown-menu" style = "text-align: left;">  
+          <ul class="dropdown-menu" style = "text-align: left; width: 120px;">  
             <li role="presentation" class="dropdown-header">Online Friends</li>
             <% @online.each do |r| %>
-              <li><%= link_to r.fname+" "+r.lname, profile_path(r) %></li>
+              <li><%= link_to r.fname+" "+r.lname, {controller: "layouts", action: "privatechat", id1: @user.user_id, id2: r.user_id}, remote: true%></li>
             <% end %>
             <% if @online.empty? %>
               <li role = "presentation" class = "divider"></li>
