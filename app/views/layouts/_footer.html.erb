@@ -60,9 +60,11 @@ function scroll(){
         end
         %>  
 
+
         <li class="dropup" id="accountmenu">  
           <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Friends<b class="caret"></b></a>  
           <ul class="dropdown-menu">  
+
         <% @other = User.find(4) %>
         <% @channel = "/"+3.to_s+"chatwith"+ 4.to_s %>
         <% @messages = Message.where(sender_id: @other.user_id, receiver_id: @user.user_id)
