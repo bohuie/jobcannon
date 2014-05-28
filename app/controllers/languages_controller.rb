@@ -4,9 +4,10 @@ class LanguagesController < ApplicationController
 
 		@user = current_user
 		@language = Language.find_by(:user_id => @user.user_id)	
-		@language.update_attributes(language_params)
-		@language.user_id = current_user.user_id		
-		redirect_to root_path			
+		@language.user_id = current_user.user_id
+		@language.update_attributes(language_params)						
+		redirect_to root_path
+		
 	end
 
 	private

@@ -120,8 +120,41 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.string "education"
     t.string   "city"
     t.string   "province"    
-    t.string   "gender"
+    t.string   "gender",   default: nil
     t.datetime "birthday"
+  end
+
+  create_table "experiencetables", force:true do |t|
+    t.integer "user_id",   default: 0, null: false
+    t.integer "survey_id", default: 0, null: false
+    t.integer "years_worked"
+    t.integer "months_worked"
+    t.boolean "agriculture"
+    t.boolean "mining"
+    t.boolean "utilities"
+    t.boolean "construction"
+    t.boolean "manufacturing"
+    t.boolean "wholesale"
+    t.boolean "retail"
+    t.boolean "transport"
+    t.boolean "information"
+    t.boolean "finance"
+    t.boolean "real_estate"
+    t.boolean "professional"
+    t.boolean "managment"
+    t.boolean "administrative"
+    t.boolean "education"
+    t.boolean "health"
+    t.boolean "arts"
+    t.boolean "accomodation"
+    t.boolean "public"
+    t.boolean "full_time",   default: false, null: false
+    t.boolean "part_time",   default: false, null: false
+    t.boolean "volunteer",   default: false, null: false
+    t.boolean "employ",   default: false, null: false
+    t.boolean "vol_work", default: false, null: false
+    t.integer "vol_hours"
+    t.string "other"
   end
 
   create_table "users", force: true do |t|
@@ -228,5 +261,74 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   t.integer "language_id"
  end
 
+ create_table "communication_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "communication_skills_id"
+  t.integer "q1"
+  t.integer "q2"
+  t.integer "q3"
+  t.integer "q4"
+  t.integer "q5"
+  t.integer "q6"
+  t.integer "q7"
+  t.integer "q8"
+  t.integer "q9"
+  t.integer "q10"
+  t.integer "q11"
+ end
+
+create_table "thinking_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "thinking_skills_id"
+  t.integer "q1"
+  t.integer "q2"
+  t.integer "q3"
+  t.integer "q4"
+  t.integer "q5"
+  t.integer "q6"
+  t.integer "q7"
+  t.integer "q8"  
+end
+
+create_table "self_direction_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "sd_skills_id"
+  t.integer "q1"
+  t.integer "q2"
+  t.integer "q3"
+  t.integer "q4"
+  t.integer "q5"
+  t.integer "q6"
+  t.integer "q7"
+  t.integer "q8"
+  t.integer "q9"
+  t.integer "q10"
+  t.integer "q11"
+end
+
+
+ create_table "accountabilities", force: true do |t|
+  t.integer "user_id"
+  t.integer "accountability_id"
+  t.integer "q1"
+  t.integer "q2"
+  t.integer "q3"
+  t.integer "q4"
+  t.integer "q5"  
+ end
+
+create_table "interpersonal_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "interpersonal_skills_id"
+  t.integer "q1"
+  t.integer "q2"
+  t.integer "q3"
+  t.integer "q4"
+  t.integer "q5"
+  t.integer "q6"
+  t.integer "q7"
+  t.integer "q8"
+  t.integer "q9"  
+end
 
 end

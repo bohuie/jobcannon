@@ -3,6 +3,17 @@
 
 /* Questions for the Survey */
 
+#ft-exp{      /* for the full time experience table */
+  margin-left: 10px;
+  
+  td{
+    padding: 3px;
+    border-bottom: 1px solid black;
+  }
+
+}
+
+
 #lang{
   td{
     width: 7em;
@@ -27,6 +38,12 @@
   }
 
 }
+
+#survey_pic{
+      width: 6em;
+      height: 5em;
+            
+    }
 
 
 .questions{

@@ -10,10 +10,7 @@ class SurveyprofilesController < ApplicationController
 			f.html {redirect_to root_path}
 			f.js 
 		end
-		
 	end
-
-
 	private
     
     def survey_params

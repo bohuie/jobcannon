@@ -4,8 +4,14 @@ class User < ActiveRecord::Base
   has_one :language, dependent: :destroy
 
   has_one :surveyprofile, dependent: :destroy 
+  has_one :accountabilitys, dependent: :destroy
+  has_one :self_direction_skills, dependent: :destroy
+  has_one :communication_skills, dependent: :destroy
+  has_one :interpersonal_skills, dependent: :destroy
+  has_one :thinking_skills, dependent: :destroy
   has_many :authentications, dependent: :destroy
   has_many :friendships, dependent: :destroy
+  has_many :experiencetables, dependent: :destroy
 
   
 

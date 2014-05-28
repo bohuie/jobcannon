@@ -10,6 +10,7 @@ First_Website::Application.routes.draw do
   resources :skills do 
     get :autocomplete_skilllabel_label, :on => :collection
   end
+  
   resources :experiences
   resources :references
   resources :postings
@@ -23,6 +24,14 @@ First_Website::Application.routes.draw do
   resources :surveyprofiles
   resources :languages
   resources :layouts
+  resources :experiencetables do 
+    member do 
+      patch :vol_update 
+      patch :ft_update 
+      patch :pt_update 
+      patch :employ_update 
+    end 
+  end
   #resources :users
 
   match '/search', to: 'search#search', via: 'get'
@@ -44,6 +53,7 @@ First_Website::Application.routes.draw do
   get 'network', to: 'friendships#index'
   get 'privatechat', to: 'messages#privatechat'
   get 'storemsg', to: 'messages#storemsg'
+  post 'vol_update', to: 'survey#show'
 
 
    # get 'signin' => 'devise/sessions#new', :as => :new_user_session

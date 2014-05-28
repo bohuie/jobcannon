@@ -30,11 +30,12 @@
     .btnChange{
       background: none;
       border: none;
-    }
+    }    
 
-    #survey_pic{
-      width: 6em;
-      height: 5em;
+    #pic_fix{
+      background-color: #428bca;
+      border-color: #428bca;
+      border-radius: 3px;
     }
 
   </style>
@@ -195,27 +196,27 @@ function save()
         <div class ="tab-pane fade content" id = "survey">
           
           <div class="row">
-              <div class = "col-lg-3">              
-                  <%= link_to image_tag('exp.png'), survey_path(@user,:type=> 0), class: "btn btn-default", id: "survey_pic"%>           
-                  Experiences       
+              <div class = "col-lg-3"> 
+                <%= link_to image_tag('account.png'), survey_path(@user,:type=>2), class: "btn btn-primary", id: "survey_pic"%>
+                                                                                  
               </div>
 
               <div class = "col-lg-3">
-                <%= link_to image_tag('per.png'), survey_path(@user,:type=> 1), class: "btn btn-default", id: "survey_pic"%>
-                Personality
+                <%= link_to image_tag('per.png'), survey_path(@user,:type=> 1), class: "btn btn-primary", id: "survey_pic"%>
+                
               </div>
 
               <div class = "col-lg-3">
-                <%= link_to image_tag('account.png'), survey_path(@user,:type=>2), class: "btn btn-default", id: "survey_pic"%>
-                Profile
+                <%= link_to image_tag('exp.png'), survey_path(@user,:type=> 0), class: "btn btn-primary", id: "survey_pic"%>                   
+                                      
               </div>
 
               <div class = "col-lg-3">
-                <%= link_to image_tag('tech.png'), survey_path(@user,:type=>3), class: "btn btn-default", id: "survey_pic"%>
-                Technology
+                <%= link_to image_tag('tech.png'), survey_path(@user,:type=>3), class: "btn btn-primary", id: "survey_pic"%>
+                
               </div>
           </div>
-          <%= link_to "Take Survey Here", survey_path(@user), id: "more",  style:"text-shadow:none;" %>
+          
         </div>
 
         <div class="tab-pane fade content" id="exp">
