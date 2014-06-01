@@ -1,4 +1,4 @@
-class ThinkingSkill < ActiveRecord::Base
+class TechnologyDifference < ActiveRecord::Base
  	after_create :do_setID
  	belongs_to :user
 

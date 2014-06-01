@@ -1,0 +1,235 @@
+
+<% @label = "Which operating system(s) have you used?" %>
+<% @label2 = "How fluent are you with each of the following operating systems? (How well would you be able to work using each?) " %>
+<% @header1 = "Yes, I have used this" %>
+<% @header2 = "No, I have not used this" %>
+<% @header3 = "Not sure"%>
+
+<% @header4 = "Completely Fluent" %>
+<% @header5 = "Quite Fluent" %>
+<% @header6 = "Somewhat Fluent" %>
+<% @header7 = "Minimal Fluency" %>
+<% @header8 = "Not Fluent" %>
+<% @header9 = "I don't know" %>
+
+<% @windows = "Windows" %>
+<% @mac = "Mac OS" %>
+<% @linux = "Linux" %>
+<% @other = "If Other Please Specify" %>
+
+<%= simple_form_for @os do |f| %>
+
+	<%= f.label @label %>
+	<br>
+	<br>
+
+	<table id = "survey_format">
+		<tr>
+			<th>
+			</th>
+			<th>
+				<%= @header1 %>
+			</th>
+			<th>
+				<%= @header2 %>
+			</th>
+			<th>
+				<%= @header3 %>
+			</th>
+		</tr>
+		<tr>
+			<td style = "text-align: left; width: 30%">
+				<%= @windows %>
+			</td>
+			<td style = "width: 20%">
+				<%= f.radio_button :windows,3, :default => @os.windows  %>				
+			</td>
+			<td style = "width: 20%">
+				<%= f.radio_button :windows,2, :default => @os.windows  %>				
+			</td>
+			<td style = "width: 20%">
+				<%= f.radio_button :windows,1, :default => @os.windows  %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @mac %>
+			</td>
+			<td>
+				<%= f.radio_button :mac,3, :default => @os.mac  %>				
+			</td>
+			<td>
+				<%= f.radio_button :mac,2, :default => @os.mac  %>				
+			</td>
+			<td>
+				<%= f.radio_button :mac,1, :default => @os.mac  %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @linux %>
+			</td>
+			<td>
+				<%= f.radio_button :linux,3, :default => @os.linux  %>				
+			</td>
+			<td>
+				<%= f.radio_button :linux,2, :default => @os.linux  %>				
+			</td>
+			<td>
+				<%= f.radio_button :linux,1, :default => @os.linux  %>				
+			</td>
+		</tr>
+		<tr id = "last_row">
+			<td style = "text-align: left">
+				<%= f.label @other %>
+				<br>
+				<%= f.text_field :other %>
+			</td>
+			<td>
+				<br>
+				<%= f.submit "Submit", class: "btn btn-primary"%>
+			</td>
+		</tr>		
+	</table>
+<% end %>
+
+
+<%= simple_form_for @fluent do |g| %>
+
+	<%= g.label @label2 %>
+	<br>
+	<br>
+
+	<table id = "survey_format">
+		<tr>
+			<th>
+			</th>
+			<th>
+				<%= @header4 %>
+			</th>
+			<th>
+				<%= @header5 %>
+			</th>
+			<th>
+				<%= @header6 %>
+			</th>
+			<th>
+				<%= @header7 %>
+			</th>
+			<th>
+				<%= @header8 %>
+			</th>
+			<th>
+				<%= @header9 %>
+			</th>
+		</tr>
+		<tr>
+			<td style = "text-align: left; width: 40%">
+				<%= @windows %>
+			</td>
+			<td style = "width:10%">
+				<%= g.radio_button :windows,6, :default => @fluent.windows  %>				
+			</td>
+			<td style = "width:10%">
+				<%= g.radio_button :windows,5, :default => @fluent.windows  %>				
+			</td>
+			<td style = "width:10%">
+				<%= g.radio_button :windows,4, :default => @fluent.windows  %>				
+			</td>
+			<td style = "width:10%">
+				<%= g.radio_button :windows,3, :default => @fluent.windows  %>				
+			</td>
+			<td style = "width:10%">
+				<%= g.radio_button :windows,2, :default => @fluent.windows  %>				
+			</td>
+			<td style = "width:10%">
+				<%= g.radio_button :windows,1, :default => @fluent.windows  %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @mac %>
+			</td>
+			<td>
+				<%= g.radio_button :mac,6, :default => @fluent.mac  %>				
+			</td>
+			<td>
+				<%= g.radio_button :mac,5, :default => @fluent.mac  %>				
+			</td>
+			<td>
+				<%= g.radio_button :mac,4, :default => @fluent.mac  %>				
+			</td>
+			<td>
+				<%= g.radio_button :mac,3, :default => @fluent.mac  %>				
+			</td>
+			<td>
+				<%= g.radio_button :mac,2, :default => @fluent.mac  %>				
+			</td>
+			<td>
+				<%= g.radio_button :mac,1, :default => @fluent.mac  %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @linux %>
+			</td>
+			<td>
+				<%= g.radio_button :linux,6, :default => @fluent.linux  %>				
+			</td>
+			<td>
+				<%= g.radio_button :linux,5, :default => @fluent.linux  %>				
+			</td>
+			<td>
+				<%= g.radio_button :linux,4, :default => @fluent.linux  %>				
+			</td>
+			<td>
+				<%= g.radio_button :linux,3, :default => @fluent.linux  %>				
+			</td>
+			<td>
+				<%= g.radio_button :linux,2, :default => @fluent.linux  %>				
+			</td>
+			<td>
+				<%= g.radio_button :linux,1, :default => @fluent.linux  %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				Other
+			</td>
+			<td>
+				<%= g.radio_button :magnitude_other,6, :default => @fluent.magnitude_other  %>				
+			</td>
+			<td>
+				<%= g.radio_button :magnitude_other,5, :default => @fluent.magnitude_other  %>				
+			</td>
+			<td>
+				<%= g.radio_button :magnitude_other,4, :default => @fluent.magnitude_other  %>				
+			</td>
+			<td>
+				<%= g.radio_button :magnitude_other,3, :default => @fluent.magnitude_other  %>				
+			</td>
+			<td>
+				<%= g.radio_button :magnitude_other,2, :default => @fluent.magnitude_other  %>				
+			</td>
+			<td>
+				<%= g.radio_button :magnitude_other,1, :default => @fluent.magnitude_other  %>				
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr  id = "last_row">
+			<td style = "text-align: left;">
+				<%= g.label @other %>							
+				<br>
+				<%= g.text_field :other %>
+			</td>			
+			<td style = "padding-left: 2em">
+				<br>
+				<%= g.submit "Submit", class: "btn btn-primary" %>
+			</td>			
+		</tr>
+	</table>
+<% end %>
+
+<%=link_to "Previous", survey_path(@user,:type=> 3,:tech=>0), class: "btn btn-primary test" %>
+

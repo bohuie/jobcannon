@@ -1,0 +1,188 @@
+
+<% header1 = "Very Easy" %>
+<% header2 = "Easy" %>
+<% header3 = "Neutral" %>
+<% header4 = "Difficult" %>
+<% header5 = "Very Difficult" %>
+<% header6 = "I don't know what this is" %>
+
+<% @label = "How easy would you find the follwoing tasks to completer on a computer?" %>
+
+<% @q1 = "Determine the amount of RAM installed on the computer" %>
+<% @q2 = "Determine the amount of RAM re@quired by a program" %>
+<% @q3 = "Determine the version of the OS on the computer" %>
+<% @q4 = "Select the software for a defined task" %>
+<% @q5 = "Install antvirus software" %>
+<% @q6 = "Update software" %>
+
+<%= simple_form_for @advanced do |f| %>
+
+	<%= f.label @label %>
+	<br>
+	<br>
+	<table id = "survey_format">
+		<tr>
+			<th>
+			</th>
+			<th>
+				<%= header1 %>
+			</th>
+			<th>
+				<%= header2 %>
+			</th>
+			<th>
+				<%= header3 %>
+			</th>
+			<th>
+				<%= header4 %>
+			</th>
+			<th>
+				<%= header5 %>
+			</th>
+			<th>
+				<%= header6 %>
+			</th>
+		</tr>
+		<tr>
+			<td style = "text-align: left; width: 30%">
+				<%= @q1 %>
+			</td>
+			<td style="width:10%">
+				<%= f.radio_button :q1, 6, :default => @advanced.q1  %>				
+			</td>
+			<td style="width:10%">
+				<%= f.radio_button :q1, 5, :default => @advanced.q1  %>				
+			</td>
+			<td style="width:10%">
+				<%= f.radio_button :q1, 4, :default => @advanced.q1  %>				
+			</td>
+			<td style="width:10%">
+				<%= f.radio_button :q1, 3, :default => @advanced.q1  %>				
+			</td>
+			<td style="width:10%">
+				<%= f.radio_button :q1, 2, :default => @advanced.q1  %>				
+			</td>
+			<td style="width:20%">
+				<%= f.radio_button :q1, 1, :default => @advanced.q1  %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q2 %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 6, :default => @advanced.q2  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 5, :default => @advanced.q2  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 4, :default => @advanced.q2  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 3, :default => @advanced.q2  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 2, :default => @advanced.q2  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 1, :default => @advanced.q2  %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q3 %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 6, :default => @advanced.q3  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q3, 5, :default => @advanced.q3  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q3, 4, :default => @advanced.q3  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q3, 3, :default => @advanced.q3  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q3, 2, :default => @advanced.q3  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q3, 1, :default => @advanced.q3  %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q4 %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 6, :default => @advanced.q4  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q4, 5, :default => @advanced.q4  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q4, 4, :default => @advanced.q4  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q4, 3, :default => @advanced.q4  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q4, 2, :default => @advanced.q4  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q4, 1, :default => @advanced.q4  %>				
+			</td>
+		</tr>	
+		<tr >
+			<td style = "text-align: left">
+				<%= @q5 %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 6, :default => @advanced.q5  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q5, 5, :default => @advanced.q5  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q5, 4, :default => @advanced.q5  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q5, 3, :default => @advanced.q5  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q5, 2, :default => @advanced.q5  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q5, 1, :default => @advanced.q5  %>				
+			</td>
+		</tr>
+		<tr id = "last_row">
+			<td style = "text-align: left">
+				<%= @q6 %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 6, :default => @advanced.q6  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q6, 5, :default => @advanced.q6  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q6, 4, :default => @advanced.q6  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q6, 3, :default => @advanced.q6  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q6, 2, :default => @advanced.q6  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q6, 1, :default => @advanced.q6  %>				
+			</td>
+		</tr>
+	</table>
+
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
+

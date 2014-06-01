@@ -11,7 +11,15 @@ class User < ActiveRecord::Base
   has_one :thinking_skills, dependent: :destroy
   has_many :authentications, dependent: :destroy
   has_many :friendships, dependent: :destroy
+  has_one :basic_computer_skills, dependent: :destroy
   has_many :experiencetables, dependent: :destroy
+
+  has_one :operating_systems_usages, dependent: :destroy
+  has_one :advanced_computer_skills, dependent: :destroy
+  has_one :multi_media_skills, dependent: :destroy
+  has_one :technology_differences, dependent: :destroy
+  has_one :word_processing_skills, dependent: :destroy
+  has_one :word_processing_fluentcies, dependent: :destroy
 
   
 
@@ -22,8 +30,6 @@ class User < ActiveRecord::Base
   has_many :postings, dependent: :destroy
   has_many :experiences, dependent: :destroy
   
-
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lastseenable
 

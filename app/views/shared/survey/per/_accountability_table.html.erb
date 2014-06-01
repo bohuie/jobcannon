@@ -1,0 +1,156 @@
+<%= simple_form_for @accountability do |f| %>
+
+	<% @instruction = "Please select how much you disagree or agree with each of the following statements" %>
+	<% @label = "Accountability and Adaptability Skills" %>
+
+	<% @q1 = "I am always punctual with good attendance" %>
+	<% @q2 = "I always think of questions to ask and do so when appropriate" %>
+	<% @q3 = "I carry myself in a professional manner" %>
+	<% @q4 = "I consistently manage time and resources in an efficient manner to achieve what I need to get done" %>
+	<% @q5 = "I use a variety of tools and techniques" %>
+	<% @q6 = "I always communicate with my coworkers if I run into problems" %>	
+
+	<table id ="survey_format">
+		<tr>
+			<th>
+				<%= @label %>
+			</th>
+			<th>
+				<%= @header1 %>
+			</th>
+			<th>
+				<%= @header2 %>
+			</th>
+			<th>
+				<%= @header3 %>
+			</th>
+			<th>
+				<%= @header4 %>
+			</th>
+			<th>
+				<%= @header5 %>
+			</th>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q1 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q1, 1, :default => @accountability.q1  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q1, 2, :default => @accountability.q1  %>
+			</td>
+			<td>
+				<%= f.radio_button :q1, 3, :default => @accountability.q1  %>
+			</td>
+			<td>
+				<%= f.radio_button :q1, 4, :default => @accountability.q1  %>
+			</td>
+			<td>
+				<%= f.radio_button :q1, 5, :default => @accountability.q1  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q2 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q2, 1, :default => @accountability.q2  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 2, :default => @accountability.q2  %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 3, :default => @accountability.q2  %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 4, :default => @accountability.q2  %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 5, :default => @accountability.q2  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q3 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q3, 1, :default => @accountability.q3  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q3, 2, :default => @accountability.q3  %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 3, :default => @accountability.q3  %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 4, :default => @accountability.q3  %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 5, :default => @accountability.q3  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q4 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q4, 1, :default => @accountability.q4  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q4, 2, :default => @accountability.q4  %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 3, :default => @accountability.q4  %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 4, :default => @accountability.q4  %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 5, :default => @accountability.q4  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q5 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q5, 1, :default => @accountability.q5  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q5, 2, :default => @accountability.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 3, :default => @accountability.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 4, :default => @accountability.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 5, :default => @accountability.q5  %>
+			</td>
+		</tr>
+		<tr id ="last_row">
+			<td style = "text-align: left">
+				<%= @q5 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q6, 1, :default => @accountability.q5  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q6, 2, :default => @accountability.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 3, :default => @accountability.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 4, :default => @accountability.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 5, :default => @accountability.q5  %>
+			</td>
+		</tr>				
+	</table>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

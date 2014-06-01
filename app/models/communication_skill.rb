@@ -1,4 +1,4 @@
-class Communication_skill < ActiveRecord::Base
+class CommunicationSkill < ActiveRecord::Base
  	after_create :do_setID
  	belongs_to :user
 

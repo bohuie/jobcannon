@@ -1,4 +1,4 @@
-class Self_direction_skill < ActiveRecord::Base
+class SelfDirectionSkill < ActiveRecord::Base
  	after_create :do_setID
  	belongs_to :user
 

@@ -248,77 +248,187 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   t.boolean "other_formal", default: false
 
   t.integer "user_id"
-  t.integer "language_id"
+  t.integer "language_id", default: 0,     null: false
  end
 
  create_table "communication_skills", force: true do |t|
   t.integer "user_id"
-  t.integer "communication_skills_id"
-  t.integer "q1"
-  t.integer "q2"
-  t.integer "q3"
-  t.integer "q4"
-  t.integer "q5"
-  t.integer "q6"
-  t.integer "q7"
-  t.integer "q8"
-  t.integer "q9"
-  t.integer "q10"
-  t.integer "q11"
+  t.integer "communication_skills_id",  default: 0,     null: false
+  t.integer "q1",                       default: 0,     null: false
+  t.integer "q2",                       default: 0,     null: false
+  t.integer "q3",                       default: 0,     null: false
+  t.integer "q4",                       default: 0,     null: false
+  t.integer "q5",                       default: 0,     null: false
+  t.integer "q6",                       default: 0,     null: false
+  t.integer "q7",                       default: 0,     null: false
+  t.integer "q8",                       default: 0,     null: false
+  t.integer "q9",                       default: 0,     null: false
+  t.integer "q10",                      default: 0,     null: false
+  t.integer "q11",                      default: 0,     null: false
  end
 
 create_table "thinking_skills", force: true do |t|
   t.integer "user_id"
-  t.integer "thinking_skills_id"
-  t.integer "q1"
-  t.integer "q2"
-  t.integer "q3"
-  t.integer "q4"
-  t.integer "q5"
-  t.integer "q6"
-  t.integer "q7"
-  t.integer "q8"  
+  t.integer "thinking_skills_id",      default: 0,     null: false
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+  t.integer "q7",                      default: 0,     null: false
+  t.integer "q8",                      default: 0,     null: false
 end
 
 create_table "self_direction_skills", force: true do |t|
   t.integer "user_id"
-  t.integer "sd_skills_id"
-  t.integer "q1"
-  t.integer "q2"
-  t.integer "q3"
-  t.integer "q4"
-  t.integer "q5"
-  t.integer "q6"
-  t.integer "q7"
-  t.integer "q8"
-  t.integer "q9"
-  t.integer "q10"
-  t.integer "q11"
+  t.integer "sd_skills_id",            default: 0,     null: false
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+  t.integer "q7",                      default: 0,     null: false
+  t.integer "q8",                      default: 0,     null: false
+  t.integer "q9",                      default: 0,     null: false
+  t.integer "q10",                     default: 0,     null: false
+  t.integer "q11",                     default: 0,     null: false
 end
 
 
  create_table "accountabilities", force: true do |t|
   t.integer "user_id"
-  t.integer "accountability_id"
-  t.integer "q1"
-  t.integer "q2"
-  t.integer "q3"
-  t.integer "q4"
-  t.integer "q5"  
+  t.integer "accountability_id",       default: 0,     null: false
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
  end
 
 create_table "interpersonal_skills", force: true do |t|
   t.integer "user_id"
-  t.integer "interpersonal_skills_id"
-  t.integer "q1"
-  t.integer "q2"
-  t.integer "q3"
-  t.integer "q4"
-  t.integer "q5"
-  t.integer "q6"
-  t.integer "q7"
-  t.integer "q8"
-  t.integer "q9"  
+  t.integer "interpersonal_skills_id", default: 0,     null: false
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
 end
+
+create_table "basic_computer_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "basic_id",                default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+  t.integer "q7",                      default: 0,     null: false 
+  t.integer "q8",                      default: 0,     null: false 
+  t.integer "q9",                      default: 0,     null: false 
+  t.integer "q10",                     default: 0,     null: false 
+  t.integer "q11",                     default: 0,     null: false 
+  t.integer "q12",                     default: 0,     null: false 
+  t.integer "q13",                     default: 0,     null: false 
+  t.integer "q14",                     default: 0,     null: false 
+  t.integer "q15",                     default: 0,     null: false 
+  t.integer "q16",                     default: 0,     null: false 
+  t.integer "q17",                     default: 0,     null: false 
+  t.integer "q18",                     default: 0,     null: false 
+  t.integer "q19",                     default: 0,     null: false 
+  t.integer "q20",                     default: 0,     null: false 
+  t.integer "q21",                     default: 0,     null: false 
+  t.integer "q22",                     default: 0,     null: false   
+end
+
+create_table "operating_systems_usages", force: true do |t|
+  t.integer "user_id"
+  t.integer "os_usages_id",            default: 0,     null: false   
+  t.integer "windows",                 default: 0,     null: false  
+  t.integer "mac",                     default: 0,     null: false  
+  t.integer "linux",                   default: 0,     null: false  
+  t.string "other"  
+end
+
+create_table "operating_systems_fluents", force: true do |t|
+  t.integer "user_id"
+  t.integer "os_fluent_id",            default: 0,     null: false
+  t.integer "windows",                 default: 0,     null: false  
+  t.integer "mac",                     default: 0,     null: false  
+  t.integer "linux",                   default: 0,     null: false
+  t.integer "magnitude_other",         default: 0,     null: false
+  t.string "other"  
+end
+
+create_table "advanced_computer_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "advanced_id",             default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+end
+
+create_table "multi_media_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "multi_media_id",          default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+end
+
+create_table "technology_differences", forse: true do |t|
+  t.integer "user_id"
+  t.integer "td_id",                   default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+end
+
+create_table "word_processing_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "word_id",                 default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+  t.integer "q7",                      default: 0,     null: false 
+  t.integer "q8",                      default: 0,     null: false 
+  t.integer "q9",                      default: 0,     null: false 
+  t.integer "q10",                     default: 0,     null: false 
+  t.integer "q11",                     default: 0,     null: false 
+  t.integer "q12",                     default: 0,     null: false 
+  t.integer "q13",                     default: 0,     null: false 
+  t.integer "q14",                     default: 0,     null: false 
+  t.integer "q15",                     default: 0,     null: false 
+  t.integer "q16",                     default: 0,     null: false 
+  t.integer "q17",                     default: 0,     null: false 
+  t.integer "q18",                     default: 0,     null: false 
+  t.integer "q19",                     default: 0,     null: false 
+  t.integer "q20",                     default: 0,     null: false
+  t.integer "q21",                     default: 0,     null: false
+end
+
+create_table "word_processing_fluentcies", force: true do |t|
+  t.integer "user_id"
+  t.integer "word_fluentcy_id",                 default: 0,     null: false  
+  t.integer "word",                    default: 0,     null: false
+  t.integer "pages",                   default: 0,     null: false
+  t.integer "writer",                  default: 0,     null: false
+  t.integer "magnitude_other",         default: 0,     null: false
+  t.string  "other"                   
+end
+
 
 end

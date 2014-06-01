@@ -16,7 +16,7 @@
 	</div>
 	
 	<div class = "col-lg-2">
-		<%= link_to image_tag('tech.png'), survey_path(@user,:type=>3), class: "btn btn-primary", id: "survey_pic"%>	
+		<%= link_to image_tag('tech.png'), survey_path(@user,:type=>3,:tech=>0, :word=>0), class: "btn btn-primary", id: "survey_pic"%>	
 	</div>
 
 	<div class="col-lg-2">
@@ -26,12 +26,12 @@
 
 	<div id="partial" >
 		<% if @survey_type == '0' %>
-			<%= render 'shared/survey/survey_exp' %>
+			<%= render 'shared/survey/exp/survey' %>
 		<% elsif @survey_type == '1' %>
-			<%= render 'shared/survey/survey_per' %>
+			<%= render 'shared/survey/per/survey' %>
 		<% elsif @survey_type == '2' %>
-			<%= render 'shared/survey/survey_profile' %>
+			<%= render 'shared/survey/profile/survey' %>
 		<% elsif @survey_type == '3' %>
-			<%= render 'shared/survey/survey_tech' %>
+			<%= render 'shared/survey/tech/survey' %>
 		<% end %>
 	</div>

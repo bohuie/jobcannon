@@ -1,16 +1,48 @@
 @import "bootstrap";
 
+.test{
+  color:white !important;
+}
+
 
 /* Questions for the Survey */
 
 #ft-exp{      /* for the full time experience table */
   margin-left: 10px;
-  
   td{
     padding: 3px;
     border-bottom: 1px solid black;
   }
 
+}
+
+/* for the communication table in survey */
+
+#survey_format{
+  
+  th{
+    padding-left: 10px;
+    text-align: center;
+  }  
+  td{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin: 20px;    
+    text-align: center;
+    border-bottom: 1px solid black;
+  }
+  
+}
+
+#question_text{
+  text-align: left;
+}
+
+#last_row{
+  
+  td{
+    border:0px;
+  }
 }
 
 

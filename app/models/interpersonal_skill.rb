@@ -1,4 +1,4 @@
-class Interpersonal_skill < ActiveRecord::Base
+class InterpersonalSkill < ActiveRecord::Base
  	after_create :do_setID
  	belongs_to :user
 

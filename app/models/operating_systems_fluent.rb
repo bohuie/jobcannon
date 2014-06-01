@@ -1,4 +1,4 @@
-class ThinkingSkill < ActiveRecord::Base
+class OperatingSystemsFluent < ActiveRecord::Base
  	after_create :do_setID
  	belongs_to :user
 

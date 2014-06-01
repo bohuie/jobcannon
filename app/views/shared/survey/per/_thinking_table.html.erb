@@ -1,0 +1,198 @@
+<%= simple_form_for @thinking do |f| %>
+
+	<% @instruction = "Please select how much you disagree or agree with each of the following statements" %>
+	<% @label = "Thinking, Problem Solving and Creativity Skills" %>
+
+	<% @q1 = "I can usually think of lots of new ideas WITH specific guidelines" %>
+	<% @q2 = "I can usually think of lots of new ideas WITHOUT specific guidelines" %>
+	<% @q3 = "I prefer working with others because exchanging ideas helps me think of more ideas" %>
+	<% @q4 = "I generate several possible solutions or approaches to a problem or project" %>
+	<% @q5 = "I evaluate all possible solutions using criteria of practicality, efficiency and elegance to choose the best solution" %>
+	<% @q6 = "I look at situations and processes from a variety of viewpoints in order to identify problems" %>
+	<% @q7 = "Given a specific goal I can come up with several sub-goals and a variety of ways to achieve them" %>
+	<% @q8 = "I think ahead in a project to anticipate and avoid possible problems" %>
+	
+	<table id ="survey_format">
+		<tr>
+			<th>
+				<%= @label %>
+			</th>
+			<th>
+				<%= @header1 %>
+			</th>
+			<th>
+				<%= @header2 %>
+			</th>
+			<th>
+				<%= @header3 %>
+			</th>
+			<th>
+				<%= @header4 %>
+			</th>
+			<th>
+				<%= @header5 %>
+			</th>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q1 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q1, 1, :default => @thinking.q1  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q1, 2, :default => @thinking.q1  %>
+			</td>
+			<td>
+				<%= f.radio_button :q1, 3, :default => @thinking.q1  %>
+			</td>
+			<td>
+				<%= f.radio_button :q1, 4, :default => @thinking.q1  %>
+			</td>
+			<td>
+				<%= f.radio_button :q1, 5, :default => @thinking.q1  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q2 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q2, 1, :default => @thinking.q2  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 2, :default => @thinking.q2  %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 3, :default => @thinking.q2  %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 4, :default => @thinking.q2  %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 5, :default => @thinking.q2  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q3 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q3, 1, :default => @thinking.q3  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q3, 2, :default => @thinking.q3  %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 3, :default => @thinking.q3  %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 4, :default => @thinking.q3  %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 5, :default => @thinking.q3  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q4 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q4, 1, :default => @thinking.q4  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q4, 2, :default => @thinking.q4  %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 3, :default => @thinking.q4  %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 4, :default => @thinking.q4  %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 5, :default => @thinking.q4  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q5 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q5, 1, :default => @thinking.q5  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q5, 2, :default => @thinking.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 3, :default => @thinking.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 4, :default => @thinking.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 5, :default => @thinking.q5  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q6 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q6, 1, :default => @thinking.q6  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q6, 2, :default => @thinking.q6  %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 3, :default => @thinking.q6  %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 4, :default => @thinking.q6  %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 5, :default => @thinking.q6  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q7 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q7, 1, :default => @thinking.q7  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q7, 2, :default => @thinking.q7  %>
+			</td>
+			<td>
+				<%= f.radio_button :q7, 3, :default => @thinking.q7  %>
+			</td>
+			<td>
+				<%= f.radio_button :q7, 4, :default => @thinking.q7  %>
+			</td>
+			<td>
+				<%= f.radio_button :q7, 5, :default => @thinking.q7  %>
+			</td>
+		</tr>
+		<tr id = "last_row">
+			<td style = "text-align: left">
+				<%= @q8 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q8, 1, :default => @thinking.q8  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q8, 2, :default => @thinking.q8  %>
+			</td>
+			<td>
+				<%= f.radio_button :q8, 3, :default => @thinking.q8  %>
+			</td>
+			<td>
+				<%= f.radio_button :q8, 4, :default => @thinking.q8  %>
+			</td>
+			<td>
+				<%= f.radio_button :q8, 5, :default => @thinking.q8  %>
+			</td>
+		</tr>		
+	</table>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

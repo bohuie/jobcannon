@@ -1,0 +1,261 @@
+<%= simple_form_for @communication do |f| %>
+
+	<% @instruction = "Please select how much you disagree or agree with each of the following statements" %>
+	<% @label = "Communication Skills" %>
+
+	<% @q1 = "I actively listen to others" %>
+	<% @q2 = "When speaking with other people I think about areas of agreement as well as disagreement " %>
+	<% @q3 = "I respect others' ideas even if i disagree with them" %>
+	<% @q4 = "I communicate my ideas and findings effectively and clarity" %>
+	<% @q5 = "I go beyond what is expected of me in a group setting" %>
+	<% @q6 = "I go beyond what is expected of me in a one-on-one setting" %>
+	<% @q7 = "I clearly explain my opinions" %>
+	<% @q8 = "I look at different points of view on a subject" %>
+	<% @q9 = "I support my opinions with credible evidence" %>
+	<% @q10 = "I use language in meaningful ways to inspire, entertain, inform and persuade others" %>
+	<% @q11 = "I think about who my audience is when I communicate and adjust my vocabulary accordingly" %>
+
+	<table id ="survey_format">
+		<tr>
+			<th>
+				<%= @label %>
+			</th>
+			<th>
+				<%= @header1 %>
+			</th>
+			<th>
+				<%= @header2 %>
+			</th>
+			<th>
+				<%= @header3 %>
+			</th>
+			<th>
+				<%= @header4 %>
+			</th>
+			<th>
+				<%= @header5 %>
+			</th>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q1 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q1, 1, :default => @communication.q1  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q1, 2, :default => @communication.q1  %>
+			</td>
+			<td>
+				<%= f.radio_button :q1, 3, :default => @communication.q1  %>
+			</td>
+			<td>
+				<%= f.radio_button :q1, 4, :default => @communication.q1  %>
+			</td>
+			<td>
+				<%= f.radio_button :q1, 5, :default => @communication.q1  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q2 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q2, 1, :default => @communication.q2  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 2, :default => @communication.q2  %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 3, :default => @communication.q2  %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 4, :default => @communication.q2  %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 5, :default => @communication.q2  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q3 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q3, 1, :default => @communication.q3  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q3, 2, :default => @communication.q3  %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 3, :default => @communication.q3  %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 4, :default => @communication.q3  %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 5, :default => @communication.q3  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q4 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q4, 1, :default => @communication.q4  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q4, 2, :default => @communication.q4  %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 3, :default => @communication.q4  %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 4, :default => @communication.q4  %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 5, :default => @communication.q4  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q5 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q5, 1, :default => @communication.q5  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q5, 2, :default => @communication.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 3, :default => @communication.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 4, :default => @communication.q5  %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 5, :default => @communication.q5  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q6 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q6, 1, :default => @communication.q6  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q6, 2, :default => @communication.q6  %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 3, :default => @communication.q6  %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 4, :default => @communication.q6  %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 5, :default => @communication.q6  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q7 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q7, 1, :default => @communication.q7  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q7, 2, :default => @communication.q7  %>
+			</td>
+			<td>
+				<%= f.radio_button :q7, 3, :default => @communication.q7  %>
+			</td>
+			<td>
+				<%= f.radio_button :q7, 4, :default => @communication.q7  %>
+			</td>
+			<td>
+				<%= f.radio_button :q7, 5, :default => @communication.q7  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q8 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q8, 1, :default => @communication.q8  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q8, 2, :default => @communication.q8  %>
+			</td>
+			<td>
+				<%= f.radio_button :q8, 3, :default => @communication.q8  %>
+			</td>
+			<td>
+				<%= f.radio_button :q8, 4, :default => @communication.q8  %>
+			</td>
+			<td>
+				<%= f.radio_button :q8, 5, :default => @communication.q8  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q9 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q9, 1, :default => @communication.q9  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q9, 2, :default => @communication.q9  %>
+			</td>
+			<td>
+				<%= f.radio_button :q9, 3, :default => @communication.q9  %>
+			</td>
+			<td>
+				<%= f.radio_button :q9, 4, :default => @communication.q9  %>
+			</td>
+			<td>
+				<%= f.radio_button :q9, 5, :default => @communication.q9  %>
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q10 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q10, 1, :default => @communication.q10  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q10, 2, :default => @communication.q10  %>
+			</td>
+			<td>
+				<%= f.radio_button :q10, 3, :default => @communication.q10  %>
+			</td>
+			<td>
+				<%= f.radio_button :q10, 4, :default => @communication.q10  %>
+			</td>
+			<td>
+				<%= f.radio_button :q10, 5, :default => @communication.q10  %>
+			</td>
+		</tr>
+		<tr id="last_row">
+			<td style = "text-align: left">
+				<%= @q11 %>
+			</td>
+			<td>				
+				<%= f.radio_button :q11, 1, :default => @communication.q11  %>				
+			</td>
+			<td>
+				<%= f.radio_button :q11, 2, :default => @communication.q11  %>
+			</td>
+			<td>
+				<%= f.radio_button :q11, 3, :default => @communication.q11  %>
+			</td>
+			<td>
+				<%= f.radio_button :q11, 4, :default => @communication.q11  %>
+			</td>
+			<td>
+				<%= f.radio_button :q11, 5, :default => @communication.q11  %>
+			</td>
+		</tr>
+	</table>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

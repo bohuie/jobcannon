@@ -7,6 +7,8 @@ class SurveysController < ApplicationController
 	def show
 		@user = current_user
 		@survey_type = params[:type]
+		@tech = params[:tech]
+		@word_a = params[:word]
 
 		@profile = Surveyprofile.find_by(:user_id => @user.user_id)		
 		@language = Language.find_by(:user_id => @user.user_id)
@@ -16,15 +18,24 @@ class SurveysController < ApplicationController
 		@employ = Experiencetable.find_by(:user_id => @user.user_id, :employ => true) 
 		@volunteer = Experiencetable.find_by(:user_id => @user.user_id, :volunteer => true) 
 		
-
-		@communication = Communication_skill.find_by(:user_id=>@user.user_id)
-		@thinking = Thinking_skill.find_by(:user_id=>@user.user_id)
-		@self = Self_direction_skill.find_by(:user_id=>@user.user_id)
+		@communication = CommunicationSkill.find_by(:user_id=>@user.user_id)
+		@thinking = ThinkingSkill.find_by(:user_id=>@user.user_id)
+		@self = SelfDirectionSkill.find_by(:user_id=>@user.user_id)
 		@accountability = Accountability.find_by(:user_id=>@user.user_id)
-		@interpersonal = Interpersonal_skill.find_by(:user_id=>@user.user_id)
+		@interpersonal = InterpersonalSkill.find_by(:user_id=>@user.user_id)
 
+		@basic = BasicComputerSkill.find_by(:user_id=> @user.user_id)
+		@os = OperatingSystemsUsage.find_by(:user_id=> @user.user_id)
+		@fluent = OperatingSystemsFluent.find_by(:user_id=> @user.user_id)
 
+		@advanced = AdvancedComputerSkill.find_by(:user_id=> @user.user_id)	
 
+		@media = MultiMediaSkill.find_by(:user_id=> @user.user_id)
+		@tech_diff = TechnologyDifference.find_by(:user_id=> @user.user_id)
+
+		@word = WordProcessingSkill.find_by(:user_id=> @user.user_id)
+		@word_fluent = WordProcessingFluentcy.find_by(:user_id=> @user.user_id)
+		
 		if (@profile.nil?)
 			@profile = Surveyprofile.new
 			@profile.user_id = current_user.user_id
@@ -55,29 +66,60 @@ class SurveysController < ApplicationController
 			@employ.save
 
 
-			@communication = Communication_skill.new
+			@communication = CommunicationSkill.new
 			@communication.user_id = @user.user_id
 			@communication.save
 
-			@thinking = Thinking_skill.new
+			@thinking = ThinkingSkill.new
 			@thinking.user_id = @user.user_id
 			@thinking.save
 
-			@self = Self_direction_skill.new
+			@self = SelfDirectionSkill.new
 			@self.user_id = @user.user_id
-			@self.new
+			@self.save
 
 			@accountability = Accountability.new
 			@accountability.user_id = @user.user_id
 			@accountability.save
 
-			@interpersonal = Interpersonal_skill.new
+			@interpersonal = InterpersonalSkill.new
 			@interpersonal.user_id= @user.user_id
 			@interpersonal.save
-			
-		end
-				
+
+			@basic = BasicComputerSkill.new
+			@basic.user_id = @user.user_id
+			@basic.save
+
+			@os = OperatingSystemsUsage.new
+			@os.user_id = @user.user_id
+			@os.save
+
+			@fluent = OperatingSystemsFluent.new
+			@fluent.user_id = @user.user_id
+			@fluent.save
+
+			@advanced = AdvancedComputerSkill.new
+			@advanced.user_id = @user.user_id
+			@advanced.save
+
+			@media = MultiMediaSkill.new
+			@media.user_id = @user.user_id
+			@media.save
+
+			@tech_diff = TechnologyDifference.new
+			@tech_diff.user_id = @user.user_id
+			@tech_diff.save
+
+			@word = WordProcessingSkill.new
+			@word.user_id=@user.user_id
+			@word.save
+
+			@word_flent = WordProcessingFluentcy.new
+			@word_flent.user_id = @user.user_id
+			@word_flent.save
+		end		
 	end
+
 	def create		
 		@survey = Surveyprofile.new(survey_params)
 		@survey.user_id = current_user.user_id
