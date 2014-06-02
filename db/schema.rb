@@ -451,14 +451,14 @@ create_table "spreadsheet_skills", force: true do |t|
   t.integer "q15",                     default: 0,     null: false 
 end
 
-create_tabe "spreadsheet_fluentcies", force: true do |t|
+create_table "spreadsheet_fluentcies", force: true do |t|
   t.integer "user_id"
   t.integer "spreadsheet_fluentcy_id", default: 0,     null: false
   t.integer "excel",                   default: 0,     null: false
   t.integer "excel",                   default: 0,     null: false
   t.integer "numbers",                 default: 0,     null: false
   t.integer "calc",                    default: 0,     null: false
-  t.integer "madnitude_other",         default: 0,     null: false
+  t.integer "magnitude_other",         default: 0,     null: false
   t.string "other"
 end
 

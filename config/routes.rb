@@ -16,7 +16,6 @@ First_Website::Application.routes.draw do
     resources :word_processing_skills
     
     resources :basic_computer_skills
-    
     resources :operating_systems_usages
     resources :operating_systems_fluents
     
@@ -27,8 +26,6 @@ First_Website::Application.routes.draw do
 
     resources :spreadsheet_skills
     resources :spreadsheet_fluentcies
-    
-
   end
 
   scope module: 'survey/profile' do 
