@@ -6,6 +6,8 @@
 <% @header6 = "I don't know" %>
 
 <% @label = "How easy would you find the following tasks to complete in a spreadsheet program?" %>
+<% @label2 = "How fluent are you with each of the following spreadsheet programs? (How well would you
+				be able to use each)" %>
 
 <% q1 = "Create a new spreadsheet" %>
 <% q2 = "Save a spreadsheet" %>
@@ -375,5 +377,44 @@
 
 	<br>
 	<%= f.submit "Submit", class: "btn btn-primary" %>
+
+<% end %>
+
+
+<%= simple_form_for @spreadsheet_fluentcy do |f| %>
+	<%= f.label @label2 %>
+	<br>
+	<br>
+
+	<table id = "survey_format" >
+		<tr>
+			<th>
+			</th>
+		</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <% end %>
