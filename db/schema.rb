@@ -522,7 +522,35 @@ create_table "email_fluentcies", force: true do |t|
   t.integer "mail",                   default: 0,     null: false
   t.integer "impress",                 default: 0,     null: false
   t.integer "magnitude_other",         default: 0,     null: false
-  t.string "other"
+  t.string  "other"
+end
+
+create_table "social_media_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "social_media_id",                default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+  t.integer "q7",                      default: 0,     null: false 
+  t.integer "q8",                      default: 0,     null: false 
+  t.integer "q9",                      default: 0,     null: false 
+  t.integer "q10",                     default: 0,     null: false 
+  t.integer "q11",                     default: 0,     null: false 
+  t.integer "q12",                     default: 0,     null: false 
+  t.integer "q13",                     default: 0,     null: false 
+  t.integer "q14",                     default: 0,     null: false 
+  t.integer "q15",                     default: 0,     null: false 
+  t.integer "q16",                     default: 0,     null: false 
+  t.integer "q17",                      default: 0,     null: false 
+  t.integer "q18",                     default: 0,     null: false 
+  t.integer "q19",                     default: 0,     null: false 
+  t.integer "q20",                     default: 0,     null: false 
+  t.integer "q21",                     default: 0,     null: false 
+  t.integer "q22",                     default: 0,     null: false 
+  t.integer "q23",                     default: 0,     null: false 
 end
 
 
