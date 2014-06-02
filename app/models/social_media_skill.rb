@@ -5,6 +5,6 @@ class SocialMediaSkill < ActiveRecord::Base
   private
     def do_setID    
       newID = self.id
-      self.update_attributes(:social_media_skill => newID)
+      self.update_attributes(:social_media_id => newID)
     end
 end
