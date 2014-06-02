@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_one :word_processing_fluentcies, dependent: :destroy
   has_one :presenting_skills, dependent: :destroy
   has_one :presenting_fluentcies, dependent: :destroy
+  has_one :spreadsheet_skills, dependent: :destroy
+  has_one :spreadsheet_fluentcies, dependent: :destroy
 
   
 
