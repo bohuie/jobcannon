@@ -26,6 +26,9 @@ First_Website::Application.routes.draw do
 
     resources :spreadsheet_skills
     resources :spreadsheet_fluentcies
+
+    resources :presenting_skills
+    resources :presenting_fluentcies
   end
 
   scope module: 'survey/profile' do 

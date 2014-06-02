@@ -38,6 +38,9 @@ class SurveysController < ApplicationController
 
 		@spreadsheet = SpreadsheetSkill.find_by(:user_id=> @user.user_id)
 		@spreadsheet_fluentcy = SpreadsheetFluentcy.find_by(:user_id=> @user.user_id)
+
+		@present = PresentingSkill.find_by(:user_id=> @user.user_id)
+		@present_fluentcy = PresentingFluentcy.find_by(:user_id=> @user.user_id)
 		
 		if (@profile.nil?)
 			@profile = Surveyprofile.new
@@ -128,6 +131,14 @@ class SurveysController < ApplicationController
 			@spreadsheet_fluentcy = SpreadsheetFluentcy.new
 			@spreadsheet_fluentcy.user_id = @user.user_id
 			@spreadsheet_fluentcy.save 
+
+			@present = PresentingSkill.new
+			@present.user_id = @user.user_id
+			@present.save
+
+			@present_fluentcy = PresentingFluentcy.new
+			@present_fluentcy.user_id = @user.user_id
+			@present_fluentcy.save 
 		end		
 	end
 
