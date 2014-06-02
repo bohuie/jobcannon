@@ -47,6 +47,8 @@ class SurveysController < ApplicationController
 
 		@socialmedia = SocialMediaSkill.find_by(:user_id=> @user.user_id)
 		@socialmediadesc = SocialMediaDesc.find_by(:user_id=> @user.user_id)
+		@socialmediaplat = SocialMediaPlatform.find_by(:user_id=> @user.user_id)
+
 		
 		if (@profile.nil?)
 			@profile = Surveyprofile.new
@@ -157,9 +159,13 @@ class SurveysController < ApplicationController
 			@socialmedia.user_id = @user.user_id
 			@socialmedia.save
 
-			@socialmediadesc = SocialMediaDesc.new\
+			@socialmediadesc = SocialMediaDesc.new
 			@socialmediadesc.user_id = @user.user_id
 			@socialmediadesc.save
+
+			@socialmediaplat = SocialMediaPlatform.new
+			@socialmediaplat.user_id = @user.user_id
+			@socialmediaplat.save
 
 		end		
 	end

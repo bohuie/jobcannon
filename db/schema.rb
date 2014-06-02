@@ -563,5 +563,20 @@ create_table "social_media_descs", force: true do |t|
   t.integer "q5",                      default: 0,     null: false
 end
 
+create_table "social_media_platforms", force: true do |t|
+  t.integer "user_id"
+  t.integer "social_media_platform_id",                default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+  t.integer "q7",                      default: 0,     null: false 
+  t.integer "q8",                      default: 0,     null: false 
+  t.integer "magnitude_other",         default: 0,     null: false
+  t.string  "other"
+end
+
 
 end
