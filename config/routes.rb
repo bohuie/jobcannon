@@ -38,6 +38,8 @@ First_Website::Application.routes.draw do
     resources :social_media_platforms
 
     resources :online_colab_skills
+    resources :online_colab_fluentcies
+
 
   end
 

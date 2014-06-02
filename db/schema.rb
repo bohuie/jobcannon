@@ -591,5 +591,24 @@ create_table "online_colab_skills", force: true do |t|
   t.integer "q8",                      default: 0,     null: false 
 end
 
+create_table "online_colab_fluentcies", force: true do |t|
+  t.integer "user_id"
+  t.integer "online_colab_fluentcy_id",                default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+  t.integer "q7",                      default: 0,     null: false 
+  t.integer "q8",                      default: 0,     null: false 
+  t.integer "q9",                      default: 0,     null: false
+  t.integer "q10",                      default: 0,     null: false
+  t.integer "q11",                      default: 0,     null: false 
+  t.integer "q12",                      default: 0,     null: false 
+  t.integer "magnitude_other",         default: 0,     null: false
+  t.string  "other"
+end
+
 
 end

@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   has_one :social_media_descs, dependent: :destroy
   has_one :social_media_platforms, dependent: :destroy
   has_one :online_colab_skills, dependent: :destroy
+  has_one :online_colab_fluentcies, dependent: :destroy
+
 
   
 
