@@ -34,6 +34,7 @@ First_Website::Application.routes.draw do
     resources :email_fluentcies
 
     resources :social_media_skills
+    resources :social_media_descs
   end
 
   scope module: 'survey/profile' do 

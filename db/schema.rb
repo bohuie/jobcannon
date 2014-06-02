@@ -553,5 +553,15 @@ create_table "social_media_skills", force: true do |t|
   t.integer "q23",                     default: 0,     null: false 
 end
 
+create_table "social_media_descs", force: true do |t|
+  t.integer "user_id"
+  t.integer "social_media_desc_id",                default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+end
+
 
 end

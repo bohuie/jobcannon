@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_one :email_skills, dependent: :destroy
   has_one :email_fluentcies, dependent: :destroy
   has_one :social_media_skills, dependent: :destroy
+  has_one :social_media_descs, dependent: :destroy
 
 
   

@@ -46,6 +46,7 @@ class SurveysController < ApplicationController
 		@email_fluentcy = EmailFluentcy.find_by(:user_id=> @user.user_id)
 
 		@socialmedia = SocialMediaSkill.find_by(:user_id=> @user.user_id)
+		@socialmediadesc = SocialMediaDesc.find_by(:user_id=> @user.user_id)
 		
 		if (@profile.nil?)
 			@profile = Surveyprofile.new
@@ -155,6 +156,11 @@ class SurveysController < ApplicationController
 			@socialmedia = SocialMediaSkill.new
 			@socialmedia.user_id = @user.user_id
 			@socialmedia.save
+
+			@socialmediadesc = SocialMediaDesc.new\
+			@socialmediadesc.user_id = @user.user_id
+			@socialmediadesc.save
+
 		end		
 	end
 
