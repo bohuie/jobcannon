@@ -6,7 +6,6 @@ class Language < ActiveRecord::Base
 
   private
     def do_setID
-      
       newID = self.id
       self.update_attributes(:language_id => newID)
     end

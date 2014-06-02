@@ -4,12 +4,12 @@
 <% @header4 = "Minimal Fluency" %>
 <% @header5 = "Not Fluent" %>
 <% @header6 = "I don't know" %>
-<% header7 = "Very Easy" %>
-<% header8 = "Easy" %>
-<% header9 = "Neutral" %>
-<% header10 = "Difficult" %>
-<% header11 = "Very Difficult" %>
-<% header12 = "I don't know what this is" %>
+<% @header7 = "Very Easy" %>
+<% @header8 = "Easy" %>
+<% @header9 = "Neutral" %>
+<% @header10 = "Difficult" %>
+<% @header11 = "Very Difficult" %>
+<% @header12 = "I don't know what this is" %>
 
 <% @label = "How easy would you find the following tasks to complete in a spreadsheet program?" %>
 <% @label2 = "How fluent are you with each of the following spreadsheet programs? (How well would you
@@ -512,14 +512,13 @@
 			<td>
 				<%= f.radio_button :magnitude_other, 1, :default => @spreadsheet_fluentcy.magnitude_other %>				
 			</td>
-		</tr>
-		<tr>
-			<td>
-				<%= f.label @label3 %>
-				<br>
-				<%= f.text_field %>
-			</td>
-
-		</tr>
+		</tr>		
 	</table>
+
+	<%= f.label @label3 %>
+	<br>
+	<%= f.text_field :other %>
+	<br>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+	
 <% end %>

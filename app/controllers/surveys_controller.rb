@@ -74,7 +74,6 @@ class SurveysController < ApplicationController
 			@employ.employ = true
 			@employ.save
 
-
 			@communication = CommunicationSkill.new
 			@communication.user_id = @user.user_id
 			@communication.save
