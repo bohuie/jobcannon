@@ -10,7 +10,7 @@ end
 	private
 
 	def email_params
-		params.require(:email_skill).permit(:outlook, :mail, :impress, :magnitude_other, :other)
+		params.require(:email_fluentcy).permit(:outlook, :mail, :impress, :magnitude_other, :other)
 	end
 
 end
