@@ -26,11 +26,14 @@ class User < ActiveRecord::Base
   has_one :spreadsheet_fluentcies, dependent: :destroy
   has_one :email_skills, dependent: :destroy
   has_one :email_fluentcies, dependent: :destroy
+  has_one :internet_terms, dependent: :destroy
   has_one :social_media_skills, dependent: :destroy
   has_one :social_media_descs, dependent: :destroy
   has_one :social_media_platforms, dependent: :destroy
   has_one :online_colab_skills, dependent: :destroy
   has_one :online_colab_fluentcies, dependent: :destroy
+  has_one :internet_terms, dependent: :destroy
+
 
 
   

@@ -525,6 +525,18 @@ create_table "email_fluentcies", force: true do |t|
   t.string  "other"
 end
 
+create_table "internet_terms", force: true do |t|
+  t.integer "user_id"
+  t.integer "internet_term_id", default: 0,     null: false
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+  t.integer "q7",                      default: 0,     null: false 
+end
+
 create_table "social_media_skills", force: true do |t|
   t.integer "user_id"
   t.integer "social_media_id",                default: 0,     null: false  
