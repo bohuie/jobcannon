@@ -88,6 +88,29 @@
 		</tr>
 		<tr>
 			<td style = "text-align: left">
+				<%= q2 %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 6, :default => @spreadsheet.q2 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 5, :default => @spreadsheet.q2 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 4, :default => @spreadsheet.q2 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 3, :default => @spreadsheet.q2 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 2, :default => @spreadsheet.q2 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 1, :default => @spreadsheet.q2 %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
 				<%= q3 %>
 			</td>
 			<td>
@@ -362,7 +385,7 @@
 				<%= f.radio_button :q14, 1, :default => @spreadsheet.q14 %>				
 			</td>
 		</tr>
-		<tr>
+		<tr id = "last_row">
 			<td style = "text-align: left">
 				<%= q15 %>
 			</td>
