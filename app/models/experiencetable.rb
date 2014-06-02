@@ -4,6 +4,7 @@ class Experiencetable < ActiveRecord::Base
 
   private
     def do_setID      
-      newID = self.id     
+      newID = self.id   
+      self.update_attributes(:survery_id => newID)  
     end
 end

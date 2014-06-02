@@ -5,6 +5,6 @@ class TechnologyDifference < ActiveRecord::Base
   private
     def do_setID    
       newID = self.id
-      #self.update_attributes(:skilllabel_id => newID)
+      self.update_attributes(:td_id => newID)
     end
 end

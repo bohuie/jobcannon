@@ -109,8 +109,8 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   create_table "surveyprofiles", force:true do |t|
     t.integer "user_id",   default: 0, null: false
     t.integer "survey_id", default: 0, null: false
-    t.string "postalcode"
-    t.string "education"
+    t.string  "postalcode"
+    t.string  "education"
     t.string   "city"
     t.string   "province"    
     t.string   "gender",   default: nil

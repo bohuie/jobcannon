@@ -5,6 +5,6 @@ class CommunicationSkill < ActiveRecord::Base
   private
     def do_setID    
       newID = self.id
-      #self.update_attributes(:skilllabel_id => newID)
+      self.update_attributes(:communication_skills_id => newID)
     end
 end

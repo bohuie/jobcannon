@@ -5,6 +5,6 @@ class MultiMediaSkill < ActiveRecord::Base
   private
     def do_setID    
       newID = self.id
-      #self.update_attributes(:skilllabel_id => newID)
+      self.update_attributes(:multi_media_id => newID)
     end
 end

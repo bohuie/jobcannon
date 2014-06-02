@@ -6,7 +6,7 @@ class Surveyprofile < ActiveRecord::Base
     def do_setID
       
       newID = self.id
-      #self.update_attributes(:skilllabel_id => newID)
+      self.update_attributes(:survey_id => newID)
 
 
     end
