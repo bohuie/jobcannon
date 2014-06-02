@@ -47,6 +47,8 @@ class SurveysController < ApplicationController
 		@email_fluentcy = EmailFluentcy.find_by(:user_id=> @user.user_id)
 
 		@internetterm = InternetTerm.find_by(:user_id=> @user.user_id)
+		@internettask = InternetTask.find_by(:user_id=> @user.user_id)
+
 
 		@socialmedia = SocialMediaSkill.find_by(:user_id=> @user.user_id)
 		@socialmediadesc = SocialMediaDesc.find_by(:user_id=> @user.user_id)
@@ -165,6 +167,9 @@ class SurveysController < ApplicationController
 			@internetterm.user_id = @user.user_id
 			@internetterm.save 
 
+			@internettask = InternetTask.new
+			@internettask.user_id = @user.user_id
+			@internettask.save
 
 			@socialmedia = SocialMediaSkill.new
 			@socialmedia.user_id = @user.user_id
