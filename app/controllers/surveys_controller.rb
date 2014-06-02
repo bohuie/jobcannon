@@ -9,6 +9,7 @@ class SurveysController < ApplicationController
 		@survey_type = params[:type]
 		@tech = params[:tech]
 		@word_a = params[:word]
+		@pres = params[:pres]
 
 		@profile = Surveyprofile.find_by(:user_id => @user.user_id)		
 		@language = Language.find_by(:user_id => @user.user_id)

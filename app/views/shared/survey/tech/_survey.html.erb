@@ -61,7 +61,11 @@
 			<div class="tab-pane fade in content survey-tabs" id="presentation-skills">
 				<div class="row">
 					<div class ="col-lg-10">
-						<%= render 'shared/survey/tech/presentation' %>
+						<% if @pres=='0' %>
+							<%= render 'shared/survey/tech/presentation_a' %>
+						<% else %>
+							<%= render 'shared/survey/tech/presentation_b' %>
+						<% end %>
 					</div>
 				</div>
 			</div>
