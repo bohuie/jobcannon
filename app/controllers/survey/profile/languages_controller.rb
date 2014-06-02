@@ -1,4 +1,4 @@
-class LanguagesController < ApplicationController
+class Survey::Profile::LanguagesController < ApplicationController
 
 	def update
 

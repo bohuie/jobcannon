@@ -1,4 +1,4 @@
-class BasicComputerSkillsController < ApplicationController
+class Survey::Tech::BasicComputerSkillsController < ApplicationController
 
 def update
 	

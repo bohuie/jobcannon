@@ -422,12 +422,44 @@ end
 
 create_table "word_processing_fluentcies", force: true do |t|
   t.integer "user_id"
-  t.integer "word_fluentcy_id",                 default: 0,     null: false  
+  t.integer "word_fluentcy_id",        default: 0,     null: false  
   t.integer "word",                    default: 0,     null: false
   t.integer "pages",                   default: 0,     null: false
   t.integer "writer",                  default: 0,     null: false
   t.integer "magnitude_other",         default: 0,     null: false
   t.string  "other"                   
+end
+
+create_table "spreadsheet_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "spreadsheet_id",          default: 0,     null: false
+  t.integer "word_id",                 default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+  t.integer "q7",                      default: 0,     null: false 
+  t.integer "q8",                      default: 0,     null: false 
+  t.integer "q9",                      default: 0,     null: false 
+  t.integer "q10",                     default: 0,     null: false 
+  t.integer "q11",                     default: 0,     null: false 
+  t.integer "q12",                     default: 0,     null: false 
+  t.integer "q13",                     default: 0,     null: false 
+  t.integer "q14",                     default: 0,     null: false 
+  t.integer "q15",                     default: 0,     null: false 
+end
+
+create_tabe "spreadsheet_fluentcies", force: true do |t|
+  t.integer "user_id"
+  t.integer "spreadsheet_fluentcy_id", default: 0,     null: false
+  t.integer "excel",                   default: 0,     null: false
+  t.integer "excel",                   default: 0,     null: false
+  t.integer "numbers",                 default: 0,     null: false
+  t.integer "calc",                    default: 0,     null: false
+  t.integer "madnitude_other",         default: 0,     null: false
+  t.string "other"
 end
 
 

@@ -1,4 +1,4 @@
-class ThinkingSkillsController < ApplicationController
+class Survey::Personality::ThinkingSkillsController < ApplicationController
 
 def update
 	

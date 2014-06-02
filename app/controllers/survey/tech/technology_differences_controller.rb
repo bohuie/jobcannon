@@ -1,4 +1,4 @@
-class TechnologyDifferencesController < ApplicationController
+class Survey::Tech::TechnologyDifferencesController < ApplicationController
 
 def update
 	@user = current_user

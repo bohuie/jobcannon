@@ -1,4 +1,4 @@
-class MultiMediaSkillsController < ApplicationController
+class Survey::Tech::MultiMediaSkillsController < ApplicationController
 
 def update
 	@user = current_user

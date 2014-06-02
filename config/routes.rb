@@ -10,6 +10,39 @@ First_Website::Application.routes.draw do
   resources :skills do 
     get :autocomplete_skilllabel_label, :on => :collection
   end
+  
+  scope module: 'survey/tech' do
+    resources :word_processing_fluentcies 
+    resources :word_processing_skills
+    
+    resources :basic_computer_skills
+    
+    resources :operating_systems_usages
+    resources :operating_systems_fluents
+    
+    resources :advanced_computer_skills
+
+    resources :multi_media_skills
+    resources :technology_differences
+
+    resources :spreadsheet_skills
+    resources :spreadsheet_fluentcies
+    
+
+  end
+
+  scope module: 'survey/profile' do 
+    resources :languages
+    resources :surveyprofiles
+  end
+
+  scope module: 'survey/personality' do
+    resources :communication_skills
+    resources :thinking_skills
+    resources :self_direction_skills
+    resources :accountabilities
+    resources :interpersonal_skills
+  end
 
   resources :experiences
   resources :references
@@ -21,22 +54,9 @@ First_Website::Application.routes.draw do
   resources :friendships
   resources :messages
   resources :friendships
-  resources :surveyprofiles
-  resources :languages
+  
   resources :layouts
-  resources :communication_skills
-  resources :thinking_skills
-  resources :self_direction_skills
-  resources :accountabilities
-  resources :interpersonal_skills
-  resources :basic_computer_skills
-  resources :operating_systems_usages
-  resources :operating_systems_fluents
-  resources :advanced_computer_skills
-  resources :multi_media_skills
-  resources :technology_differences
-  resources :word_processing_skills
-  resources :word_processing_fluentcies
+  
   resources :experiencetables do     
     member do 
       patch :vol_update 
@@ -127,6 +147,8 @@ First_Website::Application.routes.draw do
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
+
+
 
   # Example resource route within a namespace:
   #   namespace :admin do

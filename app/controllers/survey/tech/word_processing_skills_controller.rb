@@ -1,10 +1,10 @@
-class WordProcessingSkillsController < ApplicationController
+class Survey::Tech::WordProcessingSkillsController < ApplicationController
 
 def update
 	@user = current_user
 	@word = WordProcessingSkill.find_by(:user_id=>@user.user_id)
 	@word.update_attributes(word_params)
-	redirect_to survey_path(@user,:type=> 3,:tech=>0,:word=>0)
+	redirect_to survey_path(@user,:type=> 3,:tech=>0,:word=>1)
 end
 
 	private

@@ -1,4 +1,4 @@
-class OperatingSystemsFluentsController < ApplicationController
+class Survey::Tech::OperatingSystemsFluentsController < ApplicationController
 
 def update
 	@user = current_user

@@ -1,4 +1,4 @@
-class SelfDirectionSkillsController < ApplicationController
+class Survey::Personality::SelfDirectionSkillsController < ApplicationController
 
 def update
 	

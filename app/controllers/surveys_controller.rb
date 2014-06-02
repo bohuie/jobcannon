@@ -35,6 +35,9 @@ class SurveysController < ApplicationController
 
 		@word = WordProcessingSkill.find_by(:user_id=> @user.user_id)
 		@word_fluent = WordProcessingFluentcy.find_by(:user_id=> @user.user_id)
+
+		@spreadsheet = SpreadsheetSkill.find_by(:user_id=> @user.user_id)
+		@spreadsheet_fluentcy = SpreadsheetFluentcy.find_by(:user_id=> @user.user_id)
 		
 		if (@profile.nil?)
 			@profile = Surveyprofile.new
@@ -114,9 +117,17 @@ class SurveysController < ApplicationController
 			@word.user_id=@user.user_id
 			@word.save
 
-			@word_flent = WordProcessingFluentcy.new
-			@word_flent.user_id = @user.user_id
-			@word_flent.save
+			@word_fluent = WordProcessingFluentcy.new
+			@word_fluent.user_id = @user.user_id
+			@word_fluent.save
+
+			@spreadsheet = SpreadsheetSkill.new
+			@spreadsheet.user_id = @user.user_id
+			@spreadsheet.save
+
+			@spreadsheet_fluentcy = SpreadsheetFluentcy.new
+			@spreadsheet_fluentcy.user_id = @user.user_id
+			@spreadsheet_fluentcy.save 
 		end		
 	end
 

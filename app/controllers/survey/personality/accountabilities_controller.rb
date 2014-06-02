@@ -1,4 +1,4 @@
-class AccountabilitiesController < ApplicationController
+class Survey::Personality::AccountabilitiesController < ApplicationController
 
 def update
 	

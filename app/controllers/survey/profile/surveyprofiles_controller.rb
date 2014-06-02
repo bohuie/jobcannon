@@ -1,4 +1,4 @@
-class SurveyprofilesController < ApplicationController
+class Survey::Profile::SurveyprofilesController < ApplicationController
 
 	def update	
 		@user = current_user

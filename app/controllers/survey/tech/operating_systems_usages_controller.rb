@@ -1,4 +1,4 @@
-class OperatingSystemsUsagesController < ApplicationController
+class Survey::Tech::OperatingSystemsUsagesController < ApplicationController
 
 def update
 	
