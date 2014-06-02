@@ -41,6 +41,9 @@ class SurveysController < ApplicationController
 
 		@present = PresentingSkill.find_by(:user_id=> @user.user_id)
 		@present_fluentcy = PresentingFluentcy.find_by(:user_id=> @user.user_id)
+
+		@email = EmailSkill.find_by(:user_id=> @user.user_id)
+		@email_fluentcy = EmailFluentcy.find_by(:user_id=> @user.user_id)
 		
 		if (@profile.nil?)
 			@profile = Surveyprofile.new
@@ -139,6 +142,14 @@ class SurveysController < ApplicationController
 			@present_fluentcy = PresentingFluentcy.new
 			@present_fluentcy.user_id = @user.user_id
 			@present_fluentcy.save 
+
+			@email = EmailSkill.new
+			@email.user_id = @user.user_id
+			@email.save
+
+			@email_fluentcy = EmailFluentcy.new
+			@email_fluentcy.user_id = @user.user_id
+			@email_fluentcy.save 
 		end		
 	end
 
