@@ -37,6 +37,8 @@ First_Website::Application.routes.draw do
     resources :social_media_descs
     resources :social_media_platforms
 
+    resources :online_colab_skills
+
   end
 
   scope module: 'survey/profile' do 

@@ -578,5 +578,18 @@ create_table "social_media_platforms", force: true do |t|
   t.string  "other"
 end
 
+create_table "online_colab_skills", force: true do |t|
+  t.integer "user_id"
+  t.integer "online_colab_id",                default: 0,     null: false  
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
+  t.integer "q5",                      default: 0,     null: false
+  t.integer "q6",                      default: 0,     null: false
+  t.integer "q7",                      default: 0,     null: false 
+  t.integer "q8",                      default: 0,     null: false 
+end
+
 
 end
