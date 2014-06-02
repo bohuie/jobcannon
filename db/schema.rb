@@ -461,7 +461,7 @@ create_table "spreadsheet_fluentcies", force: true do |t|
   t.string "other"
 end
 
-create_table "presentation_skills", force: true do |t|
+create_table "presenting_skills", force: true do |t|
   t.integer "user_id"
   t.integer "presentation_id",                default: 0,     null: false  
   t.integer "q1",                      default: 0,     null: false
@@ -483,7 +483,7 @@ create_table "presentation_skills", force: true do |t|
   t.integer "q17",                     default: 0,     null: false   
 end
 
-create_table "presentation_fluentcies", force: true do |t|
+create_table "presenting_fluentcies", force: true do |t|
   t.integer "user_id"
   t.integer "presentation_fluentcy_id", default: 0,     null: false
   t.integer "powerpoint",                   default: 0,     null: false
