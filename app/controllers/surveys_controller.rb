@@ -14,7 +14,7 @@ class SurveysController < ApplicationController
 		@internet = params[:internet]
 
 		if @internet.nil?
-			@internet=0
+			@internet='0'
 		end
 
 		@profile = Surveyprofile.find_by(:user_id => @user.user_id)		

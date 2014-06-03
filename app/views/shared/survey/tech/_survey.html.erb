@@ -87,8 +87,10 @@
 							<%= render 'shared/survey/tech/internet_a' %>
 						<% elsif @internet == '1' %>
 							<%= render 'shared/survey/tech/internet_b' %>
-						<% else %>
+						<% elsif @internet == '2' %>
 							<%= render 'shared/survey/tech/internet_c' %>
+						<% elsif @internet == '3' %>
+							<%= render 'shared/survey/tech/internet_d' %>
 						<% end %>
 					</div>
 				</div>
