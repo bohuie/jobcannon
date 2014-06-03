@@ -13,6 +13,7 @@ class SurveysController < ApplicationController
 		@em = params[:email]
 		@internet = params[:internet]
 		@social = params[:social]
+		@online = params[:online]
 
 		if @internet.nil?
 			@internet='0'

@@ -1,0 +1,229 @@
+<% @label = "How easy would you find the following online tasks?" %>
+
+<% @q1 = "Organizing and attending a meeting online" %>
+<% @q2 = "Attending an online meeting" %>
+<% @q3 = "Using an online tool to setup an event" %>
+<% @q4 = "Sharing and editing documents online" %>
+<% @q5 = "Screen sharing online" %>
+<% @q6 = "Collaborating online using a video call (multiple parties)" %>
+<% @q7 = "Collaborating online using a voice call (multiple parties)" %>
+<% @q8 = "Collaborating online using instant messaging" %>
+
+<body>
+
+	<%= simple_form_for @onlinecolab do |f| %>
+
+		<%= f.label @label %>
+		<table id = "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= @header7 %>
+				</th>
+				<th>
+					<%= @header8 %>
+				</th>
+				<th>
+					<%= @header9 %>
+				</th>
+				<th>
+					<%= @header10 %>
+				</th>
+				<th>
+					<%= @header11 %>
+				</th>
+				<th>
+					<%= @header12 %>
+				</th>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q1 %>
+				</td>
+				<td>
+					<%= f.radio_button :q1, 6, :default => @onlinecolab.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 5, :default => @onlinecolab.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 4, :default => @onlinecolab.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 3, :default => @onlinecolab.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 2, :default => @onlinecolab.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 1, :default => @onlinecolab.q1 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q2 %>
+				</td>
+				<td>
+					<%= f.radio_button :q2, 6, :default => @onlinecolab.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 5, :default => @onlinecolab.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 4, :default => @onlinecolab.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 3, :default => @onlinecolab.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 2, :default => @onlinecolab.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 1, :default => @onlinecolab.q2 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q3 %>
+				</td>
+				<td>
+					<%= f.radio_button :q3, 6, :default => @onlinecolab.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 5, :default => @onlinecolab.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 4, :default => @onlinecolab.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 3, :default => @onlinecolab.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 2, :default => @onlinecolab.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 1, :default => @onlinecolab.q3 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q4 %>
+				</td>
+				<td>
+					<%= f.radio_button :q4, 6, :default => @onlinecolab.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 5, :default => @onlinecolab.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 4, :default => @onlinecolab.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 3, :default => @onlinecolab.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 2, :default => @onlinecolab.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 1, :default => @onlinecolab.q4 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q5 %>
+				</td>
+				<td>
+					<%= f.radio_button :q5, 6, :default => @onlinecolab.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 5, :default => @onlinecolab.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 4, :default => @onlinecolab.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 3, :default => @onlinecolab.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 2, :default => @onlinecolab.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 1, :default => @onlinecolab.q5 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q6 %>
+				</td>
+				<td>
+					<%= f.radio_button :q6, 6, :default => @onlinecolab.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 5, :default => @onlinecolab.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 4, :default => @onlinecolab.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 3, :default => @onlinecolab.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 2, :default => @onlinecolab.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 1, :default => @onlinecolab.q6 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q7 %>
+				</td>
+				<td>
+					<%= f.radio_button :q7, 6, :default => @onlinecolab.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 5, :default => @onlinecolab.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 4, :default => @onlinecolab.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 3, :default => @onlinecolab.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 2, :default => @onlinecolab.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 1, :default => @onlinecolab.q7 %>				
+				</td>
+			</tr>
+			<tr id ="last_row">
+				<td style = "text-align: left">
+					<%= @q8 %>
+				</td>
+				<td>
+					<%= f.radio_button :q8, 6, :default => @onlinecolab.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 5, :default => @onlinecolab.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 4, :default => @onlinecolab.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 3, :default => @onlinecolab.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 2, :default => @onlinecolab.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 1, :default => @onlinecolab.q8 %>				
+				</td>
+			</tr>
+		</table>
+
+		<%= f.submit @continue, class: "btn btn-primary" %>
+	<% end %>
+
+</body>

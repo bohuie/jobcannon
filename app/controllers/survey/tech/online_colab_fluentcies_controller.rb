@@ -1,10 +1,10 @@
-class Survey::Tech::OnlineColabSkillsController < ApplicationController
+class Survey::Tech::OnlineColabFluentciesController < ApplicationController
 
 def update
 	@user = current_user
 	@onlinecolab_fluentcy = OnlineColabFluentcy.find_by(:user_id=>@user.user_id)
 	@onlinecolab_fluentcy.update_attributes(online_params)
-	redirect_to survey_path(@user,:type=> 3,:tech=>0, :word => 0)
+	redirect_to survey_path(@user,:type=> 3,:online=>0)
 end
 
 	private
