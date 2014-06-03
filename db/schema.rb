@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.boolean "part_time",   default: false, null: false
     t.boolean "volunteer",   default: false, null: false
     t.boolean "employ",   default: false, null: false
-    t.boolean "vol_work", default: false, null: false
+    t.boolean "vol_work", default: nil
     t.integer "vol_hours"
     t.string "other"
   end

@@ -36,7 +36,7 @@ First_Website::Application.routes.draw do
     resources :internet_terms, :formats => "js"
     resources :internet_tasks, :formats => "js"
     resources :internet_connections, :formats => "js"
-    resources :browsers
+    resources :browsers, :formats => "js"
 
 
     resources :social_media_skills, :formats => "js"
@@ -77,14 +77,18 @@ First_Website::Application.routes.draw do
   
   resources :experiencetables do     
     member do 
-      patch :vol_update 
-      patch :ft_update 
-      patch :pt_update 
-      patch :employ_update 
+      patch :vol_update, :formats => "js"
+      patch :ft_update, :formats => "js"
+      patch :pt_update, :formats => "js"
+      patch :employ_update, :formats => "js"
     end 
   end
   #resources :users
 
+  match '/ft_update', to: 'experiencetables#ft_update', via: 'get'
+  match '/pt_update', to: 'experiencetables#pt_update', via: 'get'
+  match '/vol_update', to: 'experiencetables#vol_update', via: 'get'
+  match '/employ_update', to: 'experiencetables#employ_update', via: 'get'
   match '/search', to: 'search#search', via: 'get'
   match '/findfriend', to: 'friendships#findfriend', via: 'get'
   match '/results', to: 'surveys#add', via: 'post'
