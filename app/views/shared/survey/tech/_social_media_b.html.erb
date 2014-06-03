@@ -356,7 +356,7 @@
 							end %>
 				</td>
 			</tr>
-			<tr id = "last_row">
+			<tr>
 				<td style = "text-align: left">
 					<%= @q13 %>
 				</td>
@@ -381,9 +381,40 @@
 							end %>
 				</td>
 			</tr>
+			<tr id = "last_row">
+				<td style = "text-align: left">
+					<%= @other %>
+				</td>
+				<td>
+					<%= g.input :magnitude_othera, :label => false, as: :boolean do 
+							g.check_box :magnitude_othera, {}, "true", "false"
+							end %>
+				</td>
+				<td>
+					<%= g.input :magnitude_otherb, :label => false, as: :boolean do 
+							g.check_box :magnitude_otherb, {}, "true", "false"
+							end %>
+				</td>
+				<td>
+					<%= g.input :magnitude_otherc, :label => false, as: :boolean do 
+							g.check_box :magnitude_otherc, {}, "true", "false"
+							end %>
+				</td>
+				<td>
+					<%= g.input :magnitude_otherd, :label => false, as: :boolean do 
+							g.check_box :magnitude_otherd, {}, "true", "false"
+							end %>
+				</td>
+			</tr>
 		</table>
 
+		<%= g.label @other_label %>
+		<br>
+		<%= g.text_field :other %>
+
 		<%= g.submit @submit, class: "btn btn-primary" %>
+		<%=link_to "Previous", survey_path(@user,:type=> 3,:social=>0), class: "btn btn-primary test" %>
 
 	<% end %>
+
 </body>

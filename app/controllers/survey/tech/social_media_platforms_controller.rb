@@ -10,7 +10,16 @@ end
 	private
 
 	def social_params
-		params.require(:social_media_platform).permit(:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:magnitude_other,:other)
+		params.require(:social_media_platform).permit(:q1a,:q1b,:q1c,:q1d,
+													  :q2a,:q2b,:q2c,:q2d,
+													  :q3a,:q3b,:q3c,:q3d,
+													  :q4a,:q4b,:q4c,:q4d,
+													  :q5a,:q5b,:q5c,:q5d,
+													  :q6a,:q6b,:q6c,:q6d,
+													  :q7a,:q7b,:q7c,:q7d,
+													  :q8a,:q8b,:q8c,:q8d,
+													  :magnitude_othera,:magnitude_other, :magnitude_otherc, :magnitude_otherd,
+													  :other)
 	end
 
 end

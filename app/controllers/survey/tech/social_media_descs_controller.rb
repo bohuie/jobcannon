@@ -4,7 +4,7 @@ def update
 	@user = current_user
 	@socialmediadesc = SocialMediaDesc.find_by(:user_id=>@user.user_id)
 	@socialmediadesc.update_attributes(social_params)
-	redirect_to survey_path(@user,:type=>, :social=>0)
+	redirect_to survey_path(@user,:type=>3, :social=>0)
 end
 
 	private
