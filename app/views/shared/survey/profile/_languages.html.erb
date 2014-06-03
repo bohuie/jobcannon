@@ -3,16 +3,6 @@
     function hide(){        
         document.getElementById("gen").selectedIndex = -1;
     }
-
-    function showSaved(){
-          $("#saved").fadeIn();
-          setTimeout(function(){$("#saved").fadeOut("slow")}, 1000)
-        }
-
-    function showSaved2(){
-      $("#saved2").fadeIn();
-      setTimeout(function(){$("#saved2").fadeOut("slow")}, 1000)
-    }
     function showSaved3(){
       $("#saved3").fadeIn();
       setTimeout(function(){$("#saved3").fadeOut("slow")}, 1000)
@@ -362,7 +352,7 @@
 					<%= f.submit "Submit", class: "btn btn-large btn-primary", onClick: "showSaved3();"%> 
 				</div>
 				<div class = "col-lg-4" id = "saved3" style= "display: none">
-					<div class = "alert alert-success" style = "width: 78%; padding: 6px; text-align: center">
+					<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
 						Changes Saved
 					</div>
 				</div>

@@ -48,7 +48,7 @@
         <div class = "tab-content">
         	<div class="tab-pane fade in active content survey-tabs" id="you"> 
         		<div class = "row">
-        			<div class = "col-lg-6">
+        			<div class = "col-lg-7">
                         <%= simple_form_for @profile, remote: true do |f| %>
         		    		<%= f.label @birthday %><br />
         		  			<%= f.date_field :birthday, :default => @profile.birthday %>
@@ -76,7 +76,7 @@
     			    			<%= f.submit "Submit", class: "btn btn-large btn-primary", onClick: "showSaved2();" %>  
     			    		</div>
     			    		<div class = "col-lg-4" id = "saved2" style= "display: none">
-    			    			<div class = "alert alert-success" style = "width: 78%; padding: 6px; text-align: center">
+    			    			<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
     			    				Changes Saved
     			    			</div>
     						</div>
@@ -104,7 +104,7 @@
     				    			<%= f.submit "Submit", class: "btn btn-large btn-primary", onClick: "showSaved();" %>  
     				    		</div>
     				    		<div class = "col-lg-4" id = "saved" style= "display: none">
-    				    			<div class = "alert alert-success" style = "width: 78%; padding: 6px; text-align: center">
+    				    			<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
     				    				Changes Saved
     				    			</div>
     							</div>
@@ -114,7 +114,11 @@
         	</div>    	
     		<% end %>
         	<div class="tab-pane fade in content survey-tabs" id="language"> 
-        		<%= render 'shared/survey/profile/languages'%>
+                <div class = "row">
+                    <div class = "col-lg-7">
+        		      <%= render 'shared/survey/profile/languages'%>
+                  </div>
+              </div>
         	</div> 
         </div>
     </div>

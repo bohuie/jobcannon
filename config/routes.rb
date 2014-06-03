@@ -12,39 +12,39 @@ First_Website::Application.routes.draw do
   end
   
   scope module: 'survey/tech' do
-    resources :word_processing_fluentcies 
-    resources :word_processing_skills
+    resources :word_processing_fluentcies, :formats => "js"
+    resources :word_processing_skills, :formats => "js"
     
-    resources :basic_computer_skills
-    resources :operating_systems_usages
-    resources :operating_systems_fluents
+    resources :basic_computer_skills, :formats => "js"
+    resources :operating_systems_usages, :formats => "js"
+    resources :operating_systems_fluents, :formats => "js"
     
-    resources :advanced_computer_skills
+    resources :advanced_computer_skills, :formats => "js"
 
-    resources :multi_media_skills
-    resources :technology_differences
+    resources :multi_media_skills, :formats => "js"
+    resources :technology_differences, :formats => "js"
 
-    resources :spreadsheet_skills
-    resources :spreadsheet_fluentcies
+    resources :spreadsheet_skills, :formats => "js"
+    resources :spreadsheet_fluentcies, :formats => "js"
 
-    resources :presenting_skills
-    resources :presenting_fluentcies
+    resources :presenting_skills, :formats => "js"
+    resources :presenting_fluentcies, :formats => "js"
 
-    resources :email_skills
-    resources :email_fluentcies
+    resources :email_skills, :formats => "js"
+    resources :email_fluentcies, :formats => "js"
 
-    resources :internet_terms
-    resources :internet_tasks
-    resources :internet_connections
-    resources :browsers
+    resources :internet_terms, :formats => "js"
+    resources :internet_tasks, :formats => "js"
+    resources :internet_connections, :formats => "js"
+    resources :browsers, :formats => "js"
 
 
-    resources :social_media_skills
-    resources :social_media_descs
-    resources :social_media_platforms
+    resources :social_media_skills, :formats => "js"
+    resources :social_media_descs, :formats => "js"
+    resources :social_media_platforms, :formats => "js"
 
-    resources :online_colab_skills
-    resources :online_colab_fluentcies
+    resources :online_colab_skills, :formats => "js"
+    resources :online_colab_fluentcies, :formats => "js"
 
 
   end
@@ -55,11 +55,11 @@ First_Website::Application.routes.draw do
   end
 
   scope module: 'survey/personality' do
-    resources :communication_skills
-    resources :thinking_skills
-    resources :self_direction_skills
-    resources :accountabilities
-    resources :interpersonal_skills
+    resources :communication_skills, :formats => "js"
+    resources :thinking_skills, :formats => "js"
+    resources :self_direction_skills, :formats => "js"
+    resources :accountabilities, :formats => "js"
+    resources :interpersonal_skills, :formats => "js"
   end
 
   resources :experiences
