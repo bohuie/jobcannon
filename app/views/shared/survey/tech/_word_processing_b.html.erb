@@ -1,12 +1,3 @@
-<% @header1 = "Completely Fluent" %>
-<% @header2 = "Quite Fluent" %>
-<% @header3 = "Somewhat Fluent" %>
-<% @header4 = "Minimal Fluency" %>
-<% @header5 = "Not Fluent" %>
-<% @header6 = "I don't know" %>
-
-<% @other = "If Other Please Specify" %>
-
 <% @q1 = "Word (Microsoft)" %>
 <% @q2 = "Pages (Apple)" %>
 <% @q3 = "Writer (OpenOffice)" %>
@@ -135,7 +126,7 @@
 	<table>
 		<tr>
 			<td style = "text-align: left">
-				<%= f.label @other %>
+				<%= f.label @other_label %>
 				<br>
 				<%= f.text_field :other %>				
 			</td>

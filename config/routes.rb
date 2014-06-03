@@ -50,7 +50,7 @@ First_Website::Application.routes.draw do
   end
 
   scope module: 'survey/profile' do 
-    resources :languages
+    resources :languages , :formats => "js"
     resources :surveyprofiles
   end
 

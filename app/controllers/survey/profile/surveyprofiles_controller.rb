@@ -7,8 +7,7 @@ class Survey::Profile::SurveyprofilesController < ApplicationController
 		@survey.user_id = current_user.user_id
 		@survey.save
 		respond_to do |f|
-			f.html {redirect_to root_path}
-			f.js 
+			f.js
 		end
 	end
 	private

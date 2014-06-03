@@ -1,13 +1,14 @@
 class Survey::Profile::LanguagesController < ApplicationController
 
 	def update
-
 		@user = current_user
 		@language = Language.find_by(:user_id => @user.user_id)	
 		@language.user_id = current_user.user_id
-		@language.update_attributes(language_params)						
-		redirect_to root_path
-		
+		@language.update_attributes(language_params)
+		@language.save
+		respond_to do|f|
+			f.js
+		end						
 	end
 
 	private

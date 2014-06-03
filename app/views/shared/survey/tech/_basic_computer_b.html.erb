@@ -15,7 +15,6 @@
 <% @windows = "Windows" %>
 <% @mac = "Mac OS" %>
 <% @linux = "Linux" %>
-<% @other = "If Other Please Specify" %>
 
 <%= simple_form_for @os do |f| %>
 
@@ -28,13 +27,13 @@
 			<th>
 			</th>
 			<th>
-				<%= @header1 %>
+				<%= @header13 %>
 			</th>
 			<th>
-				<%= @header2 %>
+				<%= @header14 %>
 			</th>
 			<th>
-				<%= @header3 %>
+				<%= @header15 %>
 			</th>
 		</tr>
 		<tr>
@@ -105,15 +104,6 @@
 			<th>
 			</th>
 			<th>
-				<%= @header4 %>
-			</th>
-			<th>
-				<%= @header5 %>
-			</th>
-			<th>
-				<%= @header6 %>
-			</th>
-			<th>
 				<%= @header7 %>
 			</th>
 			<th>
@@ -121,6 +111,15 @@
 			</th>
 			<th>
 				<%= @header9 %>
+			</th>
+			<th>
+				<%= @header10 %>
+			</th>
+			<th>
+				<%= @header11 %>
+			</th>
+			<th>
+				<%= @header12 %>
 			</th>
 		</tr>
 		<tr>
@@ -194,7 +193,7 @@
 		</tr>
 		<tr>
 			<td style = "text-align: left">
-				Other
+				<%= @other %>
 			</td>
 			<td>
 				<%= g.radio_button :magnitude_other,6, :default => @fluent.magnitude_other  %>				
@@ -219,7 +218,7 @@
 	<table>
 		<tr  id = "last_row">
 			<td style = "text-align: left;">
-				<%= g.label @other %>							
+				<%= g.label @other_label %>							
 				<br>
 				<%= g.text_field :other %>
 			</td>			
