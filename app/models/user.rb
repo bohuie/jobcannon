@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
   has_one :email_skills, dependent: :destroy
   has_one :email_fluentcies, dependent: :destroy
   has_one :internet_terms, dependent: :destroy
+  has_one :internet_tasks, dependent: :destroy
+  has_one :internet_connections, dependent: :destroy
+  has_one :browsers, dependent: :destroy
   has_one :social_media_skills, dependent: :destroy
   has_one :social_media_descs, dependent: :destroy
   has_one :social_media_platforms, dependent: :destroy
@@ -35,6 +38,8 @@ class User < ActiveRecord::Base
   has_one :internet_terms, dependent: :destroy
   has_one :internet_tasks, dependent: :destroy
   has_one :internet_connections, dependent: :destroy
+  has_one :browsers, dependent: :destroy
+
 
 
 

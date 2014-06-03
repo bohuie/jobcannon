@@ -36,6 +36,7 @@ First_Website::Application.routes.draw do
     resources :internet_terms
     resources :internet_tasks
     resources :internet_connections
+    resources :browsers
 
 
     resources :social_media_skills
