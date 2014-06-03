@@ -1,5 +1,16 @@
 @import "bootstrap";
 
+
+/* Responcible for making chat ul black when not over it */
+html:hover{
+  
+  /* Can be found in  _footer.html.erb */
+  .marker{
+    background-color: black;
+  }
+}
+
+/* Used to make button text white */
 .test{
   color:white !important;
 }

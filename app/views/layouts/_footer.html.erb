@@ -16,6 +16,10 @@ $(function() {
   });
 });
 
+function noflash(){  
+  document.getElementsByName("pop").setAttribute("style","color: red;");
+}
+
 function hold(){
 
   document.getElementsByTagName("html")[0].setAttribute("style","overflow:hidden");
@@ -61,9 +65,9 @@ function scroll(){
         %>  
         <li id = "testchat">
         </li>
-        <li class="dropup" id="accountmenu" style = "width: 160px; text-align: right;">  
-          <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Chat<b class="caret"></b></a>  
-          <ul class="dropdown-menu" style = "text-align: left; width: 120px;">  
+        <li class="dropup marker" id="accountmenu" style = "width: 160px; text-align: right;">  
+          <a class="dropdown-toggle marker" id = "brand" data-toggle="dropdown" style = "text-shadow: none;  cursor:pointer"> Chat<b class="caret"></b></a>  
+          <ul class="dropdown-menu flist" style = "text-align: left; width: 120px;">  
             <li role="presentation" class="dropdown-header">Online Friends</li>
             <% @online.each do |r| %>
               <li><%= link_to r.fname+" "+r.lname, {controller: "layouts", action: "privatechat", id1: @user.user_id, id2: r.user_id}, remote: true%></li>
