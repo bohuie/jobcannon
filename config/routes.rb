@@ -36,7 +36,7 @@ First_Website::Application.routes.draw do
     resources :internet_terms, :formats => "js"
     resources :internet_tasks, :formats => "js"
     resources :internet_connections, :formats => "js"
-    resources :browsers, :formats => "js"
+    resources :browsers
 
 
     resources :social_media_skills, :formats => "js"

@@ -32,14 +32,32 @@
 	 		$('#q4detailsa').hide()
 	 		$('#q4detailsb').hide()
 	    }
+	    function showq5(){
+	 		$('#q5detailsa').show()
+	 		$('#q5detailsb').show()
+	    }
+	    function hideq5(){
+	 		$('#q5detailsa').hide()
+	 		$('#q5detailsb').hide()
+	    }
+	    function showmagnitude_other(){
+	 		$('#magnitude_otherdetailsa').show()
+	 		$('#magnitude_otherdetailsb').show()
+	    }
+	    function hidemagnitude_other(){
+	 		$('#magnitude_otherdetailsa').hide()
+	 		$('#magnitude_otherdetailsb').hide()
+	    }
     </script>
 </head>
 <% @label = "Do you know what the following types of internet connections?" %>
 
-<% @q1 = "Dialup" %>
-<% @q2 = "LAN" %>
-<% @q3 = "DSL" %>
-<% @q4 = "Cable" %>
+<% @q1 = "Firefox" %>
+<% @q2 = "Explorer" %>
+<% @q3 = "Safari" %>
+<% @q4 = "Chrome" %>
+<% @q5 = "Mozilla" %>
+<% @other = "Other (Please Specify)" %>
 
 <% @private_header1 = "I don't know what this is" %>
 <% @private_header2 = "I know what this is but I don't know how to use it" %>
@@ -73,50 +91,62 @@
 					<%= @q1 %>
 				</td>
 				<td>
-					<%= f.radio_button :q1, 3, :default => @browser.q1, :onClick => "hideq1()" %>				
+					<%= f.radio_button :q1, 1, :default => @browser.q1, :onClick => "hideq1()" %>				
 				</td>
 				<td>
 					<%= f.radio_button :q1, 2, :default => @browser.q1, :onClick => "hideq1()" %>				
 				</td>
 				<td>
-					<%= f.radio_button :q1, 1, :default => @browser.q1, :onClick => "showq1()" %>				
+					<%= f.radio_button :q1, 50, :onClick => "showq1()" %>				
 				</td>
 			</tr>
 			<tr id = "q1detailsa" 
-				<% if @browser.q1 != 1%> 
+				<% if @browser.q1 <= 2%> 
 					style = "display: none"
 				<% end %>
 			>
 				<td style = "border: 0; ">
 				</td>
-				<td style = "border: 0; border-left: 1px solid black; background-color: #F8F8F8">
-					<%= @private_header4 %>
-				</td>
-				<td style = "border: 0; background-color: #F8F8F8">
-					<%= @private_header5 %>
-				</td>
-				<td style = "border: 0; background-color: #F8F8F8">
-					<%= @private_header6 %>
-				</td>
-				<td style = "border: 0; border-right: 1px solid black; background-color: #F8F8F8">
-					<%= @private_header7 %>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr id = "q1detailsb" 
-				<% if @browser.q1 != 1%> 
+				<% if @browser.q1 <= 2%> 
 					style = "display: none"
 				<% end %>
 			>
 				<td style = "border: 0;">
 				</td>
-				<td style = "border-left: 1px solid black; background-color: #F8F8F8">
-					<%= f.input :q1a, :label => false, as: :boolean do f.check_box :q1a, {}, "true", "false" end %>				
-				</td>
-				<td style = "background-color: #F8F8F8">
-					<%= f.input :q1b, :label => false, as: :boolean do f.check_box :q1b, {}, "true", "false" end %>					
-				</td>
-				<td style = "border: 0; border-right: 1px solid black; border-bottom: 1px solid black; background-color: #F8F8F8">
-					<%= f.input :q1c, :label => false, as: :boolean do f.check_box :q1c, {}, "true", "false" end %>					
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= f.radio_button :q1, 4, :default => @browser.q1%>
+						</div>
+						<div class = "col-lg-3">				
+				
+						<%= f.radio_button :q1, 5, :default => @browser.q1%>
+						</div>
+						<div class = "col-lg-3">				
+						<%= f.radio_button :q1, 6, :default => @browser.q1%>	
+						</div>
+						<div class = "col-lg-3">			
+						<%= f.radio_button :q1, 7, :default => @browser.q1%>	
+						</div>
+					</div>			
 				</td>
 			</tr>
 			<tr>
@@ -124,47 +154,64 @@
 					<%= @q2 %>
 				</td>
 				<td>
-					<%= f.radio_button :q2, 3, :default => @browser.q2, :onClick => "hideq2()" %>				
+					<%= f.radio_button :q2, 1, :default => @browser.q2, :onClick => "hideq2()" %>				
 				</td>
 				<td>
 					<%= f.radio_button :q2, 2, :default => @browser.q2, :onClick => "hideq2()" %>				
 				</td>
 				<td>
-					<%= f.radio_button :q2, 1, :default => @browser.q2, :onClick => "showq2()" %>				
+					<%= f.radio_button :q2, 3, :default => @browser.q2, :onClick => "showq2()" %>				
 				</td>
 			</tr>
 			<tr id = "q2detailsa" 
-				<% if @browser.q2 != 1%> 
+				<% if @browser.q2  <= 2%> 
 					style = "display: none"
 				<% end %>
 			>
 				<td style = "border: 0; ">
 				</td>
-				<td style = "border: 0; border-left: 1px solid black; background-color: #F8F8F8">
-					<%= @private_header4 %>
-				</td>
-				<td style = "border: 0; background-color: #F8F8F8">
-					<%= @private_header5 %>
-				</td>
-				<td style = "border: 0; border-right: 1px solid black; background-color: #F8F8F8">
-					<%= @private_header6 %>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr id = "q2detailsb" 
-				<% if @browser.q2 != 1%> 
+				<% if @browser.q2 <= 2%> 
 					style = "display: none"
 				<% end %>
 			>
 				<td style = "border: 0;">
 				</td>
-				<td style = "border-left: 1px solid black; background-color: #F8F8F8">
-					<%= f.input :q2a, :label => false, as: :boolean do f.check_box :q2a, {}, "true", "false" end %>				
-				</td>
-				<td style = "background-color: #F8F8F8">
-					<%= f.input :q2b, :label => false, as: :boolean do f.check_box :q2b, {}, "true", "false" end %>					
-				</td>
-				<td style = "border: 0; border-right: 1px solid black; border-bottom: 1px solid black; background-color: #F8F8F8">
-					<%= f.input :q2c, :label => false, as: :boolean do f.check_box :q2c, {}, "true", "false" end %>					
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+					<%= f.radio_button :q2, 4, :default => @browser.q2, :onClick => "showq2()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q2, 5, :default => @browser.q2, :onClick => "showq2()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q2, 6, :default => @browser.q2, :onClick => "showq2()" %>				
+						</div>
+						<div class = "col-lg-3">			
+				
+					<%= f.radio_button :q2, 7, :default => @browser.q2, :onClick => "showq2()" %>				
+						</div>
+					</div>			
 				</td>
 			</tr>
 			<tr>
@@ -172,47 +219,64 @@
 					<%= @q3 %>
 				</td>
 				<td>
-					<%= f.radio_button :q3, 3, :default => @browser.q3, :onClick => "hideq3()" %>				
+					<%= f.radio_button :q3, 1, :default => @browser.q3, :onClick => "hideq3()" %>				
 				</td>
 				<td>
 					<%= f.radio_button :q3, 2, :default => @browser.q3, :onClick => "hideq3()" %>				
 				</td>
 				<td>
-					<%= f.radio_button :q3, 1, :default => @browser.q3, :onClick => "showq3()" %>				
+					<%= f.radio_button :q3, 3, :default => @browser.q3, :onClick => "showq3()" %>				
 				</td>
 			</tr>
 			<tr id = "q3detailsa" 
-				<% if @browser.q3 != 1%> 
+				<% if @browser.q3 <= 2%> 
 					style = "display: none"
 				<% end %>
 			>
 				<td style = "border: 0; ">
 				</td>
-				<td style = "border: 0; border-left: 1px solid black; background-color: #F8F8F8">
-					<%= @private_header4 %>
-				</td>
-				<td style = "border: 0; background-color: #F8F8F8">
-					<%= @private_header5 %>
-				</td>
-				<td style = "border: 0; border-right: 1px solid black; background-color: #F8F8F8">
-					<%= @private_header6 %>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr id = "q3detailsb" 
-				<% if @browser.q3 != 1%> 
+				<% if @browser.q3 <= 2%> 
 					style = "display: none"
 				<% end %>
 			>
 				<td style = "border: 0;">
 				</td>
-				<td style = "border-left: 1px solid black; background-color: #F8F8F8">
-					<%= f.input :q3a, :label => false, as: :boolean do f.check_box :q3a, {}, "true", "false" end %>				
-				</td>
-				<td style = "background-color: #F8F8F8">
-					<%= f.input :q3b, :label => false, as: :boolean do f.check_box :q3b, {}, "true", "false" end %>					
-				</td>
-				<td style = "border: 0; border-right: 1px solid black; border-bottom: 1px solid black; background-color: #F8F8F8">
-					<%= f.input :q3c, :label => false, as: :boolean do f.check_box :q3c, {}, "true", "false" end %>					
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+					<%= f.radio_button :q3, 4, :default => @browser.q3, :onClick => "showq3()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q3, 5, :default => @browser.q3, :onClick => "showq3()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q3, 6, :default => @browser.q3, :onClick => "showq3()" %>				
+						</div>
+						<div class = "col-lg-3">			
+				
+					<%= f.radio_button :q3, 7, :default => @browser.q3, :onClick => "showq3()" %>				
+						</div>
+					</div>			
 				</td>
 			</tr>
 			<tr>
@@ -220,52 +284,209 @@
 					<%= @q4 %>
 				</td>
 				<td>
-					<%= f.radio_button :q4, 3, :default => @browser.q4, :onClick => "hideq4()" %>				
+					<%= f.radio_button :q4, 1, :default => @browser.q4, :onClick => "hideq4()" %>				
 				</td>
 				<td>
 					<%= f.radio_button :q4, 2, :default => @browser.q4, :onClick => "hideq4()" %>				
 				</td>
 				<td>
-					<%= f.radio_button :q4, 1, :default => @browser.q4, :onClick => "showq4()" %>				
+					<%= f.radio_button :q4, 3, :default => @browser.q4, :onClick => "showq4()" %>				
 				</td>
 			</tr>
 			<tr id = "q4detailsa" 
-				<% if @browser.q4 != 1%> 
+				<% if @browser.q4 <= 2%> 
 					style = "display: none"
 				<% end %>
 			>
 				<td style = "border: 0; ">
 				</td>
-				<td style = "border: 0; border-left: 1px solid black; background-color: #F8F8F8">
-					<%= @private_header4 %>
-				</td>
-				<td style = "border: 0; background-color: #F8F8F8">
-					<%= @private_header5 %>
-				</td>
-				<td style = "border: 0; border-right: 1px solid black; background-color: #F8F8F8">
-					<%= @private_header6 %>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr id = "q4detailsb" 
-				<% if @browser.q4 != 1%> 
+				<% if @browser.q4 <= 2%> 
 					style = "display: none"
 				<% end %>
 			>
 				<td style = "border: 0;">
 				</td>
-				<td style = "border-left: 1px solid black; background-color: #F8F8F8">
-					<%= f.input :q4a, :label => false, as: :boolean do f.check_box :q4a, {}, "true", "false" end %>				
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+					<%= f.radio_button :q4, 4, :default => @browser.q4, :onClick => "showq4()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q4, 5, :default => @browser.q4, :onClick => "showq4()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q4, 6, :default => @browser.q4, :onClick => "showq4()" %>				
+						</div>
+						<div class = "col-lg-3">			
+				
+					<%= f.radio_button :q4, 7, :default => @browser.q4, :onClick => "showq4()" %>				
+						</div>
+					</div>			
 				</td>
-				<td style = "background-color: #F8F8F8">
-					<%= f.input :q4b, :label => false, as: :boolean do f.check_box :q4b, {}, "true", "false" end %>					
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q5 %>
 				</td>
-				<td style = "border: 0; border-right: 1px solid black; border-bottom: 1px solid black; background-color: #F8F8F8">
-					<%= f.input :q4c, :label => false, as: :boolean do f.check_box :q4c, {}, "true", "false" end %>					
+				<td>
+					<%= f.radio_button :q5, 1, :default => @browser.q5, :onClick => "hideq5()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 2, :default => @browser.q5, :onClick => "hideq5()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 3, :default => @browser.q5, :onClick => "showq5()" %>				
+				</td>
+			</tr>
+			<tr id = "q5detailsa" 
+				<% if @browser.q5  <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr id = "q5detailsb" 
+				<% if @browser.q5 <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+					<%= f.radio_button :q5, 4, :default => @browser.q5, :onClick => "showq5()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q5, 5, :default => @browser.q5, :onClick => "showq5()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q5, 6, :default => @browser.q5, :onClick => "showq5()" %>				
+						</div>
+						<div class = "col-lg-3">			
+				
+					<%= f.radio_button :q5, 7, :default => @browser.q5, :onClick => "showq5()" %>				
+						</div>
+					</div>			
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @other %>
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 1, :default => @browser.magnitude_other, :onClick => "hidemagnitude_other()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 2, :default => @browser.magnitude_other, :onClick => "hidemagnitude_other()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 3, :default => @browser.magnitude_other, :onClick => "showmagnitude_other()" %>				
+				</td>
+			</tr>
+			<tr id = "magnitude_otherdetailsa" 
+				<% if @browser.magnitude_other <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr id = "magnitude_otherdetailsb" 
+				<% if @browser.magnitude_other <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+					<%= f.radio_button :magnitude_other, 4, :default => @browser.magnitude_other, :onClick => "showmagnitude_other()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :magnitude_other, 5, :default => @browser.magnitude_other, :onClick => "showmagnitude_other()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :magnitude_other, 6, :default => @browser.magnitude_other, :onClick => "showmagnitude_other()" %>				
+						</div>
+						<div class = "col-lg-3">			
+				
+					<%= f.radio_button :magnitude_other, 7, :default => @browser.magnitude_other, :onClick => "showmagnitude_other()" %>				
+						</div>
+					</div>			
 				</td>
 			</tr>
 		</table>
-
-		<%= f.submit @continue, class: "btn btn-primary" %>
-
+		<table>
+		<tr  id = "last_row">
+			<td style = "text-align: left;">
+				<%= f.label @other_label %>							
+				<br>
+				<%= f.text_field :other %>
+			</td>			
+			<td style = "padding-left: 2em">
+				<br>
+				<%= f.submit "Submit", class: "btn btn-primary" %>
+			</td>			
+		</tr>
+	</table>
 	<% end %>
 </body>

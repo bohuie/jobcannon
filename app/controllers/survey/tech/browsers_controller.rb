@@ -10,7 +10,7 @@ end
 	private
 
 	def browser_params
-		params.require(:online_colab_fluentcy).permit(:q1,:q2,:q3,:q4,:q5,
+		params.require(:browser).permit(:q1,:q2,:q3,:q4,:q5,
 			:magnitude_other,:other)
 	end
 
