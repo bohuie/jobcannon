@@ -4,7 +4,7 @@ def update
 	@user = current_user
 	@internetterm = InternetTerm.find_by(:user_id=>@user.user_id)
 	@internetterm.update_attributes(internetterm_params)
-	redirect_to survey_path(@user,:type=> 3,:tech=>0,:word=>0)
+	redirect_to survey_path(@user,:type=> 3,:internet=>1)
 end
 
 	private

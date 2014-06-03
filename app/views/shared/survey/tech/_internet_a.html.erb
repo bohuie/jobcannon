@@ -1,0 +1,138 @@
+
+
+<% @label = "Do you know what the following Internet terms mean?" %>
+
+<% @q1 = "URL" %>
+<% @q2 = "Domain Name" %>
+<% @q3 = "Ip address" %>
+<% @q4 = "Server" %>
+<% @q5 = "Client" %>
+<% @q6 = "Web browser" %>
+<% @q7 = "Wireless router" %>
+
+<% @private_header1 = "Yes" %>
+<% @private_header2 = "No" %>
+<% @private_header3 = "Not Sure" %>
+
+<%= simple_form_for @internetterm do |f| %>
+
+	<%= f.label @label %>
+	<br>
+	<table id = "survey_format">
+		<tr>
+			<th>
+			</th>
+			<th>
+				<%= @private_header1 %>
+			</th>
+			<th>
+				<%= @private_header2 %>
+			</th>
+			<th>
+				<%= @private_header3 %>
+			</th>			
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q1 %>
+			</td>
+			<td>
+				<%= f.radio_button :q1, 3, :default => @internetterm.q1 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q1, 2, :default => @internetterm.q1 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q1, 1, :default => @internetterm.q1 %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q2 %>
+			</td>
+			<td>
+				<%= f.radio_button :q2, 3, :default => @internetterm.q2 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 2, :default => @internetterm.q2 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q2, 1, :default => @internetterm.q2 %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q3 %>
+			</td>
+			<td>
+				<%= f.radio_button :q3, 3, :default => @internetterm.q3 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q3, 2, :default => @internetterm.q3 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q3, 1, :default => @internetterm.q3 %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q4 %>
+			</td>
+			<td>
+				<%= f.radio_button :q4, 3, :default => @internetterm.q4 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q4, 2, :default => @internetterm.q4 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q4, 1, :default => @internetterm.q4 %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q5 %>
+			</td>
+			<td>
+				<%= f.radio_button :q5, 3, :default => @internetterm.q5 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q5, 2, :default => @internetterm.q5 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q5, 1, :default => @internetterm.q5 %>				
+			</td>
+		</tr>
+		<tr>
+			<td style = "text-align: left">
+				<%= @q6 %>
+			</td>
+			<td>
+				<%= f.radio_button :q6, 3, :default => @internetterm.q6 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q6, 2, :default => @internetterm.q6 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q6, 1, :default => @internetterm.q6 %>				
+			</td>
+		</tr>
+		<tr id = "last_row">
+			<td style = "text-align: left">
+				<%= @q7 %>
+			</td>
+			<td>
+				<%= f.radio_button :q7, 3, :default => @internetterm.q7 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q7, 2, :default => @internetterm.q7 %>				
+			</td>
+			<td>
+				<%= f.radio_button :q7, 1, :default => @internetterm.q7 %>				
+			</td>
+		</tr>
+	</table>
+
+	<br>
+	<%= f.submit @continue, class: "btn btn-primary" %>
+<% end %>
+

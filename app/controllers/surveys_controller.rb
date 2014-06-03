@@ -11,6 +11,11 @@ class SurveysController < ApplicationController
 		@word_a = params[:word]
 		@pres = params[:pres]
 		@em = params[:email]
+		@internet = params[:internet]
+
+		if @internet.nil?
+			@internet=0
+		end
 
 		@profile = Surveyprofile.find_by(:user_id => @user.user_id)		
 		@language = Language.find_by(:user_id => @user.user_id)

@@ -82,8 +82,14 @@
 			</div>
 			<div class="tab-pane fade in content survey-tabs" id="internet-skills">
 				<div class="row">
-					<div class ="col-lg-10">
-						<p> I here there will be info 8</p>
+					<div class ="col-lg-10">						
+						<% if @internet == '0' %>
+							<%= render 'shared/survey/tech/internet_a' %>
+						<% elsif @internet == '1' %>
+							<%= render 'shared/survey/tech/internet_b' %>
+						<% else %>
+							<%= render 'shared/survey/tech/internet_c' %>
+						<% end %>
 					</div>
 				</div>
 			</div>
