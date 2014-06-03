@@ -5,7 +5,7 @@ def update
 	@user = current_user
 	@spreadsheet = SpreadsheetSkill.find_by(:user_id=>@user.user_id)
 	@spreadsheet.update_attributes(spreadsheet_params)		#breaks, dunno why
-	redirect_to survey_path(@user,:type=> 3,:tech=>0,:word=>0)
+	redirect_to survey_path(@user,:type=> 3,:word=>1);
 end
 
 	private

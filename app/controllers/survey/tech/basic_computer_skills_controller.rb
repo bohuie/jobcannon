@@ -4,7 +4,7 @@ def update
 	
 	@user = current_user
 	@basic = BasicComputerSkill.find_by(:user_id=>@user.user_id)
-	@basic.update_attributes(basic_params)		#breaks, dunno why
+	@basic.update_attributes(basic_params)
 	redirect_to survey_path(@user,:type=> 3,:tech=>1)
 end
 
