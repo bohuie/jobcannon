@@ -1,0 +1,266 @@
+<head>
+	<script>
+		function showq1(){
+	 		$('#q1detailsa').show()
+	 		$('#q1detailsb').show()
+	    }
+	    function hideq1(){
+	 		$('#q1detailsa').hide()
+	 		$('#q1detailsb').hide()
+	    }
+	    function showq2(){
+	 		$('#q2detailsa').show()
+	 		$('#q2detailsb').show()
+	    }
+	    function hideq2(){
+	 		$('#q2detailsa').hide()
+	 		$('#q2detailsb').hide()
+	    }
+	    function showq3(){
+	 		$('#q3detailsa').show()
+	 		$('#q3detailsb').show()
+	    }
+	    function hideq3(){
+	 		$('#q3detailsa').hide()
+	 		$('#q3detailsb').hide()
+	    }
+	    function showq4(){
+	 		$('#q4detailsa').show()
+	 		$('#q4detailsb').show()
+	    }
+	    function hideq4(){
+	 		$('#q4detailsa').hide()
+	 		$('#q4detailsb').hide()
+	    }
+    </script>
+</head>
+<% @label = "Do you know what the following types of internet connections?" %>
+
+<% @q1 = "Dialup" %>
+<% @q2 = "LAN" %>
+<% @q3 = "DSL" %>
+<% @q4 = "Cable" %>
+
+<% @private_header1 = "I don't know what this is" %>
+<% @private_header2 = "I know what this is but I don't know how to use it" %>
+<% @private_header3 = "I know what this is and know how to use it" %>
+<% @private_header4 = "I am able to connect using this type of connection" %>
+<% @private_header5 = "I am able to configure this type of connection" %>
+<% @private_header6 = "I am able to trouble shoot this type of connection" %>
+<body>
+	<%= simple_form_for @internetconnection do |f| %>
+
+		<%= f.label @label %>
+		<br>
+		<table id = "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= @private_header1 %>
+				</th>
+				<th>
+					<%= @private_header2 %>
+				</th>
+				<th>
+					<%= @private_header3 %>
+				</th>			
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q1 %>
+				</td>
+				<td>
+					<%= f.radio_button :q1, 3, :default => @internetconnection.q1, :onClick => "hideq1()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 2, :default => @internetconnection.q1, :onClick => "hideq1()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 1, :default => @internetconnection.q1, :onClick => "showq1()" %>				
+				</td>
+			</tr>
+			<tr id = "q1detailsa" 
+				<% if @internetconnection.q1 != 1%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; background-color: #F8F8F8">
+					<%= @private_header4 %>
+				</td>
+				<td style = "border: 0; background-color: #F8F8F8">
+					<%= @private_header5 %>
+				</td>
+				<td style = "border: 0; border-right: 1px solid black; background-color: #F8F8F8">
+					<%= @private_header6 %>
+				</td>
+			</tr>
+			<tr id = "q1detailsb" 
+				<% if @internetconnection.q1 != 1%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border-left: 1px solid black; background-color: #F8F8F8">
+					<%= f.input :q1a, :label => false, as: :boolean do f.check_box :q1a, {}, "true", "false" end %>				
+				</td>
+				<td style = "background-color: #F8F8F8">
+					<%= f.input :q1b, :label => false, as: :boolean do f.check_box :q1b, {}, "true", "false" end %>					
+				</td>
+				<td style = "border: 0; border-right: 1px solid black; border-bottom: 1px solid black; background-color: #F8F8F8">
+					<%= f.input :q1c, :label => false, as: :boolean do f.check_box :q1c, {}, "true", "false" end %>					
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q2 %>
+				</td>
+				<td>
+					<%= f.radio_button :q2, 3, :default => @internetconnection.q2, :onClick => "hideq2()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 2, :default => @internetconnection.q2, :onClick => "hideq2()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 1, :default => @internetconnection.q2, :onClick => "showq2()" %>				
+				</td>
+			</tr>
+			<tr id = "q2detailsa" 
+				<% if @internetconnection.q2 != 1%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; background-color: #F8F8F8">
+					<%= @private_header4 %>
+				</td>
+				<td style = "border: 0; background-color: #F8F8F8">
+					<%= @private_header5 %>
+				</td>
+				<td style = "border: 0; border-right: 1px solid black; background-color: #F8F8F8">
+					<%= @private_header6 %>
+				</td>
+			</tr>
+			<tr id = "q2detailsb" 
+				<% if @internetconnection.q2 != 1%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border-left: 1px solid black; background-color: #F8F8F8">
+					<%= f.input :q2a, :label => false, as: :boolean do f.check_box :q2a, {}, "true", "false" end %>				
+				</td>
+				<td style = "background-color: #F8F8F8">
+					<%= f.input :q2b, :label => false, as: :boolean do f.check_box :q2b, {}, "true", "false" end %>					
+				</td>
+				<td style = "border: 0; border-right: 1px solid black; border-bottom: 1px solid black; background-color: #F8F8F8">
+					<%= f.input :q2c, :label => false, as: :boolean do f.check_box :q2c, {}, "true", "false" end %>					
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q3 %>
+				</td>
+				<td>
+					<%= f.radio_button :q3, 3, :default => @internetconnection.q3, :onClick => "hideq3()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 2, :default => @internetconnection.q3, :onClick => "hideq3()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 1, :default => @internetconnection.q3, :onClick => "showq3()" %>				
+				</td>
+			</tr>
+			<tr id = "q3detailsa" 
+				<% if @internetconnection.q3 != 1%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; background-color: #F8F8F8">
+					<%= @private_header4 %>
+				</td>
+				<td style = "border: 0; background-color: #F8F8F8">
+					<%= @private_header5 %>
+				</td>
+				<td style = "border: 0; border-right: 1px solid black; background-color: #F8F8F8">
+					<%= @private_header6 %>
+				</td>
+			</tr>
+			<tr id = "q3detailsb" 
+				<% if @internetconnection.q3 != 1%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border-left: 1px solid black; background-color: #F8F8F8">
+					<%= f.input :q3a, :label => false, as: :boolean do f.check_box :q3a, {}, "true", "false" end %>				
+				</td>
+				<td style = "background-color: #F8F8F8">
+					<%= f.input :q3b, :label => false, as: :boolean do f.check_box :q3b, {}, "true", "false" end %>					
+				</td>
+				<td style = "border: 0; border-right: 1px solid black; border-bottom: 1px solid black; background-color: #F8F8F8">
+					<%= f.input :q3c, :label => false, as: :boolean do f.check_box :q3c, {}, "true", "false" end %>					
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q4 %>
+				</td>
+				<td>
+					<%= f.radio_button :q4, 3, :default => @internetconnection.q4, :onClick => "hideq4()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 2, :default => @internetconnection.q4, :onClick => "hideq4()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 1, :default => @internetconnection.q4, :onClick => "showq4()" %>				
+				</td>
+			</tr>
+			<tr id = "q4detailsa" 
+				<% if @internetconnection.q4 != 1%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; background-color: #F8F8F8">
+					<%= @private_header4 %>
+				</td>
+				<td style = "border: 0; background-color: #F8F8F8">
+					<%= @private_header5 %>
+				</td>
+				<td style = "border: 0; border-right: 1px solid black; background-color: #F8F8F8">
+					<%= @private_header6 %>
+				</td>
+			</tr>
+			<tr id = "q4detailsb" 
+				<% if @internetconnection.q4 != 1%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border-left: 1px solid black; background-color: #F8F8F8">
+					<%= f.input :q4a, :label => false, as: :boolean do f.check_box :q4a, {}, "true", "false" end %>				
+				</td>
+				<td style = "background-color: #F8F8F8">
+					<%= f.input :q4b, :label => false, as: :boolean do f.check_box :q4b, {}, "true", "false" end %>					
+				</td>
+				<td style = "border: 0; border-right: 1px solid black; border-bottom: 1px solid black; background-color: #F8F8F8">
+					<%= f.input :q4c, :label => false, as: :boolean do f.check_box :q4c, {}, "true", "false" end %>					
+				</td>
+			</tr>
+		</table>
+
+		<%= f.submit @continue, class: "btn btn-primary" %>
+
+	<% end %>
+</body>
