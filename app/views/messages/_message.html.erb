@@ -1,6 +1,6 @@
 <% if !message.message.eql? "" %>
 	<li style = "list-style-type: none; padding: 0px; margin: 0px;">
-		<% if message.sender_id == @user.user_id %>
+		<% if message.sender_id == @current_user.id  %>
 			<div class = "sender-message">
 				<div class = "message-body-sender"><%= message.message %></div>
 				<div class = "message-time-sender"> 

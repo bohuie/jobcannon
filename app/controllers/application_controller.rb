@@ -2,12 +2,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_user
+
+  def set_user
+    @user = current_user
+  end
 
   def home
     @user = current_user
     current_user.online = true
     current_user.save
-    @other = User.find(4)
   end
 
   protected
