@@ -11,6 +11,15 @@
 <% q3 = "Create and use video files" %>
 <% q4 = "Edit video files" %>
 <% q5 = "Add graphics/subtitles to video files" %>
+<head><script>
+	 function selector(){
+        $("#technology_difference_q1").prop("selectedIndex", -1)
+        $("#technology_difference_q2").prop("selectedIndex", -1)
+        $("#technology_difference_q3").prop("selectedIndex", -1)
+    }
+    window.onload = selector;
+    </script>
+	</head>
 
 	<body>
 	<%= simple_form_for @media do |f| %>

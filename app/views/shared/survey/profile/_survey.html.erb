@@ -21,6 +21,11 @@
       $("#saved3").fadeIn();
       setTimeout(function(){$("#saved3").fadeOut("slow")}, 1000)
     }
+    function selector(){
+        $("#surveyprofile_gender").prop("selectedIndex", -1)
+        $("#surveyprofile_education").prop("selectedIndex", -1)
+    }
+    window.onload = selector;
 
 </script>
 <% @STATUS = [['Other','Other'],['Male','Male'],['Female','Female']] %>
