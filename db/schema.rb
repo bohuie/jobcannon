@@ -540,7 +540,7 @@ end
 create_table "internet_tasks", force: true do |t|
   t.integer "user_id"
   t.integer "internet_task_id", default: 0,     null: false
-   t.integer "q1",                      default: 0,     null: false
+  t.integer "q1",                      default: 0,     null: false
   t.integer "q2",                      default: 0,     null: false
   t.integer "q3",                      default: 0,     null: false
   t.integer "q4",                      default: 0,     null: false
@@ -558,6 +558,15 @@ create_table "internet_tasks", force: true do |t|
   t.integer "q16",                     default: 0,     null: false 
   t.integer "q17",                     default: 0,     null: false 
 
+end
+
+create_table "internet_connections", force: true do |t|
+  t.integer "user_id"
+  t.integer "internet_connection_id", default: 0,     null: false
+  t.integer "q1",                      default: 0,     null: false
+  t.integer "q2",                      default: 0,     null: false
+  t.integer "q3",                      default: 0,     null: false
+  t.integer "q4",                      default: 0,     null: false
 end
 
 create_table "social_media_skills", force: true do |t|

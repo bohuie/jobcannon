@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   has_one :online_colab_fluentcies, dependent: :destroy
   has_one :internet_terms, dependent: :destroy
   has_one :internet_tasks, dependent: :destroy
+  has_one :internet_connections, dependent: :destroy
 
 
 

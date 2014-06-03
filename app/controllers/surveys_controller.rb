@@ -48,6 +48,7 @@ class SurveysController < ApplicationController
 
 		@internetterm = InternetTerm.find_by(:user_id=> @user.user_id)
 		@internettask = InternetTask.find_by(:user_id=> @user.user_id)
+		@internetconnection = InternetConnection.find_by(:user_id=> @user.user_id)
 
 
 		@socialmedia = SocialMediaSkill.find_by(:user_id=> @user.user_id)
@@ -170,6 +171,10 @@ class SurveysController < ApplicationController
 			@internettask = InternetTask.new
 			@internettask.user_id = @user.user_id
 			@internettask.save
+
+			@internetconnection = InternetConnection.new
+			@internetconnection.user_id = @user.user_id
+			@internetconnection.save
 
 			@socialmedia = SocialMediaSkill.new
 			@socialmedia.user_id = @user.user_id
