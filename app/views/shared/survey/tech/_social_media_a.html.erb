@@ -1,0 +1,588 @@
+
+<% @label = "How easy would you find the following social media tasks?" %>
+<% @q1 = "Post updates" %>
+<% @q2 = "Buy paid ads on social media" %>
+<% @q3 = "Creating social media accounts" %>
+<% @q4 = "Create 3rd party applications for social media platforms" %>
+<% @q5 = "Maintaining social media accounts" %>
+<% @q6 = "Incorporating social media as part of a larger campaign" %>
+<% @q7 = "Developing social media plan according to business objectives" %>
+<% @q8 = "Responding to customer comments in an online public forum" %>
+<% @q9 = "Developing text content for Social Media" %>
+<% @q10 = "Developing graphic/image content for Social Media" %>
+<% @q11 = "Developing video content for Social Media" %>
+<% @q12 = "Blogging" %>
+<% @q13 = "Engaging other social media users" %>
+<% @q14 = "Actively ac@quiring followers on social media" %>
+<% @q15 = "Following others on social media" %>
+<% @q16 = "Organizing events through social media" %>
+<% @q17 = "Using social media to check for breaking news" %>
+<% @q18 = "Using social media to check up on competitors" %>
+<% @q19 = "Using social media to come up with ideas" %>
+<% @q20 = "Using social media to improve productivity" %>
+<% @q21 = "Using social media to collect data" %>
+<% @q22 = "Working with social listening and reporting tools (Ex. Sysomos, Hootsuite, Omniture)" %>
+<% @q23 = "Using social media management software (Ex. Salesforce.com, Web Trends, Google Analytics)" %>
+
+
+<body>
+	<%= simple_form_for @socialmedia do |f| %>
+
+		<%= f.label @label %>
+
+		<table id= "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= @header7 %>
+				</th>
+				<th>
+					<%= @header8 %>
+				</th>
+				<th>
+					<%= @header9 %>				
+				</th>
+				<th>
+					<%= @header10 %>				
+				</th>
+				<th>
+					<%= @header11 %>				
+				</th>
+				<th>
+					<%= @header12 %>				
+				</th>
+			</tr>
+			<tr>
+				<td style = "text-align: left; width: 30%;">
+					<%= @q1 %>
+				</td>
+				<td style = "width: 10%">
+					<%= f.radio_button :q1, 1, :default => @socialmedia.q1  %>				
+				</td>
+				<td style = "width: 10%">
+					<%= f.radio_button :q1, 2, :default => @socialmedia.q1  %>				
+				</td>
+				<td style = "width: 10%">
+					<%= f.radio_button :q1, 3, :default => @socialmedia.q1  %>				
+				</td>
+				<td style = "width: 10%">
+					<%= f.radio_button :q1, 4, :default => @socialmedia.q1  %>				
+				</td>
+				<td style = "width: 10%">
+					<%= f.radio_button :q1, 5, :default => @socialmedia.q1  %>				
+				</td>
+				<td style = "width: 20%">
+					<%= f.radio_button :q1, -1, :default => @socialmedia.q1  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q2 %>
+				</td>
+				<td>
+					<%= f.radio_button :q2, 1, :default => @socialmedia.q2  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 2, :default => @socialmedia.q2  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 3, :default => @socialmedia.q2  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 4, :default => @socialmedia.q2  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 5, :default => @socialmedia.q2  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, -1, :default => @socialmedia.q2  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q3 %>
+				</td>
+				<td>
+					<%= f.radio_button :q3, 1, :default => @socialmedia.q3  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 2, :default => @socialmedia.q3  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 3, :default => @socialmedia.q3  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 4, :default => @socialmedia.q3  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 5, :default => @socialmedia.q3  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, -1, :default => @socialmedia.q3  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q4 %>
+				</td>
+				<td>
+					<%= f.radio_button :q4, 1, :default => @socialmedia.q4  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 2, :default => @socialmedia.q4  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 3, :default => @socialmedia.q4  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 4, :default => @socialmedia.q4  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 5, :default => @socialmedia.q4  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, -1, :default => @socialmedia.q4  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q5 %>
+				</td>
+				<td>
+					<%= f.radio_button :q5, 1, :default => @socialmedia.q5  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 2, :default => @socialmedia.q5  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 3, :default => @socialmedia.q5  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 4, :default => @socialmedia.q5  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 5, :default => @socialmedia.q5  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, -1, :default => @socialmedia.q5  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q6 %>
+				</td>
+				<td>
+					<%= f.radio_button :q6, 1, :default => @socialmedia.q6  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 2, :default => @socialmedia.q6  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 3, :default => @socialmedia.q6  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 4, :default => @socialmedia.q6  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 5, :default => @socialmedia.q6  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, -1, :default => @socialmedia.q6  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q7 %>
+				</td>
+				<td>
+					<%= f.radio_button :q7, 1, :default => @socialmedia.q7  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 2, :default => @socialmedia.q7  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 3, :default => @socialmedia.q7  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 4, :default => @socialmedia.q7  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 5, :default => @socialmedia.q7  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, -1, :default => @socialmedia.q7  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q8 %>
+				</td>
+				<td>
+					<%= f.radio_button :q8, 1, :default => @socialmedia.q8  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 2, :default => @socialmedia.q8  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 3, :default => @socialmedia.q8  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 4, :default => @socialmedia.q8  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 5, :default => @socialmedia.q8  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, -1, :default => @socialmedia.q8  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q9 %>
+				</td>
+				<td>
+					<%= f.radio_button :q9, 1, :default => @socialmedia.q9  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 2, :default => @socialmedia.q9  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 3, :default => @socialmedia.q9  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 4, :default => @socialmedia.q9  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 5, :default => @socialmedia.q9  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, -1, :default => @socialmedia.q9  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q10 %>
+				</td>
+				<td>
+					<%= f.radio_button :q10, 1, :default => @socialmedia.q10  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 2, :default => @socialmedia.q10  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 3, :default => @socialmedia.q10  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 4, :default => @socialmedia.q10  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 5, :default => @socialmedia.q10  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, -1, :default => @socialmedia.q10  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q11 %>
+				</td>
+				<td>
+					<%= f.radio_button :q11, 1, :default => @socialmedia.q11  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 2, :default => @socialmedia.q11  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 3, :default => @socialmedia.q11  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 4, :default => @socialmedia.q11  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 5, :default => @socialmedia.q11  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, -1, :default => @socialmedia.q11  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q12 %>
+				</td>
+				<td>
+					<%= f.radio_button :q12, 1, :default => @socialmedia.q12  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 2, :default => @socialmedia.q12  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 3, :default => @socialmedia.q12  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 4, :default => @socialmedia.q12  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 5, :default => @socialmedia.q12  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, -1, :default => @socialmedia.q12  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q13 %>
+				</td>
+				<td>
+					<%= f.radio_button :q13, 1, :default => @socialmedia.q13  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q13, 2, :default => @socialmedia.q13  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q13, 3, :default => @socialmedia.q13  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q13, 4, :default => @socialmedia.q13  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q13, 5, :default => @socialmedia.q13  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q13, -1, :default => @socialmedia.q13  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q14 %>
+				</td>
+				<td>
+					<%= f.radio_button :q14, 1, :default => @socialmedia.q14  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q14, 2, :default => @socialmedia.q14  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q14, 3, :default => @socialmedia.q14  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q14, 4, :default => @socialmedia.q14  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q14, 5, :default => @socialmedia.q14  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q14, -1, :default => @socialmedia.q14  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q15 %>
+				</td>
+				<td>
+					<%= f.radio_button :q15, 1, :default => @socialmedia.q15  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q15, 2, :default => @socialmedia.q15  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q15, 3, :default => @socialmedia.q15  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q15, 4, :default => @socialmedia.q15  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q15, 5, :default => @socialmedia.q15  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q15, -1, :default => @socialmedia.q15  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q16 %>
+				</td>
+				<td>
+					<%= f.radio_button :q16, 1, :default => @socialmedia.q16  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q16, 2, :default => @socialmedia.q16  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q16, 3, :default => @socialmedia.q16  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q16, 4, :default => @socialmedia.q16  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q16, 5, :default => @socialmedia.q16  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q16, -1, :default => @socialmedia.q16  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q17 %>
+				</td>
+				<td>
+					<%= f.radio_button :q17, 1, :default => @socialmedia.q17  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q17, 2, :default => @socialmedia.q17  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q17, 3, :default => @socialmedia.q17  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q17, 4, :default => @socialmedia.q17  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q17, 5, :default => @socialmedia.q17  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q17, -1, :default => @socialmedia.q17  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q18 %>
+				</td>
+				<td>
+					<%= f.radio_button :q18, 1, :default => @socialmedia.q18  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q18, 2, :default => @socialmedia.q18  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q18, 3, :default => @socialmedia.q18  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q18, 4, :default => @socialmedia.q18  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q18, 5, :default => @socialmedia.q18  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q18, -1, :default => @socialmedia.q18  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q19 %>
+				</td>
+				<td>
+					<%= f.radio_button :q19, 1, :default => @socialmedia.q19  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q19, 2, :default => @socialmedia.q19  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q19, 3, :default => @socialmedia.q19  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q19, 4, :default => @socialmedia.q19  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q19, 5, :default => @socialmedia.q19  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q19, -1, :default => @socialmedia.q19  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q20 %>
+				</td>
+				<td>
+					<%= f.radio_button :q20, 1, :default => @socialmedia.q20  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q20, 2, :default => @socialmedia.q20  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q20, 3, :default => @socialmedia.q20  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q20, 4, :default => @socialmedia.q20  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q20, 5, :default => @socialmedia.q20  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q20, -1, :default => @socialmedia.q20  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q21 %>
+				</td>
+				<td>
+					<%= f.radio_button :q21, 1, :default => @socialmedia.q21  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q21, 2, :default => @socialmedia.q21  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q21, 3, :default => @socialmedia.q21  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q21, 4, :default => @socialmedia.q21  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q21, 5, :default => @socialmedia.q21  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q21, -1, :default => @socialmedia.q21  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q22 %>
+				</td>
+				<td>
+					<%= f.radio_button :q22, 1, :default => @socialmedia.q22  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q22, 2, :default => @socialmedia.q22  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q22, 3, :default => @socialmedia.q22  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q22, 4, :default => @socialmedia.q22  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q22, 5, :default => @socialmedia.q22  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q22, -1, :default => @socialmedia.q22  %>				
+				</td>
+			</tr>
+			<tr id = "last_row">
+				<td style = "text-align: left">
+					<%= @q23 %>
+				</td>
+				<td>
+					<%= f.radio_button :q23, 1, :default => @socialmedia.q23  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q23, 2, :default => @socialmedia.q23  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q23, 3, :default => @socialmedia.q23  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q23, 4, :default => @socialmedia.q23  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q23, 5, :default => @socialmedia.q23  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q23, -1, :default => @socialmedia.q23  %>				
+				</td>
+			</tr>
+		</table>
+		<%= f.submit @continue, class: "btn btn-primary" %>
+	<% end %>
+</body>

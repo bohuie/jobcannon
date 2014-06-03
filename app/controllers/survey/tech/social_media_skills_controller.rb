@@ -4,7 +4,7 @@ def update
 	@user = current_user
 	@socialmedia = SocialMediaSkill.find_by(:user_id=>@user.user_id)
 	@socialmedia.update_attributes(social_params)
-	redirect_to survey_path(@user,:type=> 3,:tech=>0, :word => 0)
+	redirect_to survey_path(@user,:type=> 3,:socail=>1)
 end
 
 	private

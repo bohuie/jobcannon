@@ -631,7 +631,7 @@ create_table "social_media_skills", force: true do |t|
   t.integer "q14",                     default: 0,     null: false 
   t.integer "q15",                     default: 0,     null: false 
   t.integer "q16",                     default: 0,     null: false 
-  t.integer "q17",                      default: 0,     null: false 
+  t.integer "q17",                     default: 0,     null: false 
   t.integer "q18",                     default: 0,     null: false 
   t.integer "q19",                     default: 0,     null: false 
   t.integer "q20",                     default: 0,     null: false 
@@ -653,15 +653,42 @@ end
 create_table "social_media_platforms", force: true do |t|
   t.integer "user_id"
   t.integer "social_media_platform_id",                default: 0,     null: false  
-  t.integer "q1",                      default: 0,     null: false
-  t.integer "q2",                      default: 0,     null: false
-  t.integer "q3",                      default: 0,     null: false
-  t.integer "q4",                      default: 0,     null: false
-  t.integer "q5",                      default: 0,     null: false
-  t.integer "q6",                      default: 0,     null: false
-  t.integer "q7",                      default: 0,     null: false 
-  t.integer "q8",                      default: 0,     null: false 
-  t.integer "magnitude_other",         default: 0,     null: false
+  t.boolean "q1a"
+  t.boolean "q1b"
+  t.boolean "q1c"
+  t.boolean "q1d"                     
+  t.boolean "q2a"
+  t.boolean "q2b"
+  t.boolean "q2c"
+  t.boolean "q2d"                      
+  t.boolean "q3a"
+  t.boolean "q3b"
+  t.boolean "q3c"
+  t.boolean "q3d"                      
+  t.boolean "q4a"
+  t.boolean "q4b"
+  t.boolean "q4c"
+  t.boolean "q4d"                      
+  t.boolean "q5a"
+  t.boolean "q5b"
+  t.boolean "q5c"
+  t.boolean "q5d"                      
+  t.boolean "q6a"
+  t.boolean "q6b"
+  t.boolean "q6c"
+  t.boolean "q6d"                      
+  t.boolean "q7a"
+  t.boolean "q7b"
+  t.boolean "q7c"
+  t.boolean "q7d"                       
+  t.boolean "q8a"
+  t.boolean "q8b"
+  t.boolean "q8c"
+  t.boolean "q8d"                       
+  t.boolean "magnitude_othera"
+  t.boolean "magnitude_otherb"
+  t.boolean "magnitude_otherc"
+  t.boolean "magnitude_otherd"                  
   t.string  "other"
 end
 
