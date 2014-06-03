@@ -564,20 +564,50 @@ create_table "internet_connections", force: true do |t|
   t.integer "user_id"
   t.integer "internet_connection_id", default: 0,     null: false
   t.integer "q1",                      default: 0,     null: false
+  t.boolean "q1a",                      default: false,     null: false
+  t.boolean "q1b",                      default: false,     null: false
+  t.boolean "q1c",                      default: false,     null: false
   t.integer "q2",                      default: 0,     null: false
+  t.boolean "q2a",                      default: false,     null: false
+  t.boolean "q2b",                      default: false,     null: false
+  t.boolean "q2c",                      default: false,     null: false
   t.integer "q3",                      default: 0,     null: false
+  t.boolean "q3a",                      default: false,     null: false
+  t.boolean "q3b",                      default: false,     null: false
+  t.boolean "q3c",                      default: false,     null: false
   t.integer "q4",                      default: 0,     null: false
+  t.boolean "q4a",                      default: false,     null: false
+  t.boolean "q4b",                      default: false,     null: false
+  t.boolean "q4c",                      default: false,     null: false
 end
 
 create_table "browsers", force: true do |t|
   t.integer "user_id"
   t.integer "browser_id", default: 0,     null: false
   t.integer "q1",                      default: 0,     null: false
+  t.boolean "q1a",                      default: false,     null: false
+  t.boolean "q1b",                      default: false,     null: false
+  t.boolean "q1c",                      default: false,     null: false
   t.integer "q2",                      default: 0,     null: false
+  t.boolean "q2a",                      default: false,     null: false
+  t.boolean "q2b",                      default: false,     null: false
+  t.boolean "q2c",                      default: false,     null: false
   t.integer "q3",                      default: 0,     null: false
+  t.boolean "q3a",                      default: false,     null: false
+  t.boolean "q3b",                      default: false,     null: false
+  t.boolean "q3c",                      default: false,     null: false
   t.integer "q4",                      default: 0,     null: false
+  t.boolean "q4a",                      default: false,     null: false
+  t.boolean "q4b",                      default: false,     null: false
+  t.boolean "q4c",                      default: false,     null: false
   t.integer "q5",                      default: 0,     null: false
+  t.boolean "q5a",                      default: false,     null: false
+  t.boolean "q5b",                      default: false,     null: false
+  t.boolean "q5c",                      default: false,     null: false
   t.integer "magnitude_other",         default: 0,     null: false
+  t.boolean "magnitude_othera",        default: false,     null: false
+  t.boolean "magnitude_otherb",        default: false,     null: false
+  t.boolean "magnitude_otherc",        default: false,     null: false
   t.string  "other"
 
 end

@@ -10,7 +10,8 @@ end
 	private
 
 	def internetconnection_params
-		params.require(:internet_connection).permit(:q1,:q2,:q3,:q4)
+		params.require(:internet_connection).permit(:q1,:q1a,:q1b,:q1c,:q2,:q2a,:q2b,:q2c,
+			:q3,:q3a,:q3b,:q3c,:q4,:q4a,:q4b,:q4c,)
 	end
 
 end
