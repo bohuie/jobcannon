@@ -3,136 +3,134 @@
 <% @q3 = "Writer (OpenOffice)" %>
 <% @q4 = "Other" %>
 
-<%= simple_form_for @word_fluent do |f| %>
+	<body>
+	<%= simple_form_for @word_fluent do |f| %>
 
-	<%= f.label @label %>
+		<%= f.label @label %>
 
-	<table id = "survey_format">
-		<tr>
-			<th>
-			</th>
-			<th>
-				<%= @header1 %>
-			</th>
-			<th>
-				<%= @header2 %>
-			</th>
-			<th>
-				<%= @header3 %>
-			</th>
-			<th>
-				<%= @header4 %>
-			</th>
-			<th>
-				<%= @header5 %>
-			</th>
-			<th>
-				<%= @header6 %>
-			</th>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q1 %>
-			</td>
-			<td>
-				<%= f.radio_button :word, 6, :default => @word_fluent.word  %>				
-			</td>
-			<td>
-				<%= f.radio_button :word, 5, :default => @word_fluent.word  %>				
-			</td>
-			<td>
-				<%= f.radio_button :word, 4, :default => @word_fluent.word  %>				
-			</td>
-			<td>
-				<%= f.radio_button :word, 3, :default => @word_fluent.word  %>				
-			</td>
-			<td>
-				<%= f.radio_button :word, 2, :default => @word_fluent.word  %>				
-			</td>
-			<td>
-				<%= f.radio_button :word, 1, :default => @word_fluent.word  %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q2 %>
-			</td>
-			<td>
-				<%= f.radio_button :pages, 6, :default => @word_fluent.pages  %>				
-			</td>
-			<td>
-				<%= f.radio_button :pages, 5, :default => @word_fluent.pages  %>				
-			</td>
-			<td>
-				<%= f.radio_button :pages, 4, :default => @word_fluent.pages  %>				
-			</td>
-			<td>
-				<%= f.radio_button :pages, 3, :default => @word_fluent.pages  %>				
-			</td>
-			<td>
-				<%= f.radio_button :pages, 2, :default => @word_fluent.pages  %>				
-			</td>
-			<td>
-				<%= f.radio_button :pages, 1, :default => @word_fluent.pages  %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q3 %>
-			</td>
-			<td>
-				<%= f.radio_button :writer, 6, :default => @word_fluent.writer  %>				
-			</td>
-			<td>
-				<%= f.radio_button :writer, 5, :default => @word_fluent.writer  %>				
-			</td>
-			<td>
-				<%= f.radio_button :writer, 4, :default => @word_fluent.writer  %>				
-			</td>
-			<td>
-				<%= f.radio_button :writer, 3, :default => @word_fluent.writer  %>				
-			</td>
-			<td>
-				<%= f.radio_button :writer, 2, :default => @word_fluent.writer  %>				
-			</td>
-			<td>
-				<%= f.radio_button :writer, 1, :default => @word_fluent.writer  %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q4 %>
-			</td>
-			<td>
-				<%= f.radio_button :magnitude_other, 6, :default => @word_fluent.magnitude_other  %>				
-			</td>
-			<td>
-				<%= f.radio_button :magnitude_other, 5, :default => @word_fluent.magnitude_other  %>				
-			</td>
-			<td>
-				<%= f.radio_button :magnitude_other, 4, :default => @word_fluent.magnitude_other  %>				
-			</td>
-			<td>
-				<%= f.radio_button :magnitude_other, 3, :default => @word_fluent.magnitude_other  %>				
-			</td>
-			<td>
-				<%= f.radio_button :magnitude_other, 2, :default => @word_fluent.magnitude_other  %>				
-			</td>
-			<td>
-				<%= f.radio_button :magnitude_other, 1, :default => @word_fluent.magnitude_other  %>				
-			</td>
-		</tr>
-	</table>
-	<table>
-		<tr>
-			<td style = "text-align: left">
-				<%= f.label @other_label %>
-				<br>
-				<%= f.text_field :other %>				
-			</td>
-		</tr>
-
-	</table>
-	<%=link_to "Previous", survey_path(@user,:type=> 3,:tech=>0, :word=>0), class: "btn btn-primary test" %>
-	<%= f.submit "Submit", class: "btn btn-primary" %>
-<% end %>
+		<table id = "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= @header1 %>
+				</th>
+				<th>
+					<%= @header2 %>
+				</th>
+				<th>
+					<%= @header3 %>
+				</th>
+				<th>
+					<%= @header4 %>
+				</th>
+				<th>
+					<%= @header5 %>
+				</th>
+				<th>
+					<%= @header6 %>
+				</th>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q1 %>
+				</td>
+				<td>
+					<%= f.radio_button :word, 6, :default => @word_fluent.word  %>				
+				</td>
+				<td>
+					<%= f.radio_button :word, 5, :default => @word_fluent.word  %>				
+				</td>
+				<td>
+					<%= f.radio_button :word, 4, :default => @word_fluent.word  %>				
+				</td>
+				<td>
+					<%= f.radio_button :word, 3, :default => @word_fluent.word  %>				
+				</td>
+				<td>
+					<%= f.radio_button :word, 2, :default => @word_fluent.word  %>				
+				</td>
+				<td>
+					<%= f.radio_button :word, 1, :default => @word_fluent.word  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q2 %>
+				</td>
+				<td>
+					<%= f.radio_button :pages, 6, :default => @word_fluent.pages  %>				
+				</td>
+				<td>
+					<%= f.radio_button :pages, 5, :default => @word_fluent.pages  %>				
+				</td>
+				<td>
+					<%= f.radio_button :pages, 4, :default => @word_fluent.pages  %>				
+				</td>
+				<td>
+					<%= f.radio_button :pages, 3, :default => @word_fluent.pages  %>				
+				</td>
+				<td>
+					<%= f.radio_button :pages, 2, :default => @word_fluent.pages  %>				
+				</td>
+				<td>
+					<%= f.radio_button :pages, 1, :default => @word_fluent.pages  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q3 %>
+				</td>
+				<td>
+					<%= f.radio_button :writer, 6, :default => @word_fluent.writer  %>				
+				</td>
+				<td>
+					<%= f.radio_button :writer, 5, :default => @word_fluent.writer  %>				
+				</td>
+				<td>
+					<%= f.radio_button :writer, 4, :default => @word_fluent.writer  %>				
+				</td>
+				<td>
+					<%= f.radio_button :writer, 3, :default => @word_fluent.writer  %>				
+				</td>
+				<td>
+					<%= f.radio_button :writer, 2, :default => @word_fluent.writer  %>				
+				</td>
+				<td>
+					<%= f.radio_button :writer, 1, :default => @word_fluent.writer  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q4 %>
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 6, :default => @word_fluent.magnitude_other  %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 5, :default => @word_fluent.magnitude_other  %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 4, :default => @word_fluent.magnitude_other  %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 3, :default => @word_fluent.magnitude_other  %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 2, :default => @word_fluent.magnitude_other  %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 1, :default => @word_fluent.magnitude_other  %>				
+				</td>
+			</tr>
+		</table>
+		
+		<%= f.label @other_label %>
+		<br>
+		<%= f.text_field :other %>	
+		<br>			
+							
+		<%=link_to "Previous", survey_path(@user,:type=> 3,:tech=>0, :word=>0), class: "btn btn-primary test" %>
+		<%= f.submit "Submit", class: "btn btn-primary" %>
+	<% end %>
+</body>

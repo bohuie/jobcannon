@@ -18,425 +18,426 @@
 <% @q16 = "Change footers" %>
 <% @q17 = "Preview slideshow" %>
 
+	<body>
+	<%= simple_form_for @present do |f| %>
 
-<%= simple_form_for @present do |f| %>
-
-	<%= f.label @label %>
-	<br>
-	<table id = "survey_format">
-		<tr>
-			<th>
-			</th>
-			<th>
-				<%= @header7 %>
-			</th>
-			<th>
-				<%= @header8 %>
-			</th>
-			<th>
-				<%= @header9 %>
-			</th>
-			<th>
-				<%= @header10 %>
-			</th>
-			<th>
-				<%= @header11 %>
-			</th>
-			<th>
-				<%= @header12 %>
-			</th>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q1 %>
-			</td>
-			<td>
-				<%= f.radio_button :q1, 6, :default => @present.q1 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q1, 5, :default => @present.q1 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q1, 4, :default => @present.q1 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q1, 3, :default => @present.q1 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q1, 2, :default => @present.q1 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q1, 1, :default => @present.q1 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q2 %>
-			</td>
-			<td>
-				<%= f.radio_button :q2, 6, :default => @present.q2 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q2, 5, :default => @present.q2 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q2, 4, :default => @present.q2 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q2, 3, :default => @present.q2 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q2, 2, :default => @present.q2 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q2, 1, :default => @present.q2 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q3 %>
-			</td>
-			<td>
-				<%= f.radio_button :q3, 6, :default => @present.q3 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q3, 5, :default => @present.q3 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q3, 4, :default => @present.q3 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q3, 3, :default => @present.q3 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q3, 2, :default => @present.q3 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q3, 1, :default => @present.q3 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q4 %>
-			</td>
-			<td>
-				<%= f.radio_button :q4, 6, :default => @present.q4 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q4, 5, :default => @present.q4 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q4, 4, :default => @present.q4 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q4, 3, :default => @present.q4 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q4, 2, :default => @present.q4 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q4, 1, :default => @present.q4 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q5 %>
-			</td>
-			<td>
-				<%= f.radio_button :q5, 6, :default => @present.q5 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q5, 5, :default => @present.q5 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q5, 4, :default => @present.q5 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q5, 3, :default => @present.q5 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q5, 2, :default => @present.q5 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q5, 1, :default => @present.q5 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q6 %>
-			</td>
-			<td>
-				<%= f.radio_button :q6, 6, :default => @present.q6 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q6, 5, :default => @present.q6 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q6, 4, :default => @present.q6 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q6, 3, :default => @present.q6 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q6, 2, :default => @present.q6 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q6, 1, :default => @present.q6 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q7 %>
-			</td>
-			<td>
-				<%= f.radio_button :q7, 6, :default => @present.q7 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q7, 5, :default => @present.q7 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q7, 4, :default => @present.q7 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q7, 3, :default => @present.q7 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q7, 2, :default => @present.q7 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q7, 1, :default => @present.q7 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q8 %>
-			</td>
-			<td>
-				<%= f.radio_button :q8, 6, :default => @present.q8 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q8, 5, :default => @present.q8 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q8, 4, :default => @present.q8 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q8, 3, :default => @present.q8 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q8, 2, :default => @present.q8 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q8, 1, :default => @present.q8 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q9 %>
-			</td>
-			<td>
-				<%= f.radio_button :q9, 6, :default => @present.q9 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q9, 5, :default => @present.q9 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q9, 4, :default => @present.q9 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q9, 3, :default => @present.q9 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q9, 2, :default => @present.q9 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q9, 1, :default => @present.q9 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q10 %>
-			</td>
-			<td>
-				<%= f.radio_button :q10, 6, :default => @present.q10 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q10, 5, :default => @present.q10 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q10, 4, :default => @present.q10 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q10, 3, :default => @present.q10 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q10, 2, :default => @present.q10 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q10, 1, :default => @present.q10 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q11 %>
-			</td>
-			<td>
-				<%= f.radio_button :q11, 6, :default => @present.q11 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q11, 5, :default => @present.q11 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q11, 4, :default => @present.q11 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q11, 3, :default => @present.q11 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q11, 2, :default => @present.q11 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q11, 1, :default => @present.q11 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q12 %>
-			</td>
-			<td>
-				<%= f.radio_button :q12, 6, :default => @present.q12 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q12, 5, :default => @present.q12 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q12, 4, :default => @present.q12 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q12, 3, :default => @present.q12 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q12, 2, :default => @present.q12 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q12, 1, :default => @present.q12 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q13 %>
-			</td>
-			<td>
-				<%= f.radio_button :q13, 6, :default => @present.q13 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q13, 5, :default => @present.q13 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q13, 4, :default => @present.q13 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q13, 3, :default => @present.q13 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q13, 2, :default => @present.q13 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q13, 1, :default => @present.q13 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q14 %>
-			</td>
-			<td>
-				<%= f.radio_button :q14, 6, :default => @present.q14 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q14, 5, :default => @present.q14 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q14, 4, :default => @present.q14 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q14, 3, :default => @present.q14 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q14, 2, :default => @present.q14 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q14, 1, :default => @present.q14 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q15 %>
-			</td>
-			<td>
-				<%= f.radio_button :q15, 6, :default => @present.q15 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q15, 5, :default => @present.q15 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q15, 4, :default => @present.q15 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q15, 3, :default => @present.q15 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q15, 2, :default => @present.q15 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q15, 1, :default => @present.q15 %>				
-			</td>
-		</tr>
-		<tr>
-			<td style = "text-align: left">
-				<%= @q16 %>
-			</td>
-			<td>
-				<%= f.radio_button :q16, 6, :default => @present.q16 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q16, 5, :default => @present.q16 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q16, 4, :default => @present.q16 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q16, 3, :default => @present.q16 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q16, 2, :default => @present.q16 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q16, 1, :default => @present.q16 %>				
-			</td>
-		</tr>
-		<tr id="last_row">
-			<td style = "text-align: left">
-				<%= @q17 %>
-			</td>
-			<td>
-				<%= f.radio_button :q17, 6, :default => @present.q17 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q17, 5, :default => @present.q17 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q17, 4, :default => @present.q17 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q17, 3, :default => @present.q17 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q17, 2, :default => @present.q17 %>				
-			</td>
-			<td>
-				<%= f.radio_button :q17, 1, :default => @present.q17 %>				
-			</td>
-		</tr>	
-	</table>
-	<%= f.submit "Save & Continue", class: "btn btn-primary" %>
-<% end %>	
+		<%= f.label @label %>
+		<br>
+		<table id = "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= @header7 %>
+				</th>
+				<th>
+					<%= @header8 %>
+				</th>
+				<th>
+					<%= @header9 %>
+				</th>
+				<th>
+					<%= @header10 %>
+				</th>
+				<th>
+					<%= @header11 %>
+				</th>
+				<th>
+					<%= @header12 %>
+				</th>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q1 %>
+				</td>
+				<td>
+					<%= f.radio_button :q1, 6, :default => @present.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 5, :default => @present.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 4, :default => @present.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 3, :default => @present.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 2, :default => @present.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 1, :default => @present.q1 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q2 %>
+				</td>
+				<td>
+					<%= f.radio_button :q2, 6, :default => @present.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 5, :default => @present.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 4, :default => @present.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 3, :default => @present.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 2, :default => @present.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 1, :default => @present.q2 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q3 %>
+				</td>
+				<td>
+					<%= f.radio_button :q3, 6, :default => @present.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 5, :default => @present.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 4, :default => @present.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 3, :default => @present.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 2, :default => @present.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 1, :default => @present.q3 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q4 %>
+				</td>
+				<td>
+					<%= f.radio_button :q4, 6, :default => @present.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 5, :default => @present.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 4, :default => @present.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 3, :default => @present.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 2, :default => @present.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 1, :default => @present.q4 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q5 %>
+				</td>
+				<td>
+					<%= f.radio_button :q5, 6, :default => @present.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 5, :default => @present.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 4, :default => @present.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 3, :default => @present.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 2, :default => @present.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 1, :default => @present.q5 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q6 %>
+				</td>
+				<td>
+					<%= f.radio_button :q6, 6, :default => @present.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 5, :default => @present.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 4, :default => @present.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 3, :default => @present.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 2, :default => @present.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 1, :default => @present.q6 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q7 %>
+				</td>
+				<td>
+					<%= f.radio_button :q7, 6, :default => @present.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 5, :default => @present.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 4, :default => @present.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 3, :default => @present.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 2, :default => @present.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 1, :default => @present.q7 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q8 %>
+				</td>
+				<td>
+					<%= f.radio_button :q8, 6, :default => @present.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 5, :default => @present.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 4, :default => @present.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 3, :default => @present.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 2, :default => @present.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 1, :default => @present.q8 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q9 %>
+				</td>
+				<td>
+					<%= f.radio_button :q9, 6, :default => @present.q9 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 5, :default => @present.q9 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 4, :default => @present.q9 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 3, :default => @present.q9 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 2, :default => @present.q9 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 1, :default => @present.q9 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q10 %>
+				</td>
+				<td>
+					<%= f.radio_button :q10, 6, :default => @present.q10 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 5, :default => @present.q10 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 4, :default => @present.q10 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 3, :default => @present.q10 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 2, :default => @present.q10 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 1, :default => @present.q10 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q11 %>
+				</td>
+				<td>
+					<%= f.radio_button :q11, 6, :default => @present.q11 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 5, :default => @present.q11 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 4, :default => @present.q11 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 3, :default => @present.q11 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 2, :default => @present.q11 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 1, :default => @present.q11 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q12 %>
+				</td>
+				<td>
+					<%= f.radio_button :q12, 6, :default => @present.q12 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 5, :default => @present.q12 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 4, :default => @present.q12 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 3, :default => @present.q12 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 2, :default => @present.q12 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 1, :default => @present.q12 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q13 %>
+				</td>
+				<td>
+					<%= f.radio_button :q13, 6, :default => @present.q13 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q13, 5, :default => @present.q13 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q13, 4, :default => @present.q13 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q13, 3, :default => @present.q13 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q13, 2, :default => @present.q13 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q13, 1, :default => @present.q13 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q14 %>
+				</td>
+				<td>
+					<%= f.radio_button :q14, 6, :default => @present.q14 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q14, 5, :default => @present.q14 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q14, 4, :default => @present.q14 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q14, 3, :default => @present.q14 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q14, 2, :default => @present.q14 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q14, 1, :default => @present.q14 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q15 %>
+				</td>
+				<td>
+					<%= f.radio_button :q15, 6, :default => @present.q15 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q15, 5, :default => @present.q15 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q15, 4, :default => @present.q15 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q15, 3, :default => @present.q15 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q15, 2, :default => @present.q15 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q15, 1, :default => @present.q15 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q16 %>
+				</td>
+				<td>
+					<%= f.radio_button :q16, 6, :default => @present.q16 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q16, 5, :default => @present.q16 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q16, 4, :default => @present.q16 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q16, 3, :default => @present.q16 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q16, 2, :default => @present.q16 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q16, 1, :default => @present.q16 %>				
+				</td>
+			</tr>
+			<tr id="last_row">
+				<td style = "text-align: left">
+					<%= @q17 %>
+				</td>
+				<td>
+					<%= f.radio_button :q17, 6, :default => @present.q17 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q17, 5, :default => @present.q17 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q17, 4, :default => @present.q17 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q17, 3, :default => @present.q17 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q17, 2, :default => @present.q17 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q17, 1, :default => @present.q17 %>				
+				</td>
+			</tr>	
+		</table>
+		<%= f.submit "Save & Continue", class: "btn btn-primary" %>
+	<% end %>	
+</body>

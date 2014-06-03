@@ -29,7 +29,6 @@
 
 
 <body>
-
 	<%= simple_form_for @socialmediadesc do |f| %>
 
 	<%= f.label @label %>
@@ -414,7 +413,5 @@
 
 		<%= g.submit @submit, class: "btn btn-primary" %>
 		<%=link_to "Previous", survey_path(@user,:type=> 3,:social=>0), class: "btn btn-primary test" %>
-
 	<% end %>
-
 </body>
