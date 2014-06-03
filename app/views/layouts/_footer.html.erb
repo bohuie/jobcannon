@@ -1,7 +1,27 @@
 <head>
   <script language = "javascript">
-    function change_chatbox(){
-    var NAME = document.getElementById("chatbox");
+  
+  function change_chatbox1(){
+    var NAME = document.getElementById("chatbox1");
+    var currentClass = NAME.className;
+    if (currentClass == "dropup open") { // Check the current class name
+        NAME.className = "dropup";   // Set other class name
+    } else {
+        NAME.className = "dropup open";  // Otherwise, use `second_name`
+    }
+}
+
+function change_chatbox2(){
+    var NAME = document.getElementById("chatbox12");
+    var currentClass = NAME.className;
+    if (currentClass == "dropup open") { // Check the current class name
+        NAME.className = "dropup";   // Set other class name
+    } else {
+        NAME.className = "dropup open";  // Otherwise, use `second_name`
+    }
+}
+function change_chatbox3(){
+    var NAME = document.getElementById("chatbox13");
     var currentClass = NAME.className;
     if (currentClass == "dropup open") { // Check the current class name
         NAME.className = "dropup";   // Set other class name
@@ -15,10 +35,6 @@ $(function() {
     eval(data);
   });
 });
-
-function noflash(){  
-  document.getElementsByName("pop").setAttribute("style","color: red;");
-}
 
 function hold(){
 
@@ -63,7 +79,15 @@ function scroll(){
           end
         end
         %>  
-        <li id = "testchat">
+        <li id = "testchat5" >
+        </li>
+        <li id = "testchat4" >
+        </li>
+        <li id = "testchat3" >
+        </li>
+        <li id = "testchat2">
+        </li>
+        <li id = "testchat1">
         </li>
         <li class="dropup marker" id="accountmenu" style = "width: 160px; text-align: right;">  
           <a class="dropdown-toggle marker" id = "brand" data-toggle="dropdown" style = "text-shadow: none;  cursor:pointer"> Chat<b class="caret"></b></a>  
