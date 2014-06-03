@@ -7,6 +7,7 @@ $(function() {
   });
 });
 </script>
+
 <div class = "row" style = "width:99%; padding:0px; height: auto;">
   <%= simple_form_for Message.new, :id => "new_message", :controller => "messages", :action => "create", :remote => true do |f| %>
   <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">

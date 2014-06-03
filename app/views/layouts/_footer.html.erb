@@ -8,27 +8,22 @@
     } else {
         NAME.className = "dropup open";  // Otherwise, use `second_name`
     }
-}
-$(function() {
+  }
+  $(function() {
   var faye = new Faye.Client('http://localhost:9292/faye');
   faye.subscribe('<%=@channel%>', function(data) {
     eval(data);
   });
-});
+  });
+  function hold(){
 
-function noflash(){  
-  document.getElementsByName("pop").setAttribute("style","color: red;");
-}
+    document.getElementsByTagName("html")[0].setAttribute("style","overflow:hidden");
+  }
 
-function hold(){
+  function scroll(){
 
-  document.getElementsByTagName("html")[0].setAttribute("style","overflow:hidden");
-}
-
-function scroll(){
-
-  document.getElementsByTagName("html")[0].setAttribute("style","overflow:scroll");
-}
+    document.getElementsByTagName("html")[0].setAttribute("style","overflow:scroll");
+  }
   </script>
 </head>
   <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style = "border: 0px solid white; background: rgba(255,255,255,0); width: 100%" >
@@ -64,6 +59,27 @@ function scroll(){
         end
         %>  
         <li id = "testchat">
+          <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
+            <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).sender_id) %>
+            <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, sender_id: @other.user_id) %>
+            <% @seenMessages.each do |m|
+              m.update_attribute(:seen, true)
+              end %>
+            <%= render("layouts/chat") %>
+            <script>
+            $("#chatbox2").load('layouts/_chat.html.erb').scrollTop($("#chatbox2").load('layouts/_chat.html.erb')[0].scrollHeight);
+
+            </script>
+            <%
+            if @user.user_id<@other.user_id    
+              @id1 = @user.user_id
+              @id2 = @other.user_id   
+            else
+              @id2 = @user.user_id
+              @id1 = @other.user_id   
+            end
+            @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
+          <% end %>
         </li>
         <li class="dropup marker" id="accountmenu" style = "width: 160px; text-align: right;">  
           <a class="dropdown-toggle marker" id = "brand" data-toggle="dropdown" style = "text-shadow: none;  cursor:pointer"> Chat<b class="caret"></b></a>  

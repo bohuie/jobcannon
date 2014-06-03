@@ -21,6 +21,8 @@
 						Sent on: <%= message.sent_at.strftime("%b . %-d") %>
 					<% end %>
 				</div>
+				<% message.seen = true
+					message.save %>
 			</div>
 		<% end %>
 	</li>

@@ -13,10 +13,6 @@ class MessagesController < ApplicationController
     @message.sent_at = DateTime.now - 7.hours
     @temp1 = @message.sender_id
     @temp2 = @message.receiver_id
-    if @temp1 == @user.user_id
-      @message.sent = true
-      @message.save
-    end
     if @temp1<@temp2  #lesser id comes first in the chat path and channel path
       @id1 = @temp1
       @id2 = @temp2
@@ -24,7 +20,8 @@ class MessagesController < ApplicationController
       @id1 = @temp2
       @id2 = @temp1
     end
-    @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s   #putting the channel here somehow makes it visible in messages/create.js.erb (no clue why)
+    @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s 
+    @channel  #putting the channel here somehow makes it visible in messages/create.js.erb (no clue why)
     respond_to do |format|
       if @message.save
         puts "saved"

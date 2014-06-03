@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.datetime "sent_at",                  null: false
     t.text     "message",     default: "", null: false
     t.string   "sender_name"
-    t.boolean  "sent"
+    t.boolean  "seen",         defalut: false
   end
 
   create_table "postings", force: true do |t|
