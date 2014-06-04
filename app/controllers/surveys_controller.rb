@@ -59,7 +59,6 @@ class SurveysController < ApplicationController
 		@internetconnection = InternetConnection.find_by(:user_id=> @user.user_id)
 		@browser = Browser.find_by(:user_id=> @user.user_id)
 
-
 		@socialmedia = SocialMediaSkill.find_by(:user_id=> @user.user_id)
 		@socialmediadesc = SocialMediaDesc.find_by(:user_id=> @user.user_id)
 		@socialmediaplat = SocialMediaPlatform.find_by(:user_id=> @user.user_id)
