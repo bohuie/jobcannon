@@ -65,43 +65,7 @@ class SurveysController < ApplicationController
 		@self = SelfDirectionSkill.find_by(:user_id=>@user.user_id)
 		@accountability = Accountability.find_by(:user_id=>@user.user_id)
 		@interpersonal = InterpersonalSkill.find_by(:user_id=>@user.user_id)
-<<<<<<< HEAD
-=======
 
-		@basic = BasicComputerSkill.find_by(:user_id=> @user.user_id)
-		@os = OperatingSystemsUsage.find_by(:user_id=> @user.user_id)
-		@fluent = OperatingSystemsFluent.find_by(:user_id=> @user.user_id)
-
-		@advanced = AdvancedComputerSkill.find_by(:user_id=> @user.user_id)	
-
-		@media = MultiMediaSkill.find_by(:user_id=> @user.user_id)
-		@tech_diff = TechnologyDifference.find_by(:user_id=> @user.user_id)
-
-		@word = WordProcessingSkill.find_by(:user_id=> @user.user_id)
-		@word_fluent = WordProcessingFluentcy.find_by(:user_id=> @user.user_id)
-
-		@spreadsheet = SpreadsheetSkill.find_by(:user_id=> @user.user_id)
-		@spreadsheet_fluentcy = SpreadsheetFluentcy.find_by(:user_id=> @user.user_id)
-
-		@present = PresentingSkill.find_by(:user_id=> @user.user_id)
-		@present_fluentcy = PresentingFluentcy.find_by(:user_id=> @user.user_id)
-
-		@email = EmailSkill.find_by(:user_id=> @user.user_id)
-		@email_fluentcy = EmailFluentcy.find_by(:user_id=> @user.user_id)
-
-		@internetterm = InternetTerm.find_by(:user_id=> @user.user_id)
-		@internettask = InternetTask.find_by(:user_id=> @user.user_id)
-		@internetconnection = InternetConnection.find_by(:user_id=> @user.user_id)
-		@browser = Browser.find_by(:user_id=> @user.user_id)
-
-		@socialmedia = SocialMediaSkill.find_by(:user_id=> @user.user_id)
-		@socialmediadesc = SocialMediaDesc.find_by(:user_id=> @user.user_id)
-		@socialmediaplat = SocialMediaPlatform.find_by(:user_id=> @user.user_id)
-
-		@onlinecolab = OnlineColabSkill.find_by(:user_id=> @user.user_id)
-		@onlinecolab_fluentcy = OnlineColabFluentcy.find_by(:user_id=> @user.user_id)
-
->>>>>>> FETCH_HEAD
 		
 		if (@profile.nil?)
 			@profile = Surveyprofile.new
