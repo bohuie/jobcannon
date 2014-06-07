@@ -12,6 +12,7 @@
 <% @q10 = "Click Meeting" %>
 <% @q11 = "MeetingBurner" %>
 <% @q12 = "WebEx" %>
+<% @onlinecolab_fluentcy = OnlineColabFluentcy.find_by(:user_id=> @user.user_id) %>
 
 <body>
 	<%= simple_form_for @onlinecolab_fluentcy do |f| %>
@@ -23,22 +24,22 @@
 				<th>
 				</th>
 				<th>
-					<%= @header1 %>
+					<%= $header1 %>
 				</th>
 				<th>
-					<%= @header2 %>
+					<%= $header2 %>
 				</th>
 				<th>
-					<%= @header3 %>
+					<%= $header3 %>
 				</th>
 				<th>
-					<%= @header4 %>
+					<%= $header4 %>
 				</th>
 				<th>
-					<%= @header5 %>
+					<%= $header5 %>
 				</th>
 				<th>
-					<%= @header6 %>
+					<%= $header6 %>
 				</th>
 			</tr>
 			<tr>
@@ -319,7 +320,7 @@
 			</tr>
 			<tr id = "last_row">
 				<td style = "text-align: left">
-					<%= @other %>
+					<%= $other %>
 				</td>
 				<td>
 					<%= f.radio_button :magnitude_other, 6, :default => @onlinecolab_fluentcy.magnitude_other %>				
@@ -342,9 +343,9 @@
 			</tr>
 		</table>
 		<br>
-		<%= f.label @other_label %>
+		<%= f.label $other_label %>
 		<br>
 		<%= f.text_field :other %>
-		<%= f.submit @submit, class: "btn btn-primary" %>
+		<%= f.submit $submit, class: "btn btn-primary" %>
 	<% end %>
 </body>

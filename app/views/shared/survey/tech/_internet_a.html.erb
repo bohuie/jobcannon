@@ -13,9 +13,10 @@
 <% @private_header1 = "Yes" %>
 <% @private_header2 = "No" %>
 <% @private_header3 = "Not Sure" %>
+<% @internetterm = InternetTerm.find_by(:user_id=> @user.user_id) %>
 
-	<body>
-	<%= simple_form_for @internetterm do |f| %>
+<body>
+	<%= simple_form_for @internetterm, remote: true do |f| %>
 
 		<%= f.label @label %>
 		<br>
@@ -134,6 +135,6 @@
 		</table>
 
 		<br>
-		<%= f.submit @continue, class: "btn btn-primary" %>
+		<%= f.submit $continue, class: "btn btn-primary" %>
 	<% end %>
 </body>

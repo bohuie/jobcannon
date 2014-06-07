@@ -4,7 +4,9 @@ def update
 	@user = current_user
 	@advanced = AdvancedComputerSkill.find_by(:user_id=>@user.user_id)
 	@advanced.update_attributes(advanced_params)
-	redirect_to survey_path(@user,:type=> 3)
+	respond_to do |f|		
+		 f.js
+	end
 end
 
 	private

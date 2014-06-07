@@ -23,10 +23,10 @@
 <% @q21 = "Using social media to collect data" %>
 <% @q22 = "Working with social listening and reporting tools (Ex. Sysomos, Hootsuite, Omniture)" %>
 <% @q23 = "Using social media management software (Ex. Salesforce.com, Web Trends, Google Analytics)" %>
-
+<% @socialmedia = SocialMediaSkill.find_by(:user_id=> @user.user_id) %>
 
 <body>
-	<%= simple_form_for @socialmedia do |f| %>
+	<%= simple_form_for @socialmedia, remote: true do |f| %>
 
 		<%= f.label @label %>
 
@@ -35,22 +35,22 @@
 				<th>
 				</th>
 				<th>
-					<%= @header7 %>
+					<%= $header7 %>
 				</th>
 				<th>
-					<%= @header8 %>
+					<%= $header8 %>
 				</th>
 				<th>
-					<%= @header9 %>				
+					<%= $header9 %>				
 				</th>
 				<th>
-					<%= @header10 %>				
+					<%= $header10 %>				
 				</th>
 				<th>
-					<%= @header11 %>				
+					<%= $header11 %>				
 				</th>
 				<th>
-					<%= @header12 %>				
+					<%= $header12 %>				
 				</th>
 			</tr>
 			<tr>
@@ -583,6 +583,6 @@
 				</td>
 			</tr>
 		</table>
-		<%= f.submit @continue, class: "btn btn-primary" %>
+		<%= f.submit $continue, class: "btn btn-primary" %>
 	<% end %>
 </body>

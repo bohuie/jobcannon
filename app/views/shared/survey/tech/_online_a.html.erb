@@ -8,9 +8,10 @@
 <% @q6 = "Collaborating online using a video call (multiple parties)" %>
 <% @q7 = "Collaborating online using a voice call (multiple parties)" %>
 <% @q8 = "Collaborating online using instant messaging" %>
+<% @onlinecolab = OnlineColabSkill.find_by(:user_id=> @user.user_id) %>
 
 <body>
-	<%= simple_form_for @onlinecolab do |f| %>
+	<%= simple_form_for @onlinecolab, remote: true do |f| %>
 
 		<%= f.label @label %>
 		<table id = "survey_format">
@@ -18,22 +19,22 @@
 				<th>
 				</th>
 				<th>
-					<%= @header7 %>
+					<%= $header7 %>
 				</th>
 				<th>
-					<%= @header8 %>
+					<%= $header8 %>
 				</th>
 				<th>
-					<%= @header9 %>
+					<%= $header9 %>
 				</th>
 				<th>
-					<%= @header10 %>
+					<%= $header10 %>
 				</th>
 				<th>
-					<%= @header11 %>
+					<%= $header11 %>
 				</th>
 				<th>
-					<%= @header12 %>
+					<%= $header12 %>
 				</th>
 			</tr>
 			<tr>
@@ -221,7 +222,6 @@
 				</td>
 			</tr>
 		</table>
-
-		<%= f.submit @continue, class: "btn btn-primary" %>
+		<%= f.submit $continue, class: "btn btn-primary" %>
 	<% end %>
 </body>

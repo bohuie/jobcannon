@@ -1,4 +1,4 @@
-<% @label1 = "How easy would you find the following tasks to complete in a presentation program?" %>
+<% @label = "How easy would you find the following tasks to complete in a presentation program?" %>
 
 <% @q1 = "Create a presentation document" %>
 <% @q2 = "Save a presentation document" %>
@@ -17,9 +17,10 @@
 <% @q15 = "Add page numbers" %>
 <% @q16 = "Change footers" %>
 <% @q17 = "Preview slideshow" %>
+<% @present = PresentingSkill.find_by(:user_id=> @user.user_id) %>
 
-	<body>
-	<%= simple_form_for @present do |f| %>
+<body>
+	<%= simple_form_for @present, remote: true do |f| %>
 
 		<%= f.label @label %>
 		<br>
@@ -28,22 +29,22 @@
 				<th>
 				</th>
 				<th>
-					<%= @header7 %>
+					<%= $header7 %>
 				</th>
 				<th>
-					<%= @header8 %>
+					<%= $header8 %>
 				</th>
 				<th>
-					<%= @header9 %>
+					<%= $header9 %>
 				</th>
 				<th>
-					<%= @header10 %>
+					<%= $header10 %>
 				</th>
 				<th>
-					<%= @header11 %>
+					<%= $header11 %>
 				</th>
 				<th>
-					<%= @header12 %>
+					<%= $header12 %>
 				</th>
 			</tr>
 			<tr>
@@ -438,6 +439,6 @@
 				</td>
 			</tr>	
 		</table>
-		<%= f.submit "Save & Continue", class: "btn btn-primary" %>
+		<%= f.submit $continue, class: "btn btn-primary" %>
 	<% end %>	
 </body>

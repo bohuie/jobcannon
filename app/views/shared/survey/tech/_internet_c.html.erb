@@ -47,8 +47,10 @@
 <% @private_header4 = "I am able to connect using this type of connection" %>
 <% @private_header5 = "I am able to configure this type of connection" %>
 <% @private_header6 = "I am able to trouble shoot this type of connection" %>
+<% @internetconnection = InternetConnection.find_by(:user_id=> @user.user_id) %>
+
 <body>
-	<%= simple_form_for @internetconnection do |f| %>
+	<%= simple_form_for @internetconnection, remote: true do |f| %>
 
 		<%= f.label @label %>
 		<br>
@@ -260,7 +262,7 @@
 			</tr>
 		</table>
 
-		<%= f.submit @continue, class: "btn btn-primary" %>
+		<%= f.submit $continue, class: "btn btn-primary" %>
 
 	<% end %>
 </body>

@@ -4,7 +4,10 @@ def update
 	@user = current_user
 	@socialmediaplat = SocialMediaPlatform.find_by(:user_id=>@user.user_id)
 	@socialmediaplat.update_attributes(social_params)
-	redirect_to survey_path(@user,:type=> 3)
+	
+	respond_to do |f|		
+		 f.js
+	end
 end
 
 	private

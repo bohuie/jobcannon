@@ -4,7 +4,10 @@ def update
 	@user = current_user
 	@socialmedia = SocialMediaSkill.find_by(:user_id=>@user.user_id)
 	@socialmedia.update_attributes(social_params)
-	redirect_to survey_path(@user,:type=> 3,:socail=>1)
+	
+	respond_to do |f|		
+		 f.js { render 'shared/ajax/social_media_a.js.erb' }
+	end
 end
 
 	private

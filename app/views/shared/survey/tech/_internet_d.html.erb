@@ -66,9 +66,10 @@
 <% @private_header5 = "I know what this is and can use it somewhat" %>
 <% @private_header6 = "I know what this is and can use it well" %>
 <% @private_header7 = "I know what this is and am very skill in its use" %>
+<% @browser = Browser.find_by(:user_id=> @user.user_id) %>
 
 <body>
-	<%= simple_form_for @browser do |f| %>
+	<%= simple_form_for @browser, remote: true do |f| %>
 
 		<%= f.label @label %>
 		<br>
@@ -411,7 +412,7 @@
 			</tr>
 			<tr>
 				<td style = "text-align: left">
-					<%= @other %>
+					<%= $other_label %>
 				</td>
 				<td>
 					<%= f.radio_button :magnitude_other, 1, :default => @browser.magnitude_other, :onClick => "hidemagnitude_other()" %>				
@@ -478,13 +479,13 @@
 		<table>
 		<tr  id = "last_row">
 			<td style = "text-align: left;">
-				<%= f.label @other_label %>							
+				<%= f.label $other_label %>							
 				<br>
 				<%= f.text_field :other %>
 			</td>			
 			<td style = "padding-left: 2em">
 				<br>
-				<%= f.submit "Submit", class: "btn btn-primary" %>
+				<%= f.submit $submit, class: "btn btn-primary" %>
 			</td>			
 		</tr>
 	</table>

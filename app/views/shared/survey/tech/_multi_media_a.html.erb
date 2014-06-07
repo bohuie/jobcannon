@@ -1,28 +1,14 @@
 <% @label1 = "How easy would you find the following tasks to complete on a computer?" %>
-<% @label2 = "Do you know the difference between analog and digital technology?" %>
-<% @label3 = "Can you interface the two appropriately?" %>
-<% @label4 = "Do you understand the cross-platform font transferability issue?" %>
-
-<% @ANSWER = [['Not Sure','1'],['No','2'],['Yes','3']] %>
-
 
 <% q1 = "Create and use image files" %>
 <% q2 = "Create and use audio files" %>
 <% q3 = "Create and use video files" %>
 <% q4 = "Edit video files" %>
 <% q5 = "Add graphics/subtitles to video files" %>
-<head><script>
-	 function selector(){
-        $("#technology_difference_q1").prop("selectedIndex", -1)
-        $("#technology_difference_q2").prop("selectedIndex", -1)
-        $("#technology_difference_q3").prop("selectedIndex", -1)
-    }
-    window.onload = selector;
-    </script>
-	</head>
+<% @media = MultiMediaSkill.find_by(:user_id=> @user.user_id) %>
 
-	<body>
-	<%= simple_form_for @media do |f| %>
+<body>
+	<%= simple_form_for @media, :remote=>true do |f| %>
 
 		<%= f.label @label1 %>
 		<br>
@@ -32,22 +18,22 @@
 				<th>
 				</th>
 				<th>
-					<%= @header7 %>
+					<%= $header7 %>
 				</th>
 				<th>
-					<%= @header8 %>
+					<%= $header8 %>
 				</th>
 				<th>
-					<%= @header9 %>
+					<%= $header9 %>
 				</th>
 				<th>
-					<%= @header10 %>
+					<%= $header10 %>
 				</th>
 				<th>
-					<%= @header11 %>
+					<%= $header11 %>
 				</th>
 				<th>
-					<%= @header12 %>
+					<%= $header12 %>
 				</th>
 			</tr>
 			<tr>
@@ -167,43 +153,6 @@
 			</tr>
 		</table>
 
-		<%= f.submit "Submit", class: "btn btn-primary" %>
-	<% end %>
-
-	<%= simple_form_for @tech_diff do |g| %>
-
-		<div class = "row">
-			<div class = "col-lg-12">
-				<%= g.label @label2 %>
-			</div>
-		</div>
-		<div class = "row">
-			<div class = "col-lg-3">
-				<%= g.select :q1, @ANSWER, :default => " " %>
-			</div>
-		</div>
-		<div class = "row">
-			<div class = "col-lg-12">
-				<%= g.label @label3 %>
-			</div>
-		</div>
-		<div class = "row">
-			<div class = "col-lg-3">
-				<%= g.select :q2, @ANSWER, :default => " " %>
-			</div>
-		</div>
-		<div class = "row">
-			<div class = "col-lg-12">
-				<%= g.label @label4 %>
-			</div>
-		</div>
-		<div class = "row">
-			<div class = "col-lg-3">
-				<%= g.select :q3, @ANSWER, :default => " " %>
-			</div>
-		</div>
-
-		<%= g.submit "Submit", class: "btn btn-primary" %>
-
+		<%= f.submit $continue, class: "btn btn-primary" %>
 	<% end %>
 </body>

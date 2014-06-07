@@ -5,7 +5,10 @@ def update
 	@user = current_user
 	@spreadsheet = SpreadsheetSkill.find_by(:user_id=>@user.user_id)
 	@spreadsheet.update_attributes(spreadsheet_params)		#breaks, dunno why
-	redirect_to survey_path(@user,:type=> 3,:word=>1);
+	
+	respond_to do |f|		
+		 f.js { render 'shared/ajax/spreadsheet_a.js.erb' }
+	end
 end
 
 	private

@@ -4,7 +4,10 @@ def update
 	@user = current_user
 	@onlinecolab = OnlineColabSkill.find_by(:user_id=>@user.user_id)
 	@onlinecolab.update_attributes(online_params)
-	redirect_to survey_path(@user,:type=> 3,:online=>1)
+	
+	respond_to do |f|		
+		 f.js { render 'shared/ajax/online_a.js.erb' }
+	end
 end
 
 	private

@@ -5,7 +5,10 @@ def update
 	@user = current_user
 	@spreadsheet = SpreadsheetFluentcy.find_by(:user_id=>@user.user_id)
 	@spreadsheet.update_attributes(spreadsheet_params)
-	redirect_to survey_path(@user,:type=> 3)
+	
+	respond_to do |f|		
+		 f.js 
+	end
 end
 
 	private

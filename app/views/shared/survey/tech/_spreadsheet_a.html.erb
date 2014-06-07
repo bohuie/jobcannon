@@ -1,8 +1,5 @@
 
-<% @label = "How easy would you find the following tasks to complete in a spreadsheet program?" %>
-<% @label2 = "How fluent are you with each of the following spreadsheet programs? (How well would you
-				be able to use each)" %>
-<% @label3 = "If Other Please Specify" %>				
+<% @label = "How easy would you find the following tasks to complete in a spreadsheet program?" %>				
 
 <% q1 = "Create a new spreadsheet" %>
 <% q2 = "Save a spreadsheet" %>
@@ -19,14 +16,10 @@
 <% q13 = "Freeze panes" %>
 <% q14 = "Calculate basic statistics such as sums and averages" %>
 <% q15 = "Reference cells in a different sheet or file" %>
+<% @spreadsheet = SpreadsheetSkill.find_by(:user_id=> @user.user_id) %>
 
-<% @excel = "Excel (Microsoft)" %>
-<% @numbers = "Numbers (Apple)" %>
-<% @calc = "Calc (Apple)" %>
-<% @other = "Other" %>
-
-	<body>
-	<%= simple_form_for @spreadsheet do |f| %>
+<body>
+	<%= simple_form_for @spreadsheet, remote: true do |f| %>
 		<%= f.label @label %>
 
 		<table id = "survey_format">
@@ -34,22 +27,22 @@
 				<th>
 				</th>
 				<th>
-					<%= @header7 %>
+					<%= $header7 %>
 				</th>
 				<th>
-					<%= @header8 %>
+					<%= $header8 %>
 				</th>
 				<th>
-					<%= @header9 %>
+					<%= $header9 %>
 				</th>
 				<th>
-					<%= @header10 %>
+					<%= $header10 %>
 				</th>
 				<th>
-					<%= @header11 %>
+					<%= $header11 %>
 				</th>
 				<th>
-					<%= @header12 %>
+					<%= $header12 %>
 				</th>
 			</tr>
 			<tr>
@@ -400,138 +393,7 @@
 		</table>
 
 		<br>
-		<%= f.submit "Submit", class: "btn btn-primary" %>
+		<%= f.submit $continue, class: "btn btn-primary" %>
 
-	<% end %>
-
-
-	<%= simple_form_for @spreadsheet_fluentcy do |f| %>
-		<%= f.label @label2 %>
-		<br>
-		<br>
-
-		<table id = "survey_format" >
-			<tr>
-				<th>
-				</th>
-				<th>
-					<%= @header1 %>
-				</th>
-				<th>
-					<%= @header2 %>
-				</th>
-				<th>
-					<%= @header3 %>
-				</th>
-				<th>
-					<%= @header4 %>
-				</th>
-				<th>
-					<%= @header5 %>
-				</th>
-				<th>
-					<%= @header6 %>
-				</th>
-			</tr>
-			<tr>
-				<td style="text-align: left">
-					<%= @excel %>
-				</td>
-				<td>
-					<%= f.radio_button :excel, 6, :default => @spreadsheet_fluentcy.excel %>				
-				</td>
-				<td>
-					<%= f.radio_button :excel, 5, :default => @spreadsheet_fluentcy.excel %>				
-				</td>
-				<td>
-					<%= f.radio_button :excel, 4, :default => @spreadsheet_fluentcy.excel %>				
-				</td>
-				<td>
-					<%= f.radio_button :excel, 3, :default => @spreadsheet_fluentcy.excel %>				
-				</td>
-				<td>
-					<%= f.radio_button :excel, 2, :default => @spreadsheet_fluentcy.excel %>				
-				</td>
-				<td>
-					<%= f.radio_button :excel, 1, :default => @spreadsheet_fluentcy.excel %>				
-				</td>
-			</tr>
-			<tr>
-				<td style="text-align: left">
-					<%= @numbers %>
-				</td>
-				<td>
-					<%= f.radio_button :numbers, 6, :default => @spreadsheet_fluentcy.numbers %>				
-				</td>
-				<td>
-					<%= f.radio_button :numbers, 5, :default => @spreadsheet_fluentcy.numbers %>				
-				</td>
-				<td>
-					<%= f.radio_button :numbers, 4, :default => @spreadsheet_fluentcy.numbers %>				
-				</td>
-				<td>
-					<%= f.radio_button :numbers, 3, :default => @spreadsheet_fluentcy.numbers %>				
-				</td>
-				<td>
-					<%= f.radio_button :numbers, 2, :default => @spreadsheet_fluentcy.numbers %>				
-				</td>
-				<td>
-					<%= f.radio_button :numbers, 1, :default => @spreadsheet_fluentcy.numbers %>				
-				</td>
-			</tr>
-			<tr>
-				<td style="text-align: left">
-					<%= @calc %>
-				</td>
-				<td>
-					<%= f.radio_button :calc, 6, :default => @spreadsheet_fluentcy.calc %>				
-				</td>
-				<td>
-					<%= f.radio_button :calc, 5, :default => @spreadsheet_fluentcy.calc %>				
-				</td>
-				<td>
-					<%= f.radio_button :calc, 4, :default => @spreadsheet_fluentcy.calc %>				
-				</td>
-				<td>
-					<%= f.radio_button :calc, 3, :default => @spreadsheet_fluentcy.calc %>				
-				</td>
-				<td>
-					<%= f.radio_button :calc, 2, :default => @spreadsheet_fluentcy.calc %>				
-				</td>
-				<td>
-					<%= f.radio_button :calc, 1, :default => @spreadsheet_fluentcy.calc %>				
-				</td>
-			</tr>
-			<tr>
-				<td style="text-align: left">
-					<%= @other %>
-				</td>
-				<td>
-					<%= f.radio_button :magnitude_other, 6, :default => @spreadsheet_fluentcy.magnitude_other %>				
-				</td>
-				<td>
-					<%= f.radio_button :magnitude_other, 5, :default => @spreadsheet_fluentcy.magnitude_other %>				
-				</td>
-				<td>
-					<%= f.radio_button :magnitude_other, 4, :default => @spreadsheet_fluentcy.magnitude_other %>				
-				</td>
-				<td>
-					<%= f.radio_button :magnitude_other, 3, :default => @spreadsheet_fluentcy.magnitude_other %>				
-				</td>
-				<td>
-					<%= f.radio_button :magnitude_other, 2, :default => @spreadsheet_fluentcy.magnitude_other %>				
-				</td>
-				<td>
-					<%= f.radio_button :magnitude_other, 1, :default => @spreadsheet_fluentcy.magnitude_other %>				
-				</td>
-			</tr>		
-		</table>
-
-		<%= f.label @label3 %>
-		<br>
-		<%= f.text_field :other %>
-		<br>
-		<%= f.submit "Submit", class: "btn btn-primary" %>
-		
-	<% end %>
+	<% end %>	
 </body>

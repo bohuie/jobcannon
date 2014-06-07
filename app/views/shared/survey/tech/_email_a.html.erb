@@ -17,9 +17,10 @@
 <% @q14 = "manage account using folders" %>
 <% @q15 = "Send emails with attachments" %>
 <% @q16 = "Setup POP/IMAP to synchronize emails" %>
+<% @email = EmailSkill.find_by(:user_id=> @user.user_id) %>
 
-	<body>
-	<%= simple_form_for @email do |f| %>
+<body>
+	<%= simple_form_for @email, remote: true do |f| %>
 
 		<%= f.label @label %>
 		<table id = "survey_format">
@@ -27,22 +28,22 @@
 				<th>
 				</th>
 				<th>
-					<%= @header7 %>
+					<%= $header7 %>
 				</th>
 				<th>
-					<%= @header8 %>
+					<%= $header8 %>
 				</th>
 				<th>
-					<%= @header9 %>
+					<%= $header9 %>
 				</th>
 				<th>
-					<%= @header10 %>
+					<%= $header10 %>
 				</th>
 				<th>
-					<%= @header11 %>
+					<%= $header11 %>
 				</th>
 				<th>
-					<%= @header12 %>
+					<%= $header12 %>
 				</th>
 			</tr>
 			<tr>
@@ -392,6 +393,6 @@
 			</tr>
 		</table>
 		<br>
-		<%= f.submit "Save & Continue", class: "btn btn-primary" %>
+		<%= f.submit $continue, class: "btn btn-primary" %>
 	<% end %>
 </body>

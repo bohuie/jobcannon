@@ -19,9 +19,10 @@
 <% @q15 = "Configure a wireless router" %>
 <% @q16 = "Connect to the Internet using a cable" %>
 <% @q17 = "Connect to an (un)secured wireless Internet" %>
+<% @internettask = InternetTask.find_by(:user_id=> @user.user_id) %>
 
 <body>
-	<%= simple_form_for @internettask do |f| %>
+	<%= simple_form_for @internettask, remote: true do |f| %>
 
 		<%= f.label @label %>
 		<br>
@@ -30,22 +31,22 @@
 				<th>
 				</th>
 				<th>
-					<%= @header7 %>
+					<%= $header7 %>
 				</th>
 				<th>
-					<%= @header8 %>
+					<%= $header8 %>
 				</th>
 				<th>
-					<%= @header9 %>
+					<%= $header9 %>
 				</th>
 				<th>
-					<%= @header10 %>
+					<%= $header10 %>
 				</th>
 				<th>
-					<%= @header11 %>
+					<%= $header11 %>
 				</th>
 				<th>
-					<%= @header12 %>
+					<%= $header12 %>
 				</th>
 			</tr>
 			<tr>
@@ -441,7 +442,7 @@
 			</tr>
 		</table>
 
-		<%= f.submit @continue, class: "btn btn-primary" %>
+		<%= f.submit $continue, class: "btn btn-primary" %>
 
 	<% end %>
 </body>

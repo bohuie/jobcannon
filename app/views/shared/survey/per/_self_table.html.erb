@@ -10,44 +10,43 @@
 
 </script>
 </head>
+
+<% @label = "Please select how much you disagree or agree with each of the following statements" %>
+
+<% @q1 = "I set goals independently" %>
+<% @q2 = "I can organize competing priorities" %>
+<% @q3 = "I persevere when things are tough" %>
+<% @q4 = "I ask others for feedback and advice" %>
+<% @q5 = "I consider others’ ideas seriously in thinking about my own work" %>
+<% @q6 = "When working on a project I reflect on past experiences (successes, challenges and failures) and use them to plan future actions" %>
+<% @q7 = "I seek out new experiences without worrying about what others think of me" %>
+<% @q8 = "I attempt new experiences without worrying about whether I’ll make mistakes" %>
+<% @q9 = "I’m willing to voice and support an opinion even if it will be unpopular with my peers" %>
+<% @q10 = "I recognize that large problems or projects may not have clear or simple solutions" %>
+<% @q11 = "When I do not solve a problem right away I take a different perspective and try again" %>
 <body>	
 	<%= simple_form_for @self, remote: true do |f| %>
-
-		<% @instruction = "Please select how much you disagree or agree with each of the following statements" %>
-		<% @label = "Self-Direction Skills" %>
-
-		<% @q1 = "I set goals independently" %>
-		<% @q2 = "I can organize competing priorities" %>
-		<% @q3 = "I persevere when things are tough" %>
-		<% @q4 = "I ask others for feedback and advice" %>
-		<% @q5 = "I consider others’ ideas seriously in thinking about my own work" %>
-		<% @q6 = "When working on a project I reflect on past experiences (successes, challenges and failures) and use them to plan future actions" %>
-		<% @q7 = "I seek out new experiences without worrying about what others think of me" %>
-		<% @q8 = "I attempt new experiences without worrying about whether I’ll make mistakes" %>
-		<% @q9 = "I’m willing to voice and support an opinion even if it will be unpopular with my peers" %>
-		<% @q10 = "I recognize that large problems or projects may not have clear or simple solutions" %>
-		<% @q11 = "When I do not solve a problem right away I take a different perspective and try again" %>
 		
+		<%= f.label @label %>
 		<%= f.hidden_field :user_id , :value => @self.user_id %>
 		<table id ="survey_format">
 			<tr>
-				<th>
-					<%= @label %>
+				<th>					
 				</th>
 				<th>
-					<%= @header13 %>
+					<%= $header13 %>
 				</th>
 				<th>
-					<%= @header14 %>
+					<%= $header14 %>
 				</th>
 				<th>
-					<%= @header15 %>
+					<%= $header15 %>
 				</th>
 				<th>
-					<%= @header16 %>
+					<%= $header16 %>
 				</th>
 				<th>
-					<%= @header17 %>
+					<%= $header17 %>
 				</th>
 			</tr>
 			<tr>
@@ -273,7 +272,7 @@
 		</table>
 		<div class="row">
 			<div class = "col-lg-2">
-				<%= f.submit "Submit", class: "btn btn-large btn-primary", onClick: "showSaved3();"%> 
+				<%= f.submit $submit, class: "btn btn-large btn-primary", onClick: "showSaved3();"%> 
 			</div>
 			<div class = "col-lg-4" id = "saved3" style= "display: none">
 				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">

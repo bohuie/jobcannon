@@ -5,6 +5,38 @@ class SurveysController < ApplicationController
 		@survey = Survey.new
 	end
 	def show
+
+		 $header1 = "Completely Fluent" 
+		 $header2 = "Quite Fluent" 
+		 $header3 = "Somewhat Fluent" 
+		 $header4 = "Minimal Fluency" 
+		 $header5 = "Not Fluent" 
+		 $header6 = "I don't know" 
+
+		 $header7 = "Very Easy" 
+		 $header8 = "Easy" 
+		 $header9 = "Neutral" 
+		 $header10 = "Difficult" 
+		 $header11 = "Very Difficult" 
+		 $header12 = "I don't know what this is" 
+
+		 $header13 = "Disagree" 
+		 $header14 = "Somewhat Disagree" 
+		 $header15 = "Neutral" 
+		 $header16 = "Somewhat Agree"
+		 $header17 = "Agree" 
+
+		 $header13 = "Yes, I have used this" 
+		 $header14 = "No, I have not used this" 
+		 $header15 = "Not sure"
+
+		 $other = "Other" 
+		 $other_label = "If Other Please Specify" 
+		 $continue = "Save & Continue" 
+		 $submit = "Submit"
+		 $previous = "Previous" 
+
+
 		@user = current_user
 		@survey_type = params[:type]
 		@tech = params[:tech]
@@ -14,6 +46,7 @@ class SurveysController < ApplicationController
 		@internet = params[:internet]
 		@social = params[:social]
 		@online = params[:online]
+		@med = params[:media]
 
 		if @internet.nil?
 			@internet='0'
@@ -32,6 +65,8 @@ class SurveysController < ApplicationController
 		@self = SelfDirectionSkill.find_by(:user_id=>@user.user_id)
 		@accountability = Accountability.find_by(:user_id=>@user.user_id)
 		@interpersonal = InterpersonalSkill.find_by(:user_id=>@user.user_id)
+<<<<<<< HEAD
+=======
 
 		@basic = BasicComputerSkill.find_by(:user_id=> @user.user_id)
 		@os = OperatingSystemsUsage.find_by(:user_id=> @user.user_id)
@@ -66,6 +101,7 @@ class SurveysController < ApplicationController
 		@onlinecolab = OnlineColabSkill.find_by(:user_id=> @user.user_id)
 		@onlinecolab_fluentcy = OnlineColabFluentcy.find_by(:user_id=> @user.user_id)
 
+>>>>>>> FETCH_HEAD
 		
 		if (@profile.nil?)
 			@profile = Surveyprofile.new
@@ -217,8 +253,11 @@ class SurveysController < ApplicationController
 		redirect_to root_path
 	end
 
-	def add
+	def back
 		
+		@file = params[:file]
+
+		redirect_to root_path
 	end
 
 end

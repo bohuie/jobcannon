@@ -4,7 +4,10 @@ def update
 	@user = current_user
 	@internettask = InternetTask.find_by(:user_id=>@user.user_id)
 	@internettask.update_attributes(internettask_params)
-	redirect_to survey_path(@user,:type=> 3,:internet=>2)
+	
+	respond_to do |f|		
+		 f.js { render 'shared/ajax/internet_b.js.erb' }
+	end
 end
 
 	private

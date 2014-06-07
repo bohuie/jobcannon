@@ -4,7 +4,11 @@ def update
 	@user = current_user
 	@word = WordProcessingSkill.find_by(:user_id=>@user.user_id)
 	@word.update_attributes(word_params)
-	redirect_to survey_path(@user,:type=> 3,:word=>1)
+	
+	respond_to do |f|		
+		 f.js { render 'shared/ajax/word_processing_a.js.erb' }
+	end
+
 end
 
 	private

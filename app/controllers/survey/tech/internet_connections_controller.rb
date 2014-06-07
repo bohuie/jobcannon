@@ -4,7 +4,10 @@ def update
 	@user = current_user
 	@internetconnection = InternetConnection.find_by(:user_id=>@user.user_id)
 	@internetconnection.update_attributes(internetconnection_params)
-	redirect_to survey_path(@user,:type=> 3,:internet=>3)
+	
+	respond_to do |f|		
+		 f.js { render 'shared/ajax/internet_c.js.erb' }
+	end
 end
 
 	private

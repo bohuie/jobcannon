@@ -10,42 +10,41 @@
 
 </script>
 </head>
+
+<% @label = "Please select how much you disagree or agree with each of the following statements" %>
+
+<% @q1 = "I can usually think of lots of new ideas WITH specific guidelines" %>
+<% @q2 = "I can usually think of lots of new ideas WITHOUT specific guidelines" %>
+<% @q3 = "I prefer working with others because exchanging ideas helps me think of more ideas" %>
+<% @q4 = "I generate several possible solutions or approaches to a problem or project" %>
+<% @q5 = "I evaluate all possible solutions using criteria of practicality, efficiency and elegance to choose the best solution" %>
+<% @q6 = "I look at situations and processes from a variety of viewpoints in order to identify problems" %>
+<% @q7 = "Given a specific goal I can come up with several sub-goals and a variety of ways to achieve them" %>
+<% @q8 = "I think ahead in a project to anticipate and avoid possible problems" %>
 <body>
-	<%= simple_form_for @thinking, remote: true do |f| %>
-
-		<% @instruction = "Please select how much you disagree or agree with each of the following statements" %>
-		<% @label = "Thinking, Problem Solving and Creativity Skills" %>
-
-		<% @q1 = "I can usually think of lots of new ideas WITH specific guidelines" %>
-		<% @q2 = "I can usually think of lots of new ideas WITHOUT specific guidelines" %>
-		<% @q3 = "I prefer working with others because exchanging ideas helps me think of more ideas" %>
-		<% @q4 = "I generate several possible solutions or approaches to a problem or project" %>
-		<% @q5 = "I evaluate all possible solutions using criteria of practicality, efficiency and elegance to choose the best solution" %>
-		<% @q6 = "I look at situations and processes from a variety of viewpoints in order to identify problems" %>
-		<% @q7 = "Given a specific goal I can come up with several sub-goals and a variety of ways to achieve them" %>
-		<% @q8 = "I think ahead in a project to anticipate and avoid possible problems" %>
+	<%= simple_form_for @thinking, remote: true do |f| %>		
 		
+		<%= f.label @label %>
 		<%= f.hidden_field :user_id , :value => @thinking.user_id %>
 
 		<table id ="survey_format">
 			<tr>
-				<th>
-					<%= @label %>
+				<th>					
 				</th>
 				<th>
-					<%= @header13 %>
+					<%= $header13 %>
 				</th>
 				<th>
-					<%= @header14 %>
+					<%= $header14 %>
 				</th>
 				<th>
-					<%= @header15 %>
+					<%= $header15 %>
 				</th>
 				<th>
-					<%= @header16 %>
+					<%= $header16 %>
 				</th>
 				<th>
-					<%= @header17 %>
+					<%= $header17 %>
 				</th>
 			</tr>
 			<tr>
@@ -211,7 +210,7 @@
 		</table>
 		<div class="row">
 			<div class = "col-lg-2">
-				<%= f.submit "Submit", class: "btn btn-large btn-primary", onClick: "showSaved();"%> 
+				<%= f.submit $submit, class: "btn btn-large btn-primary", onClick: "showSaved();"%> 
 			</div>
 			<div class = "col-lg-4" id = "saved" style= "display: none">
 				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">

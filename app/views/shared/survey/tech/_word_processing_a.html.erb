@@ -20,31 +20,35 @@
 <% @q18 = "Add a table of contents" %>
 <% @q19 = "Add a section" %>
 <% @q20 = "Add references" %>
+<% @word = WordProcessingSkill.find_by(:user_id=> @user.user_id) %>
 
-	<body>
-	<%= simple_form_for @word do |f| %>
+
+<body>
+	<%= simple_form_for @word,:remote=>true do  |f| %>
+
+	<%= f.label @label %>
 
 		<table id = "survey_format">
 			<tr>
 				<th>
 				</th>
 				<th>
-					<%= @header7 %>
+					<%= $header7 %>
 				</th>
 				<th>
-					<%= @header8 %>
+					<%= $header8 %>
 				</th>
 				<th>
-					<%= @header9 %>
+					<%= $header9 %>
 				</th>
 				<th>
-					<%= @header10 %>
+					<%= $header10 %>
 				</th>
 				<th>
-					<%= @header11 %>
+					<%= $header11 %>
 				</th>
 				<th>
-					<%= @header12 %>
+					<%= $header12 %>
 				</th>
 			</tr>
 			<tr>
@@ -511,7 +515,7 @@
 		<div class = "row">
 			<div class = "col-lg-10"></div>
 			<div class = "col-lg-2">
-				<%= f.submit "Next", class: "btn btn-primary" %>
+				<%= f.submit $continue, class: "btn btn-primary" %>
 			</div>
 		</div>
 	<% end %>

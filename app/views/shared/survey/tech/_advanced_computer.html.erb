@@ -1,3 +1,12 @@
+<head>
+<script>	
+    function showSaved1(){
+      $("#saved1").fadeIn();
+      setTimeout(function(){$("#saved1").fadeOut("slow")}, 1000)
+    }
+</script>
+</head>
+
 <% @label = "How easy would you find the follwoing tasks to completer on a computer?" %>
 
 <% @q1 = "Determine the amount of RAM installed on the computer" %>
@@ -6,9 +15,10 @@
 <% @q4 = "Select the software for a defined task" %>
 <% @q5 = "Install antvirus software" %>
 <% @q6 = "Update software" %>
+<% @advanced = AdvancedComputerSkill.find_by(:user_id=> @user.user_id)	%>
 
 <body>
-	<%= simple_form_for @advanced do |f| %>
+	<%= simple_form_for @advanced, :remote=> true do |f| %>
 
 		<%= f.label @label %>
 		<br>
@@ -18,22 +28,22 @@
 				<th>
 				</th>
 				<th>
-					<%= @header7 %>
+					<%= $header7 %>
 				</th>
 				<th>
-					<%= @header8 %>
+					<%= $header8 %>
 				</th>
 				<th>
-					<%= @header9 %>
+					<%= $header9 %>
 				</th>
 				<th>
-					<%= @header10 %>
+					<%= $header10 %>
 				</th>
 				<th>
-					<%= @header11 %>
+					<%= $header11 %>
 				</th>
 				<th>
-					<%= @header12 %>
+					<%= $header12 %>
 				</th>
 			</tr>
 			<tr>
@@ -176,6 +186,15 @@
 			</tr>
 		</table>
 
-		<%= f.submit "Submit", class: "btn btn-primary" %>
+		<div class="row">
+			<div class="col-lg-2">
+				<%= f.submit $submit, class: "btn btn-primary", onClick: "showSaved1();" %>
+			</div>
+			<div class = "col-lg-4" id = "saved1" style= "display: none">
+				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+					Changes Saved
+				</div>
+			</div>
+		</div>
 	<% end %>
 </body>

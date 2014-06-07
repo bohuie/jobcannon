@@ -10,40 +10,38 @@
 
 </script>
 </head>
+<% @label = "Please select how much you disagree or agree with each of the following statements" %>
+
+<% @q1 = "I can manage conflict with group members effectively" %>
+<% @q2 = "I listen to others and am receptive to their ideas" %>
+<% @q3 = "I’m aware of others’ emotions, perspectives and behaviours when in a group" %>
+<% @q4 = "I consider others’ needs and priorities" %>
+<% @q5 = "I am always involved in group tasks and discussions" %>
+<% @q6 = "When in a group my body languages shows that I am actively participating" %>
 <body>	
 	<%= simple_form_for @interpersonal, remote: true do |f| %>
-
-		<% @instruction = "Please select how much you disagree or agree with each of the following statements" %>
-		<% @label = "Interpersonal and Collaborative Skills" %>
-
-		<% @q1 = "I can manage conflict with group members effectively" %>
-		<% @q2 = "I listen to others and am receptive to their ideas" %>
-		<% @q3 = "I’m aware of others’ emotions, perspectives and behaviours when in a group" %>
-		<% @q4 = "I consider others’ needs and priorities" %>
-		<% @q5 = "I am always involved in group tasks and discussions" %>
-		<% @q6 = "When in a group my body languages shows that I am actively participating" %>
-
+		
+		<%= f.label @label %>
 		<%= f.hidden_field :user_id , :value => @interpersonal.user_id %>
 
 		<table id ="survey_format">
 			<tr>
-				<th>
-					<%= @label %>
+				<th>					
 				</th>
 				<th>
-					<%= @header13 %>
+					<%= $header13 %>
 				</th>
 				<th>
-					<%= @header14 %>
+					<%= $header14 %>
 				</th>
 				<th>
-					<%= @header15 %>
+					<%= $header15 %>
 				</th>
 				<th>
-					<%= @header16 %>
+					<%= $header16 %>
 				</th>
 				<th>
-					<%= @header17 %>
+					<%= $header17 %>
 				</th>
 			</tr>
 			<tr>
@@ -169,7 +167,7 @@
 		</table>
 		<div class="row">
 			<div class = "col-lg-2">
-				<%= f.submit "Submit", class: "btn btn-large btn-primary", onClick: "showSaved1();"%> 
+				<%= f.submit $submit, class: "btn btn-large btn-primary", onClick: "showSaved1();"%> 
 			</div>
 			<div class = "col-lg-4" id = "saved1" style= "display: none">
 				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">

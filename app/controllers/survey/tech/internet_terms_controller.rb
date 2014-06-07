@@ -4,7 +4,11 @@ def update
 	@user = current_user
 	@internetterm = InternetTerm.find_by(:user_id=>@user.user_id)
 	@internetterm.update_attributes(internetterm_params)
-	redirect_to survey_path(@user,:type=> 3,:internet=>1)
+	
+	respond_to do |f|		
+		 f.js { render 'shared/ajax/internet_a.js.erb' }
+	end
+
 end
 
 	private

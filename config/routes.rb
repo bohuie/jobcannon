@@ -46,7 +46,6 @@ First_Website::Application.routes.draw do
     resources :online_colab_skills, :formats => "js"
     resources :online_colab_fluentcies, :formats => "js"
 
-
   end
 
   scope module: 'survey/profile' do 
@@ -68,7 +67,13 @@ First_Website::Application.routes.draw do
   resources :projects
   resources :links
   resources :profile
-  resources :surveys
+  
+  resources :surveys do
+    member do
+      get 'back'
+    end
+  end 
+
   resources :friendships
   resources :messages
   resources :friendships

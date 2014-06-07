@@ -10,44 +10,44 @@
 
 </script>
 </head>
+
+<% @label = "Please select how much you disagree or agree with each of the following statements" %>
+
+<% @q1 = "I actively listen to others" %>
+<% @q2 = "When speaking with other people I think about areas of agreement as well as disagreement " %>
+<% @q3 = "I respect others' ideas even if i disagree with them" %>
+<% @q4 = "I communicate my ideas and findings effectively and clarity" %>
+<% @q5 = "I go beyond what is expected of me in a group setting" %>
+<% @q6 = "I go beyond what is expected of me in a one-on-one setting" %>
+<% @q7 = "I clearly explain my opinions" %>
+<% @q8 = "I look at different points of view on a subject" %>
+<% @q9 = "I support my opinions with credible evidence" %>
+<% @q10 = "I use language in meaningful ways to inspire, entertain, inform and persuade others" %>
+<% @q11 = "I think about who my audience is when I communicate and adjust my vocabulary accordingly" %>
 <body>	
 	<%= simple_form_for @communication, remote: true do |f| %>
 
-		<% @instruction = "Please select how much you disagree or agree with each of the following statements" %>
-		<% @label = "Communication Skills" %>
-
-		<% @q1 = "I actively listen to others" %>
-		<% @q2 = "When speaking with other people I think about areas of agreement as well as disagreement " %>
-		<% @q3 = "I respect others' ideas even if i disagree with them" %>
-		<% @q4 = "I communicate my ideas and findings effectively and clarity" %>
-		<% @q5 = "I go beyond what is expected of me in a group setting" %>
-		<% @q6 = "I go beyond what is expected of me in a one-on-one setting" %>
-		<% @q7 = "I clearly explain my opinions" %>
-		<% @q8 = "I look at different points of view on a subject" %>
-		<% @q9 = "I support my opinions with credible evidence" %>
-		<% @q10 = "I use language in meaningful ways to inspire, entertain, inform and persuade others" %>
-		<% @q11 = "I think about who my audience is when I communicate and adjust my vocabulary accordingly" %>
-
+		<%= f.label @label %>
+		
 		<%= f.hidden_field :user_id , :value => @communication.user_id %>
 		<table id ="survey_format">
 			<tr>
-				<th>
-					<%= @label %>
+				<th>					
 				</th>
 				<th>
-					<%= @header13 %>
+					<%= $header13 %>
 				</th>
 				<th>
-					<%= @header14 %>
+					<%= $header14 %>
 				</th>
 				<th>
-					<%= @header15 %>
+					<%= $header15 %>
 				</th>
 				<th>
-					<%= @header16 %>
+					<%= $header16 %>
 				</th>
 				<th>
-					<%= @header17 %>
+					<%= $header17 %>
 				</th>
 			</tr>
 			<tr>
@@ -273,7 +273,7 @@
 		</table>
 		<div class="row">
 			<div class = "col-lg-2">
-				<%= f.submit "Submit", class: "btn btn-large btn-primary", onClick: "showSaved2();"%> 
+				<%= f.submit $submit, class: "btn btn-large btn-primary", onClick: "showSaved2();"%> 
 			</div>
 			<div class = "col-lg-4" id = "saved2" style= "display: none">
 				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">

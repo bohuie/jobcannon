@@ -1,10 +1,12 @@
+<% @label = "How fluent are you with each of the following word processing programs? (How well would you be able to use each)" %>
 <% @q1 = "Word (Microsoft)" %>
 <% @q2 = "Pages (Apple)" %>
 <% @q3 = "Writer (OpenOffice)" %>
 <% @q4 = "Other" %>
+<% @word_fluent = WordProcessingFluentcy.find_by(:user_id=> @user.user_id) %>
 
-	<body>
-	<%= simple_form_for @word_fluent do |f| %>
+<body>
+	<%= simple_form_for @word_fluent,:remote=> true do |f| %>
 
 		<%= f.label @label %>
 
@@ -13,22 +15,22 @@
 				<th>
 				</th>
 				<th>
-					<%= @header1 %>
+					<%= $header1 %>
 				</th>
 				<th>
-					<%= @header2 %>
+					<%= $header2 %>
 				</th>
 				<th>
-					<%= @header3 %>
+					<%= $header3 %>
 				</th>
 				<th>
-					<%= @header4 %>
+					<%= $header4 %>
 				</th>
 				<th>
-					<%= @header5 %>
+					<%= $header5 %>
 				</th>
 				<th>
-					<%= @header6 %>
+					<%= $header6 %>
 				</th>
 			</tr>
 			<tr>
@@ -125,12 +127,12 @@
 			</tr>
 		</table>
 		
-		<%= f.label @other_label %>
+		<%= f.label $other_label %>
 		<br>
 		<%= f.text_field :other %>	
 		<br>			
 							
 		<%=link_to "Previous", survey_path(@user,:type=> 3,:tech=>0, :word=>0), class: "btn btn-primary test" %>
-		<%= f.submit "Submit", class: "btn btn-primary" %>
+		<%= f.submit $submit, class: "btn btn-primary" %>
 	<% end %>
 </body>

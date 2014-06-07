@@ -4,7 +4,10 @@ def update
 	@user = current_user
 	@present = PresentingSkill.find_by(:user_id=>@user.user_id)
 	@present.update_attributes(present_params)
-	redirect_to survey_path(@user,:type=> 3,:pres=>1)
+	
+	respond_to do |f|		
+		 f.js { render 'shared/ajax/presentation_a.js.erb' }
+	end
 end
 
 	private

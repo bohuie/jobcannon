@@ -10,39 +10,39 @@
 
 </script>
 </head>
+
+<% @label = "Please select how much you disagree or agree with each of the following statements" %>		
+
+<% @q1 = "I am always punctual with good attendance" %>
+<% @q2 = "I always think of questions to ask and do so when appropriate" %>
+<% @q3 = "I carry myself in a professional manner" %>
+<% @q4 = "I consistently manage time and resources in an efficient manner to achieve what I need to get done" %>
+<% @q5 = "I use a variety of tools and techniques" %>
+<% @q6 = "I always communicate with my coworkers if I run into problems" %>	
 <body>		
 	<%= simple_form_for @accountability, remote: true do |f| %>
 
-		<% @instruction = "Please select how much you disagree or agree with each of the following statements" %>
-		<% @label = "Accountability and Adaptability Skills" %>
-
-		<% @q1 = "I am always punctual with good attendance" %>
-		<% @q2 = "I always think of questions to ask and do so when appropriate" %>
-		<% @q3 = "I carry myself in a professional manner" %>
-		<% @q4 = "I consistently manage time and resources in an efficient manner to achieve what I need to get done" %>
-		<% @q5 = "I use a variety of tools and techniques" %>
-		<% @q6 = "I always communicate with my coworkers if I run into problems" %>	
-
+		<%= f.label @label %>
+	
 		<%= f.hidden_field :user_id , :value => @accountability.user_id %>
 		<table id ="survey_format">
 			<tr>
-				<th>
-					<%= @label %>
+				<th>					
 				</th>
 				<th>
-					<%= @header13 %>
+					<%= $header13 %>
 				</th>
 				<th>
-					<%= @header14 %>
+					<%= $header14 %>
 				</th>
 				<th>
-					<%= @header15 %>
+					<%= $header15 %>
 				</th>
 				<th>
-					<%= @header16 %>
+					<%= $header16 %>
 				</th>
 				<th>
-					<%= @header17 %>
+					<%= $header17 %>
 				</th>
 			</tr>
 			<tr>
@@ -168,7 +168,7 @@
 		</table>
 		<div class="row">
 			<div class = "col-lg-2">
-				<%= f.submit "Submit", class: "btn btn-large btn-primary", onClick: "showSaved4();"%> 
+				<%= f.submit $submit, class: "btn btn-large btn-primary", onClick: "showSaved4();"%> 
 			</div>
 			<div class = "col-lg-4" id = "saved4" style= "display: none">
 				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
