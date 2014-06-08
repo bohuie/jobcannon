@@ -34,6 +34,39 @@ class CreateAuthentications < ActiveRecord::Migration
       t.integer  :experience_id,                 null: false
     end
 
+    create_table :experiencetables do |t|
+      t.integer :user_id,        default: 0,     null: false
+      t.integer :survey_id,      default: 0,     null: false
+      t.integer :years_worked
+      t.integer :months_worked
+      t.boolean :agriculture
+      t.boolean :mining
+      t.boolean :utilities
+      t.boolean :construction
+      t.boolean :manufacturing
+      t.boolean :wholesale
+      t.boolean :retail
+      t.boolean :transport
+      t.boolean :information
+      t.boolean :finance
+      t.boolean :real_estate
+      t.boolean :professional
+      t.boolean :managment
+      t.boolean :administrative
+      t.boolean :education
+      t.boolean :health
+      t.boolean :arts
+      t.boolean :accomodation
+      t.boolean :public
+      t.boolean :full_time,      default: false, null: false
+      t.boolean :part_time,      default: false, null: false
+      t.boolean :volunteer,      default: false, null: false
+      t.boolean :employ,         default: false, null: false
+      t.boolean :vol_work
+      t.integer :vol_hours
+      t.string  :other
+    end
+
     create_table :fields do |t|
       t.integer :field_id,    null: false
       t.text    :description

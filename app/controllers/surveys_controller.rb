@@ -41,13 +41,12 @@ class SurveysController < ApplicationController
 		@survey_type = params[:type]
 
 		@language = Language.find_by(:user_id => @user.user_id)
+		@profile = Surveyprofile.find_by(:user_id => @user.user_id)	
 
 		@full_time = Experiencetable.find_by(:user_id => @user.user_id, :full_time => true)
 		@part_time = Experiencetable.find_by(:user_id => @user.user_id, :part_time => true)
 		@employ = Experiencetable.find_by(:user_id => @user.user_id, :employ => true) 
 		@volunteer = Experiencetable.find_by(:user_id => @user.user_id, :volunteer => true) 
-
-		@profile = Surveyprofile.find_by(:user_id => @user.user_id)		
 		
 		@communication = CommunicationSkill.find_by(:user_id=>@user.user_id)
 		@thinking = ThinkingSkill.find_by(:user_id=>@user.user_id)
