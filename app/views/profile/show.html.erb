@@ -190,51 +190,50 @@ function save()
                 </div>
             </div>                      
 
-          <div class="tab-pane fade content" id="exp">
-              <% @array = @experiences.to_a %> 
-              <%= link_to "Add a Experience",experiences_path, :id => "more"%> 
-            <% if(@array.empty?) %>
-              <p> No experiences added yet </p>
-            <%else %>
-              <% finish = 4 %>
-              <% for i in 0..finish%>
-                <% if(i < @array.length) %>
-                  <% exp = @array[i].title + " - " + @array[i].company_name %>
-                    <%= link_to exp, {:controller => "experiences", :action => "details", :id => @array[i].experience_id}, :id => "more"%></br>
+            <div class="tab-pane fade content" id="exp">
+                <% @array = @experiences.to_a %> 
+                <%= link_to "Add a Experience",experiences_path, :id => "more"%> 
+              <% if(@array.empty?) %>
+                <p> No experiences added yet </p>
+              <%else %>
+                <% finish = 4 %>
+                <% for i in 0..finish%>
+                  <% if(i < @array.length) %>
+                    <% exp = @array[i].title + " - " + @array[i].company_name %>
+                      <%= link_to exp, {:controller => "experiences", :action => "details", :id => @array[i].experience_id}, :id => "more"%></br>
+                  <%end%>
                 <%end%>
+                
+                  <div style = "" align = "right">
+                    <%= link_to "More",experiences_path, :id => "more"%>
+                </div>
               <%end%>
-              
-                <div style = "" align = "right">
-                  <%= link_to "More",experiences_path, :id => "more"%>
-              </div>
-            <%end%>
 
-
-          </div>
-          <div class="tab-pane fade content" id="ref">
-            <% @array = @references.to_a %>
-            <%= link_to "Add a Reference",references_path, :id => "more"%>
-             <% if(@array.empty?) %>
-                <p>No references added yet</p>
-            <%else%>
-              <% finish = 4 %>
-              <% for i in 0..finish%>
-                <% if(i < @array.length) %>
-                  <% ref = @array[i].fname + " " + @array[i].lname + " - " + @array[i].relationship %>
-                  
-                    <p> <%= link_to ref, {:controller => "references", :action => "one_ref", :id => @array[i].reference_id}, :id => "more"%> </p>
+            </div>
+            <div class="tab-pane fade content" id="ref">
+              <% @array = @references.to_a %>
+              <%= link_to "Add a Reference",references_path, :id => "more"%>
+               <% if(@array.empty?) %>
+                  <p>No references added yet</p>
+              <%else%>
+                <% finish = 4 %>
+                <% for i in 0..finish%>
+                  <% if(i < @array.length) %>
+                    <% ref = @array[i].fname + " " + @array[i].lname + " - " + @array[i].relationship %>
+                    
+                      <p> <%= link_to ref, {:controller => "references", :action => "one_ref", :id => @array[i].reference_id}, :id => "more"%> </p>
+                  <% end %>
+                <% end %>
+                <% if @array.length > finish + 1 %>
+                  </br>
+                  <div style = "" align = "right">
+                    <%= link_to "More",references_path, :id => "more"%>
+                  </div>
                 <% end %>
               <% end %>
-              <% if @array.length > finish + 1 %>
-                </br>
-                <div style = "" align = "right">
-                  <%= link_to "More",references_path, :id => "more"%>
-                </div>
-              <% end %>
-            <% end %>
+            </div>
           </div>
         </div>
-      </div>
       </div>      
   <% end %>
 </body>
