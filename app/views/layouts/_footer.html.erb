@@ -46,130 +46,140 @@ function change_chatbox3(){
   }
   </script>  
 </head>
-  <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style = "border: 0px solid white; background: rgba(255,255,255,0); width: 100%" >
+  <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style = "border: 0px solid white; 
+              background: rgba(255,255,255,0); width: 100%" >
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class = "container" style= "width: 100%; padding: 0px">
+      <div class = "container" style= "width: 100%; padding: 0px">
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 100%;margin-top:10px;">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 100%;margin-top:10px;">
 
-      <ul class="nav pull-right">
-      <% if user_signed_in?%>
-        <% @friends = Friendship.where(receiver_id: @user.user_id, accepted: true) %>
-        <% @friends = @friends + Friendship.where(sender_id: @user.user_id, accepted: true) %>
-        <% @online = Array.new %>
-        <% @offline = Array.new %>
-        <% 
-        @friends.each do |r|
-          if r.receiver_id==@user.user_id
-            @friend = User.find_by(user_id: r.sender_id)
-            if @friend.online
-              @online.push(@friend)
-            else
-              @offline.push(@friend)
-            end
-          else
-            @friend = User.find_by(user_id: r.receiver_id)
-            if @friend.online
-              @online.push(@friend)
-            else
-              @offline.push(@friend)
-            end
-          end
-        end
-        %>  
-        <li id = "testchat3" >
-          <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
-            <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).sender_id) %>
-            <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, sender_id: @other.user_id) %>
-            <% @seenMessages.each do |m|
-              m.update_attribute(:seen, true)
-              end %>
-            <%= render("layouts/chat3") %>
-            <script>
-            $("#chatbox2").load('layouts/_chat3.html.erb').scrollTop($("#chatbox2").load('layouts/_chat3.html.erb')[0].scrollHeight);
+              <ul class="nav pull-right">
+                  <% if user_signed_in?%>
+                    <% @friends = Friendship.where(receiver_id: @user.user_id, accepted: true) %>
+                    <% @friends = @friends + Friendship.where(sender_id: @user.user_id, accepted: true) %>
+                    <% @online = Array.new %>
+                    <% @offline = Array.new %>
+                    
+                    <% @friends.each do |r|
+                      if r.receiver_id==@user.user_id
+                        @friend = User.find_by(user_id: r.sender_id)
+                        if @friend.online
+                          @online.push(@friend)
+                        else
+                          @offline.push(@friend)
+                        end
+                      else
+                        @friend = User.find_by(user_id: r.receiver_id)
+                        if @friend.online
+                          @online.push(@friend)
+                        else
+                          @offline.push(@friend)
+                        end
+                      end
+                    end %>  
+                    
+                    <li id = "testchat3" >
+                      <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
+                          <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).sender_id) %>
+                          <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, sender_id: @other.user_id) %>
+                          
+                          <% @seenMessages.each do |m|
+                            m.update_attribute(:seen, true)
+                          end %>
 
-            </script>
-            <%
-            if @user.user_id<@other.user_id    
-              @id1 = @user.user_id
-              @id2 = @other.user_id   
-            else
-              @id2 = @user.user_id
-              @id1 = @other.user_id   
-            end
-            @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
-          <% end %>
-        </li>
-        <li id = "testchat2">
-          <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
-            <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).sender_id) %>
-            <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, sender_id: @other.user_id) %>
-            <% @seenMessages.each do |m|
-              m.update_attribute(:seen, true)
-              end %>
-            <%= render("layouts/chat2") %>
-            <script>
-            $("#chatbox2").load('layouts/_chat2.html.erb').scrollTop($("#chatbox2").load('layouts/_chat2.html.erb')[0].scrollHeight);
+                          <%= render("layouts/chat3") %>
+                          <script>
+                              $("#chatbox2").load('layouts/_chat3.html.erb').scrollTop($("#chatbox2").load('layouts/_chat3.html.erb')[0].scrollHeight);
+                          </script>
+                          
+                          <% if @user.user_id<@other.user_id    
+                            @id1 = @user.user_id
+                            @id2 = @other.user_id   
+                          else
+                            @id2 = @user.user_id
+                            @id1 = @other.user_id   
+                          end
+                          @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
 
-            </script>
-            <%
-            if @user.user_id<@other.user_id    
-              @id1 = @user.user_id
-              @id2 = @other.user_id   
-            else
-              @id2 = @user.user_id
-              @id1 = @other.user_id   
-            end
-            @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
-          <% end %>
-        </li>
-        <li id = "testchat1">
-          <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
-            <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).sender_id) %>
-            <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, sender_id: @other.user_id) %>
-            <% @seenMessages.each do |m|
-              m.update_attribute(:seen, true)
-              end %>
-            <%= render("layouts/chat1") %>
-            <script>
-            $("#chatbox2").load('layouts/_chat1.html.erb').scrollTop($("#chatbox2").load('layouts/_chat1.html.erb')[0].scrollHeight);
+                      <% end %>
+                    </li>
+                    <li id = "testchat2">
+                      <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
+                        <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).sender_id) %>
+                        <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, sender_id: @other.user_id) %>
+                        <% @seenMessages.each do |m|
+                          m.update_attribute(:seen, true)
+                          end %>
+                        <%= render("layouts/chat2") %>
+                        <script>
+                        $("#chatbox2").load('layouts/_chat2.html.erb').scrollTop($("#chatbox2").load('layouts/_chat2.html.erb')[0].scrollHeight);
 
-            </script>
-            <%
-            if @user.user_id<@other.user_id    
-              @id1 = @user.user_id
-              @id2 = @other.user_id   
-            else
-              @id2 = @user.user_id
-              @id1 = @other.user_id   
-            end
-            @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
-          <% end %>
-        </li>
-        <li class="dropup marker" id="accountmenu" style = "width: 160px; text-align: right;">  
-          <a class="dropdown-toggle marker" id = "brand" data-toggle="dropdown" style = "text-shadow: none;  cursor:pointer"> Chat<b class="caret"></b></a>  
-          <ul class="dropdown-menu flist" style = "text-align: left; width: 120px;">  
-            <li role="presentation" class="dropdown-header">Online Friends</li>
-            <% @online.each do |r| %>
-              <li><%= link_to r.fname+" "+r.lname, {controller: "layouts", action: "privatechat", id1: @user.user_id, id2: r.user_id}, remote: true%></li>
-            <% end %>
-            <% if @online.empty? %>
-              <li role = "presentation" class = "divider"></li>
-            <% end %>
-            <li role="presentation" class="dropdown-header">Offline Friends</li>
-            <% @offline.each do |t| %>
-              <li><%= link_to t.fname+" "+t.lname, profile_path(t) %></li>
-            <% end %>
-            <% if @offline.empty? %>
-              <li role = "presentation" class = "divider"></li>
-            <% end %>
-            <li><%= link_to "All friends", network_path%> </li>
-          </ul>              
-        </li>
-      <% end %>
-      </ul>
+                        </script>
+                        <%
+                        if @user.user_id<@other.user_id    
+                          @id1 = @user.user_id
+                          @id2 = @other.user_id   
+                        else
+                          @id2 = @user.user_id
+                          @id1 = @other.user_id   
+                        end
+                        @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
+                      <% end %>
+                    </li>
+                    <li id = "testchat1">
+                      <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
+                        <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).sender_id) %>
+                        <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, sender_id: @other.user_id) %>
+                        <% @seenMessages.each do |m|
+                          m.update_attribute(:seen, true)
+                          end %>
+                        <%= render("layouts/chat1") %>
+                        <script>
+                        $("#chatbox2").load('layouts/_chat1.html.erb').scrollTop($("#chatbox2").load('layouts/_chat1.html.erb')[0].scrollHeight);
 
-    </div><!-- /.navbar-collapse -->
-  </div>
-  </nav>
+                        </script>
+                        <%
+                        if @user.user_id<@other.user_id    
+                          @id1 = @user.user_id
+                          @id2 = @other.user_id   
+                        else
+                          @id2 = @user.user_id
+                          @id1 = @other.user_id   
+                        end
+                        @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
+                      <% end %>
+                    </li>
+                    <li class="dropup marker" id="accountmenu" style = "width: 160px; text-align: right;">  
+                      <a class="dropdown-toggle marker" id = "brand" data-toggle="dropdown" style = "text-shadow:   
+                        none;  cursor:pointer"> Chat<b class="caret"></b>
+                      </a>  
+                      <ul class="dropdown-menu flist" style = "text-align: left; width: 120px;">  
+                        <li role="presentation" class="dropdown-header">Online Friends</li>
+                        
+                        <% @online.each do |r| %>
+                          <li><%= link_to r.fname+" "+r.lname, {controller: "layouts", action: "privatechat", id1: @user.user_id, id2: r.user_id}, remote: true%></li>
+                        <% end %>
+
+                        <% if @online.empty? %>
+                            <li role = "presentation" class = "divider"></li>
+                        <% end %>
+
+                        <li role="presentation" class="dropdown-header">Offline Friends</li>
+                        <% @offline.each do |t| %>
+                          <li><%= link_to t.fname+" "+t.lname, profile_path(t) %></li>
+                        <% end %>
+
+                        <% if @offline.empty? %>
+                            <li role = "presentation" class = "divider"></li>
+                        <% end %>
+                        <li><%= link_to "All friends", network_path%> </li>
+                      </ul>              
+                    </li>
+                  <% end %>
+                  </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </nav>
+        
