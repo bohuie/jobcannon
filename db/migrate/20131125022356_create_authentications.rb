@@ -165,7 +165,16 @@ class CreateAuthentications < ActiveRecord::Migration
       t.datetime :last_seen_at  
     end
 
-
+    create_table :surveyprofiles do |t|
+      t.integer :user_id,   default: 0, null: false
+      t.integer :survey_id, default: 0, null: false
+      t.string  :postalcode
+      t.string  :education
+      t.string   :city
+      t.string   :province    
+      t.string   :gender,   default: nil
+      t.datetime :birthday
+    end
 
       create_table :languages do |t|
 
