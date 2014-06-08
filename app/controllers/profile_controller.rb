@@ -35,7 +35,7 @@ class ProfileController < ApplicationController
     @friendsadded = Friendship.where(sender_id: @owner.user_id, accepted: true)
     @friendsaccepted = Friendship.where(receiver_id: @owner.user_id, accepted: true)
     @friends = (@friendsaccepted + @friendsadded)
-    gon.info = @owner.info
+  
     
     if(@owner.employer?)
       @postings = Posting.where(:user_id => @owner.user_id).paginate(page: params[:page])
