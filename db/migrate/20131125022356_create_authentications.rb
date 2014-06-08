@@ -119,13 +119,6 @@ class CreateAuthentications < ActiveRecord::Migration
       t.boolean :mandatory
     end
 
-    create_table :surveyProfiles do |t|
-      t.integer :user_id,   default: 0, null: false
-      t.integer :survey_id, default: 0, null: false
-      t.string :postalcode
-      t.string :education
-    end
-
     create_table :users do |t|
       t.integer  :user_id,                default: 0,     null: false
       t.string   :username,               default: "",    null: false
