@@ -53,7 +53,6 @@ class CreateAuthentications < ActiveRecord::Migration
       t.integer  :receiver_id, default: 0,  null: false
       t.datetime :sent_at,                  null: false
       t.text     :message,     default: "", null: false
-      t.string   :sender_name
       t.boolean  :seen,         defalut: false
     end
 
