@@ -22,10 +22,8 @@ gem 'faye'
 gem 'thin'
 gem 'gon'
 gem 'rego-devise-lastseenable'
+gem 'twitter-bootstrap-rails'
 
-group :assets do
-  gem 'twitter-bootstrap-rails'
-end
 
 
 group :development, :test do
