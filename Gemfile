@@ -3,6 +3,8 @@ ruby '2.0.0'
 #ruby-gemset=railstutorial_rails_4_0
 
 gem 'rails', '4.0.0'
+gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
+gem 'jquery-rails', '2.3.0'
 #gem 'bootstrap-sass', '2.3.2.0'
 gem 'bootstrap-sass', '3'
 gem 'bcrypt-ruby', '3.0.1'
@@ -14,15 +16,16 @@ gem 'devise'
 gem 'simple_form'
 gem "therubyracer"
 gem "less-rails"
-gem "twitter-bootstrap-rails"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'faye'
 gem 'thin'
-gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
-gem 'jquery-rails', '2.3.0'
 gem 'gon'
 gem 'rego-devise-lastseenable'
+
+group :assets do
+  gem 'twitter-bootstrap-rails'
+end
 
 
 group :development, :test do

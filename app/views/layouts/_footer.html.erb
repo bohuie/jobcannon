@@ -34,6 +34,7 @@ function change_chatbox3(){
   faye.subscribe('<%=@channel%>', function(data) {
     eval(data);
   });
+  }); //syntax error here
   function hold(){
 
     document.getElementsByTagName("html")[0].setAttribute("style","overflow:hidden");
@@ -43,7 +44,7 @@ function change_chatbox3(){
 
     document.getElementsByTagName("html")[0].setAttribute("style","overflow:scroll");
   }
-  </script>
+  </script>  
 </head>
   <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style = "border: 0px solid white; background: rgba(255,255,255,0); width: 100%" >
     <!-- Brand and toggle get grouped for better mobile display -->
