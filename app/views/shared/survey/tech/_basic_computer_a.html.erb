@@ -24,9 +24,10 @@
 <% @q22 = "Connect a new device (e.g. mouse,printer,hard drive)" %>
 <% @basic = BasicComputerSkill.find_by(:user_id=> @user.user_id) %>
 
-	<body>
+<body>
 	<%= simple_form_for @basic, remote: true do |f| %>
 
+		<%= f.label @label %>
 		<table id = "survey_format">
 			<tr>
 				<th>

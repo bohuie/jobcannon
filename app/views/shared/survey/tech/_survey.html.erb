@@ -1,19 +1,9 @@
 <head>
 <script>	
 window.onload = function(){
-  var hash = window.location.hash;
-  hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+  	$("#tabs" ).tabs( { active: 3 } );
 
-
-  $('.nav a').click(function (e) {
-    $(this).tab('shown');
-    var scrollmem = $('body').scrollTop();
-    window.location.hash = this.hash;
-    $('html,body').scrollTop(scrollmem);
-  });
-
-};
-  
+}
 </script>
 </head>
 

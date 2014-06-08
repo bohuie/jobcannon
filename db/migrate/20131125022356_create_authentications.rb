@@ -118,8 +118,6 @@ class CreateAuthentications < ActiveRecord::Migration
     t.string :education
   end
 
-  create_table :survey
-
   create_table :users do |t|
     t.integer  :user_id,                default: 0,     null: false
     t.string   :username,               default: "",    null: false
@@ -156,7 +154,6 @@ class CreateAuthentications < ActiveRecord::Migration
     t.string   :provider
     t.boolean  :online
     t.string   :info
-    t.datetime :last_seen_at
-  end
+    t.datetime :last_seen_at  
   end
 end
