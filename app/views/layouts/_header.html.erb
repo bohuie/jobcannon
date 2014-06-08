@@ -18,9 +18,10 @@
         <li><%= link_to "Job Cannon", root_path, id: "logo",  style:"text-shadow:none;" %></li>
         <li style = "margin-bottom:0px;">
             <%= form_tag("/search", method: "get") do %>
-            <div style = "height:10px; padding-top: 6px;" >
-                <%= text_field_tag(:q)%> 
-            </div>
+              <div style = "height:10px; padding-top: 6px;" >
+                  <%= text_field_tag(:q)%> 
+              </div>
+            <%end%>
         </li>
         <li>
             <div style = "height:10px; padding-top: 0px; padding-left:2px;" >
@@ -34,10 +35,10 @@
       <% if user_signed_in? %>
           <li> <%= link_to "Home", profile_path(@user), id: "brand",  style:"text-shadow:none;" %> </li>
           <li class="dropdown" id="accountmenu">  
-            <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Account<b class="caret"></b></a>  
-            <ul class="dropdown-menu">  
-                <li><%= link_to "Edit Your Account", edit_user_registration_path, id: "brand", style: "color: black" %></li>   
-                 <li><%= link_to'Sign Out', destroy_user_session_path, :method => :delete, id:"brand", style:"text-shadow:none; color: black" %>  </li>
+              <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Account<b class="caret"></b></a>  
+              <ul class="dropdown-menu">  
+                  <li><%= link_to "Edit Your Account", edit_user_registration_path, id: "brand", style: "color: black" %></li>   
+                   <li><%= link_to'Sign Out', destroy_user_session_path, :method => :delete, id:"brand", style:"text-shadow:none; color: black" %>  </li>
               </ul>              
           </li>
       <% else %>
