@@ -39,18 +39,6 @@ class SurveysController < ApplicationController
 
 		@user = current_user
 		@survey_type = params[:type]
-		@tech = params[:tech]
-		@word_a = params[:word]
-		@pres = params[:pres]
-		@em = params[:email]
-		@internet = params[:internet]
-		@social = params[:social]
-		@online = params[:online]
-		@med = params[:media]
-
-		if @internet.nil?
-			@internet='0'
-		end
 
 		@profile = Surveyprofile.find_by(:user_id => @user.user_id)		
 		@language = Language.find_by(:user_id => @user.user_id)
