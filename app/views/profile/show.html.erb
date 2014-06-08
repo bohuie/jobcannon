@@ -1,5 +1,4 @@
-<head>
-  <%= include_gon %>
+<head>  
   <style type="text/css">
 
     #title{
@@ -46,14 +45,6 @@
   e.preventDefault()
   $(this).tab('show')
 })
-
-function save()
-  {
-    var g = document.getElementById("self").value;
-    <% @o %> = g;
-
-    alert(<%= @o %>);
-  }
   
   </script>
 </head>
@@ -225,7 +216,7 @@ function save()
                   <% end %>
                 <% end %>
                 <% if @array.length > finish + 1 %>
-                  </br>
+                  <br>
                   <div style = "" align = "right">
                     <%= link_to "More",references_path, :id => "more"%>
                   </div>
