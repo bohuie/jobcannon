@@ -40,8 +40,7 @@ class SurveysController < ApplicationController
 		@user = current_user
 		@survey_type = params[:type]
 
-		@language = Language.find_by(:user_id => @user.user_id)
-		@profile = Surveyprofile.find_by(:user_id => @user.user_id)	
+		@language = Language.find_by(:user_id => @user.user_id)		
 
 		@full_time = Experiencetable.find_by(:user_id => @user.user_id, :full_time => true)
 		@part_time = Experiencetable.find_by(:user_id => @user.user_id, :part_time => true)
@@ -53,6 +52,7 @@ class SurveysController < ApplicationController
 		@self = SelfDirectionSkill.find_by(:user_id=>@user.user_id)
 		@accountability = Accountability.find_by(:user_id=>@user.user_id)
 		@interpersonal = InterpersonalSkill.find_by(:user_id=>@user.user_id)
+		@profile = Surveyprofile.find_by(:user_id => @user.user_id)  
 
 		
 		if (@profile.nil?)

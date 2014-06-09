@@ -306,12 +306,12 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.boolean "italian_read",     default: false
     t.boolean "italian_write",    default: false
     t.boolean "italian_formal",   default: false
-    t.string  "other"
+    t.string  "other",            default: nil
     t.boolean "other_read",       default: false
     t.boolean "other_speak",      default: false
     t.boolean "other_write",      default: false
     t.boolean "other_formal",     default: false
-    t.integer "user_id"
+    t.integer "user_id",          default: 0,     null: false
     t.integer "language_id",      default: 0,     null: false
   end
 
@@ -593,12 +593,12 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   create_table "surveyprofiles", force: true do |t|
     t.integer  "user_id",    default: 0, null: false
     t.integer  "survey_id",  default: 0, null: false
-    t.string   "postalcode"
-    t.string   "education"
-    t.string   "city"
-    t.string   "province"
-    t.string   "gender"
-    t.datetime "birthday"
+    t.string   "postalcode", default: nil
+    t.string   "education", default: nil
+    t.string   "city", default: nil
+    t.string   "province", default: nil
+    t.string   "gender", default: nil
+    t.datetime "birthday", default: nil
   end
 
   create_table "technology_differences", force: true do |t|
@@ -690,5 +690,14 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "q20",     default: 0, null: false
     t.integer "q21",     default: 0, null: false
   end
+
+  create_table "progresses", force: true do |t|
+    t.integer "user_id"
+    t.integer "progress_id", default: 0, null: false
+    t.integer "profile_progress", default: 0, null: false
+    t.integer "personality_progress", default: 0, null: false
+    t.integer "experience_progress", default: 0, null: false
+    t.integer "tech_progress", default: 0, null: false
+  end 
 
 end

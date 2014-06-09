@@ -35,14 +35,14 @@ class ProfileController < ApplicationController
     @friendsadded = Friendship.where(sender_id: @owner.user_id, accepted: true)
     @friendsaccepted = Friendship.where(receiver_id: @owner.user_id, accepted: true)
     @friends = (@friendsaccepted + @friendsadded)
-  
-    
+
     if(@owner.employer?)
       @postings = Posting.where(:user_id => @owner.user_id).paginate(page: params[:page])
     else
       @experiences = Experience.where(:user_id => @owner.user_id).paginate(page: params[:page])
       @skills = Skill.where(:user_id => @owner.user_id).paginate(page: params[:page])
-      @references = Reference.where(:user_id => @owner.user_id).paginate(page: params[:page])
+      @references = Reference.where(:user_id => @owner.user_id).paginate(page: params[:page])      
+      progress()
     end
     reccomend()
   end
@@ -95,4 +95,40 @@ class ProfileController < ApplicationController
     params.require(:user).permit(:info)
   end
 
+  def progress
+
+      @profile_progress = -3
+      #@personality_progress = 0
+      #@experience_progress = 0
+
+      profile_progression()      
+  end
+
+  def profile_progression
+      @total_profile_questions = 7      
+      @pp = Surveyprofile.find_by(:user_id => @user.user_id)      
+      @lp = Language.find_by(:user_id => @user.user_id)      
+      @local_counter = -3
+
+      if (@pp.nil?)        
+        @profile_progress = 0
+      else          
+        @pp.attributes.each do |attr_name, attr_value|
+          if !(attr_value.nil? || attr_value == "") 
+            @profile_progress += 1 
+          end
+        end
+
+        @lp.attributes.each do |attr_name, attr_value|
+          if (attr_value != false && !attr_value.nil?) 
+            @local_counter += 1 
+          end
+        end
+
+        if @local_counter > 0
+          @profile_progress += 1
+        end
+      end
+      @profile_progress = (@profile_progress*100/@total_profile_questions)
+  end
 end

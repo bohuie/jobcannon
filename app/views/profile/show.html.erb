@@ -56,6 +56,8 @@
     <!-- -------------------------------------------------------------------------------- -->
   <% else %>
 
+  <p> Profile has <%= @profile_progress %> fields filled out </p>
+
     <div class = "row" height = 30px style = "">
 
         <div class = "col-lg-1">
@@ -162,7 +164,13 @@
             
             <div class="row">
                 <div class = "col-lg-4"> 
-                  <%= link_to image_tag('account.png'), survey_path(@user,:type=>2), class: "btn btn-primary", id: "survey_pic"%>                                                                                  
+                  <%= link_to image_tag('account.png'), survey_path(@user,:type=>2), class: "btn btn-primary", id: "survey_pic"%>
+                  <br><br>
+                  <div class="progress" style = "width: 90%">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="<%= @profile_progress%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @profile_progress %>%;">
+                        <%= @profile_progress %> %
+                      </div>
+                  </div>                                                                                  
                 </div>
 
                 <div class = "col-lg-4">

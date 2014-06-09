@@ -4,7 +4,8 @@
   $(this).tab('show')
 })    
 
-    function hide(){        
+    function hide(){   
+        alert("This was triggered");
         document.getElementById("gen").selectedIndex = -1;
     }
 
@@ -41,6 +42,8 @@
 <% @city = "What City do you Live in" %>
 <% @birthday = "When were you Born" %>
 <% @other = "Other (specify)" %> 
+
+<% @profile = Surveyprofile.find_by(:user_id => @user.user_id)  %>
 <div class = "row">
     <div class = "col-lg-2">
 	    <ul class="nav nav-pills nav-stacked" style = "margin-top: 10px">
@@ -65,9 +68,9 @@
                                     hide();
                                 </script>
 
-        		    		    <%= f.select :gender, @STATUS, :id=>"gen", :default => " " %>
+        		    		    <%= f.select :gender, @STATUS, :id=>"gen" %>
                             <% else %>
-                                <%= f.select :gender, @STATUS, :default => @profile.gender%>
+                                <%= f.select :gender, @STATUS, :default => @profile.gender %>
                             <% end %>
         		    		<br>
         		    		<br>
