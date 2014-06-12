@@ -18,13 +18,3 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
-
- function() {
-    // Setup drop down menu
-    $('.dropdown-toggle').dropdown();
-
-    // Fix input element click problem
-    $('.dropdown-menu').find('form').click(function(e) {
-      e.stopPropagation();
-    });
-  }
