@@ -23,7 +23,7 @@ class ExperiencetablesController < ApplicationController
 
 	def ft_update
 		@user = current_user
-		@exp_vol = Experiencetable.find_by(:user_id => @user.user_id,:full_time => true)
+		@exp_vol = Experiencetable.find_by(:user_id => @user.user_id,:full_time => true)		
 		@exp_vol.update_attributes(work_params)
 		respond_to do |f|
 			f.js

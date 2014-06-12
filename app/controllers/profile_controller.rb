@@ -95,16 +95,104 @@ class ProfileController < ApplicationController
     params.require(:user).permit(:info)
   end
 
-  def progress
-
-      @profile_progress = -3
+  def progress      
       #@personality_progress = 0
       #@experience_progress = 0
 
-      profile_progression()      
+      profile_progression()
+      personality_progression()
+      experience_progression()      
+  end
+
+  private
+
+  def experience_progression
+    @experience_progress = -16
+    @total_experience_questions = 82
+
+    @full_time = Experiencetable.find_by(:user_id => @user.user_id, :full_time => true)
+    @part_time = Experiencetable.find_by(:user_id => @user.user_id, :part_time => true)
+    @employ = Experiencetable.find_by(:user_id => @user.user_id, :employ => true) 
+    @volunteer = Experiencetable.find_by(:user_id => @user.user_id, :volunteer => true)
+
+    if (@full_time.nil?) 
+        @experience_progress =0
+    else 
+        @full_time.attributes.each do |attr_name, attr_value|
+            if (attr_value != false && attr_value != nil && attr_value != "") 
+              @experience_progress += 1 
+            end
+        end
+
+        @part_time.attributes.each do |attr_name, attr_value|
+            if (attr_value != false && attr_value != nil && attr_value != "") 
+              @experience_progress += 1 
+            end
+        end
+
+        @employ.attributes.each do |attr_name, attr_value|
+            if (attr_value != false && attr_value != nil && attr_value != "") 
+              @experience_progress += 1 
+            end
+        end
+
+        @volunteer.attributes.each do |attr_name, attr_value|
+            if (attr_value != false && attr_value != nil && attr_value != "") 
+              @experience_progress += 1 
+            end
+        end
+    end
+        #@experience_progress = (100*@experience_progress)/@total_experience_questions
+  end
+
+  def personality_progression
+    @personality_progress = -15
+    @total_personality_questions = 45
+    @communication = CommunicationSkill.find_by(:user_id=>@user.user_id)
+    @thinking = ThinkingSkill.find_by(:user_id=>@user.user_id)
+    @self = SelfDirectionSkill.find_by(:user_id=>@user.user_id)
+    @accountability = Accountability.find_by(:user_id=>@user.user_id)
+    @interpersonal = InterpersonalSkill.find_by(:user_id=>@user.user_id)
+
+    if (@communication.nil?)
+        @personality_progress = 0
+    else
+        @communication.attributes.each do |attr_name, attr_value|
+            if (attr_value != 0) 
+              @personality_progress += 1 
+          end
+        end
+
+        @thinking.attributes.each do |attr_name, attr_value|
+            if (attr_value != 0) 
+              @personality_progress += 1 
+          end
+        end
+
+        @self.attributes.each do |attr_name, attr_value|
+            if (attr_value != 0) 
+              @personality_progress += 1 
+          end
+        end
+
+        @accountability.attributes.each do |attr_name, attr_value|
+            if (attr_value != 0) 
+              @personality_progress += 1 
+          end
+        end
+
+        @interpersonal.attributes.each do |attr_name, attr_value|
+            if (attr_value != 0) 
+              @personality_progress += 1 
+          end
+        end
+    end
+
+    @personality_progress = (100*@personality_progress)/@total_personality_questions
   end
 
   def profile_progression
+      @profile_progress = -3
       @total_profile_questions = 7      
       @pp = Surveyprofile.find_by(:user_id => @user.user_id)      
       @lp = Language.find_by(:user_id => @user.user_id)      

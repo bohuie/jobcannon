@@ -10,8 +10,9 @@
 
 </script>
 </head>
+
 <body>
-	<%= simple_form_for @time, :url=>{:action=>"employ_update", :controller=> "experiencetables"}, remote: true do |f| %>
+	<%= simple_form_for @time, :url=>employ_update_experiencetable_path, remote: true do |f| %>
 		
 		<%= f.label @industryQ %>
 		<%= f.hidden_field :user_id , :value => @time.user_id %>
@@ -220,7 +221,7 @@
 		</table>
 	 	<div class="row">
 			<div class = "col-lg-2">
-				<%= f.submit "Submit", class: "btn btn-large btn-primary", onClick: "showSaved1();"%> 
+				<%= f.submit $submit, class: "btn btn-large btn-primary", onClick: "showSaved1();"%> 
 			</div>
 			<div class = "col-lg-4" id = "saved1" style= "display: none">
 				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">

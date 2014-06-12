@@ -70,7 +70,7 @@ First_Website::Application.routes.draw do
   
   resources :surveys do
     member do
-      get 'back'
+      #post :back, :formats => "js"
     end
   end 
 
@@ -114,6 +114,7 @@ First_Website::Application.routes.draw do
   get 'privatechat', to: 'messages#privatechat'
   get 'storemsg', to: 'messages#storemsg'
   post 'vol_update', to: 'survey#show'
+  get 'surveys/back', to: 'surveys#back'
 
 
    # get 'signin' => 'devise/sessions#new', :as => :new_user_session

@@ -153,32 +153,32 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "survey_id",      default: 0,     null: false
     t.integer "years_worked"
     t.integer "months_worked"
-    t.boolean "agriculture"
-    t.boolean "mining"
-    t.boolean "utilities"
-    t.boolean "construction"
-    t.boolean "manufacturing"
-    t.boolean "wholesale"
-    t.boolean "retail"
-    t.boolean "transport"
-    t.boolean "information"
-    t.boolean "finance"
-    t.boolean "real_estate"
-    t.boolean "professional"
-    t.boolean "managment"
-    t.boolean "administrative"
-    t.boolean "education"
-    t.boolean "health"
-    t.boolean "arts"
-    t.boolean "accomodation"
-    t.boolean "public"
+    t.boolean "agriculture",    default: false
+    t.boolean "mining",         default: false
+    t.boolean "utilities",      default: false
+    t.boolean "construction",   default: false
+    t.boolean "manufacturing",  default: false
+    t.boolean "wholesale",      default: false
+    t.boolean "retail",         default: false
+    t.boolean "transport",      default: false
+    t.boolean "information",    default: false
+    t.boolean "finance",        default: false
+    t.boolean "real_estate",    default: false
+    t.boolean "professional",   default: false
+    t.boolean "managment",      default: false
+    t.boolean "administrative", default: false
+    t.boolean "education",      default: false
+    t.boolean "health",         default: false
+    t.boolean "arts",           default: false
+    t.boolean "accomodation",   default: false
+    t.boolean "public",         default: false
     t.boolean "full_time",      default: false, null: false
     t.boolean "part_time",      default: false, null: false
     t.boolean "volunteer",      default: false, null: false
     t.boolean "employ",         default: false, null: false
     t.boolean "vol_work"
     t.integer "vol_hours"
-    t.string  "other"
+    t.string  "other",          default: nil
   end
 
   create_table "fields", force: true do |t|

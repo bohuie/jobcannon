@@ -36,22 +36,15 @@ class SurveysController < ApplicationController
 		 $submit = "Submit"
 		 $previous = "Previous" 
 
-
 		@user = current_user
-		@survey_type = params[:type]
-
-		@language = Language.find_by(:user_id => @user.user_id)		
-
-		@full_time = Experiencetable.find_by(:user_id => @user.user_id, :full_time => true)
-		@part_time = Experiencetable.find_by(:user_id => @user.user_id, :part_time => true)
-		@employ = Experiencetable.find_by(:user_id => @user.user_id, :employ => true) 
-		@volunteer = Experiencetable.find_by(:user_id => @user.user_id, :volunteer => true) 
+		@survey_type = params[:type]		
 		
 		@communication = CommunicationSkill.find_by(:user_id=>@user.user_id)
 		@thinking = ThinkingSkill.find_by(:user_id=>@user.user_id)
 		@self = SelfDirectionSkill.find_by(:user_id=>@user.user_id)
 		@accountability = Accountability.find_by(:user_id=>@user.user_id)
 		@interpersonal = InterpersonalSkill.find_by(:user_id=>@user.user_id)
+
 		@profile = Surveyprofile.find_by(:user_id => @user.user_id)  
 
 		
@@ -196,6 +189,15 @@ class SurveysController < ApplicationController
 			@onlinecolab_fluentcy.user_id = @user.user_id
 			@onlinecolab_fluentcy.save
 		end		
+		@file = params[:file]
+		@id = params[:div]
+		puts "THIS IS THE SHOW METHOD IN THE SURVEY CONTROLLER"
+		puts @file
+		unless @file.nil?
+			respond_to do |f|		
+				f.js { render 'shared/ajax/previous.js.erb' }
+			end
+		end
 	end
 
 	def create		
@@ -206,10 +208,12 @@ class SurveysController < ApplicationController
 	end
 
 	def back
-		
 		@file = params[:file]
-
-		redirect_to root_path
+		@id = params[:div]
+		puts "THIS IS THE BACK METHOD IN THE SURVEY CONTROLLER"
+		puts @id
+			respond_to do |f|		
+			f.js { render 'shared/ajax/previous.js.erb' }
+		end
 	end
-
 end

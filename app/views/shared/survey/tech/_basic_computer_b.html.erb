@@ -78,8 +78,11 @@
 				<td>
 					<br>
 					<%= f.submit $continue, class: "btn btn-primary"%>
+					<br> <br>					
 				</td>
 			</tr>		
 		</table>
+
+		<%= link_to "Load Profile", {:action => "back", :controller => "/surveys",  :div => "basic", :file => "shared/survey/tech/basic_computer_a"}, :remote=>true %> 
 	<% end %>
 </body>

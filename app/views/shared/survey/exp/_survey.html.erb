@@ -45,6 +45,11 @@ function myFunction(){
 <% @ft_public = "Public administration" %>
 <% @ft_other = "Other: Please Specify" %>
 
+<% @employ = Experiencetable.find_by(:user_id => @user.user_id, :employ => true)  
+   @volunteer = Experiencetable.find_by(:user_id => @user.user_id, :volunteer => true)  
+   @full_time = Experiencetable.find_by(:user_id => @user.user_id, :full_time => true) 
+   @part_time = Experiencetable.find_by(:user_id => @user.user_id, :part_time => true) %>
+
 <div class = "row">
 	<div class = "col-lg-2">
 		<ul class="nav nav-pills nav-stacked" style = "margin-top: 10px">

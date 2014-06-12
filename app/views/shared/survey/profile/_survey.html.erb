@@ -4,10 +4,6 @@
   $(this).tab('show')
 })    
 
-    function hide(){   
-        alert("This was triggered");
-        document.getElementById("gen").selectedIndex = -1;
-    }
 
     function showSaved(){
           $("#saved").fadeIn();
@@ -22,11 +18,13 @@
       $("#saved3").fadeIn();
       setTimeout(function(){$("#saved3").fadeOut("slow")}, 1000)
     }
-    function selector(){
+    function selectorgender(){
         $("#surveyprofile_gender").prop("selectedIndex", -1)
+    }
+
+    function selectoreducation(){
         $("#surveyprofile_education").prop("selectedIndex", -1)
     }
-    window.onload = selector;
 
 </script>
 <% @STATUS = [['Other','Other'],['Male','Male'],['Female','Female']] %>
@@ -63,19 +61,21 @@
         		    		<br>
         		    		<br>
         		    		<%= f.label @gender %>
+                            <%= f.select :gender, @STATUS, :default => @profile.gender %>
                             <% if @profile.gender.nil? %>
                                 <script type="text/javascript">
-                                    hide();
+                                    selectorgender();
                                 </script>
-
-        		    		    <%= f.select :gender, @STATUS, :id=>"gen" %>
-                            <% else %>
-                                <%= f.select :gender, @STATUS, :default => @profile.gender %>
                             <% end %>
         		    		<br>
         		    		<br>
         		    		<%= f.label @school %>
         		    		<%= f.select :education, @EDUCATION, :default => @profile.education%>
+                            <% if @profile.education.nil? %>
+                                <script type="text/javascript">
+                                    selectoreducation();
+                                </script>
+                            <% end %>
         		    		<br>
         		    		<br>
 

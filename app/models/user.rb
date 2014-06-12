@@ -39,11 +39,6 @@ class User < ActiveRecord::Base
   has_one :internet_tasks, dependent: :destroy
   has_one :internet_connections, dependent: :destroy
   has_one :browsers, dependent: :destroy
-
-
-
-
-
   
 
   # Include default devise modules. Others available are:

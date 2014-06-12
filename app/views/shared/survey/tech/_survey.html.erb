@@ -1,6 +1,12 @@
 <head>
 	<script>
+		$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
 
+
+		$('#myTab a[href="#email-skills"]').tab('show')
 	</script>
 </head>
 
@@ -8,8 +14,8 @@
 <body onload>
 	<div class = "row">
 	    <div class = "col-lg-3">
-		    <ul class="nav nav-pills nav-stacked" style = "margin-top: 10px">
-		        <li class="active"><a href="#basic-computer-skills" data-toggle="tab">Basic Computer Skills</a></li>
+		    <ul class="nav nav-pills nav-stacked" style = "margin-top: 10px" id ="myTab">
+		        <li class=><a href="#basic-computer-skills" data-toggle="tab">Basic Computer Skills</a></li>
 		        <li><a href="#advanced-computer-skills" data-toggle="tab">Advanced Computer Skills</a></li>
 		        <li><a href="#multi-media-skills" data-toggle="tab">Multi-Media Skills</a></li>
 		        <li><a href="#word-processing-skills" data-toggle="tab">Word Processing Skills</a></li>
@@ -23,7 +29,7 @@
 		</div>
 		<div class= "col-lg-9">
 			<div class = "tab-content">
-				<div class="tab-pane fade in active content survey-tabs" id="basic-computer-skills">
+				<div class="tab-pane fade in content survey-tabs" id="basic-computer-skills">
 					<div class ="row">
 						<div class = "col-lg-10" id ="basic">												
 							<%= render 'shared/survey/tech/basic_computer_a' %>					

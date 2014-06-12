@@ -12,6 +12,14 @@ def update
 	end
 end
 
+def show
+	@id = params[:div]
+	@file = params[:file]
+	puts "THIS IS THE SHOW METHOD IN THE BASIC CONTROLLER"
+	puts @id
+	render 'shared/ajax/previous.js.erb'
+end
+
 	private
 
 	def basic_params
