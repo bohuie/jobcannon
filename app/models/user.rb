@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_one :basic_computer_skills, dependent: :destroy
   has_many :experiencetables, dependent: :destroy
 
+  has_one :progresses, dependent: :destroy 
   has_one :operating_systems_usages, dependent: :destroy
   has_one :advanced_computer_skills, dependent: :destroy
   has_one :multi_media_skills, dependent: :destroy

@@ -22,8 +22,8 @@
 
 		<p style = "font-size: 15px;"> <b> <%=  @ft_question %> </b></p>			
 		
-		<%= f.select :vol_work, [['No',false],["Yes",true]], id: "volunteer_select" %>								
-			    						
+		<%= f.select :vol_work, [['No',false],["Yes",true]], class: "volunteer_select" %>								
+		<br> <br>					    					
 		<%= f.label @vol_hours %>
 		<br>
 		<%= f.text_field :vol_hours, style: "width: 20%"%>

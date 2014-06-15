@@ -18,17 +18,17 @@
 				<th>
 				</th>
 				<th>
-					<%= @header13 %>
+					<%= $header13 %>
 				</th>
 				<th>
-					<%= @header14 %>
+					<%= $header14 %>
 				</th>
 				<th>
-					<%= @header15 %>
+					<%= $header15 %>
 				</th>
 			</tr>
 			<tr>
-				<td style = "text-align: left; width: 30%">
+				<td style = "text-align: left; width: 20%">
 					<%= @windows %>
 				</td>
 				<td style = "width: 20%">
@@ -75,14 +75,16 @@
 					<br>
 					<%= f.text_field :other %>
 				</td>
-				<td>
-					<br>
-					<%= f.submit $continue, class: "btn btn-primary"%>
-					<br> <br>					
-				</td>
 			</tr>		
 		</table>
 
-		<%= link_to "Load Profile", {:action => "back", :controller => "/surveys",  :div => "basic", :file => "shared/survey/tech/basic_computer_a"}, :remote=>true %> 
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "basic", :file => "shared/survey/tech/basic_computer_a"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>
+			<div class = "col-lg-2">
+				<%= f.submit $continue, class: "btn btn-primary"%>
+			</div>
+		</div>
 	<% end %>
 </body>

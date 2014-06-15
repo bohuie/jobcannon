@@ -4,8 +4,8 @@ class Survey::Profile::LanguagesController < ApplicationController
 		@user = current_user
 		@language = Language.find_by(:user_id => @user.user_id)	
 		@language.user_id = current_user.user_id
-		@language.update_attributes(language_params)
-		@language.save
+		@language.update_attributes(language_params)		
+		profile_progression()
 		respond_to do|f|
 			f.js
 		end						
@@ -27,5 +27,39 @@ class Survey::Profile::LanguagesController < ApplicationController
 	    								:italian_speak,:italian_write,:italian_read,:italian_formal,
 	    								:other_speak,:other_write,:other_read,:other_formal, :other)
 	end
+
+
+	def profile_progression
+      @profile_progress = -3
+      @total_profile_questions = 7
+
+      @DBprogress = Progress.find_by(:user_id=> @user_id)       
+      @pp = Surveyprofile.find_by(:user_id => @user.user_id)      
+      @lp = Language.find_by(:user_id => @user.user_id)      
+      @local_counter = -3
+
+      if (@pp.nil?)        
+        @profile_progress = 0
+      else          
+        @pp.attributes.each do |attr_name, attr_value|
+          if !(attr_value.nil? || attr_value == "") 
+            @profile_progress += 1 
+          end
+        end
+
+        @lp.attributes.each do |attr_name, attr_value|
+          if (attr_value != false && !attr_value.nil?) 
+            @local_counter += 1 
+          end
+        end
+
+        if @local_counter > 0
+          @profile_progress += 1
+        end
+      end
+      @profile_progress = (@profile_progress*100/@total_profile_questions)
+      @DBprogress.profile_progress = @profile_progress
+      @DBprogress.save
+  end
 
 end

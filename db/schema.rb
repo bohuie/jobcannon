@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.boolean "part_time",      default: false, null: false
     t.boolean "volunteer",      default: false, null: false
     t.boolean "employ",         default: false, null: false
-    t.boolean "vol_work"
+    t.boolean "vol_work"     
     t.integer "vol_hours"
     t.string  "other",          default: nil
   end
@@ -687,8 +687,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "q17",     default: 0, null: false
     t.integer "q18",     default: 0, null: false
     t.integer "q19",     default: 0, null: false
-    t.integer "q20",     default: 0, null: false
-    t.integer "q21",     default: 0, null: false
+    t.integer "q20",     default: 0, null: false    
   end
 
   create_table "progresses", force: true do |t|
@@ -698,6 +697,16 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "personality_progress", default: 0, null: false
     t.integer "experience_progress", default: 0, null: false
     t.integer "tech_progress", default: 0, null: false
+    t.integer "basic_progress", default: 0, null: false
+    t.integer "advanced_progress", default: 0, null: false
+    t.integer "media_progress", default: 0, null: false
+    t.integer "word_progress", default: 0, null: false
+    t.integer "presentation_progress", default: 0, null: false
+    t.integer "spreadsheet_progress", default: 0, null: false
+    t.integer "email_progress", default: 0, null: false
+    t.integer "internet_progress", default: 0, null: false
+    t.integer "social_progress", default: 0, null: false
+    t.integer "online_progress", default: 0, null: false    
   end 
 
 end

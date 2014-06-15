@@ -12,7 +12,7 @@
 <% @q9 = "Send an email as a Reply to all " %>
 <% @q10 = "Blank carbon copy someone on an email" %>
 <% @q11 = "Flag an email as important" %>
-<% @q12 = "Re@quest email client to notify you (the sender) when a respondent has read your email" %>
+<% @q12 = "Request the email client to notify you (the sender) when a respondent has read your email" %>
 <% @q13 = "Email a meeting re@quest with a calender" %>
 <% @q14 = "manage account using folders" %>
 <% @q15 = "Send emails with attachments" %>
@@ -47,25 +47,25 @@
 				</th>
 			</tr>
 			<tr>
-				<td style = "text-align: left">
+				<td style = "text-align: left; width: 40%">
 					<%= @q1 %>
 				</td>
-				<td>
+				<td style = "10%">
 					<%= f.radio_button :q1, 6, :default => @email.q1 %>				
 				</td>
-				<td>
+				<td style = "10%">
 					<%= f.radio_button :q1, 5, :default => @email.q1 %>				
 				</td>
-				<td>
+				<td style = "10%">
 					<%= f.radio_button :q1, 4, :default => @email.q1 %>				
 				</td>
-				<td>
+				<td style = "10%">
 					<%= f.radio_button :q1, 3, :default => @email.q1 %>				
 				</td>
-				<td>
+				<td style = "10%">
 					<%= f.radio_button :q1, 2, :default => @email.q1 %>				
 				</td>
-				<td>
+				<td style = "10%">
 					<%= f.radio_button :q1, 1, :default => @email.q1 %>				
 				</td>
 			</tr>

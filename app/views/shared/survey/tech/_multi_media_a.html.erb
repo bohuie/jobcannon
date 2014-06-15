@@ -1,10 +1,10 @@
 <% @label1 = "How easy would you find the following tasks to complete on a computer?" %>
 
-<% q1 = "Create and use image files" %>
-<% q2 = "Create and use audio files" %>
-<% q3 = "Create and use video files" %>
-<% q4 = "Edit video files" %>
-<% q5 = "Add graphics/subtitles to video files" %>
+<% @q1 = "Create and use image files" %>
+<% @q2 = "Create and use audio files" %>
+<% @q3 = "Create and use video files" %>
+<% @q4 = "Edit video files" %>
+<% @q5 = "Add graphics/subtitles to video files" %>
 <% @media = MultiMediaSkill.find_by(:user_id=> @user.user_id) %>
 
 <body>

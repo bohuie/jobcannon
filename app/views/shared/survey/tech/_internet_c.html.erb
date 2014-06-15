@@ -262,7 +262,14 @@
 			</tr>
 		</table>
 
-		<%= f.submit $continue, class: "btn btn-primary" %>
-
+		<br>
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "internet", :file => "shared/survey/tech/internet_b"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>
+			<div class = "col-lg-2">
+				<%= f.submit $continue, class: "btn btn-primary" %>
+			</div>
+		</div>
 	<% end %>
 </body>

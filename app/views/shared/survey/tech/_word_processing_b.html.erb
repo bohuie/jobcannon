@@ -1,3 +1,12 @@
+<head>
+<script>	
+    function showSaved1(){    	
+      $("#saved3").fadeIn();
+      setTimeout(function(){$("#saved3").fadeOut("slow")}, 1000);
+    }
+</script>
+</head>
+
 <% @label = "How fluent are you with each of the following word processing programs? (How well would you be able to use each)" %>
 <% @q1 = "Word (Microsoft)" %>
 <% @q2 = "Pages (Apple)" %>
@@ -130,9 +139,19 @@
 		<%= f.label $other_label %>
 		<br>
 		<%= f.text_field :other %>	
-		<br>			
-							
-		<%=link_to "Previous", survey_path(@user,:type=> 3,:tech=>0, :word=>0), class: "btn btn-primary test" %>
-		<%= f.submit $submit, class: "btn btn-primary" %>
+		<br> <br>
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "word", :file => "shared/survey/tech/word_processing_a"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>
+			<div class="col-lg-2">
+				<%= f.submit $submit, class: "btn btn-primary", onClick: "showSaved1();" %>
+			</div>
+			<div class = "col-lg-4" id = "saved3" style= "display: none">
+				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+					Changes Saved
+				</div>
+			</div>
+		</div>
 	<% end %>
 </body>

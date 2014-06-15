@@ -45,7 +45,7 @@
   e.preventDefault()
   $(this).tab('show')
 })
-  
+    $('#myTab a[href="#exp"]').tab('show'); 
   </script>
 </head>
 
@@ -54,12 +54,7 @@
       I AM AN EMPLOYER
 
     <!-- -------------------------------------------------------------------------------- -->
-  <% else %>
-
-  <p> Profile has <%= @profile_progress %> fields filled out </p>
-  <p> Personality has <%= @personality_progress %> fields filled out </p>
-  <p> Experience has <%= @experience_progress %> fields filled out </p>
-
+  <% else %>    
     <div class = "row" height = 30px style = "">
 
         <div class = "col-lg-1">
@@ -102,7 +97,6 @@
                     <% if @postings.size >= 4 %>
                         <p style = "text-align: right; padding: 0em; margin: 0em; padding-right: 1em; padding-bottom: 1em;"><%= link_to "More", {controller: "skills", action: "reccomend"} %></p>
                     <% end %>
-
                   </td>
                 </tr>
               </table>
@@ -168,44 +162,311 @@
                 <div class = "col-lg-4"> 
                   <%= link_to image_tag('account.png'), survey_path(@user,:type=>2), class: "btn btn-primary", id: "survey_pic"%>
                   <br><br>
-                  <div class="progress" style = "width: 90%">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="<%= @profile_progress%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @profile_progress %>%;">
-                        <%= @profile_progress %> %
-                      </div>
-                  </div>                                                                                  
-                </div>
-
+                  <% if @progress.profile_progress >= 35 %>
+                      <div class="progress" style = "width: 90%">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.profile_progress%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress.profile_progress %>%;">
+                            <%= @progress.profile_progress %> %
+                          </div>
+                      </div>          
+                  <% else %>
+                      <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                            <%= @progress.profile_progress %> % 
+                            <div class="progress-bar" role="progressbar" aria-valuenow="<%= @experience_progress%>" aria
+                                -valuemax-valuemin="0" aria-valuemax="100" style="width: <%= @experience_progress %>%; 
+                                  margin-right: 5px"> 
+                            </div>
+                        </div>
+                  <% end %>
+                  </div>
                 <div class = "col-lg-4">
                   <%= link_to image_tag('per.png'), survey_path(@user,:type=> 1), class: "btn btn-primary", id: "survey_pic"%>
                   <br><br>
 
-                  <div class="progress" style = "width: 90%">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="<%= @personality_progress%>" aria-
-                            valuemin="0" aria-valuemax="100" style="width: <%= @personality_progress %>%;">
-                            <%= @personality_progress %> %
+                  <% if @progress.personality_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; color: black; text-align: left">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.personality_progress%>" aria-
+                                valuemin="0" aria-valuemax="100" style="width: <%= @progress.personality_progress %>%;">
+                                <%= @progress.personality_progress %> %      
+                          </div>
                       </div>
-                  </div>
+                  <% else %>
+                        <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                            <%= @progress.personality_progress %> % 
+                            <div class="progress-bar" role="progressbar"aria-valuenow="<%= @progress.personality_progress%>" aria-valuemax-valuemin="0" aria-valuemax="100" 
+                              style="width: <%= @progress.personality_progress %>%; margin-right: 5px"> 
+                            </div>
+                        </div>
+                  <% end %>
                 </div>
 
                 <div class = "col-lg-4">
                   <%= link_to image_tag('exp.png'), survey_path(@user,:type=> 0), class: "btn btn-primary", id: "survey_pic"%> 
                   <br> <br>
-                    <div class="progress" style = "width: 90%">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="<%= @experience_progress%>" aria-
-                              valuemin="0" aria-valuemax="100" style="width: <%= @experience_progress %>%;">
-                              <%= @experience_progress %> %
+
+                  <% if @progress.experience_progress >= 35 %>
+                    <div class="progress" style = "width: 90%; text-align: left">                        
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.experience_progress%>" aria-
+                              valuemin="0" aria-valuemax="100" style="width: <%= @progress.experience_progress %>%;">
+                              <%= @progress.experience_progress %> %
                         </div>
-                    </div> 
+                    </div>
+                  <% else %>
+                      <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                          <%= @progress.experience_progress %> %  
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.experience_progress%>" aria-
+                              valuemin="0" aria-valuemax="100" style="width: <%= @progress.experience_progress %>%; margin-right: 5px">                              
+                          </div>
+                      </div>
+                  <% end %>
+
                 </div>                
               </div>
-              <hr>
-                <div class="row">
-                  <div class = "col-lg-3">
-                    <%= link_to image_tag('tech.png'), survey_path(@user, :type=>3,:anchor => "online-skills"),class: "btn btn-primary", id: "survey_pic"%>                
+              <hr style = "margin-bottom: 0px">
+
+              <div class = "row">
+                <div class = "col-lg-5"></div>
+                <div class = "col-lg-4">
+                  Technology
+
+                    <% if @progress.tech_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; color: black; text-align: left">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.tech_progress%>" aria-
+                                valuemin="0" aria-valuemax="100" style="width: <%= @progress.tech_progress %>%;">
+                                <%= @progress.tech_progress %> %      
+                          </div>
+                      </div>
+                    <% else %>
+                          <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                              <%= @progress.tech_progress %> % 
+                              <div class="progress-bar" role="progressbar"aria-valuenow="<%= @progress.tech_progress%>" aria-valuemax-valuemin="0" aria-valuemax="100" 
+                                style="width: <%= @progress.tech_progress %>%; margin-right: 5px"> 
+                              </div>
+                          </div>
+                    <% end %> 
+
+                </div>
+              </div>
+              <br>              
+                <div class="row">                  
+                  <div class = "col-lg-4">
+
+                    <%= link_to "Basic Computer Skills", survey_path(@user, :type=>3,:anchor => "basic-computer-skills")%>
+
+                    <% if @progress.basic_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; text-align: left">                        
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.basic_progress%>" aria-
+                              valuemin="0" aria-valuemax="100" style="width: <%= @progress.basic_progress %>%;">
+                              <%= @progress.basic_progress %> %
+                        </div>
+                      </div>
+                  <% else %>
+                      <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                          <%= @progress.basic_progress %> %  
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.basic_progress%>" aria-
+                              valuemin="0" aria-valuemax="100" style="width: <%= @progress.basic_progress %>%; margin-right: 5px">                              
+                          </div>
+                      </div>
+                  <% end %>
+
+
+                  </div>
+                  <div class = "col-lg-4">
+                    <%= link_to "Advanced Computer Skills", survey_path(@user, :type=>3,:anchor => "advanced-computer-skills")%> 
+
+                    <% if @progress.advanced_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; text-align: left">                        
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.advanced_progress%>" aria-
+                              valuemin="0" aria-valuemax="100" style="width: <%= @progress.advanced_progress %>%;">
+                              <%= @progress.advanced_progress %> %
+                        </div>
+                      </div>
+                  <% else %>
+                      <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                          <%= @progress.advanced_progress %> %  
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.advanced_progress%>" aria-
+                              valuemin="0" aria-valuemax="100" style="width: <%= @progress.advanced_progress %>%; margin-right: 5px">                              
+                          </div>
+                      </div>
+                  <% end %>
+
+                  </div>
+                  <div class = "col-lg-4">
+                    <br>
+                    <%= link_to "Multi Media Skills", survey_path(@user, :type=>3,:anchor => "multi-media-skills")%>      
+                    <% if @progress.media_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; text-align: left">                        
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.media_progress%>" aria-
+                              valuemin="0" aria-valuemax="100" style="width: <%= @progress.media_progress %>%;">
+                              <%= @progress.media_progress %> %
+                        </div>
+                      </div>
+                    <% else %>
+                        <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                            <%= @progress.media_progress %> %  
+                            <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.media_progress%>" aria-
+                                valuemin="0" aria-valuemax="100" style="width: <%= @progress.media_progress %>%; margin-right: 5px">                              
+                            </div>
+                        </div>
+                    <% end %>
+
+                  </div>
+                </div> <!-- closes row -->
+
+                <div class="row">                  
+                  <div class = "col-lg-4">
+                    <%= link_to "Word Processing Skills", survey_path(@user, :type=>3,:anchor => "word-processing-skills")%> 
+
+                    <% if @progress.word_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; text-align: left">                        
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.word_progress%>" aria-
+                              valuemin="0" aria-valuemax="100" style="width: <%= @progress.word_progress %>%;">
+                              <%= @progress.word_progress %> %
+                        </div>
+                      </div>
+                    <% else %>
+                        <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                            <%= @progress.word_progress %> %  
+                            <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.word_progress%>" aria-
+                                valuemin="0" aria-valuemax="100" style="width: <%= @progress.word_progress %>%; margin-right: 5px">                              
+                            </div>
+                        </div>
+                    <% end %>
+
+                  </div>
+                  <div class = "col-lg-4">
+                    <br>
+                    <%= link_to "Spreadsheet Skills", survey_path(@user, :type=>3,:anchor => "spreadsheet-skills")%>
+
+                    <% if @progress.spreadsheet_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; color: black; text-align: left">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.spreadsheet_progress%>" aria-
+                                valuemin="0" aria-valuemax="100" style="width: <%= @progress.spreadsheet_progress %>%;">
+                                <%= @progress.spreadsheet_progress %> %      
+                          </div>
+                      </div>
+                    <% else %>
+                          <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                              <%= @progress.spreadsheet_progress %> % 
+                              <div class="progress-bar" role="progressbar"aria-valuenow="<%= @progress.spreadsheet_progress%>" aria-valuemax-valuemin="0" aria-valuemax="100" 
+                                style="width: <%= @progress.spreadsheet_progress %>%; margin-right: 5px"> 
+                              </div>
+                          </div>
+                    <% end %>
+
+                  </div>
+                  <div class = "col-lg-4">
+                    <br>
+                    <%= link_to "Presentation Skills", survey_path(@user, :type=>3,:anchor => "presentation-skills")%> 
+
+                    <% if @progress.presentation_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; color: black; text-align: left">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.presentation_progress%>" aria-
+                                valuemin="0" aria-valuemax="100" style="width: <%= @progress.presentation_progress %>%;">
+                                <%= @progress.presentation_progress %> %      
+                          </div>
+                      </div>
+                    <% else %>
+                          <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                              <%= @progress.presentation_progress %> % 
+                              <div class="progress-bar" role="progressbar"aria-valuenow="<%= @progress.presentation_progress%>" aria-valuemax-valuemin="0" aria-valuemax="100" 
+                                style="width: <%= @progress.presentation_progress %>%; margin-right: 5px"> 
+                              </div>
+                          </div>
+                    <% end %>               
                   </div>
                 </div>
-            </div>                      
 
+                <div class="row">                  
+                  <div class = "col-lg-4">
+                    <br>
+                    <%= link_to "Email Skills", survey_path(@user, :type=>3,:anchor => "email-skills")%> 
+
+                    <% if @progress.email_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; color: black; text-align: left">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.email_progress%>" aria-
+                                valuemin="0" aria-valuemax="100" style="width: <%= @progress.email_progress %>%;">
+                                <%= @progress.email_progress %> %      
+                          </div>
+                      </div>
+                    <% else %>
+                          <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                              <%= @progress.email_progress %> % 
+                              <div class="progress-bar" role="progressbar"aria-valuenow="<%= @progress.email_progress%>" aria-valuemax-valuemin="0" aria-valuemax="100" 
+                                style="width: <%= @progress.email_progress %>%; margin-right: 5px"> 
+                              </div>
+                          </div>
+                    <% end %>    
+
+                  </div>
+                  <div class = "col-lg-4">
+                    <%= link_to "Internet/network Skills", survey_path(@user, :type=>3,:anchor => "internet-skills")%>
+
+                    <% if @progress.internet_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; color: black; text-align: left">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.internet_progress%>" aria-
+                                valuemin="0" aria-valuemax="100" style="width: <%= @progress.internet_progress %>%;">
+                                <%= @progress.internet_progress %> %      
+                          </div>
+                      </div>
+                    <% else %>
+                          <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                              <%= @progress.internet_progress %> % 
+                              <div class="progress-bar" role="progressbar"aria-valuenow="<%= @progress.internet_progress%>" aria-valuemax-valuemin="0" aria-valuemax="100" 
+                                style="width: <%= @progress.internet_progress %>%; margin-right: 5px"> 
+                              </div>
+                          </div>
+                    <% end %>    
+                    
+
+                  </div>
+                  <div class = "col-lg-4">
+                    <br>
+                    <%= link_to "Social Media Skills", survey_path(@user, :type=>3,:anchor => "social-media-skills")%>
+
+                    <% if @progress.social_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; color: black; text-align: left">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.social_progress%>" aria-
+                                valuemin="0" aria-valuemax="100" style="width: <%= @progress.social_progress %>%;">
+                                <%= @progress.social_progress %> %      
+                          </div>
+                      </div>
+                    <% else %>
+                          <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                              <%= @progress.social_progress %> % 
+                              <div class="progress-bar" role="progressbar"aria-valuenow="<%= @progress.social_progress%>" aria-valuemax-valuemin="0" aria-valuemax="100" 
+                                style="width: <%= @progress.social_progress %>%; margin-right: 5px"> 
+                              </div>
+                          </div>
+                    <% end %> 
+
+                  </div>
+                </div>
+
+                <div class="row">                  
+                  <div class = "col-lg-4">
+                    <br>
+                    <%= link_to "Online Skills", survey_path(@user, :type=>3,:anchor => "online-skills")%>
+
+                    <% if @progress.online_progress >= 35 %>
+                      <div class="progress" style = "width: 90%; color: black; text-align: left">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @progress.online_progress%>" aria-
+                                valuemin="0" aria-valuemax="100" style="width: <%= @progress.online_progress %>%;">
+                                <%= @progress.online_progress %> %      
+                          </div>
+                      </div>
+                    <% else %>
+                          <div class="progress" style = "width: 90%; text-align: left; color: #428bca;"> 
+                              <%= @progress.online_progress %> % 
+                              <div class="progress-bar" role="progressbar"aria-valuenow="<%= @progress.online_progress%>" aria-valuemax-valuemin="0" aria-valuemax="100" 
+                                style="width: <%= @progress.online_progress %>%; margin-right: 5px"> 
+                              </div>
+                          </div>
+                    <% end %> 
+
+                  </div>                  
+                </div>
+
+              </div>                                
             <div class="tab-pane fade content" id="exp">
                 <% @array = @experiences.to_a %> 
                 <%= link_to "Add a Experience",experiences_path, :id => "more"%> 
@@ -231,25 +492,25 @@
               <%= link_to "Add a Reference",references_path, :id => "more"%>
                <% if(@array.empty?) %>
                   <p>No references added yet</p>
-              <%else%>
-                <% finish = 4 %>
-                <% for i in 0..finish%>
-                  <% if(i < @array.length) %>
-                    <% ref = @array[i].fname + " " + @array[i].lname + " - " + @array[i].relationship %>
+               <%else%>
+                  <% finish = 4 %>
+                  <% for i in 0..finish%>
+                    <% if(i < @array.length) %>
+                      <% ref = @array[i].fname + " " + @array[i].lname + " - " + @array[i].relationship %>
                     
-                      <p> <%= link_to ref, {:controller => "references", :action => "one_ref", :id => @array[i].reference_id}, :id => "more"%> </p>
+                        <p> <%= link_to ref, {:controller => "references", :action => "one_ref", :id => @array[i].reference_id}, :id => "more"%> </p>
+                      <% end %>
+                    <% end %>
+                  <% if @array.length > finish + 1 %>
+                      <br>
+                      <div style = "" align = "right">
+                        <%= link_to "More",references_path, :id => "more"%>
+                      </div>
                   <% end %>
-                <% end %>
-                <% if @array.length > finish + 1 %>
-                  <br>
-                  <div style = "" align = "right">
-                    <%= link_to "More",references_path, :id => "more"%>
-                  </div>
-                <% end %>
               <% end %>
             </div>
-          </div>
-        </div>
-      </div>      
+          </div> <!-- matches to 142 -->
+        </div>   <!-- matches to 134 -->
+      </div>      <!-- matches to 112 -->
   <% end %>
 </body>

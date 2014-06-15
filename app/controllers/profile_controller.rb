@@ -6,12 +6,12 @@ class ProfileController < ApplicationController
     puts @user
     @owner = User.find(params[:id])
     if(@owner.employer?)
-      @postings = Posting.where(:user_id => @owner.user_id).paginate(page: params[:page])
+      @postings = Posting.where(:user_id => @owner.user_id)
       @pp = 0
     else
-      @experiences = Experience.where(:user_id => @owner.user_id).paginate(page: params[:page])
-      @skills = Skill.where(:user_id => @owner.user_id).paginate(page: params[:page])
-      @references = Reference.where(:user_id => @owner.user_id).paginate(page: params[:page])
+      @experiences = Experience.where(:user_id => @owner.user_id)
+      @skills = Skill.where(:user_id => @owner.user_id)
+      @references = Reference.where(:user_id => @owner.user_id)
     end
   end
 
@@ -37,11 +37,11 @@ class ProfileController < ApplicationController
     @friends = (@friendsaccepted + @friendsadded)
 
     if(@owner.employer?)
-      @postings = Posting.where(:user_id => @owner.user_id).paginate(page: params[:page])
+      @postings = Posting.where(:user_id => @owner.user_id)
     else
-      @experiences = Experience.where(:user_id => @owner.user_id).paginate(page: params[:page])
-      @skills = Skill.where(:user_id => @owner.user_id).paginate(page: params[:page])
-      @references = Reference.where(:user_id => @owner.user_id).paginate(page: params[:page])      
+      @experiences = Experience.where(:user_id => @owner.user_id)
+      @skills = Skill.where(:user_id => @owner.user_id)
+      @references = Reference.where(:user_id => @owner.user_id)
       progress()
     end
     reccomend()
@@ -96,127 +96,30 @@ class ProfileController < ApplicationController
   end
 
   def progress      
-      #@personality_progress = 0
-      #@experience_progress = 0
+      
+      @local_tech = 0
 
-      profile_progression()
-      personality_progression()
-      experience_progression()      
+      @progress = Progress.find_by(:user_id=>@user.user_id)
+
+      if @progress.nil?
+        @progress = Progress.new
+        @progress.user_id = @user.user_id
+        @progress.save
+      end                   
+
+      @local_tech += @progress.basic_progress
+      @local_tech += @progress.advanced_progress
+      @local_tech += @progress.media_progress
+      @local_tech += @progress.spreadsheet_progress
+      @local_tech += @progress.word_progress
+      @local_tech += @progress.email_progress
+      @local_tech += @progress.presentation_progress
+      @local_tech += @progress.internet_progress
+      @local_tech += @progress.online_progress
+      @local_tech += @progress.social_progress
+
+      @progress.tech_progress = @local_tech/10
+      @progress.save 
   end
 
-  private
-
-  def experience_progression
-    @experience_progress = -16
-    @total_experience_questions = 82
-
-    @full_time = Experiencetable.find_by(:user_id => @user.user_id, :full_time => true)
-    @part_time = Experiencetable.find_by(:user_id => @user.user_id, :part_time => true)
-    @employ = Experiencetable.find_by(:user_id => @user.user_id, :employ => true) 
-    @volunteer = Experiencetable.find_by(:user_id => @user.user_id, :volunteer => true)
-
-    if (@full_time.nil?) 
-        @experience_progress =0
-    else 
-        @full_time.attributes.each do |attr_name, attr_value|
-            if (attr_value != false && attr_value != nil && attr_value != "") 
-              @experience_progress += 1 
-            end
-        end
-
-        @part_time.attributes.each do |attr_name, attr_value|
-            if (attr_value != false && attr_value != nil && attr_value != "") 
-              @experience_progress += 1 
-            end
-        end
-
-        @employ.attributes.each do |attr_name, attr_value|
-            if (attr_value != false && attr_value != nil && attr_value != "") 
-              @experience_progress += 1 
-            end
-        end
-
-        @volunteer.attributes.each do |attr_name, attr_value|
-            if (attr_value != false && attr_value != nil && attr_value != "") 
-              @experience_progress += 1 
-            end
-        end
-    end
-        #@experience_progress = (100*@experience_progress)/@total_experience_questions
-  end
-
-  def personality_progression
-    @personality_progress = -15
-    @total_personality_questions = 45
-    @communication = CommunicationSkill.find_by(:user_id=>@user.user_id)
-    @thinking = ThinkingSkill.find_by(:user_id=>@user.user_id)
-    @self = SelfDirectionSkill.find_by(:user_id=>@user.user_id)
-    @accountability = Accountability.find_by(:user_id=>@user.user_id)
-    @interpersonal = InterpersonalSkill.find_by(:user_id=>@user.user_id)
-
-    if (@communication.nil?)
-        @personality_progress = 0
-    else
-        @communication.attributes.each do |attr_name, attr_value|
-            if (attr_value != 0) 
-              @personality_progress += 1 
-          end
-        end
-
-        @thinking.attributes.each do |attr_name, attr_value|
-            if (attr_value != 0) 
-              @personality_progress += 1 
-          end
-        end
-
-        @self.attributes.each do |attr_name, attr_value|
-            if (attr_value != 0) 
-              @personality_progress += 1 
-          end
-        end
-
-        @accountability.attributes.each do |attr_name, attr_value|
-            if (attr_value != 0) 
-              @personality_progress += 1 
-          end
-        end
-
-        @interpersonal.attributes.each do |attr_name, attr_value|
-            if (attr_value != 0) 
-              @personality_progress += 1 
-          end
-        end
-    end
-
-    @personality_progress = (100*@personality_progress)/@total_personality_questions
-  end
-
-  def profile_progression
-      @profile_progress = -3
-      @total_profile_questions = 7      
-      @pp = Surveyprofile.find_by(:user_id => @user.user_id)      
-      @lp = Language.find_by(:user_id => @user.user_id)      
-      @local_counter = -3
-
-      if (@pp.nil?)        
-        @profile_progress = 0
-      else          
-        @pp.attributes.each do |attr_name, attr_value|
-          if !(attr_value.nil? || attr_value == "") 
-            @profile_progress += 1 
-          end
-        end
-
-        @lp.attributes.each do |attr_name, attr_value|
-          if (attr_value != false && !attr_value.nil?) 
-            @local_counter += 1 
-          end
-        end
-
-        if @local_counter > 0
-          @profile_progress += 1
-        end
-      end
-      @profile_progress = (@profile_progress*100/@total_profile_questions)
-  end
 end

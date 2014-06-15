@@ -60,7 +60,7 @@
         		  			<%= f.date_field :birthday, :default => @profile.birthday %>
         		    		<br>
         		    		<br>
-        		    		<%= f.label @gender %>
+        		    		<%= f.label @gender %> <br>
                             <%= f.select :gender, @STATUS, :default => @profile.gender %>
                             <% if @profile.gender.nil? %>
                                 <script type="text/javascript">

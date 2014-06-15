@@ -187,7 +187,8 @@ class SurveysController < ApplicationController
 
 			@onlinecolab_fluentcy = OnlineColabFluentcy.new
 			@onlinecolab_fluentcy.user_id = @user.user_id
-			@onlinecolab_fluentcy.save
+			@onlinecolab_fluentcy.save			
+
 		end		
 		@file = params[:file]
 		@id = params[:div]

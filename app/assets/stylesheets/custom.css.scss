@@ -1,5 +1,8 @@
 @import "bootstrap";
 
+.volunteer_select{
+  width: 20% !important;
+}
 
 /* Responcible for making chat ul black when not over it */
 html:hover{
@@ -504,7 +507,7 @@ aside {
 }
 /* forms */
 
-input, textarea, select, .uneditable-input {
+input, textarea, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;

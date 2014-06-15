@@ -50,25 +50,25 @@
 				</th>
 			</tr>
 			<tr>
-				<td style = "text-align: left">
+				<td style = "text-align: left; width: 30%">
 					<%= @q1 %>
 				</td>
-				<td>
+				<td style = "width: 10%">
 					<%= f.radio_button :q1, 6, :default => @internettask.q1 %>				
 				</td>
-				<td>
+				<td style = "width: 10%">
 					<%= f.radio_button :q1, 5, :default => @internettask.q1 %>				
 				</td>
-				<td>
+				<td style = "width: 10%">
 					<%= f.radio_button :q1, 4, :default => @internettask.q1 %>				
 				</td>
-				<td>
+				<td style = "width: 10%">
 					<%= f.radio_button :q1, 3, :default => @internettask.q1 %>				
 				</td>
-				<td>
+				<td style = "width: 10%">
 					<%= f.radio_button :q1, 2, :default => @internettask.q1 %>				
 				</td>
-				<td>
+				<td style = "width: 15%">
 					<%= f.radio_button :q1, 1, :default => @internettask.q1 %>				
 				</td>
 			</tr>
@@ -441,8 +441,14 @@
 				</td>
 			</tr>
 		</table>
-
-		<%= f.submit $continue, class: "btn btn-primary" %>
-
+		<br>
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "internet", :file => "shared/survey/tech/internet_a"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>
+			<div class = "col-lg-2">
+				<%= f.submit $continue, class: "btn btn-primary" %>
+			</div>
+		</div>
 	<% end %>
 </body>

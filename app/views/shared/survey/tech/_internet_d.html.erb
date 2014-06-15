@@ -48,6 +48,11 @@
 	 		$('#magnitude_otherdetailsa').hide()
 	 		$('#magnitude_otherdetailsb').hide()
 	    }
+
+	    function showSaved1(){
+      		$("#saved8").fadeIn();
+      		setTimeout(function(){$("#saved8").fadeOut("slow")}, 1000)
+    	}
     </script>
 </head>
 <% @label = "Do you know what the following types of internet connections?" %>
@@ -476,18 +481,26 @@
 				</td>
 			</tr>
 		</table>
-		<table>
-		<tr  id = "last_row">
-			<td style = "text-align: left;">
+		<div class = "row">
+			<div class = "col-lg-5">			
 				<%= f.label $other_label %>							
 				<br>
-				<%= f.text_field :other %>
-			</td>			
-			<td style = "padding-left: 2em">
-				<br>
-				<%= f.submit $submit, class: "btn btn-primary" %>
-			</td>			
-		</tr>
-	</table>
+				<%= f.text_field :other, style: "" %>
+			</div>						
+		</div>
+
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "internet", :file => "shared/survey/tech/internet_c"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>
+			<div class = "col-lg-2">
+				<%= f.submit $submit, class: "btn btn-primary", onClick: "showSaved1();" %>
+			</div>
+			<div class = "col-lg-4" id = "saved8" style= "display: none">				
+				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+					Changes Saved
+				</div>
+			</div>
+		</div>
 	<% end %>
 </body>
