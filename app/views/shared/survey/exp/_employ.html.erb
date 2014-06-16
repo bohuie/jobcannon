@@ -1,8 +1,11 @@
 <head>
 	<script type="text/javascript">
-    function hide(){        
-        document.getElementById("gen").selectedIndex = -1;
+    
+    function selectorwork(){
+
+    	$("#experiencetable_looking_for_work").prop("selectedIndex", -1)
     }
+
     function showSaved1(){
       $("#saved1").fadeIn();
       setTimeout(function(){$("#saved1").fadeOut("slow")}, 1000)
@@ -11,11 +14,22 @@
 </script>
 </head>
 
+<% @label = "Are you currently looking for work?" %>
+
 <body>
 	<%= simple_form_for @time, :url=>employ_update_experiencetable_path, remote: true do |f| %>
 		
 		<%= f.label @industryQ %>
 		<%= f.hidden_field :user_id , :value => @time.user_id %>
+
+		<%= f.label @label %>
+		<%= f.select :looking_for_work, [['No',false],["Yes",true]], :default=> @time.looking_for_work %>
+
+		<% if @time.looking_for_work.nil? %>
+            <script type="text/javascript">
+                selectorwork();
+            </script>
+        <% end %>								
 
 		<table style = "margin-left: 10px;" id = "ft-exp">
 			<tr>

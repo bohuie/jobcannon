@@ -48,7 +48,7 @@ class ExperiencetablesController < ApplicationController
 	def employ_params
 		params.require(:experiencetable).permit(:agriculture,:mining,:utilities,:construction,
 		 	:manufacturing,:wholesale,:retail,:transport,:information,:finance,:real_estate,:professional,:managment,
-		 	:administrative,:education,:health,:arts,:accomodation,:public,:other,:user_id)
+		 	:administrative,:education,:health,:arts,:accomodation,:public,:other,:user_id, :looking_for_work)
 	end
 
 	def vol_params
@@ -65,7 +65,7 @@ class ExperiencetablesController < ApplicationController
 
 	def experience_progression
 	    @experience_progress = -16
-	    @total_experience_questions = 10
+	    @total_experience_questions = 11
 	    @a1 = 0
 	    @a2 = 0
 	    @a3 = 0
@@ -103,13 +103,20 @@ class ExperiencetablesController < ApplicationController
 	        end
 
 	        @employ.attributes.each do |attr_name, attr_value|
-	            if (attr_value != false && attr_value != nil && attr_value != "" && attr_name != "other") 
-	              if (attr_value == true && attr_name != "employ")
-	                @a3 = 1        	                
-	              else
-	                @experience_progress += 1	                
-	              end     
-	            end
+	        	if attr_name == "looking_for_work" && (attr_value ==false || attr_value == true)
+	            	@experience_progress += 1
+	            	puts "We are looking for work"
+	            else
+		            if (attr_value != false && attr_value != nil && attr_value != "" && attr_name != "other") 
+		              if (attr_value == true && attr_name != "employ" && attr_name != "looking_for_work")
+		                @a3 = 1 
+		                puts "a profession is checked"       	                
+		              else
+		                @experience_progress += 1	  
+		                puts "something other then a profession"              
+		              end     
+		            end
+		        end	           
 	        end
 
 	        @volunteer.attributes.each do |attr_name, attr_value|

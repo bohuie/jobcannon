@@ -1,9 +1,8 @@
 <head>
 	<script type="text/javascript">
-    function hide(){        
-        document.getElementById("gen").selectedIndex = -1;
-    }
-    function selector(){
+    
+
+    function selectorvol(){
     	$("#experiencetable_vol_work").prop("selectedIndex", -1)
     }
     window.onload = selector;
@@ -22,7 +21,14 @@
 
 		<p style = "font-size: 15px;"> <b> <%=  @ft_question %> </b></p>			
 		
-		<%= f.select :vol_work, [['No',false],["Yes",true]], class: "volunteer_select" %>								
+		<%= f.select :vol_work, [['No',false],["Yes",true]], :default=>@time.vol_work, class: "volunteer_select" %>	
+
+		<% if @time.vol_work.nil? %>
+            <script type="text/javascript">
+                selectorvol();
+            </script>
+        <% end %>								
+
 		<br> <br>					    					
 		<%= f.label @vol_hours %>
 		<br>
