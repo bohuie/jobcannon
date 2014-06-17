@@ -149,37 +149,37 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   end
 
   create_table "experiencetables", force: true do |t|
-    t.integer "user_id",        default: 0,     null: false
-    t.integer "survey_id",      default: 0,     null: false
+    t.integer "user_id",          default: 0,     null: false
+    t.integer "survey_id",        default: 0,     null: false
     t.integer "years_worked"
     t.integer "months_worked"
-    t.boolean "agriculture",    default: false
-    t.boolean "mining",         default: false
-    t.boolean "utilities",      default: false
-    t.boolean "construction",   default: false
-    t.boolean "manufacturing",  default: false
-    t.boolean "wholesale",      default: false
-    t.boolean "retail",         default: false
-    t.boolean "transport",      default: false
-    t.boolean "information",    default: false
-    t.boolean "finance",        default: false
-    t.boolean "real_estate",    default: false
-    t.boolean "professional",   default: false
-    t.boolean "managment",      default: false
-    t.boolean "administrative", default: false
-    t.boolean "education",      default: false
-    t.boolean "health",         default: false
-    t.boolean "arts",           default: false
-    t.boolean "accomodation",   default: false
-    t.boolean "public",         default: false
-    t.boolean "full_time",      default: false, null: false
-    t.boolean "part_time",      default: false, null: false
-    t.boolean "volunteer",      default: false, null: false
-    t.boolean "employ",         default: false, null: false
+    t.boolean "agriculture",      default: false
+    t.boolean "mining",           default: false
+    t.boolean "utilities",        default: false
+    t.boolean "construction",     default: false
+    t.boolean "manufacturing",    default: false
+    t.boolean "wholesale",        default: false
+    t.boolean "retail",           default: false
+    t.boolean "transport",        default: false
+    t.boolean "information",      default: false
+    t.boolean "finance",          default: false
+    t.boolean "real_estate",      default: false
+    t.boolean "professional",     default: false
+    t.boolean "managment",        default: false
+    t.boolean "administrative",   default: false
+    t.boolean "education",        default: false
+    t.boolean "health",           default: false
+    t.boolean "arts",             default: false
+    t.boolean "accomodation",     default: false
+    t.boolean "public",           default: false
+    t.boolean "full_time",        default: false, null: false
+    t.boolean "part_time",        default: false, null: false
+    t.boolean "volunteer",        default: false, null: false
+    t.boolean "employ",           default: false, null: false
     t.boolean "looking_for_work"
-    t.boolean "vol_work"     
+    t.boolean "vol_work"
     t.integer "vol_hours"
-    t.string  "other",          default: nil
+    t.string  "other"
   end
 
   create_table "fields", force: true do |t|
@@ -307,7 +307,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.boolean "italian_read",     default: false
     t.boolean "italian_write",    default: false
     t.boolean "italian_formal",   default: false
-    t.string  "other",            default: nil
+    t.string  "other"
     t.boolean "other_read",       default: false
     t.boolean "other_speak",      default: false
     t.boolean "other_write",      default: false
@@ -431,6 +431,25 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "q15",             default: 0, null: false
     t.integer "q16",             default: 0, null: false
     t.integer "q17",             default: 0, null: false
+  end
+
+  create_table "progresses", force: true do |t|
+    t.integer "user_id"
+    t.integer "progress_id",           default: 0, null: false
+    t.integer "profile_progress",      default: 0, null: false
+    t.integer "personality_progress",  default: 0, null: false
+    t.integer "experience_progress",   default: 0, null: false
+    t.integer "tech_progress",         default: 0, null: false
+    t.integer "basic_progress",        default: 0, null: false
+    t.integer "advanced_progress",     default: 0, null: false
+    t.integer "media_progress",        default: 0, null: false
+    t.integer "word_progress",         default: 0, null: false
+    t.integer "presentation_progress", default: 0, null: false
+    t.integer "spreadsheet_progress",  default: 0, null: false
+    t.integer "email_progress",        default: 0, null: false
+    t.integer "internet_progress",     default: 0, null: false
+    t.integer "social_progress",       default: 0, null: false
+    t.integer "online_progress",       default: 0, null: false
   end
 
   create_table "projects", force: true do |t|
@@ -594,12 +613,12 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   create_table "surveyprofiles", force: true do |t|
     t.integer  "user_id",    default: 0, null: false
     t.integer  "survey_id",  default: 0, null: false
-    t.string   "postalcode", default: nil
-    t.string   "education", default: nil
-    t.string   "city", default: nil
-    t.string   "province", default: nil
-    t.string   "gender", default: nil
-    t.datetime "birthday", default: nil
+    t.string   "postalcode"
+    t.string   "education"
+    t.string   "city"
+    t.string   "province"
+    t.string   "gender"
+    t.datetime "birthday"
   end
 
   create_table "technology_differences", force: true do |t|
@@ -688,26 +707,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "q17",     default: 0, null: false
     t.integer "q18",     default: 0, null: false
     t.integer "q19",     default: 0, null: false
-    t.integer "q20",     default: 0, null: false    
+    t.integer "q20",     default: 0, null: false
   end
-
-  create_table "progresses", force: true do |t|
-    t.integer "user_id"
-    t.integer "progress_id", default: 0, null: false
-    t.integer "profile_progress", default: 0, null: false
-    t.integer "personality_progress", default: 0, null: false
-    t.integer "experience_progress", default: 0, null: false
-    t.integer "tech_progress", default: 0, null: false
-    t.integer "basic_progress", default: 0, null: false
-    t.integer "advanced_progress", default: 0, null: false
-    t.integer "media_progress", default: 0, null: false
-    t.integer "word_progress", default: 0, null: false
-    t.integer "presentation_progress", default: 0, null: false
-    t.integer "spreadsheet_progress", default: 0, null: false
-    t.integer "email_progress", default: 0, null: false
-    t.integer "internet_progress", default: 0, null: false
-    t.integer "social_progress", default: 0, null: false
-    t.integer "online_progress", default: 0, null: false    
-  end 
 
 end
