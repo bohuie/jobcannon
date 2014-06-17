@@ -62,6 +62,7 @@ class CreateAuthentications < ActiveRecord::Migration
       t.boolean :part_time,      default: false, null: false
       t.boolean :volunteer,      default: false, null: false
       t.boolean :employ,         default: false, null: false
+      t.boolean :looking_for_work
       t.boolean :vol_work
       t.integer :vol_hours
       t.string  :other
@@ -725,6 +726,25 @@ class CreateAuthentications < ActiveRecord::Migration
       t.integer :magnitude_other,         default: 0,     null: false
       t.string :other
     end
+
+    create_table :progresses do |t|
+      t.integer :user_id
+      t.integer :progress_id, default: 0, null: false
+      t.integer :profile_progress, default: 0, null: false
+      t.integer :personality_progress, default: 0, null: false
+      t.integer :experience_progress, default: 0, null: false
+      t.integer :tech_progress, default: 0, null: false
+      t.integer :basic_progress, default: 0, null: false
+      t.integer :advanced_progress, default: 0, null: false
+      t.integer :media_progress, default: 0, null: false
+      t.integer :word_progress, default: 0, null: false
+      t.integer :presentation_progress, default: 0, null: false
+      t.integer :spreadsheet_progress, default: 0, null: false
+      t.integer :email_progress, default: 0, null: false
+      t.integer :internet_progress, default: 0, null: false
+      t.integer :social_progress, default: 0, null: false
+      t.integer :online_progress, default: 0, null: false    
+    end 
 
   end
 end
