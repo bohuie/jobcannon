@@ -436,8 +436,7 @@ class CreateAuthentications < ActiveRecord::Migration
       t.integer :q17,                     default: 0,     null: false 
       t.integer :q18,                     default: 0,     null: false 
       t.integer :q19,                     default: 0,     null: false 
-      t.integer :q20,                     default: 0,     null: false
-      t.integer :q21,                     default: 0,     null: false
+      t.integer :q20,                     default: 0,     null: false      
     end
 
     create_table :word_processing_fluentcies do |t|
