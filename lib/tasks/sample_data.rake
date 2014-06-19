@@ -28,10 +28,10 @@ namespace :db do
   Skilllabel.create!(label: "Ruby")
   Skilllabel.create!(label: "Educational development")
   Skilllabel.create!(label: "Typing")
-  Skill.create!(label: "Java", user_id: 2)
-  Skill.create!(label: "Ruby", user_id: 2)
-  Skill.create!(label: "Educational development", user_id: 2)
-  Skill.create!(label: "Typing", user_id: 2)
+  Skill.create!(label: "Java", user_id: 9)
+  Skill.create!(label: "Ruby", user_id: 9)
+  Skill.create!(label: "Educational development", user_id: 9)
+  Skill.create!(label: "Typing", user_id: 9)
   Posting.create!(title: "Working with ruby", description: "Come wokr for us and make Ruby things!", user_id: 2)
   Posting.create!(title: "Working with Java", description: "Come wokr for us and make Java things!", user_id: 2)
   Posting.create!(title: "Working with Typing and Educational Development", 
@@ -67,8 +67,8 @@ namespace :db do
     fname: 'James', lname: 'Black')
 
   Friendship.create!(friendship_id: 8, sender_id: 9, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 8, sender_id: 10, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 8, sender_id: 11, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
-
+  Friendship.create!(friendship_id: 9, sender_id: 10, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 10, sender_id: 11, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 11, sender_id: 11, receiver_id: 10, sent_at: "2014-02-21 02:31:24", accepted: true)
   end
 end

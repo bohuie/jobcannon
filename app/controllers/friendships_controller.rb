@@ -30,15 +30,23 @@ class FriendshipsController < ApplicationController
   end
 
   def show
+    @user = current_user
+
     @temp1 = Friendship.where(sender_id: @user.user_id, accepted: true)
     @temp2 = Friendship.where(receiver_id: @user.user_id, accepted: true)
+    @temp = @temp1+@temp2
+    @temp.each do |t|
+      @temp1 = @temp1 + Friendship.where(sender_id: t.receiver_id, accepted: true)
+      @temp2 = @temp2 + Friendship.where(receiver_id: t.sender_id, accepted: true)
+    end
     @temp = @temp1+@temp2
     @friendships = []
     @temp.each do |r|
       @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
-                         target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname})
+                        sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                        target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                        targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id), })
     end
-    puts "MATT WAS HERE"
     puts @friendships.to_json
     @friendships = @friendships.to_json
   end
