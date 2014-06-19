@@ -91,6 +91,7 @@ First_Website::Application.routes.draw do
   end
   #resources :users
 
+  match '/show_network', to:'friendships#show', via: 'get'
   match '/ft_update', to: 'experiencetables#ft_update', via: 'get'
   match '/pt_update', to: 'experiencetables#pt_update', via: 'get'
   match '/vol_update', to: 'experiencetables#vol_update', via: 'get'

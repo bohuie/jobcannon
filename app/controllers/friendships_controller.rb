@@ -23,15 +23,6 @@ class FriendshipsController < ApplicationController
         end
       end
     end
-    @newmessages = Message.where(receiver_id: @user.user_id)
-    @newmessages.each do |r|
-      @lastviewed = "2013-02-23 19:49:25"
-      @chatviews = Chatview.where(id1: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC") + Chatview.where(id2: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC")
-      if !@chatviews.empty?
-        @lastviewed =  @chatviews.first.last_viewed_at
-      end
-      @newmessages.delete_if {|s| s.sent_at < @lastviewed}
-    end
   end
 
   def create
@@ -39,7 +30,6 @@ class FriendshipsController < ApplicationController
   end
 
   def show
-
   end
 
   def findfriend

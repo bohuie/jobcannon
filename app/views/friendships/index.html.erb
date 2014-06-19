@@ -1,15 +1,11 @@
 <h1> Your Network </h1>
+<%= link_to "Explore your network", "/show_network" %>
 
 	<% if user_signed_in? and !@requests.empty? %>
 		<p> Friend request(s) pending: </p>
 		<%= render partial: 'shared/friendrequests', collection: @requests %>
 	<% end %>
 
-	<h2>Message Notifications </h2>
-	<%= render partial: 'shared/newmessages', collection: @newmessages %>
-	<% if @newmessages.empty? %>
-		<p>No new messages. </p>
-	<%end%>
 	<h2>Currently Online </h2>
 
 	<%= render partial: 'shared/onlinefriends', collection: @online %>
