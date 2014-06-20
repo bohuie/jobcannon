@@ -159,6 +159,7 @@ text {
           d3.selectAll('.node').each(function(e){
               var other = d3.select(this)
               if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
+                if(!(other.select("circle").style("fill") == "rgb(173, 235, 170)"))
                 other.select("circle").transition()
                   .attr("r", 8)
                   .style("fill", "#ADEBFF");
