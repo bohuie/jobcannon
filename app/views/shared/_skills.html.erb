@@ -42,9 +42,7 @@
                     <%= f.submit "Endorse", class: "btn btn-primary"%>
                   <% end %>
               <% else %>
-                <%= simple_form_for @endorsed do |f| %>
-
-                    <p> <%= @endorsed.skill_id %> <%= @endorsed.endorser_id %> </p>
+                <%= simple_form_for @endorsed do |f| %>                    
 
                     <% f.hidden_field :skill_id , :value => @endorsed.skill_id %>
                     <% f.hidden_field :endorser_id, :value => @endorsed.endorser_id %>
@@ -54,7 +52,7 @@
               <% end %>
             </td>
           <% end %>
-          <td>
+          <td style = "padding-left: 15px;">
             <% @count = Endorse.where(skill_id: skills.skill_id).count %>
             <% if @count > 0 %>
               <p> This skill has been endorsed: <%= @count %> <p>

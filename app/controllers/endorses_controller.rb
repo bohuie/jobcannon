@@ -5,14 +5,21 @@ class EndorsesController < ApplicationController
 		@endor.update_attributes(endorse_params)
 		@endor.save
 
-		redirect_to root_path
+		@skill = Skill.find(@endor.skill_id)
+		@owner = User.find(@skill.user_id)
+
+		redirect_to profile_path(:id=>@owner.user_id)
 	end
 
 	def update
 		@endor = Endorse.find(params[:id])
-		@endor.destroy
 
-		redirect_to root_path
+		@skill = Skill.find(@endor.skill_id)
+		@owner = User.find(@skill.user_id)
+		@endor.destroy		
+
+
+		redirect_to profile_path(:id=>@owner.user_id)
 	end 
 
 	private

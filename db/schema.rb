@@ -13,6 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20140220233716) do
 
+
+  create_table "photos", force: true do |t|
+    t.integer "user_id"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at" 
+    t.attachment "photo"   
+  end  
+
   create_table "accountabilities", force: true do |t|
     t.integer "user_id"
     t.integer "accountability_id", default: 0, null: false

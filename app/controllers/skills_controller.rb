@@ -2,10 +2,15 @@ class SkillsController < ApplicationController
   autocomplete :skilllabel, :label, :full => true
 
   def index
+    #@owner_skills = Skill.where(:user_id => params[:owner]) 
   	@skill = Skill.new
+    @owner = params[:owner]
+
     @user = current_user
     @userID = current_user.user_id
-    @skills = Skill.where(:user_id => current_user.user_id).paginate(page: params[:page])
+    puts params[:owner]
+    puts "herererererer"
+    @skills = Skill.where(:user_id => @owner).paginate(page: params[:page])
   end
 
   def show

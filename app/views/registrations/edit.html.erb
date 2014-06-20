@@ -22,6 +22,24 @@
   <%= link_to "Link this profile to facebook!", '/auth/facebook' %>
 
 
+  <p> This is where it should be </p>
+   <% @photo = Photo.find_by(:user_id=>@user.user_id) %>
+
+   <% if @photo.nil?
+      @photo = Photo.new 
+      @photo.user_id = @user.user_id
+      @photo.save
+    end %>
+
+  <%= simple_form_for @photo, :html => { :multipart => true } do |t| %>
+
+      <%= t.label "Photo" %>
+      <%= t.file_field :photo %>
+
+      <%= t.submit "Submit photo" %>
+  <% end %>
+
+
 
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 

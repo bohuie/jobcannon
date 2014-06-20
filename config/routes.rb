@@ -69,6 +69,7 @@ First_Website::Application.routes.draw do
   resources :profile
   resources :progresses
   resources :endorses
+  resources :photos
   
   resources :surveys do
     member do

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :friendships, dependent: :destroy
   has_one :basic_computer_skills, dependent: :destroy
   has_many :experiencetables, dependent: :destroy
+  has_one :photos
 
   has_one :progresses, dependent: :destroy 
   has_one :operating_systems_usages, dependent: :destroy
