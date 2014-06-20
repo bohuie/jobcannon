@@ -31,7 +31,7 @@ class FriendshipsController < ApplicationController
 
   def show
     @user = current_user
-
+    @network = NetworkSearch.new
     @temp1 = Friendship.where(sender_id: @user.user_id, accepted: true)
     @temp2 = Friendship.where(receiver_id: @user.user_id, accepted: true)
     @temp = @temp1+@temp2
@@ -49,6 +49,7 @@ class FriendshipsController < ApplicationController
     end
     puts @friendships.to_json
     @friendships = @friendships.to_json
+    @friendship = Friendship.new
   end
 
   def findfriend

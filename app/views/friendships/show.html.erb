@@ -23,6 +23,7 @@
 text {
   font: 12px sans-serif;
   pointer-events: none;
+  opacity: 1;
 }
 
 </style>
@@ -37,8 +38,7 @@ text {
               var current = d3.select(this)
               if(nodes[current.select("text").text()].id == <%=@user.user_id%>){
                 current.select("circle").transition()
-                  .attr("r", 16)
-                  .style("fill", "#ADEBFF");
+                  .style("fill", "#ADEBAA");
                 current.select("text").transition()
                   .attr("x", -24)
                   .attr("y", 0);
@@ -118,20 +118,40 @@ text {
             d3.select(this).select("text").transition()
                 .duration(250)
                 .attr("x", -12)
-                .attr("y", -12);
+                .attr("y", -12)
+                .style("opacity", 1);
+            unhighlightFriends(this);
+            hideProfile(this)
           }
           else{
+            d3.selectAll(".node").select("circle").transition()
+              .attr("r", 8)
+              .style("fill", "#ccc")
+            d3.selectAll(".node").select("text").transition()
+              .duration(250)
+              .attr("x", -12)
+              .attr("y", -12)
+              .style("opacity", 1);
             d3.select(this).select("circle").transition()
                 .duration(250)
                 .attr("r", 32)
-                .style("fill", "#fff");
             d3.select(this).select("text").transition()
                 .duration(250)
-                .attr("x", -24)
-                .attr("y", 0);
+                .style("opacity", 0);
             highlightFriends(this);
             showProfile(this)
           }
+        }
+
+        function unhighlightFriends(p1){
+          var current = d3.select(p1);
+          d3.selectAll('.node').each(function(e){
+              var other = d3.select(this)
+              if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
+                other.select("circle").transition()
+                  .attr("r", 8)
+                  .style("fill", "#ccc");
+            });
         }
 
         function highlightFriends(p1){
@@ -139,21 +159,28 @@ text {
           d3.selectAll('.node').each(function(e){
               var other = d3.select(this)
               if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
-                other.select("circle").transition().
-                  style("fill", "#ADEBFF");
+                other.select("circle").transition()
+                  .attr("r", 8)
+                  .style("fill", "#ADEBFF");
             });
         }
 
         function showProfile(p1){
           var current = nodes[d3.select(p1).select("text").text()]
           console.log(nodes[d3.select(p1).select("text").text()]);
-          document.getElementById("profile_header").innerHTML=current.name;
-          var skillHTML = "<h2> Skills </h2> <ul>"
+          document.getElementById("profile_header").innerHTML="<h2>"+current.name+"</h2>";
+          var skillHTML = "<h3> Skills </h3> <ul>"
           for (i = 0; i < current.skills.length; i++) { 
               skillHTML += "<li>" + current.skills[i].label + "</li>"
           }
           skillHTML += "</ul>"
           document.getElementById("skills_information").innerHTML=skillHTML;
+        }
+
+
+        function hideProfile(p1){
+          document.getElementById("profile_header").innerHTML="";
+          document.getElementById("skills_information").innerHTML="";
         }
 
         function blue(){
@@ -193,22 +220,13 @@ text {
     </div>
     <div class = "col-md-2">
       <div class = "row" style = "padding: 10px;">
-        Options
-      </div>
-      <div class = "row" style = "padding: 10px;">
-        <button class = "btn btn-small btn-primary" onClick = "m()">
-          Highlight M nodes 
-        </button>
-      </div>
-      <div class = "row" style = "padding: 10px;">
-        <button class = "btn btn-small btn-primary" onClick = "blue()">
-          Make all nodes blue        
-        </button>
-      </div>
-      <div class = "row" style = "padding: 10px;">
-        <button class = "btn btn-small btn-primary" onClick = "degree3()">
-          Highlight > 3
-        </button>
+        Search by Name
+        <%= simple_form_for NetworkSearch.new, :id => "name_search", :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
+          <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
+            <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
+          </div>
+          <%= f.hidden_field :user_id, :value => @user.user_id %>
+        <% end %>
       </div>
     </div>
     <div class = "col-md-2">

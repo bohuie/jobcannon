@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "q5",                default: 0, null: false
     t.integer "q6",                default: 0, null: false
   end
+  create_table "network_searches", force: true do |t|
+    t.integer "user_id", default: 0, null: false
+    t.string "query"
+    t.integer "search_id"
+  end
 
   create_table "advanced_computer_skills", force: true do |t|
     t.integer "user_id"

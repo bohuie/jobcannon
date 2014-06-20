@@ -78,6 +78,7 @@ First_Website::Application.routes.draw do
   resources :friendships
   resources :messages
   resources :friendships
+  resources :network_searches
   
   resources :layouts
   
