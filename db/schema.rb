@@ -715,4 +715,10 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "q20",     default: 0, null: false
   end
 
+  create_table "endorses", force: true do |t|
+    t.integer "skill_id"
+    t.integer "endorser_id"
+    t.integer "endorse_id"
+  end 
+
 end
