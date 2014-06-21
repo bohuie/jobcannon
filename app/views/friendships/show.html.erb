@@ -10,10 +10,10 @@
   stroke-opacity: 0.4;
 }
 
-.node circle {
-  fill: #ccc;
-  stroke: #000;
-  stroke-width: 4.0px;
+.node rect {
+  fill: transparent;
+  stroke: #666;
+  stroke-width: 2.4px;
 }
 
 .node{
@@ -27,12 +27,10 @@ text {
 }
 
 </style>
-<svg id="mySvg" width="80" height="80">
-  <defs id="mdef">
-    <pattern id="image" x="0" y="0" height="50" width="50">
-      <image x="0" y="0" width="50" height="50" xlink:href="/system/photos/photos/000/000/001/original/henry.png?1403331655"></image>
-    </pattern>
-  </defs>
+<svg id="mySvg" width="70" height="90">
+  <clipPath id="clip1">
+        <rect x="-5" y="-12" width="65" height="90"/>
+    </clipPath>
 </svg>
 <body>
   <div class = "row" id = "body-row" style = "height: 450px; padding: 0;">
@@ -64,9 +62,16 @@ text {
         var width = $('#body-col').width(),
             height = $('#body-row').height();
 
+
         var svg = d3.select("#display").append("svg")
             .attr("width", width)
-            .attr("height", height);
+            .attr("height", height)
+            .call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoom))
+            .append("g");
+
+        function zoom() {
+          svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+        }
 
         var force = d3.layout.force()
           .nodes(d3.values(nodes))
@@ -88,15 +93,42 @@ text {
             .attr("class", "node")
             .on("click", click)
             .call(force.drag);
-        
-          node.append("circle")
-         .attr("r", 25)
-         .style("fill", "url(#image)");
-        
-        node.append("text")
+
+        node.append("rect")
             .attr("x", -36)
-            .attr("y", -36)
+            .attr("y", -12)
+            .attr("width", 100)
+            .attr("height", 25)
+            .attr("rx", 5)
+            .style("fill","#ABCDEF");
+
+        node.append("svg:image")
+            .attr('x',-35)
+            .attr('y',-11)
+            .attr('width', 23)
+            .attr('height', 23)
+            .attr("xlink:href", function(d) { 
+              if(d.photo)
+                return d.photo;
+              else{
+                d.photo = "/assets/per.png";
+                return d.photo;
+              }
+            });
+        
+        node.append("rect")
+            .attr("x", -36)
+            .attr("y", -12)
+            .attr("width", 25)
+            .attr("height", 25)
+            .attr("rx", 5);
+
+        node.append("text")
+            .attr("x", -5)
+            .attr("y", 0)
+            .attr("clip-path", "url(#clip1)")
             .text(function(d) { return d.name; });
+        
 
         function tick() {
           link
@@ -111,24 +143,21 @@ text {
         
 
         function click() {
-          if(d3.select(this).select("circle").attr("fill") == "rgb(150, 50, 0)"){
-            d3.select(this).select("circle").transition()
+          if(d3.select(this).select("rect").style("fill") == "rgb(150, 50, 0)"){
+            d3.select(this).select("rect").transition()
                 .style("fill", "#ccc");
             unhighlightFriends(this);
-            hideProfile(this)
+            hideProfile(this);
           }
           else{
-            d3.selectAll(".node").select("circle").transition()
+            d3.selectAll(".node").select("rect").transition()
               .style("fill", "#ccc")
             d3.selectAll(".node").select("text").transition()
               .duration(250)
               .style("opacity", 1);
-            d3.select(this).select("circle").transition()
+            d3.select(this).select("rect").transition()
                 .duration(250)
                 .style("fill", "rgb(150, 50, 0)")
-            d3.select(this).select("text").transition()
-                .duration(250)
-                .style("opacity", 0);
             highlightFriends(this);
             showProfile(this)
           }
@@ -139,7 +168,7 @@ text {
           d3.selectAll('.node').each(function(e){
               var other = d3.select(this)
               if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
-                other.select("circle").transition()
+                other.select("rect").transition()
                   .style("fill", "#ccc");
             });
         }
@@ -149,33 +178,45 @@ text {
           d3.selectAll('.node').each(function(e){
               var other = d3.select(this)
               if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
-                  other.select("circle").transition().style("fill", "yellow");
+                  other.select("rect").transition().style("fill", "yellow");
             });
         }
 
         function showProfile(p1){
-          var current = nodes[d3.select(p1).select("text").text()]
-          console.log(nodes[d3.select(p1).select("text").text()]);
-          document.getElementById("profile_header").innerHTML="<div class = row><div class = col-md-6><h2>"+current.name+"</h2></div><div style = width:64px;height:64px;padding:0; class = col-md-6><img src="+current.photo+" style = width:64px;height:64px; /></div></div> <div class = row><div class = col-md-6>"+current.email+"</div></div>";
-          var skillHTML = "<div class = row><h2 style= margin:0> Skills </h2></div>"
-          for (i = 0; i < current.skills.length; i++) { 
-              skillHTML += "<div class = row>" + current.skills[i].label + "</div>"
-          }
-          document.getElementById("skills_information").innerHTML=skillHTML;
-          var skillHTML = "<div class = row><h2 style= margin:0> References </h2></div>"
-          for (i = 0; i < current.references.length; i++) { 
-              skillHTML += "<div class = row>" + current.references[i].label + "</div>"
-          }
-          document.getElementById("references_information").innerHTML=skillHTML;
-          var skillHTML = "<div class = row><h2 style= margin:0> Experiences </h2></div>"
-          for (i = 0; i < current.experiences.length; i++) { 
-              skillHTML += "<div class = row>" + current.experiences[i].label + "</div>"
-          }
-          document.getElementById("experiences_information").innerHTML=skillHTML;
+          var current = d3.select(p1)
+          current.append("rect")
+            .attr("x", -10)
+            .attr("y", -10)
+            .attr("width", 250)
+            .attr("height", 200)
+            .style("fill", "transparent")
+            .style("stroke", "#000")
+            .style("stroke-width", 3);
+          // var current = nodes[d3.select(p1).select("text").text()]
+          // console.log(nodes[d3.select(p1).select("text").text()]);
+          // document.getElementById("profile_header").innerHTML="<div class = row><div class = col-md-6><h2>"+current.name+"</h2></div><div style = width:64px;height:64px;padding:0; class = col-md-6><img src="+current.photo+" style = width:64px;height:64px; /></div></div> <div class = row><div class = col-md-6>"+current.email+"</div></div>";
+          // var skillHTML = "<div class = row><h2 style= margin:0> Skills </h2></div>"
+          // for (i = 0; i < current.skills.length; i++) { 
+          //     skillHTML += "<div class = row>" + current.skills[i].label + "</div>"
+          // }
+          // document.getElementById("skills_information").innerHTML=skillHTML;
+          // var skillHTML = "<div class = row><h2 style= margin:0> References </h2></div>"
+          // for (i = 0; i < current.references.length; i++) { 
+          //     skillHTML += "<div class = row>" + current.references[i].label + "</div>"
+          // }
+          // document.getElementById("references_information").innerHTML=skillHTML;
+          // var skillHTML = "<div class = row><h2 style= margin:0> Experiences </h2></div>"
+          // for (i = 0; i < current.experiences.length; i++) { 
+          //     skillHTML += "<div class = row>" + current.experiences[i].label + "</div>"
+          // }
+          // document.getElementById("experiences_information").innerHTML=skillHTML;
         }
 
 
         function hideProfile(p1){
+          var current = d3.select(p1)
+          var group = current[0][0].childNodes[4];
+          group.parentNode.removeChild(group);
           document.getElementById("profile_header").innerHTML="";
           document.getElementById("skills_information").innerHTML="";
           document.getElementById("references_information").innerHTML="";
