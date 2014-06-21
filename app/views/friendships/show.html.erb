@@ -32,19 +32,6 @@ text {
     <div class = "col-md-8" id = "body-col" style = "padding: 0;">
       <div id = "display" style = "width: 100%; height: 100%;">
         <script>
-        window.onload = function(){
-          d3.selectAll(".node")
-          .each(function(d){
-              var current = d3.select(this)
-              if(nodes[current.select("text").text()].id == <%=@user.user_id%>){
-                current.select("circle").transition()
-                  .style("fill", "#ADEBAA");
-                current.select("text").transition()
-                  .attr("x", -24)
-                  .attr("y", 0);
-                }
-            });
-        }
         
         var links = <%= @friendships.to_s.html_safe %>
         var nodes = {};
@@ -53,14 +40,16 @@ text {
         links.forEach(function(link) {
           link.source = nodes[link.source] || (nodes[link.source] = {name: link.source, 
                                                                     id: link.sourceid,
-                                                                    skills: link.sourceskills});
+                                                                    skills: link.sourceskills,
+                                                                    photo: link.sourcephoto});
           link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, 
                                                                     id: link.targetid,
-                                                                    skills: link.targetskills});
+                                                                    skills: link.targetskills,
+                                                                    photo: link.targetphoto});
           linkedByIndex[link.source.name + "," + link.target.name] = 1;
           linkedByIndex[link.target.name + "," + link.source.name] = 1;
         });
-
+        console.log(nodes);
         var width = $('#body-col').width(),
             height = $('#body-row').height();
 
@@ -68,8 +57,8 @@ text {
             .nodes(d3.values(nodes))
             .links(links)
             .size([width, height])
-            .linkDistance(80)
-            .charge(-200)
+            .linkDistance(150)
+            .charge(-500)
             .on("tick", tick)
             .start();
 
@@ -90,12 +79,19 @@ text {
             .call(force.drag);
 
         node.append("circle")
-            .attr("r", 8);
+            .attr("r", 32);
 
         node.append("text")
-            .attr("x", -12)
-            .attr("y", -12)
+            .attr("x", -36)
+            .attr("y", -36)
             .text(function(d) { return d.name; });
+
+        node.append("svg:image")
+            .attr('x',-16)
+            .attr('y',-16)
+            .attr('width', 32)
+            .attr('height', 32)
+            .attr("xlink:href", function(d) { return d.photo; })
 
         function tick() {
           link
@@ -110,32 +106,22 @@ text {
         
 
         function click() {
-          if(d3.select(this).select("circle").attr("r") == 32){
+          if(d3.select(this).select("circle").attr("fill") == "rgb(150, 50, 0)"){
             d3.select(this).select("circle").transition()
-                .duration(250)
-                .attr("r", 8)
                 .style("fill", "#ccc");
-            d3.select(this).select("text").transition()
-                .duration(250)
-                .attr("x", -12)
-                .attr("y", -12)
-                .style("opacity", 1);
             unhighlightFriends(this);
             hideProfile(this)
           }
           else{
             d3.selectAll(".node").select("circle").transition()
-              .attr("r", 8)
               .style("fill", "#ccc")
             d3.selectAll(".node").select("text").transition()
               .duration(250)
-              .attr("x", -12)
-              .attr("y", -12)
               .style("opacity", 1);
             d3.select(this).select("circle").transition()
                 .duration(250)
                 .attr("r", 32)
-                .style("fill", "#ccc")
+                .style("fill", "rgb(150, 50, 0)")
             d3.select(this).select("text").transition()
                 .duration(250)
                 .style("opacity", 0);
@@ -150,7 +136,6 @@ text {
               var other = d3.select(this)
               if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
                 other.select("circle").transition()
-                  .attr("r", 8)
                   .style("fill", "#ccc");
             });
         }
@@ -162,7 +147,6 @@ text {
               if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
                 if(!(other.select("circle").style("fill") == "rgb(173, 235, 170)"))
                 other.select("circle").transition()
-                  .attr("r", 8)
                   .style("fill", "#ADEBFF");
             });
         }

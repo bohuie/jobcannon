@@ -42,10 +42,35 @@ class FriendshipsController < ApplicationController
     @temp = @temp1+@temp2
     @friendships = []
     @temp.each do |r|
-      @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
-                        sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
-                        target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
-                        targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id), })
+      if(Photo.find_by(:user_id=>r.sender_id).nil? && Photo.find_by(:user_id=>r.receiver_id).nil?)
+        @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                          sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                          sourcephoto: "",
+                          target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                          targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                          targetphoto: ""})
+      elsif(Photo.find_by(:user_id=>r.sender_id).nil?)
+        @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                          sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                          sourcephoto: "",
+                          target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                          targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                          targetphoto: Photo.find_by(:user_id=>r.receiver_id).photo.url})
+      elsif(Photo.find_by(:user_id=>r.receiver_id).nil?)
+        @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                          sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                          sourcephoto: Photo.find_by(:user_id=>r.sender_id).photo.url,
+                          target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                          targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                          targetphoto: ""})
+      else
+        @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                          sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                          sourcephoto: Photo.find_by(:user_id=>r.sender_id).photo.url,
+                          target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                          targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                          targetphoto: Photo.find_by(:user_id=>r.receiver_id).photo.url})
+      end
     end
     puts @friendships.to_json
     @friendships = @friendships.to_json
