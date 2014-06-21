@@ -7,13 +7,13 @@
   fill: none;
   stroke: #666;
   stroke-width: 1.5px;
-  stroke-opacity: 0.5;
+  stroke-opacity: 0.4;
 }
 
 .node circle {
   fill: #ccc;
   stroke: #000;
-  stroke-width: 0.5px;
+  stroke-width: 4.0px;
 }
 
 .node{
@@ -27,12 +27,18 @@ text {
 }
 
 </style>
+<svg id="mySvg" width="80" height="80">
+  <defs id="mdef">
+    <pattern id="image" x="0" y="0" height="50" width="50">
+      <image x="0" y="0" width="50" height="50" xlink:href="/system/photos/photos/000/000/001/original/henry.png?1403331655"></image>
+    </pattern>
+  </defs>
+</svg>
 <body>
   <div class = "row" id = "body-row" style = "height: 450px; padding: 0;">
     <div class = "col-md-10" id = "body-col" style = "padding: 0;">
       <div id = "display" style = "width: 100%; height: 100%;">
         <script>
-        
         var links = <%= @friendships.to_s.html_safe %>
         var nodes = {};
         var linkedByIndex = {};
@@ -55,22 +61,21 @@ text {
           linkedByIndex[link.source.name + "," + link.target.name] = 1;
           linkedByIndex[link.target.name + "," + link.source.name] = 1;
         });
-        console.log(nodes);
         var width = $('#body-col').width(),
             height = $('#body-row').height();
-
-        var force = d3.layout.force()
-            .nodes(d3.values(nodes))
-            .links(links)
-            .size([width, height])
-            .linkDistance(150)
-            .charge(-500)
-            .on("tick", tick)
-            .start();
 
         var svg = d3.select("#display").append("svg")
             .attr("width", width)
             .attr("height", height);
+
+        var force = d3.layout.force()
+          .nodes(d3.values(nodes))
+          .links(links)
+          .size([width, height])
+          .linkDistance(175)
+          .charge(-500)
+          .on("tick", tick)
+          .start();
 
         var link = svg.selectAll(".link")
             .data(force.links())
@@ -83,21 +88,15 @@ text {
             .attr("class", "node")
             .on("click", click)
             .call(force.drag);
-
-        node.append("circle")
-            .attr("r", 32);
-
+        
+          node.append("circle")
+         .attr("r", 25)
+         .style("fill", "url(#image)");
+        
         node.append("text")
             .attr("x", -36)
             .attr("y", -36)
             .text(function(d) { return d.name; });
-
-        node.append("svg:image")
-            .attr('x',-16)
-            .attr('y',-16)
-            .attr('width', 32)
-            .attr('height', 32)
-            .attr("xlink:href", function(d) { return d.photo; })
 
         function tick() {
           link
@@ -126,7 +125,6 @@ text {
               .style("opacity", 1);
             d3.select(this).select("circle").transition()
                 .duration(250)
-                .attr("r", 32)
                 .style("fill", "rgb(150, 50, 0)")
             d3.select(this).select("text").transition()
                 .duration(250)
@@ -151,9 +149,7 @@ text {
           d3.selectAll('.node').each(function(e){
               var other = d3.select(this)
               if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
-                if(!(other.select("circle").style("fill") == "rgb(173, 235, 170)"))
-                other.select("circle").transition()
-                  .style("fill", "#ADEBFF");
+                  other.select("circle").transition().style("fill", "yellow");
             });
         }
 
@@ -182,38 +178,9 @@ text {
         function hideProfile(p1){
           document.getElementById("profile_header").innerHTML="";
           document.getElementById("skills_information").innerHTML="";
-        }
+          document.getElementById("references_information").innerHTML="";
+          document.getElementById("experiences_information").innerHTML="";
 
-        function blue(){
-          d3.selectAll(".node").select("circle").transition()
-            .duration(750)
-            .style("fill", "#456");
-        }
-
-        function m(){
-          d3.selectAll('.node')
-          .each(function(d){
-            var current = d3.select(this);
-            if(current.select("text").text().indexOf("m") > -1 ||
-              current.select("text").text().indexOf("M") > -1){
-                current.select("circle").transition().style("fill", "red");
-              }
-            });
-        }
-
-        function degree3(){
-          d3.selectAll('.node')
-          .each(function(d){
-            var current = d3.select(this);
-            var count = 0;
-            d3.selectAll('.node').each(function(e){
-              var other = d3.select(this)
-              if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
-                count++;
-            });
-            if(count > 2)
-              current.select("circle").style("fill", "green");
-          });
         }
 
         </script>
@@ -222,11 +189,22 @@ text {
     <div class = "col-md-2">
       <div class = "row" style = "padding: 10px;">
         Search by Name
-        <%= simple_form_for NetworkSearch.new, :id => "name_search", :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
+        <%= simple_form_for NetworkSearch.new, :html => { :id => "nameSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
           <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
             <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
           </div>
           <%= f.hidden_field :user_id, :value => @user.user_id %>
+          <%= f.hidden_field :type, :value => "name" %>
+        <% end %>
+      </div>
+      <div class = "row" style = "padding: 10px;">
+        Search by Skill
+        <%= simple_form_for NetworkSearch.new, :html => { :id => "skillSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
+          <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
+            <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
+          </div>
+          <%= f.hidden_field :user_id, :value => @user.user_id %>
+          <%= f.hidden_field :type, :value => "skill" %>
         <% end %>
       </div>
     </div>

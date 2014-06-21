@@ -1,0 +1,17 @@
+d3.selectAll(".node").select("circle").transition().style("fill", "#ccc");
+d3.selectAll(".node")
+	.each(function(d){
+		var current = nodes[d3.select(this).select("text").text()];
+		var contains = false
+		if(current.skills != null){
+			for (i = 0; i < current.skills.length; i++) { 
+	            contains = contains || current.skills[i].label.indexOf("<%= escape_javascript @search.query%>") > -1
+	        }
+	    }
+		if(contains){
+			d3.select(this).select("circle").transition()
+				.style("fill", "red")
+			hideProfile(this);
+		}
+ 	});
+ $("#skillSearch")[0].reset()

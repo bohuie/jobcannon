@@ -41,6 +41,7 @@ class FriendshipsController < ApplicationController
       @temp1 = @temp1 + Friendship.where(receiver_id: t.receiver_id, accepted: true)
     end
     @temp = @temp1+@temp2
+    @temp = @temp.uniq
     @friendships = []
     @temp.each do |r|
       if(Photo.find_by(:user_id=>r.sender_id).nil? && Photo.find_by(:user_id=>r.receiver_id).nil?)
@@ -89,6 +90,8 @@ class FriendshipsController < ApplicationController
                           targetphoto: Photo.find_by(:user_id=>r.receiver_id).photo.url, targetemail: User.find(r.receiver_id).email})
       end
     end
+    @friend = @friendships[0]
+    puts @friend
     @friendships = @friendships.to_json
     @friendship = Friendship.new
   end
