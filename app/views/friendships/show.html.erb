@@ -74,7 +74,7 @@ text {
         var svg = d3.select("#display").append("svg")
             .attr("width", width)
             .attr("height", height)
-            .call(d3.behavior.zoom().scaleExtent([0.1, 3]).on("zoom", zoom))
+            .call(d3.behavior.zoom().scaleExtent([0.4, 3]).on("zoom", zoom))
             .append("g");
 
         function zoom() {
@@ -270,6 +270,8 @@ text {
               skillHTML += "<div class = row>" + current.experiences[i].label + "</div>"
           }
           document.getElementById("experiences_information").innerHTML=skillHTML;
+          var skillHTML = "<div class = row><h2 style= margin:0> Want to see more? </h2><a href = \"/profile/" + current.id + "\"> Go to full Profile</a></div>"
+          document.getElementById("full_profile").innerHTML=skillHTML;
         }
 
         function hideProfile(p1){
@@ -290,6 +292,7 @@ text {
           document.getElementById("skills_information").innerHTML=skillHTML;
           document.getElementById("references_information").innerHTML=skillHTML;
           document.getElementById("experiences_information").innerHTML=skillHTML;
+          document.getElementById("full_profile").innerHTML=skillHTML;
         }
 
         </script>
@@ -343,6 +346,10 @@ text {
     </div>
     <div class = "col-md-2">
       <div id = "experiences_information">
+      </div>
+    </div>
+    <div class = "col-md-2">
+      <div id = "full_profile">
       </div>
     </div>
   </div>
