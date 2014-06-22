@@ -85,8 +85,11 @@ text {
           .nodes(d3.values(nodes))
           .links(links)
           .size([width, height])
-          .linkDistance(175)
-          .charge(-500)
+          .linkDistance(function(){
+            return Math.random() * 200 + 120
+          })
+          .charge(-1000)
+          .friction(0.95)
           .on("tick", tick)
           .start();
 

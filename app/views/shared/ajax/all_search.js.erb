@@ -4,7 +4,7 @@ d3.selectAll(".node")
 		var current = d3.select(this);
 		var info = nodes[current.select("text").text()]
 		if(info.name.indexOf("<%= escape_javascript @search.query%>") > -1){
-			current.select("rect")
+			current.select("rect").transition()
 				.style("fill", "red");
 			hideProfile(current);
 		}
@@ -16,7 +16,7 @@ d3.selectAll(".node")
 	        }
 	    }
 		if(contains){
-			d3.select(this).select("rect")
+			d3.select(this).select("rect").transition()
 				.style("fill", "red");
 			hideProfile(d3.select(this));
 		}
