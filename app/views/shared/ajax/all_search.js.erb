@@ -1,6 +1,13 @@
 d3.selectAll(".node").select("rect").transition().style("fill", "#ccc");
 d3.selectAll(".node")
 	.each(function(d){
+		var current = d3.select(this);
+		var info = nodes[current.select("text").text()]
+		if(info.name.indexOf("<%= escape_javascript @search.query%>") > -1){
+			current.select("rect")
+				.style("fill", "red");
+			hideProfile(current);
+		}
 		var current = nodes[d3.select(this).select("text").text()];
 		var contains = false
 		if(current.skills != null){
@@ -14,4 +21,4 @@ d3.selectAll(".node")
 			hideProfile(d3.select(this));
 		}
  	});
- $("#skillSearch")[0].reset()
+ $("#allSearch")[0].reset()

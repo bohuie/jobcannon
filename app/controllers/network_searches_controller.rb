@@ -8,9 +8,13 @@ class NetworkSearchesController < ApplicationController
       respond_to do |f|
         f.js { render 'shared/ajax/name_search.js.erb' }
       end
-    else
+    elsif @search.type == "name"
       respond_to do |f|
         f.js { render 'shared/ajax/skill_search.js.erb' }
+      end
+    else
+      respond_to do |f|
+        f.js { render 'shared/ajax/all_search.js.erb' }
       end
     end
   end
