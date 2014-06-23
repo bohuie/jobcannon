@@ -11,6 +11,12 @@ class CreateAuthentications < ActiveRecord::Migration
       t.datetime :updated_at
     end
 
+create_table :network_searches do |t|
+    t.integer :user_id, default: 0, null: false
+    t.string :query
+    t.string :type
+    t.integer :search_id
+  end
 
     create_table :endorses do |t|
       t.integer :skill_id
