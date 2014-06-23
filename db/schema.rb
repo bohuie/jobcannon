@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   create_table "network_searches", force: true do |t|
     t.integer "user_id", default: 0, null: false
     t.string "query"
+    t.string "type"
     t.integer "search_id"
   end
 

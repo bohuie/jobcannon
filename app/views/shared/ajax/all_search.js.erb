@@ -1,0 +1,24 @@
+d3.selectAll(".node").select("rect").transition().style("fill", "#ccc");
+d3.selectAll(".node")
+	.each(function(d){
+		var current = d3.select(this);
+		var info = nodes[current.select("text").text()]
+		if(info.name.indexOf("<%= escape_javascript @search.query%>") > -1){
+			current.select("rect").transition()
+				.style("fill", "red");
+			hideProfile(current);
+		}
+		var current = nodes[d3.select(this).select("text").text()];
+		var contains = false
+		if(current.skills != null){
+			for (i = 0; i < current.skills.length; i++) { 
+	            contains = contains || current.skills[i].label.indexOf("<%= escape_javascript @search.query%>") > -1
+	        }
+	    }
+		if(contains){
+			d3.select(this).select("rect").transition()
+				.style("fill", "red");
+			hideProfile(d3.select(this));
+		}
+ 	});
+ $("#allSearch")[0].reset()

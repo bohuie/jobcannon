@@ -7,13 +7,13 @@
   fill: none;
   stroke: #666;
   stroke-width: 1.5px;
-  stroke-opacity: 0.5;
+  stroke-opacity: 0.4;
 }
 
-.node circle {
-  fill: #ccc;
-  stroke: #000;
-  stroke-width: 0.5px;
+.node rect {
+  fill: transparent;
+  stroke: #666;
+  stroke-width: 2.4px;
 }
 
 .node{
@@ -26,26 +26,25 @@ text {
   opacity: 1;
 }
 
+.profilenametext {
+  font: 17px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.profiletagtext{
+  font: 14px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
 </style>
+
 <body>
-  <div class = "row" id = "body-row" style = "height: 600px; padding: 0;">
-    <div class = "col-md-8" id = "body-col" style = "padding: 0;">
-      <div id = "display" style = "width: 100%; height: 100%;">
+  <div class = "row" id = "body-row" style = "height: 450px; padding: 0; vertical-align: top;">
+    <div class = "col-md-10" id = "body-col" style = "padding: 0; vertical-align: top;">
+      <div id = "display" style = "width: 100%; height: 100%; border: 1px solid black;">
         <script>
-        window.onload = function(){
-          d3.selectAll(".node")
-          .each(function(d){
-              var current = d3.select(this)
-              if(nodes[current.select("text").text()].id == <%=@user.user_id%>){
-                current.select("circle").transition()
-                  .style("fill", "#ADEBAA");
-                current.select("text").transition()
-                  .attr("x", -24)
-                  .attr("y", 0);
-                }
-            });
-        }
-        
         var links = <%= @friendships.to_s.html_safe %>
         var nodes = {};
         var linkedByIndex = {};
@@ -53,29 +52,46 @@ text {
         links.forEach(function(link) {
           link.source = nodes[link.source] || (nodes[link.source] = {name: link.source, 
                                                                     id: link.sourceid,
-                                                                    skills: link.sourceskills});
+                                                                    skills: link.sourceskills,
+                                                                    photo: link.sourcephoto, 
+                                                                    email: link.sourceemail,
+                                                                    references: link.sourcereferences,
+                                                                    experiences: link.sourceexperiences});
           link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, 
                                                                     id: link.targetid,
-                                                                    skills: link.targetskills});
+                                                                    skills: link.targetskills,
+                                                                    photo: link.targetphoto,
+                                                                    email: link.targetemail,
+                                                                    references: link.targetreferences,
+                                                                    experiences: link.targetexperiences});
           linkedByIndex[link.source.name + "," + link.target.name] = 1;
           linkedByIndex[link.target.name + "," + link.source.name] = 1;
         });
-
         var width = $('#body-col').width(),
             height = $('#body-row').height();
 
-        var force = d3.layout.force()
-            .nodes(d3.values(nodes))
-            .links(links)
-            .size([width, height])
-            .linkDistance(80)
-            .charge(-200)
-            .on("tick", tick)
-            .start();
 
         var svg = d3.select("#display").append("svg")
             .attr("width", width)
-            .attr("height", height);
+            .attr("height", height)
+            .call(d3.behavior.zoom().scaleExtent([0.4, 3]).on("zoom", zoom))
+            .append("g");
+
+        function zoom() {
+          svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+        }
+
+        var force = d3.layout.force()
+          .nodes(d3.values(nodes))
+          .links(links)
+          .size([width, height])
+          .linkDistance(function(){
+            return Math.random() * 200 + 120
+          })
+          .charge(-1000)
+          .friction(0.95)
+          .on("tick", tick)
+          .start();
 
         var link = svg.selectAll(".link")
             .data(force.links())
@@ -89,13 +105,41 @@ text {
             .on("click", click)
             .call(force.drag);
 
-        node.append("circle")
-            .attr("r", 8);
+        node.append("rect")
+            .attr("x", -36)
+            .attr("y", -12)
+            .attr("width", 100)
+            .attr("height", 25)
+            .attr("rx", 5)
+            .style("fill","#ABCDEF");
+
+        node.append("svg:image")
+            .attr('x',-35)
+            .attr('y',-11)
+            .attr('width', 23)
+            .attr('height', 23)
+            .attr("xlink:href", function(d) { 
+              if(d.photo)
+                return d.photo;
+              else{
+                d.photo = "/assets/per.png";
+                return d.photo;
+              }
+            });
+        
+        node.append("rect")
+            .attr("x", -36)
+            .attr("y", -12)
+            .attr("width", 25)
+            .attr("height", 25)
+            .attr("rx", 5);
 
         node.append("text")
-            .attr("x", -12)
-            .attr("y", -12)
+            .attr("x", -5)
+            .attr("y", 0)
+            .attr("clip-path", "url(#clip1)")
             .text(function(d) { return d.name; });
+        
 
         function tick() {
           link
@@ -110,47 +154,32 @@ text {
         
 
         function click() {
-          if(d3.select(this).select("circle").attr("r") == 32){
-            d3.select(this).select("circle").transition()
-                .duration(250)
-                .attr("r", 8)
+          if(d3.select(this).select("rect").attr("width") == 150){
+            d3.select(this).select("rect").transition()
                 .style("fill", "#ccc");
-            d3.select(this).select("text").transition()
-                .duration(250)
-                .attr("x", -12)
-                .attr("y", -12)
-                .style("opacity", 1);
             unhighlightFriends(this);
-            hideProfile(this)
+            hideProfile(d3.select(this));
           }
           else{
-            d3.selectAll(".node").select("circle").transition()
-              .attr("r", 8)
-              .style("fill", "#ccc")
+            d3.selectAll(".node").select("rect").transition()
+              .style("fill", "#ccc");
             d3.selectAll(".node").select("text").transition()
               .duration(250)
-              .attr("x", -12)
-              .attr("y", -12)
               .style("opacity", 1);
-            d3.select(this).select("circle").transition()
-                .duration(250)
-                .attr("r", 32)
-                .style("fill", "#ccc")
-            d3.select(this).select("text").transition()
-                .duration(250)
-                .style("opacity", 0);
+            d3.selectAll('.node').each(function(e){
+              var other = d3.select(this)
+              if(other.select("rect").attr("width")>100)
+                hideProfile(other);
+            });
             highlightFriends(this);
-            showProfile(this)
+            setTimeout(showProfile(this), 100);
           }
         }
 
         function unhighlightFriends(p1){
           var current = d3.select(p1);
           d3.selectAll('.node').each(function(e){
-              var other = d3.select(this)
-              if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
-                other.select("circle").transition()
-                  .attr("r", 8)
+              d3.select(this).select("rect").transition()
                   .style("fill", "#ccc");
             });
         }
@@ -159,62 +188,114 @@ text {
           var current = d3.select(p1);
           d3.selectAll('.node').each(function(e){
               var other = d3.select(this)
-              if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
-                if(!(other.select("circle").style("fill") == "rgb(173, 235, 170)"))
-                other.select("circle").transition()
-                  .attr("r", 8)
-                  .style("fill", "#ADEBFF");
-            });
-        }
-
-        function showProfile(p1){
-          var current = nodes[d3.select(p1).select("text").text()]
-          console.log(nodes[d3.select(p1).select("text").text()]);
-          document.getElementById("profile_header").innerHTML="<h2>"+current.name+"</h2>";
-          var skillHTML = "<h3> Skills </h3> <ul>"
-          for (i = 0; i < current.skills.length; i++) { 
-              skillHTML += "<li>" + current.skills[i].label + "</li>"
-          }
-          skillHTML += "</ul>"
-          document.getElementById("skills_information").innerHTML=skillHTML;
-        }
-
-
-        function hideProfile(p1){
-          document.getElementById("profile_header").innerHTML="";
-          document.getElementById("skills_information").innerHTML="";
-        }
-
-        function blue(){
-          d3.selectAll(".node").select("circle").transition()
-            .duration(750)
-            .style("fill", "#456");
-        }
-
-        function m(){
-          d3.selectAll('.node')
-          .each(function(d){
-            var current = d3.select(this);
-            if(current.select("text").text().indexOf("m") > -1 ||
-              current.select("text").text().indexOf("M") > -1){
-                current.select("circle").transition().style("fill", "red");
+              var info = nodes[other.select("text").text()]
+              if(other.select("text").select("tspan")[0][0] == null){
+                if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()]){
+                    other.select("rect").transition().style("fill", "yellow");
+                }
+              }else{
+                if(linkedByIndex[current.select("text").text() + "," + other.select("text").select("tspan").text()]){
+                    other.select("rect").transition().style("fill", "yellow");
+                }
               }
             });
         }
 
-        function degree3(){
-          d3.selectAll('.node')
-          .each(function(d){
-            var current = d3.select(this);
-            var count = 0;
-            d3.selectAll('.node').each(function(e){
-              var other = d3.select(this)
-              if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()])
-                count++;
-            });
-            if(count > 2)
-              current.select("circle").style("fill", "green");
-          });
+        function showProfile(p1){
+          var current = d3.select(p1)
+          var info = nodes[d3.select(p1).select("text").text()]
+          current.select("rect")
+            .attr("x", -36)
+            .attr("y", -12)
+            .attr("width", 150)
+            .attr("height", 100)
+            .style("fill", "transparent");
+          current.select("text")
+            .text("")
+            .attr("clip-path", "url(#clip2)")
+            .append("tspan")
+              .attr("dy", 3)
+              .text(info.name)
+              .attr("class", "profilenametext")
+          current.select("text")
+            .append("tspan")
+              .attr("dy", 14)
+              .attr("x", -5)
+              .text(info.email)
+          current.select("text")
+            .append("tspan")
+              .attr("dy", 14)
+              .attr("x", -5)
+              .attr("class", "profiletagtext")
+              .text("Skills:")
+          current.select("text")
+            .append("tspan")
+              .attr("dy", 14)
+              .attr("x", -5)
+              .text(function(info){
+                skills = ""
+                if(2 <= info.skills.length)
+                  skills = info.skills[0].label + ", "  + info.skills[1].label + " ";
+                return skills
+              });
+          current.select("text")
+            .append("tspan")
+              .attr("dy", 14)
+              .attr("x", -5)
+              .attr("class", "profiletagtext")
+              .text("References:")
+          current.select("text")
+            .append("tspan")
+              .attr("dy", 14)
+              .attr("x", -5)
+              .text(function(info){
+                references = ""
+                if(2 <= info.references.length)
+                  references = info.references[0].label + ", "  + info.references[1].label + " ";
+                return references
+              });
+
+
+          var current = info;
+          document.getElementById("profile_header").innerHTML="<div class = row><div class = col-md-6><h2>"+current.name+"</h2></div><div style = width:64px;height:64px;padding:0; class = col-md-6><img src="+current.photo+" style = width:64px;height:64px; /></div></div> <div class = row><div class = col-md-6>"+current.email+"</div></div>";
+          var skillHTML = "<div class = row><h2 style= margin:0> Skills </h2></div>"
+          for (i = 0; i < current.skills.length; i++) { 
+              skillHTML += "<div class = row>" + current.skills[i].label + "</div>"
+          }
+          document.getElementById("skills_information").innerHTML=skillHTML;
+          var skillHTML = "<div class = row><h2 style= margin:0> References </h2></div>"
+          for (i = 0; i < current.references.length; i++) { 
+              skillHTML += "<div class = row>" + current.references[i].label + "</div>"
+          }
+          document.getElementById("references_information").innerHTML=skillHTML;
+          var skillHTML = "<div class = row><h2 style= margin:0> Experiences </h2></div>"
+          for (i = 0; i < current.experiences.length; i++) { 
+              skillHTML += "<div class = row>" + current.experiences[i].label + "</div>"
+          }
+          document.getElementById("experiences_information").innerHTML=skillHTML;
+          var skillHTML = "<div class = row><h2 style= margin:0> Want to see more? </h2><a href = \"/profile/" + current.id + "\"> Go to full Profile</a></div>"
+          document.getElementById("full_profile").innerHTML=skillHTML;
+        }
+
+        function hideProfile(p1){
+          p1.select("rect")
+            .attr("x", -36)
+            .attr("y", -12)
+            .attr("width", 100)
+            .attr("height", 25)
+            .attr("rx", 5);
+
+          p1.select("text").transition()
+            .attr("x", -5)
+            .attr("y", 0)
+            .attr("clip-path", "url(#clip1)")
+            .text(function(d) { return d.name; });          
+          var skillHTML = ""
+          document.getElementById("profile_header").innerHTML=skillHTML;
+          document.getElementById("skills_information").innerHTML=skillHTML;
+          document.getElementById("references_information").innerHTML=skillHTML;
+          document.getElementById("experiences_information").innerHTML=skillHTML;
+          document.getElementById("full_profile").innerHTML=skillHTML;
         }
 
         </script>
@@ -223,19 +304,64 @@ text {
     <div class = "col-md-2">
       <div class = "row" style = "padding: 10px;">
         Search by Name
-        <%= simple_form_for NetworkSearch.new, :id => "name_search", :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
+        <%= simple_form_for NetworkSearch.new, :html => { :id => "nameSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
           <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
             <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
           </div>
           <%= f.hidden_field :user_id, :value => @user.user_id %>
+          <%= f.hidden_field :type, :value => "name" %>
+        <% end %>
+      </div>
+      <div class = "row" style = "padding: 10px;">
+        Search by Skill
+        <%= simple_form_for NetworkSearch.new, :html => { :id => "skillSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
+          <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
+            <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
+          </div>
+          <%= f.hidden_field :user_id, :value => @user.user_id %>
+          <%= f.hidden_field :type, :value => "skill" %>
+        <% end %>
+      </div>
+      <div class = "row" style = "padding: 10px;">
+        Search by Everything
+        <%= simple_form_for NetworkSearch.new, :html => { :id => "allSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
+          <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
+            <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
+          </div>
+          <%= f.hidden_field :user_id, :value => @user.user_id %>
+          <%= f.hidden_field :type, :value => "all" %>
         <% end %>
       </div>
     </div>
-    <div class = "col-md-2">
-      <div class = "row" style = "padding: 10px; visibility: none;" id = "profile_header">
+  </div>
+  <div class = "row">
+    <div class = "col-md-3">
+      <div id = "profile_header">
       </div>
-      <div class = "row" style = "padding: 10px;" id = "skills_information">
+    </div>
+    <div class = "col-md-2">
+      <div id = "skills_information">
+      </div>
+    </div>
+    <div class = "col-md-2">
+      <div id = "references_information">
+      </div>
+    </div>
+    <div class = "col-md-2">
+      <div id = "experiences_information">
+      </div>
+    </div>
+    <div class = "col-md-2">
+      <div id = "full_profile">
       </div>
     </div>
   </div>
+  <svg id="mySvg" width="0" height="0">
+    <clipPath id="clip1">
+        <rect x="-5" y="-12" width="65" height="90"/>
+    </clipPath>
+    <clipPath id="clip2">
+        <rect x="-5" y="-12" width="115" height="90"/>
+    </clipPath>
+  </svg>
 </body>

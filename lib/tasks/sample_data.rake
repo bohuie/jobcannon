@@ -65,10 +65,31 @@ namespace :db do
   User.create!(email: 'jamesblack@gmail.ca', username: 'jamesblack', 
     password: 'jamesjames', password_confirmation: 'jamesjames', 
     fname: 'James', lname: 'Black')
+  
+  #user id 12
+  User.create!(email: 'jamesblack2@gmail.ca', username: 'jamesblack2', 
+    password: 'jamesjames', password_confirmation: 'jamesjames', 
+    fname: 'John', lname: 'Black')
+  
+  #user id 13
+  User.create!(email: 'jamesblack3@gmail.ca', username: 'jamesblack3', 
+    password: 'jamesjames', password_confirmation: 'jamesjames', 
+    fname: 'Jack', lname: 'Black')
+  
+  #user id 14
+  User.create!(email: 'jamesblack4@gmail.ca', username: 'jamesblack4', 
+    password: 'jamesjames', password_confirmation: 'jamesjames', 
+    fname: 'Jimmy', lname: 'Black')
 
   Friendship.create!(friendship_id: 8, sender_id: 9, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
   Friendship.create!(friendship_id: 9, sender_id: 10, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
   Friendship.create!(friendship_id: 10, sender_id: 11, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
   Friendship.create!(friendship_id: 11, sender_id: 11, receiver_id: 10, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 12, sender_id: 12, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 13, sender_id: 12, receiver_id: 9, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 14, sender_id: 13, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 15, sender_id: 13, receiver_id: 10, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 16, sender_id: 14, receiver_id: 12, sent_at: "2014-02-21 02:31:24", accepted: true)
+
   end
 end

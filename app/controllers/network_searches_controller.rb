@@ -4,16 +4,25 @@ class NetworkSearchesController < ApplicationController
     @search = NetworkSearch.new
     @search.update_attributes(search_params)
     @search.save
-    respond_to do |f|
-      f.html { redirect_to "/show_network" }
-      f.js { render 'shared/ajax/name_search.js.erb' }
+    if @search.type == "name"
+      respond_to do |f|
+        f.js { render 'shared/ajax/name_search.js.erb' }
+      end
+    elsif @search.type == "name"
+      respond_to do |f|
+        f.js { render 'shared/ajax/skill_search.js.erb' }
+      end
+    else
+      respond_to do |f|
+        f.js { render 'shared/ajax/all_search.js.erb' }
+      end
     end
   end
-
+  
   private
 
   def search_params
-        params.require(:network_search).permit(:user_id, :query)
+        params.require(:network_search).permit(:user_id, :query, :type)
   end
 
 end
