@@ -90,8 +90,6 @@ class FriendshipsController < ApplicationController
                           targetphoto: Photo.find_by(:user_id=>r.receiver_id).photo.url, targetemail: User.find(r.receiver_id).email})
       end
     end
-    @friend = @friendships[0]
-    puts @friend
     @friendships = @friendships.to_json
     @friendship = Friendship.new
   end
