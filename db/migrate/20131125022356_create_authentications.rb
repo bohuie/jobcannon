@@ -11,6 +11,21 @@ class CreateAuthentications < ActiveRecord::Migration
       t.datetime :updated_at
     end
 
+
+    create_table :endorses do |t|
+      t.integer :skill_id
+      t.integer :endorser_id
+      t.integer :endorse_id
+    end 
+  create_table :photos do |t|
+    t.integer :user_id
+    t.string :photo_file_name
+    t.string :photo_content_type
+    t.integer :photo_file_size
+    t.datetime :photo_updated_at 
+    t.attachment :photo   
+  end  
+
     create_table :chatviews do |t|
       t.integer  :id1,         default: 0, null: false
       t.integer  :id2,            default: 0, null: false
