@@ -511,6 +511,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "skill_id",   default: 0,  null: false
     t.string  "label",      default: "", null: false
     t.integer "user_id",    default: 0,  null: false
+    t.integer "times_endorsed", default: 0, null: false
     t.integer "posting_id"
     t.boolean "mandatory"
   end

@@ -51,6 +51,11 @@ namespace :db do
     password: 'peterpeter', password_confirmation: 'peterpeter', 
     fname: 'Peter', lname: 'West')
 
+  Skill.create!(label: "programming", user_id: 8, times_endorsed: 3)
+  Skill.create!(label: "web design", user_id: 8, times_endorsed: 2)
+  Skill.create!(label: "gaming", user_id: 8, times_endorsed: 1)
+
+
   #user id 9
   User.create!(email: 'henrynorth@uvic.ca', username: 'henrynorth', 
     password: 'henryhenry', password_confirmation: 'henryhenry', 
@@ -80,6 +85,13 @@ namespace :db do
   User.create!(email: 'jamesblack4@gmail.ca', username: 'jamesblack4', 
     password: 'jamesjames', password_confirmation: 'jamesjames', 
     fname: 'Jimmy', lname: 'Black')
+
+  Endorse.create!(skill_id: 9, endorser_id: 9)
+  Endorse.create!(skill_id: 9, endorser_id: 10)
+  Endorse.create!(skill_id: 9, endorser_id: 11)
+  Endorse.create!(skill_id: 10, endorser_id: 12)
+  Endorse.create!(skill_id: 10, endorser_id: 13)
+  Endorse.create!(skill_id: 11, endorser_id: 14)
 
   Friendship.create!(friendship_id: 8, sender_id: 9, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
   Friendship.create!(friendship_id: 9, sender_id: 10, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
