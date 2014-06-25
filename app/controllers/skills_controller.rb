@@ -7,9 +7,7 @@ class SkillsController < ApplicationController
     @owner = params[:owner]
 
     @user = current_user
-    @userID = current_user.user_id
-    puts params[:owner]
-    puts "herererererer"
+    @userID = current_user.user_id    
     @skills = Skill.where(:user_id => @owner).paginate(page: params[:page])
   end
 
@@ -22,13 +20,14 @@ class SkillsController < ApplicationController
 
   def destroy
     @skill = Skill.find(params[:id])
+    @userID = current_user.user_id
     if (user_signed_in? && current_user.user_id == @skill.user_id)
       @skill.destroy
       flash[:success] = "Skill Removed."
     else
       flash[:error] = "No access"
     end
-    redirect_to '/skills'
+    redirect_to skills_path(:owner =>@userID)
 
   end
 
@@ -49,6 +48,7 @@ class SkillsController < ApplicationController
   	if(user_signed_in?)
   		@skill = Skill.new(skill_params)
       @skill.user_id = current_user.user_id
+      @userID = current_user.user_id
       if(Skilllabel.find_by(label: @skill.label).nil?)
         @skilllabel = Skilllabel.new
         @skilllabel.label = @skill.label
@@ -56,13 +56,13 @@ class SkillsController < ApplicationController
       end
   		if(@skill.save)
   			flash[:success] = "Skill created!"
-      	redirect_to "/skills"
+      	redirect_to skills_path(:owner =>@userID)
       else
   			flash[:error] = "Fill in all required fields"
        	redirect_to "/skills"
       end
       @skills = Skill.where(:user_id => current_user.user_id).paginate(page: params[:page])
-      @userID = current_user.user_id
+            
   	else
   		flash[:error] = "No access"
       redirect_to root_path
