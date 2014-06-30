@@ -101,6 +101,7 @@ First_Website::Application.routes.draw do
   match '/employ_update', to: 'experiencetables#employ_update', via: 'get'
   match '/search', to: 'search#search', via: 'get'
   match '/findfriend', to: 'friendships#findfriend', via: 'get'
+  match '/findcompany', to: 'friendships#findcompany', via: 'get'
   match '/results', to: 'surveys#add', via: 'post'
   match '/reccomended', to: 'skills#reccomend', via:'get'
   match '/details', to: 'experiences#details', via: 'get'
@@ -113,6 +114,8 @@ First_Website::Application.routes.draw do
 
   get  'addfriend', to: 'friendships#addfriend'
   post  'addfriend', to: 'friendships#addfriend'
+  get  'addcompany', to: 'friendships#addcompany'
+  post  'addcompany', to: 'friendships#addcompany'
   get  'accept', to: 'friendships#accept'
   get  'decline', to: 'friendships#decline'
   get 'network', to: 'friendships#index'

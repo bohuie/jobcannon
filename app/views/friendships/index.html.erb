@@ -12,21 +12,43 @@
 	<% if @online.empty? %>
 		<p>No friends are currently online. </p>
 	<%end%>
+	<div class = "row">
+		<div class = "col-md-6">
+			<%= form_tag("/findfriend", method: "get") do %>
+			    <div style = "max-width:500px;">
+			    	<p>Find people via email address</p>
+			    	<%= email_field_tag(:q)%> 
+			    </div>
+			    <%= submit_tag("Find Friend",class: "btn btn-small btn-primary") %> 
+			<% end %>
+		</div>
+		<div class = "col-md-6">
+			<%= form_tag("/findcompany", method: "get") do %>
+			    <div style = "max-width:500px;">
+			    	<p>Find a company</p>
+			    	<%= text_field_tag(:q)%> 
+			    </div>
+			    <%= submit_tag("Find Company",class: "btn btn-small btn-primary") %> 
+			<% end %>
+		</div>
+	</div>
 
-	<%= form_tag("/findfriend", method: "get") do %>
-	    <div style = "max-width:500px;">
-	    	<p>Find people via email address</p>
-	    	<%= email_field_tag(:q)%> 
-	    </div>
-	    <%= submit_tag("Find Friend",class: "btn btn-small btn-primary") %> 
+
+
+	<h2>Companies </h2>
+
+	<%= render partial: 'shared/companieslist', collection: @companies %>
+	<% if @left>0 %>
+		</div>
 	<% end %>
 
-
+	<% @left = 0 %>
 
 	<h2>Friends </h2>
 
 	<%= render partial: 'shared/friendslist', collection: @friends %>
-	<% if @left==false %>
+
+	<% if @left>0%>
 		</div>
 	<% end %>
 	

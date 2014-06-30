@@ -5,7 +5,7 @@
 <%else%>
 	<p> Sorry, unable to find friend. Search again? </p>
 <% end %>
-<%= form_tag("/findfriend", method: "get") do %>
+	<%= form_tag("/findfriend", method: "get") do %>
         <div style = "max-width:500px;">
         	<p>Find people via email address</p>
         	<%= email_field_tag(:q)%> 

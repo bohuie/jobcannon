@@ -56,17 +56,21 @@ text {
                                                                     photo: link.sourcephoto, 
                                                                     email: link.sourceemail,
                                                                     references: link.sourcereferences,
-                                                                    experiences: link.sourceexperiences});
+                                                                    experiences: link.sourceexperiences,
+                                                                    company: link.sourcecompany});
           link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, 
                                                                     id: link.targetid,
                                                                     skills: link.targetskills,
                                                                     photo: link.targetphoto,
                                                                     email: link.targetemail,
                                                                     references: link.targetreferences,
-                                                                    experiences: link.targetexperiences});
+                                                                    experiences: link.targetexperiences,
+                                                                    company: link.targetcompany});
           linkedByIndex[link.source.name + "," + link.target.name] = 1;
           linkedByIndex[link.target.name + "," + link.source.name] = 1;
         });
+        console.log(nodes);
+        console.log(links);
         var width = $('#body-col').width(),
             height = $('#body-row').height();
 
@@ -85,9 +89,7 @@ text {
           .nodes(d3.values(nodes))
           .links(links)
           .size([width, height])
-          .linkDistance(function(){
-            return Math.random() * 200 + 120
-          })
+          .linkDistance(150)
           .charge(-2000)
           .friction(0.85)
           .on("tick", tick)
@@ -111,7 +113,13 @@ text {
             .attr("width", 100)
             .attr("height", 25)
             .attr("rx", 5)
-            .style("fill","#ABCDEF");
+            .style("fill",function(d) { 
+              if(d.company)
+                return "#ABCDEF";
+              else{
+                return "#FEDCBA";
+              }
+            });
 
         node.append("svg:image")
             .attr('x',-35)
