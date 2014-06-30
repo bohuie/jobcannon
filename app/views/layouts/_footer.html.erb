@@ -29,12 +29,6 @@ function change_chatbox3(){
         NAME.className = "dropup open";  // Otherwise, use `second_name`
     }
   }
-  $(function() {
-  var faye = new Faye.Client('http://localhost:9292/faye');
-  faye.subscribe('<%=@channel%>', function(data) {
-    eval(data);
-  });
-  }); //syntax error here
   function hold(){
 
     document.getElementsByTagName("html")[0].setAttribute("style","overflow:hidden");
@@ -179,7 +173,11 @@ function change_chatbox3(){
                       </ul>              
                     </li>
                   <% end %>
-                  <li><%= link_to "Explore your network", "/show_network",  id: "brand"%> </li>
+                  <% if @user.employer? %>
+                    <li><%= link_to "See your followers", "/show_network",  id: "brand"%> </li>
+                  <% else %>
+                    <li><%= link_to "Explore your network", "/show_network",  id: "brand"%> </li>
+                  <% end %>
               </ul>
           </div><!-- /.navbar-collapse -->
       </div>

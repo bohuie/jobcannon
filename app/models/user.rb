@@ -80,6 +80,10 @@ class User < ActiveRecord::Base
     query_obj = User.where('email like ?', "%#{input}%") unless input.blank?
   end
 
+  def self.findbyfname(input)
+    query_obj = User.where('fname like ?', "%#{input}%") unless input.blank?
+  end
+
 
 
   private

@@ -15,17 +15,16 @@
 	</style>
 </head>
 
-<% if @user.user_id == friendslist.receiver_id %>
-	<% @friend = User.find_by(user_id: friendslist.sender_id) %>
+<% if @user.user_id == companieslist.receiver_id %>
+	<% @company = User.find_by(user_id: companieslist.sender_id) %>
 <% else %>
-	<% @friend = User.find_by(user_id: friendslist.receiver_id) %>
+	<% @company = User.find_by(user_id: companieslist.receiver_id) %>
 <% end %>
 
 <% if @left<2 %>
 	<% if @left == 0 %>
 		<div class="row">
-	<% end %>
-		<div class = "col-md-4">
+	<% end %>		<div class = "col-lg-4">
 			<div style = "border: 1px solid black; width: 32em; height:10em; margin-top: 20px; background-color: white;">
 					<div class="col-lg-4" style = "width: 200px; margin: 5px;">
 						<%= image_tag('prof.jpeg', :class => "pic") %>
@@ -34,29 +33,29 @@
 						<tr>
 							<td valign="top">
 								<div style = "margin:5px;">
-									<%= link_to @friend.fname+" "+@friend.lname, profile_path(@friend), :style=>"" %> 
+									<%= link_to @company.fname+" "+@company.lname, profile_path(@company), :style=>"" %> 
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<td valign ="bottom">
 								<div style = "margin:5px;">
-									<%= link_to "Chat", {controller: "messages", action: "privatechat", id1: @user.user_id, id2: @friend.user_id}, class: "btn btn-small btn-primary" %>
+									<%= link_to "Chat", {controller: "messages", action: "privatechat", id1: @user.user_id, id2: @company.user_id}, class: "btn btn-small btn-primary" %>
 								</div>
 							</td>
 
 							<td valign="bottom">
 								<div style = "margin:5px;">
-									<%= link_to "Remove", friendslist, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
+									<%= link_to "Remove", companieslist, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
 								</div>
 							</td>
 						</tr>
 					</table>						
-				</div>
 			</div>
+		</div>
 		<% @left = @left + 1 %>
 <% else %>
-		<div class = "col-md-4">
+		<div class = "col-lg-4">
 			<div style = "border: 1px solid black; width: 32em; height:10em; margin-top: 20px; background-color: white;">
 					<div class="col-lg-4" style = "width: 200px; margin: 5px;">
 						<%= image_tag('prof.jpeg', :class => "pic") %>
@@ -65,20 +64,20 @@
 						<tr>
 							<td valign="top">
 								<div style = "margin:5px;">
-									<%= link_to @friend.fname+" "+@friend.lname, profile_path(@friend), :style=>"" %> 
+									<%= link_to @company.fname+" "+@company.lname, profile_path(@company), :style=>"" %> 
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<td valign ="bottom">
 								<div style = "margin:5px;">
-									<%= link_to "Chat", {controller: "messages", action: "privatechat", id1: @user.user_id, id2: @friend.user_id}, class: "btn btn-small btn-primary" %>
+									<%= link_to "Chat", {controller: "messages", action: "privatechat", id1: @user.user_id, id2: @company.user_id}, class: "btn btn-small btn-primary" %>
 								</div>
 							</td>
 
 							<td valign="bottom">
 								<div style = "margin:5px;">
-									<%= link_to "Remove", friendslist, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
+									<%= link_to "Remove", companieslist, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
 								</div>
 							</td>
 						</tr>
