@@ -30,7 +30,7 @@
           </li>
       </ul>
       <ul class="nav pull-right">
-        <% if user_signed_in? %>
+        <% if user_signed_in? %>          
             <li> <%= link_to "Home", profile_path(@user), id: "brand",  style:"text-shadow:none;" %> </li>
             <li class="dropdown" id="accountmenu">  
                 <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Account<b class="caret"></b></a>  

@@ -38,6 +38,9 @@ class ProfileController < ApplicationController
 
     if(@owner.employer?)
       @postings = Posting.where(:user_id => @owner.user_id)
+      @shopping_lists = ShoppingList.where(user_id: @owner.user_id).first(9)
+      @new_list = ShoppingList.new
+      @new_list.user_id = @owner.user_id
     else
       @experiences = Experience.where(:user_id => @owner.user_id)
       @skills = Skill.where(:user_id => @owner.user_id)

@@ -70,6 +70,8 @@ First_Website::Application.routes.draw do
   resources :progresses
   resources :endorses
   resources :photos
+  resources :shopping_lists
+  resources :flagged_candidates
   
   resources :surveys do
     member do
@@ -118,6 +120,7 @@ First_Website::Application.routes.draw do
   get 'network', to: 'friendships#index'
   get 'privatechat', to: 'messages#privatechat'
   get 'storemsg', to: 'messages#storemsg'
+  get 'employee_list', to: 'shopping_lists#index'
 
 
    # get 'signin' => 'devise/sessions#new', :as => :new_user_session

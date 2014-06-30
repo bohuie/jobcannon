@@ -1,0 +1,46 @@
+<head>
+	<script>
+		function first(){
+			var hash = document.location.hash;
+			$(hash+'-li').addClass('active');
+			//$('#'+hash.replace(prefix,"")).addClass('active');
+			$(hash).addClass('active');
+		}
+
+	</script>
+</head>
+
+
+<body onload = "first()">
+
+	<div class = "row">
+		<div class = "col-lg-2">
+			<ul class="nav nav-pills nav-stacked">
+
+				<% @all_lists.each do |t| %>
+					<li id = "<%=t.name%>-li">
+						<a href="#<%=t.name%>" data-toggle="tab"><%= t.name %></a>
+					</li>
+				<% end %>
+
+			</ul>
+		</div>
+		<div class = "col-lg-10">
+			<div class = "tab-content">
+
+				<% @all_lists.each do |t| %>
+	        		<div class="tab-pane fade in content survey-tabs" id="<%=t.name%>"> 
+	        			<%
+	        				@candidates = FlaggedCandidate.where(:list_id=>t.list_id)
+	        			%>
+	        			<%= render partial: "shared/candidates", :c => @candidates %>
+						
+	        		</div>
+	        	<% end %>
+
+        	</div>
+		</div>
+	</div>
+
+
+</body>

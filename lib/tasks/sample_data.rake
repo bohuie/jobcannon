@@ -86,6 +86,12 @@ namespace :db do
     password: 'jamesjames', password_confirmation: 'jamesjames', 
     fname: 'Jimmy', lname: 'Black')
 
+  #user id 15
+  User.create!(email: 'adambond@gmail.ca', username: 'Adambond', 
+    password: 'adamadam', password_confirmation: 'adamadam', 
+    fname: 'Adam', lname: 'Bond', employer: true)
+
+
   Endorse.create!(skill_id: 9, endorser_id: 9)
   Endorse.create!(skill_id: 9, endorser_id: 10)
   Endorse.create!(skill_id: 9, endorser_id: 11)
