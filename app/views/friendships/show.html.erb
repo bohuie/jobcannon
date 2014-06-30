@@ -45,9 +45,17 @@ text {
     <div class = "col-md-10" id = "body-col" style = "padding: 0; vertical-align: top;">
       <div id = "display" style = "width: 100%; height: 100%; border: 1px solid black;">
         <script>
+        function cleanArray(nodes){
+          var newArray = new Array();
+          for(var i = 0; i<nodes.length; i++){
+              if (nodes[i]){
+                newArray.push(nodes[i]);
+            }
+          }
+          return newArray;
+        }
         var links = <%= @friendships.to_s.html_safe %>
-        var nodes = {};
-        var linkedByIndex = {};
+        var nodes = [];
         // Compute the distinct nodes from the links.
         links.forEach(function(link) {
           link.source = nodes[link.source] || (nodes[link.source] = {name: link.source, 
@@ -66,11 +74,7 @@ text {
                                                                     references: link.targetreferences,
                                                                     experiences: link.targetexperiences,
                                                                     company: link.targetcompany});
-          linkedByIndex[link.source.name + "," + link.target.name] = 1;
-          linkedByIndex[link.target.name + "," + link.source.name] = 1;
         });
-        console.log(nodes);
-        console.log(links);
         var width = $('#body-col').width(),
             height = $('#body-row').height();
 

@@ -40,7 +40,6 @@ namespace :db do
   Skill.create!(label: "Ruby", user_id: 1, posting_id: 2, mandatory: false)
   Skill.create!(label: "Educational development", user_id: 1, posting_id: 3, mandatory: true)
   Skill.create!(label: "Typing", user_id: 1, posting_id: 3, mandatory: true)
-  Friendship.create!(friendship_id: 1, sender_id: 2, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
 
 
 
@@ -90,6 +89,10 @@ namespace :db do
   Friendship.create!(friendship_id: 14, sender_id: 13, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
   Friendship.create!(friendship_id: 15, sender_id: 13, receiver_id: 10, sent_at: "2014-02-21 02:31:24", accepted: true)
   Friendship.create!(friendship_id: 16, sender_id: 14, receiver_id: 12, sent_at: "2014-02-21 02:31:24", accepted: true)
+  #Followers of Company Mr. Money
+  Friendship.create!(friendship_id: 17, sender_id: 13, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 18, sender_id: 12, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 19, sender_id: 14, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
 
   end
 end

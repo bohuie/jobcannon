@@ -35,72 +35,138 @@ class FriendshipsController < ApplicationController
 
   def show
     @user = current_user
-    @network = NetworkSearch.new
-    @temp1 = Friendship.where(sender_id: @user.user_id, accepted: true)
-    @temp2 = Friendship.where(receiver_id: @user.user_id, accepted: true)
-    @temp = @temp1+@temp2
-    #Add friends of friends to the network
-    @temp.each do |t|
-      @temp1 = @temp1 + Friendship.where(sender_id: t.receiver_id, accepted: true)
-      @temp1 = @temp1 + Friendship.where(receiver_id: t.sender_id, accepted: true)
-      #do not add other followers of companies
-      unless User.find(t.receiver_id).employer?
-        @temp1 = @temp1 + Friendship.where(receiver_id: t.receiver_id, accepted: true)
+    if @user.employer?
+      @network = NetworkSearch.new
+      @temp = Friendship.where(receiver_id: @user.user_id, accepted: true)
+      @temp1 = @temp
+      @temp2 = Array.new
+      #Add friendships between followers but does not add friends of followers if they don't follow the company
+      @temp.each do |t|
+        @temp2 = @temp2 +  Friendship.where(receiver_id: t.sender_id, accepted: true)
       end
-    end
-    @temp = @temp1+@temp2
-    @temp = @temp.uniq
-    @friendships = []
-    @temp.each do |r|
-      if(Photo.find_by(:user_id=>r.sender_id).nil? && Photo.find_by(:user_id=>r.receiver_id).nil?)
-        @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
-                          sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
-                          sourcephoto: "", sourceemail: User.find(r.sender_id).email,
-                          sourcereferences: Reference.where(user_id: r.sender_id),
-                          sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
-                          targetreferences: Reference.where(user_id: r.receiver_id),
-                          targetexperiences: Experience.where(user_id: r.receiver_id),
-                          target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
-                          targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
-                          targetphoto: "", targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
-      elsif(Photo.find_by(:user_id=>r.sender_id).nil?)
-        @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
-                          sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
-                          sourcephoto: "", sourceemail: User.find(r.sender_id).email,
-                          sourcereferences: Reference.where(user_id: r.sender_id),
-                          sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
-                          targetreferences: Reference.where(user_id: r.receiver_id),
-                          targetexperiences: Experience.where(user_id: r.receiver_id),
-                          target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
-                          targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
-                          targetphoto: Photo.find_by(:user_id=>r.receiver_id).photo.url, targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
-      elsif(Photo.find_by(:user_id=>r.receiver_id).nil?)
-        @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
-                          sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
-                          sourcephoto: Photo.find_by(:user_id=>r.sender_id).photo.url, sourceemail: User.find(r.sender_id).email,
-                          sourcereferences: Reference.where(user_id: r.sender_id),
-                          sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
-                          targetreferences: Reference.where(user_id: r.receiver_id),
-                          targetexperiences: Experience.where(user_id: r.receiver_id),
-                          target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
-                          targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
-                          targetphoto: "", targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
-      else
-        @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
-                          sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
-                          sourcephoto: Photo.find_by(:user_id=>r.sender_id).photo.url, sourceemail: User.find(r.sender_id).email,
-                          sourcereferences: Reference.where(user_id: r.sender_id),
-                          sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
-                          targetreferences: Reference.where(user_id: r.receiver_id),
-                          targetexperiences: Experience.where(user_id: r.receiver_id),
-                          target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
-                          targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
-                          targetphoto: Photo.find_by(:user_id=>r.receiver_id).photo.url, targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
+      @temp2.each do |q|
+        unless Friendship.find_by(receiver_id: @user.user_id, sender_id: q.receiver_id, accepted: true).nil?
+          @temp1.push(q)
+        end
       end
+      @temp = @temp1
+      @friendships = []
+      @temp.each do |r|
+        if(Photo.find_by(:user_id=>r.sender_id).nil? && Photo.find_by(:user_id=>r.receiver_id).nil?)
+          @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                            sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                            sourcephoto: "", sourceemail: User.find(r.sender_id).email,
+                            sourcereferences: Reference.where(user_id: r.sender_id),
+                            sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
+                            targetreferences: Reference.where(user_id: r.receiver_id),
+                            targetexperiences: Experience.where(user_id: r.receiver_id),
+                            target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                            targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                            targetphoto: "", targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
+        elsif(Photo.find_by(:user_id=>r.sender_id).nil?)
+          @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                            sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                            sourcephoto: "", sourceemail: User.find(r.sender_id).email,
+                            sourcereferences: Reference.where(user_id: r.sender_id),
+                            sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
+                            targetreferences: Reference.where(user_id: r.receiver_id),
+                            targetexperiences: Experience.where(user_id: r.receiver_id),
+                            target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                            targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                            targetphoto: Photo.find_by(:user_id=>r.receiver_id).photo.url, targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
+        elsif(Photo.find_by(:user_id=>r.receiver_id).nil?)
+          @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                            sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                            sourcephoto: Photo.find_by(:user_id=>r.sender_id).photo.url, sourceemail: User.find(r.sender_id).email,
+                            sourcereferences: Reference.where(user_id: r.sender_id),
+                            sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
+                            targetreferences: Reference.where(user_id: r.receiver_id),
+                            targetexperiences: Experience.where(user_id: r.receiver_id),
+                            target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                            targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                            targetphoto: "", targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
+        else
+          @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                            sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                            sourcephoto: Photo.find_by(:user_id=>r.sender_id).photo.url, sourceemail: User.find(r.sender_id).email,
+                            sourcereferences: Reference.where(user_id: r.sender_id),
+                            sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
+                            targetreferences: Reference.where(user_id: r.receiver_id),
+                            targetexperiences: Experience.where(user_id: r.receiver_id),
+                            target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                            targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                            targetphoto: Photo.find_by(:user_id=>r.receiver_id).photo.url, targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
+        end
+      end
+      @friendships = @friendships.to_json
+      @friendship = Friendship.new
+    else
+      @network = NetworkSearch.new
+      @temp1 = Friendship.where(sender_id: @user.user_id, accepted: true)
+      @temp2 = Friendship.where(receiver_id: @user.user_id, accepted: true)
+      @temp = @temp1+@temp2
+      #Add friends of friends to the network
+      @temp.each do |t|
+        @temp1 = @temp1 + Friendship.where(sender_id: t.receiver_id, accepted: true)
+        @temp1 = @temp1 + Friendship.where(receiver_id: t.sender_id, accepted: true)
+        #do not add other followers of companies
+        unless User.find(t.receiver_id).employer?
+          @temp1 = @temp1 + Friendship.where(receiver_id: t.receiver_id, accepted: true)
+        end
+      end
+      @temp = @temp1+@temp2
+      @temp = @temp.uniq
+      @friendships = []
+      @temp.each do |r|
+        if(Photo.find_by(:user_id=>r.sender_id).nil? && Photo.find_by(:user_id=>r.receiver_id).nil?)
+          @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                            sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                            sourcephoto: "", sourceemail: User.find(r.sender_id).email,
+                            sourcereferences: Reference.where(user_id: r.sender_id),
+                            sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
+                            targetreferences: Reference.where(user_id: r.receiver_id),
+                            targetexperiences: Experience.where(user_id: r.receiver_id),
+                            target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                            targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                            targetphoto: "", targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
+        elsif(Photo.find_by(:user_id=>r.sender_id).nil?)
+          @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                            sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                            sourcephoto: "", sourceemail: User.find(r.sender_id).email,
+                            sourcereferences: Reference.where(user_id: r.sender_id),
+                            sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
+                            targetreferences: Reference.where(user_id: r.receiver_id),
+                            targetexperiences: Experience.where(user_id: r.receiver_id),
+                            target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                            targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                            targetphoto: Photo.find_by(:user_id=>r.receiver_id).photo.url, targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
+        elsif(Photo.find_by(:user_id=>r.receiver_id).nil?)
+          @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                            sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                            sourcephoto: Photo.find_by(:user_id=>r.sender_id).photo.url, sourceemail: User.find(r.sender_id).email,
+                            sourcereferences: Reference.where(user_id: r.sender_id),
+                            sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
+                            targetreferences: Reference.where(user_id: r.receiver_id),
+                            targetexperiences: Experience.where(user_id: r.receiver_id),
+                            target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                            targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                            targetphoto: "", targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
+        else
+          @friendships.push({source: User.find(r.sender_id).fname + " " + User.find(r.sender_id).lname,
+                            sourceid: r.sender_id, sourceskills: Skill.where(user_id: r.sender_id), 
+                            sourcephoto: Photo.find_by(:user_id=>r.sender_id).photo.url, sourceemail: User.find(r.sender_id).email,
+                            sourcereferences: Reference.where(user_id: r.sender_id),
+                            sourceexperiences: Experience.where(user_id: r.sender_id), sourcecompany: false,
+                            targetreferences: Reference.where(user_id: r.receiver_id),
+                            targetexperiences: Experience.where(user_id: r.receiver_id),
+                            target: User.find(r.receiver_id).fname + " " + User.find(r.receiver_id).lname,
+                            targetid: r.receiver_id, targetskills: Skill.where(user_id: r.receiver_id),
+                            targetphoto: Photo.find_by(:user_id=>r.receiver_id).photo.url, targetemail: User.find(r.receiver_id).email, targetcompany: User.find(r.receiver_id).employer})
+        end
+      end
+      @friendships = @friendships.to_json
+      @friendship = Friendship.new
     end
-    @friendships = @friendships.to_json
-    puts @friendships
-    @friendship = Friendship.new
   end
 
   def findfriend
