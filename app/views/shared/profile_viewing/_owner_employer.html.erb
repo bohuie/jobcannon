@@ -101,7 +101,7 @@
                     <% if !@shopping_lists.nil? %>
                       <% @shopping_lists.each do |t| %>
                           <div>                            
-                            <%= link_to t.name,shopping_lists_path(:id=>t.list_id, :anchor => t.name), :id => "more"%> 
+                            <%= link_to t.name,shopping_lists_path(:id=>t.list_id, :anchor => t.name.to_s.gsub(/\s+/, "")), :id => "more"%> 
                           </div>
                       <% end %>
                     <% end %>

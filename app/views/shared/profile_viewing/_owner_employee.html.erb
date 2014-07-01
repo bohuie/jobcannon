@@ -1,9 +1,9 @@
 <div class = "row" height = 30px style = "">
         <div class = "col-lg-1">
+          <%= link_to'Generate your Resume', {controller: "profile", action: "resume", :format => :pdf, id: @user.id} %> 
         </div>
         <div class = "col-lg-4" style ="" >
             <div style = "">
-              <%= link_to'Sign Out', destroy_user_session_path, :method => :delete, id:"brand", style:"text-shadow:none; color: black" %>  
                 <%  @p = Photo.find_by(:user_id=>@user.user_id) %>
                 <% if !@p.nil? %>
                   <%= image_tag @p.photo.url, :class => "pic" %>
