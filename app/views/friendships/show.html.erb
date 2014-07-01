@@ -414,7 +414,7 @@ text {
         %>
 
         <% if !@job_list.nil? %>
-          <%= form_for @candidate do |f| %>
+          <%= form_for @candidate, remote: true do |f| %>
 
             <%= f.label "Save this person to a job listing" %>
             <%= f.collection_select(:list_id,  @job_list, :list_id, :name) %>

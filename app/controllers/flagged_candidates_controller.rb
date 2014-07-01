@@ -2,12 +2,20 @@ class FlaggedCandidatesController < ApplicationController
 
 
 	def create
-		@candidate = FlaggedCandidate.new(candidate_params)		
-		@candidate.save
+		@candidate = FlaggedCandidate.new(candidate_params)
+		unless(FlaggedCandidate.find_by(list_id: @candidate.list_id, flagged_user_id: @candidate.flagged_user_id))
+			@candidate.save
+		end
 		@owner = User.find(@candidate.flagged_user_id)
-
-		redirect_to profile_path(:id=>@owner.user_id)
-		flash[:success] = "Candidate Added"
+		respond_to do |f|
+			f.html{
+				redirect_to profile_path(:id=>@owner.user_id)
+				flash[:success] = "Candidate Added"
+			}
+			f.js{
+				render 'shared/ajax/network_flag.js.erb'
+			}
+		end
 	end
 
 	def update 
