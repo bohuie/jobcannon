@@ -1,0 +1,27 @@
+<% if @user.user_id != @owner.user_id && @user.employer? %>
+
+	<%
+		@owner = User.find(params[:id])
+		@job_list = ShoppingList.where(:user_id=>@user.user_id)
+
+		@owner = User.find(params[:id])
+		#@job_list = ShoppingList.where(:user_id=>@user.user_id)
+		@job_list = @job_list.where.not( list_id: FlaggedCandidate.where( flagged_user_id: @owner.user_id ).pluck(:list_id) )
+
+		@candidate = FlaggedCandidate.new	
+		
+	%>
+
+	<% if !@job_list.nil? %>
+		<%= form_for @candidate do |f| %>
+
+			<%= f.label "Save this person to a job listing" %>
+			<%= f.collection_select(:list_id,  @job_list, :list_id, :name) %>
+
+			<%= f.hidden_field :flagged_user_id, :value=>@owner.user_id %>
+
+			<%= f.submit "Submit", class: "btn btn-primary" %>
+		<% end %>
+	<% end %>
+    
+<% end %>    	

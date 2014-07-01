@@ -6,6 +6,9 @@ class EndorsesController < ApplicationController
 		@endor.save
 
 		@skill = Skill.find(@endor.skill_id)
+		@skill.times_endorsed += 1
+		@skill.save
+
 		@owner = User.find(@skill.user_id)
 
 		redirect_to profile_path(:id=>@owner.user_id)
@@ -16,8 +19,8 @@ class EndorsesController < ApplicationController
 
 		@skill = Skill.find(@endor.skill_id)
 		@owner = User.find(@skill.user_id)
-		@endor.destroy		
-
+		@endor.destroy	
+		@skill.times_endorsed -= 1	
 
 		redirect_to profile_path(:id=>@owner.user_id)
 	end 

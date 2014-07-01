@@ -30,7 +30,7 @@
           </li>
       </ul>
       <ul class="nav pull-right">
-        <% if user_signed_in? %>
+        <% if user_signed_in? %>          
             <li> <%= link_to "Home", profile_path(@user), id: "brand",  style:"text-shadow:none;" %> </li>
             <li class="dropdown" id="accountmenu">  
                 <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Account<b class="caret"></b></a>  
@@ -40,7 +40,27 @@
                 </ul>              
             </li>
         <% else %>
-            <li><%= link_to "Sign In", new_user_session_path, id: "brand",  style:"text-shadow:none;"%></li>
+
+        <li>
+            <ul class="nav pull-right" id = "all_in_one">
+              <li><%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %></li>
+
+              <li><%= f.label "Email: ", :style => "padding-left: 5px; padding-right: 5px; font-weight: normal;"%></li>
+              <li><%= f.email_field :email, :autofocus => true%></li>
+              <li><%= f.label "Password: ", :style => "padding-left: 5px; padding-right: 5px; font-weight: normal;" %></li>
+              <li><%= f.password_field :password, :style => "width: 100%;" %> <br>
+                
+                  <% if devise_mapping.rememberable? %>
+                      <%= f.check_box :remember_me %> <%= f.label :remember_me, :style=> "font-weight: normal;" %>
+                  <% end %>                          
+              </li>
+              <li>
+                  <%= f.submit "Sign in", class: "btn btn-medium btn-primary", :style=> "margin-left: 10px; margin-top:0px;" %>
+              </li>
+
+              <% end %>
+            </ul>
+        </li>
             <li><%= link_to "Sign Up", new_user_registration_path, id: "brand",  style:"text-shadow:none;" %></li>
         <% end %>
       </ul>  

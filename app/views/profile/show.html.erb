@@ -53,7 +53,7 @@
 <body>  
     <% if @user.user_id == @owner.user_id %>
         <% if @owner.employer? %>          
-          Render owner employer page
+          <%= render :partial => 'shared/profile_viewing/owner_employer' %>
         <% else %>        
           <%= render :partial => 'shared/profile_viewing/owner_employee' %>
         <% end %>

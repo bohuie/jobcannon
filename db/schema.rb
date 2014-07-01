@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.attachment "photo"   
   end  
 
+  create_table "shopping_lists", force: true do |t|
+    t.integer "user_id"
+    t.integer "list_id"
+    t.string  "name"
+  end 
+
+  create_table "flagged_candidates", forse: true do |t|
+    t.integer "list_id"
+    t.integer "flagged_user_id"
+  end
+
   create_table "accountabilities", force: true do |t|
     t.integer "user_id"
     t.integer "accountability_id", default: 0, null: false
@@ -511,6 +522,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "skill_id",   default: 0,  null: false
     t.string  "label",      default: "", null: false
     t.integer "user_id",    default: 0,  null: false
+    t.integer "times_endorsed", default: 0, null: false
     t.integer "posting_id"
     t.boolean "mandatory"
   end

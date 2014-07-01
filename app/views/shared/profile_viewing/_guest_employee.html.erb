@@ -8,7 +8,7 @@
              </div>
         </div>
         <div class = "col-lg-1"></div>
-        <div class = "col-lg-6" style = "">
+        <div class = "col-lg-5" style = "">
             <p id = "title" style = "font-size: 3em"> <%= @owner.fname%> <%= @owner.lname%> </p>
             <p id = "title" style = "font-size:2em"> <%= @owner.city%> <%= @owner.province%> </p>
             <p id = "title" style = "font-size: 1em"> <%= @owner.email%></p>
@@ -44,6 +44,9 @@
                 </tr>
               </table>
             <% end %>
+        </div>
+        <div class = "col-lg-1">
+          <%= render partial: "shared/shopping_list" %>
         </div>
     </div>
 
