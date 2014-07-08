@@ -27,36 +27,49 @@ text {
 }
 
 .profilenametext {
-  font: 17px sans-serif;
+  font: 20px sans-serif;
   pointer-events: none;
   opacity: 1;
 }
 
 .profiletagtext{
-  font: 14px sans-serif;
+  font: 16px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.profilecontenttext{
+  font: 12px sans-serif;
   pointer-events: none;
   opacity: 1;
 }
 
 </style>
 
-<body onload = "employerjobs()">
-  <div class = "row" id = "body-row" style = "height: 450px; padding: 0; vertical-align: top;">
-    <div class = "col-md-10" id = "body-col" style = "padding: 0; vertical-align: top;">
+<body>
+  <div class = "row" id = "search-row" style = "padding: 0; height: 50px;">
+    <%= simple_form_for NetworkSearch.new, :html => { :id => "allSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
+      <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
+        <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
+      </div>
+      <%= f.hidden_field :user_id, :value => @user.user_id %>
+      <%= f.hidden_field :type, :value => "all" %>
+    <% end %>
+  </div>
+  <div class = "row" id = "body-row" style = "padding: 0;">
+    <div class = "col-md-12" id = "body-col" style = "padding: 0; vertical-align: top;">
       <div id = "display" style = "width: 100%; height: 100%; border: 1px solid black;">
         <script>
-        function cleanArray(nodes){
-          var newArray = new Array();
-          for(var i = 0; i<nodes.length; i++){
-              if (nodes[i]){
-                newArray.push(nodes[i]);
-            }
-          }
-          return newArray;
-        }
+        d3.selection.prototype.moveToFront = function() {
+          return this.each(function(){
+            this.parentNode.appendChild(this);
+          });
+        };
         var links = <%= @friendships.to_s.html_safe %>
         var nodes = [];
         var linkedByIndex = {};
+        var color = "#FEDCBA"
+        var selectedcolor = "#ABCDEF"
         // Compute the distinct nodes from the links.
         links.forEach(function(link) {
           link.source = nodes[link.source] || (nodes[link.source] = {name: link.source, 
@@ -80,8 +93,7 @@ text {
           linkedByIndex[link.target.name + "," + link.source.name] = 1;
         });
         var width = $('#body-col').width(),
-            height = $('#body-row').height();
-
+            height = window.innerHeight-185;
 
         var svg = d3.select("#display").append("svg")
             .attr("width", width)
@@ -112,7 +124,7 @@ text {
             .data(force.nodes())
             .enter().append("g")
             .attr("class", "node")
-            .on("click", click)
+            .on("click", expand)
             .call(force.drag);
 
         node.append("rect")
@@ -167,29 +179,163 @@ text {
           node
               .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
         }
-        
 
-        function click() {
-          if(d3.select(this).select("rect").attr("width") == 150){
-            d3.select(this).select("rect").transition()
-                .style("fill", "#ccc");
-            unhighlightFriends(this);
-            hideProfile(d3.select(this));
-          }
-          else{
-            d3.selectAll(".node").select("rect").transition()
-              .style("fill", "#ccc");
-            d3.selectAll(".node").select("text").transition()
-              .duration(250)
-              .style("opacity", 1);
-            d3.selectAll('.node').each(function(e){
-              var other = d3.select(this)
-              if(other.select("rect").attr("width")>100)
-                hideProfile(other);
-            });
-            highlightFriends(this);
-            setTimeout(showProfile(this), 100);
-          }
+        function expand(){
+          var current = d3.select(this);
+          current.moveToFront();
+          if(current.select("rect").attr("width") == 100){
+            //Fade all other nodes
+            d3.selectAll(".node").transition()
+                .style("opacity", "0.75");
+            current.transition()
+              .style("opacity", "1");
+            //Increase size of picture border
+            current
+              .selectAll("rect").transition()
+                .attr("width", 40)
+                .attr("height", 40);
+            //Increase size of photo
+            current
+              .select("image").transition()
+                .attr('width', 38)
+                .attr('height', 38);
+            //Increase size of node to hold information
+            current
+              .select("rect").transition()
+                .attr("width", 250)
+                .attr("height", 150)
+                .style("fill", selectedcolor);
+            //Position text to display relevent information
+            var info = nodes[current.select("text").text()]
+            current.
+              select("text")
+              .text("")
+              .attr("clip-path", "url(#clip2)")
+              .attr("x", 16)
+              .append("tspan")
+                .attr("dy", 4)
+                .text(info.name)
+                .attr("class", "profilenametext");
+            current.select("text")
+              .append("tspan")
+                .attr("dy", 19)
+                .attr("x", 16)
+                .text(info.email);
+            // current.append("text")
+            //   .attr("y", 30)
+            //   .append("tspan")
+            //     .attr("dy", 14)
+            //     .attr("x", -30)
+            //     .attr("class", "profiletagtext")
+            //     .text("Skills")
+            //   .append("tspan")
+            //     .attr("dy", 14)
+            //     .attr("x", -30)
+            //     .attr("class", "profilecontenttext")
+            //     .attr("clip-path", "url(#clip3)")
+            //     .text("Java, Ruby, Coding, Reading, Eating, Tweeting, Chilling");
+            current.append("foreignObject")
+              .attr("x", -30) /*the position of the text (left to right)*/
+              .attr("y", 52) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 72)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profilecontenttext")
+                .text("Java, Ruby, Coding, Reading, Eating, Tweeting, Chilling")
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", -30) /*the position of the text (left to right)*/
+              .attr("y", 34) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 18)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profiletagtext")
+                .text("Skills")
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", 50) /*the position of the text (left to right)*/
+              .attr("y", 52) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 72)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profilecontenttext")
+                .text("Reading, Writing, Learning new things, Walks on the beach")
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", 50) /*the position of the text (left to right)*/
+              .attr("y", 34) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 18)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profiletagtext")
+                .text("Interests")
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", 130) /*the position of the text (left to right)*/
+              .attr("y", 52) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 60)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profilecontenttext")
+                .text("UBC-O, McDonald's, Popadoms")
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", 130) /*the position of the text (left to right)*/
+              .attr("y", 34) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 18)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profiletagtext")
+                .text("Following")
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", 130) /*the position of the text (left to right)*/
+              .attr("y", 112) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 18)
+              .append("xhtml:body")
+              .append("a")
+                .attr("href", "/profile/8")
+                .append("p")
+                  .attr("class", "profiletagtext")
+                  .text("Full Profile")
+                  .style("background", selectedcolor);
+          }else{
+            //Re-color all nodes
+            d3.selectAll(".node").transition()
+              .style("opacity", "1");
+            //Revert image border
+            current
+              .selectAll("rect").transition()
+                .attr("width", 25)
+                .attr("height", 25);
+            //Revert image size
+            current
+              .select("image").transition()
+                .attr('width', 23)
+                .attr('height', 23);
+            //Revert container size
+            current
+              .select("rect").transition()
+                .attr("width", 100)
+                .attr("height", 25)
+                .style("fill", color);
+            //Revert Text
+            current.select("text")
+              .attr("x", -5)
+              .attr("y", 0)
+              .attr("clip-path", "url(#clip1)")
+              .text(function(d) { return d.name; });
+            //Remove all extra information
+            d3.selectAll(".profiletagtext").remove();
+            d3.selectAll(".profilecontenttext").remove();
+            }
         }
 
         function unhighlightFriends(p1){
@@ -216,85 +362,6 @@ text {
               }
             });
         }
-
-        function showProfile(p1){
-          var current = d3.select(p1)
-          var info = nodes[d3.select(p1).select("text").text()]
-          current.select("rect")
-            .attr("x", -36)
-            .attr("y", -12)
-            .attr("width", 150)
-            .attr("height", 100)
-            .style("fill", "transparent");
-          current.select("text")
-            .text("")
-            .attr("clip-path", "url(#clip2)")
-            .append("tspan")
-              .attr("dy", 3)
-              .text(info.name)
-              .attr("class", "profilenametext")
-          current.select("text")
-            .append("tspan")
-              .attr("dy", 14)
-              .attr("x", -5)
-              .text(info.email)
-          current.select("text")
-            .append("tspan")
-              .attr("dy", 14)
-              .attr("x", -5)
-              .attr("class", "profiletagtext")
-              .text("Skills:")
-          current.select("text")
-            .append("tspan")
-              .attr("dy", 14)
-              .attr("x", -5)
-              .text(function(info){
-                skills = ""
-                if(2 <= info.skills.length)
-                  skills = info.skills[0].label + ", "  + info.skills[1].label + " ";
-                return skills
-              });
-          current.select("text")
-            .append("tspan")
-              .attr("dy", 14)
-              .attr("x", -5)
-              .attr("class", "profiletagtext")
-              .text("References:")
-          current.select("text")
-            .append("tspan")
-              .attr("dy", 14)
-              .attr("x", -5)
-              .text(function(info){
-                references = ""
-                if(2 <= info.references.length)
-                  references = info.references[0].label + ", "  + info.references[1].label + " ";
-                return references
-              });
-
-
-          var current = info;
-          document.getElementById("profile_header").innerHTML="<div class = row><div class = col-md-6><h2>"+current.name+"</h2></div><div style = width:64px;height:64px;padding:0; class = col-md-6><img src="+current.photo+" style = width:64px;height:64px; /></div></div> <div class = row><div class = col-md-6>"+current.email+"</div></div>";
-          var skillHTML = "<div class = row><h2 style= margin:0> Skills </h2></div>"
-          for (i = 0; i < current.skills.length; i++) { 
-              skillHTML += "<div class = row>" + current.skills[i].label + "</div>"
-          }
-          document.getElementById("skills_information").innerHTML=skillHTML;
-          var skillHTML = "<div class = row><h2 style= margin:0> References </h2></div>"
-          for (i = 0; i < current.references.length; i++) { 
-              skillHTML += "<div class = row>" + current.references[i].label + "</div>"
-          }
-          document.getElementById("references_information").innerHTML=skillHTML;
-          var skillHTML = "<div class = row><h2 style= margin:0> Experiences </h2></div>"
-          for (i = 0; i < current.experiences.length; i++) { 
-              skillHTML += "<div class = row>" + current.experiences[i].label + "</div>"
-          }
-          document.getElementById("experiences_information").innerHTML=skillHTML;
-          var skillHTML = "<div class = row><h2 style= margin:0> Want to see more? </h2><a href = \"/profile/" + current.id + "\"> Go to full Profile</a></div>"
-          document.getElementById("full_profile").innerHTML=skillHTML;
-          document.getElementById("flagged_candidate_flagged_user_id").value = current.id
-          document.getElementById("addtojob").style.visibility="visible" 
-        }
-
         function hideProfile(p1){
           p1.select("rect")
             .attr("x", -36)
@@ -309,122 +376,8 @@ text {
             .attr("clip-path", "url(#clip1)")
             .text(function(d) { return d.name; });          
           var skillHTML = ""
-          document.getElementById("profile_header").innerHTML=skillHTML;
-          document.getElementById("skills_information").innerHTML=skillHTML;
-          document.getElementById("references_information").innerHTML=skillHTML;
-          document.getElementById("experiences_information").innerHTML=skillHTML;
-          document.getElementById("full_profile").innerHTML=skillHTML;
-        }
-        function employerjobs(){
-          var hash = document.location.hash;
-          $(hash+'-li').addClass('active');
-          $(hash).addClass('active');
-        }
-        function highlighttagged(list_id){
-          d3.selectAll(".node")
-            .each(function(d){
-              var current = d3.select(this);
-              var info = nodes[current.select("text").text()]
-              if(!info)
-                var info = nodes[current.select("text").select("tspan").text()]
-              if(info.company == false) 
-                for(i = 0; i < info.flaggedjobs.length; i++){
-                  if(info.flaggedjobs[i].list_id == list_id){
-                    console.log(info)
-                    current.select("rect").transition()
-                      .style("fill", "red");
-                  }
-                }
-            });
         }
         </script>
-      </div>
-    </div>
-    <div class = "col-md-2">
-      <% if @user.employer? %>
-        <ul class="nav nav-pills nav-stacked">
-          <% @all_lists = ShoppingList.where(:user_id=>@user.user_id) %>
-          <% @all_lists.each do |t| %>
-            <li id = "<%=t.name%>-li">
-              <a href="#<%=t.name%>" data-toggle="tab" onclick="highlighttagged(<%=t.list_id%>)"><%= t.name %></a>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <div class = "row" style = "padding: 10px;">
-          Search by Name
-          <%= simple_form_for NetworkSearch.new, :html => { :id => "nameSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
-            <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
-              <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
-            </div>
-            <%= f.hidden_field :user_id, :value => @user.user_id %>
-            <%= f.hidden_field :type, :value => "name" %>
-          <% end %>
-        </div>
-        <div class = "row" style = "padding: 10px;">
-          Search by Skill
-          <%= simple_form_for NetworkSearch.new, :html => { :id => "skillSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
-            <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
-              <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
-            </div>
-            <%= f.hidden_field :user_id, :value => @user.user_id %>
-            <%= f.hidden_field :type, :value => "skill" %>
-          <% end %>
-        </div>
-        <div class = "row" style = "padding: 10px;">
-          Search by Everything
-          <%= simple_form_for NetworkSearch.new, :html => { :id => "allSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
-            <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
-              <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
-            </div>
-            <%= f.hidden_field :user_id, :value => @user.user_id %>
-            <%= f.hidden_field :type, :value => "all" %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col-md-3">
-      <div id = "profile_header">
-      </div>
-    </div>
-    <div class = "col-md-2">
-      <div id = "skills_information">
-      </div>
-    </div>
-    <div class = "col-md-2">
-      <div id = "references_information">
-      </div>
-    </div>
-    <div class = "col-md-2">
-      <div id = "experiences_information">
-      </div>
-    </div>
-    <div class = "col-md-2">
-      <div id = "full_profile">
-      </div>
-    </div>
-    <div class = "col-md-1">
-      <div id = "addtojob" style = "visibility: hidden;">
-        <% if @user.employer? %>
-        <%
-          @job_list = ShoppingList.where(:user_id=>@user.user_id)
-          @candidate = FlaggedCandidate.new  
-        %>
-
-        <% if !@job_list.nil? %>
-          <%= form_for @candidate, remote: true do |f| %>
-
-            <%= f.label "Save this person to a job listing" %>
-            <%= f.collection_select(:list_id,  @job_list, :list_id, :name) %>
-
-            <%= f.hidden_field :flagged_user_id %>
-
-            <%= f.submit "Submit", class: "btn btn-primary" %>
-          <% end %>
-        <% end %>    
-      <% end %>  
       </div>
     </div>
   </div>
@@ -433,7 +386,10 @@ text {
         <rect x="-5" y="-12" width="65" height="90"/>
     </clipPath>
     <clipPath id="clip2">
-        <rect x="-5" y="-12" width="115" height="90"/>
+        <rect x="16" y="-12" width="180" height="90"/>
+    </clipPath>
+    <clipPath id="clip3">
+        <rect x="-30" y="-12" width="80" height="90"/>
     </clipPath>
   </svg>
 </body>
