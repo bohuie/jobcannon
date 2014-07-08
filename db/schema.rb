@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.attachment "photo"   
   end  
 
+  create_table "flagged_jobs", force: true do |t|
+    t.integer   "user_id"
+    t.integer   "posting_id"
+    t.string    "status"
+  end
+
   create_table "shopping_lists", force: true do |t|
     t.integer "user_id"
     t.integer "list_id"
