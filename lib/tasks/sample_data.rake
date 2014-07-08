@@ -48,7 +48,17 @@ namespace :db do
   #user id 8
   User.create!(email: 'peterwest@uft.ca', username: 'peterwest', 
     password: 'peterpeter', password_confirmation: 'peterpeter', 
-    fname: 'Peter', lname: 'West')
+    fname: 'Peter', lname: 'West', info: "I am a high school student with interests in designing websites. I am very eager to work and quick learner.  I have moderate experience with many aspects of web design such as HTML, CSS and Javascript.")
+  Surveyprofile.create!(id: 1, user_id: 8, survey_id: 1, postalcode: "V1X 2G4", education: "Grade 10", 
+    city: "Kelowna", province: "British Columbia", gender: "Male", birthday: "2014-06-12 00:00:00")
+  Experience.create!(experience_id: 1, user_id: 8, sdate: "2014-06-12 00:00:00", fdate: "2014-06-18 00:00:00", 
+    company_name: "NASA", title: "Head Honcho", supervisor: "Barrack Obama", description: "In charge of sending off rockets and creating new ways to live in space")
+  Experience.create!(experience_id: 2, user_id: 8, sdate: "2013-01-12 00:00:00", fdate: "2013-06-12 00:00:00", 
+    company_name: "McDonalds", title: "Chef", supervisor: "Ronald McDonald", description: "Made burgers and lunch and was in charge of dishes the rest of the time")
+  Reference.create!(reference_id:1, user_id: 8, fname: "Matthew", lname: "Bojey", relationship: "Role Model", 
+    phone_number: "123-456-7890", email: "matt@test.ca")
+  Reference.create!(reference_id:2, user_id: 8, fname: "Raffi", lname: "Kudlac", relationship: "Bad guy", 
+    phone_number: "123-456-7809", email: "raffi@test.ca")
 
   Skill.create!(label: "programming", user_id: 8, times_endorsed: 3)
   Skill.create!(label: "web design", user_id: 8, times_endorsed: 2)

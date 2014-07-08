@@ -1,0 +1,13 @@
+d3.selectAll(".node")
+	.each(function(d){
+		var current = d3.select(this);
+		var info = nodes[current.select("text").text()]
+		//Once a profile is show the layout of the node changes so we have to do this to find the name again
+		if(!info)
+            var info = nodes[current.select("text").select("tspan").text()]
+		if(info.id == <%= @owner.user_id.to_i %>){
+			info.flaggedjobs.push(<%= @candidate.to_json.to_s.html_safe %>)
+			console.log(info);
+		}
+		
+ 	});

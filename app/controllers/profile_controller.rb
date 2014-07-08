@@ -19,6 +19,20 @@ class ProfileController < ApplicationController
 
   end
 
+  def resume
+    @users = User.find(params[:id])
+    @experiences = Experience.where(user_id: @user.id)
+    @references = Reference.where(user_id: @user.id)
+    @location = Surveyprofile.find_by(user_id: @user.user_id)
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.pdf do
+        pdf = ReportPdf.new(@users, @experiences, @references, @location)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+  end
+
   def update
     @user = current_user
     @owner = User.find(params[:id])

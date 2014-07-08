@@ -4,7 +4,6 @@ class ShoppingListsController < ApplicationController
 	def create
 		@shopping = ShoppingList.new(shopping_params)		
 		@shopping.save
-
 		redirect_to root_path
 	end 
 

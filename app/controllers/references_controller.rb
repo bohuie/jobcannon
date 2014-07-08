@@ -77,6 +77,6 @@ class ReferencesController < ApplicationController
     
     def reference_params
         params.require(:reference).permit(:fname, :lname, :relationship, 
-          :email, :phone_number, :yrsknown )
+          :email, :phone_number, :yrsknown, :website )
     end
 end

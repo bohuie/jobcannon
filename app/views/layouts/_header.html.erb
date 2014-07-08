@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 100%; margin: 0px;">
       <ul class="nav pull-left">
           <li><%= link_to "Job Cannon", root_path, id: "logo",  style:"text-shadow:none;" %></li>
-          <li style = "margin-bottom:0px;">
+          <li style = "margin-bottom:0px; visibility: hidden;">
               <%= form_tag("/search", method: "get") do %>
                 <div style = "height:10px; padding-top: 6px;" >
                     <%= text_field_tag(:q)%> 
@@ -23,7 +23,7 @@
               <% end %>   
           </li>
           <li>
-            <div style = "height:10px; padding-top: 0px; padding-left:2px;" >
+            <div style = "height:10px; padding-top: 0px; padding-left:2px; visibility: hidden;" >
                   <%= image_submit_tag("search.png", class: "btn btn-small btn-primary", id: "shrink") %>            
             </div>
               

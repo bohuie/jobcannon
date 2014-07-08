@@ -6,8 +6,7 @@ d3.selectAll(".node")
 		if(info.name.indexOf("<%= escape_javascript @search.query%>") > -1){
 			current.select("rect").transition()
 				.style("fill", "red");
-			hideProfile(current);
-		}
+]		}
 		var current = nodes[d3.select(this).select("text").text()];
 		var contains = false
 		if(current.skills != null){
@@ -18,7 +17,6 @@ d3.selectAll(".node")
 		if(contains){
 			d3.select(this).select("rect").transition()
 				.style("fill", "red");
-			hideProfile(d3.select(this));
 		}
  	});
  $("#allSearch")[0].reset()

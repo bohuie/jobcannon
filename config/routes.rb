@@ -109,6 +109,7 @@ First_Website::Application.routes.draw do
   match '/details', to: 'experiences#details', via: 'get'
   match '/one_ref', to: 'references#one_ref', via: 'get'
   match '/add_exp', to: "experiences#add", via: 'get'
+  match '/resume', to: "profile#resume", via: 'get'
   get 'privatechat', to: "layouts#privatechat", via: 'get'
     
   match '/auth/:provider/callback', to: 'authentications#create', via: 'get'
