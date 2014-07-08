@@ -493,6 +493,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.string  "relationship", default: "", null: false
     t.integer "yrsknown"
     t.string  "email"
+    t.string  "website"
     t.integer "reference_id", default: 0,  null: false
     t.integer "user_id",                   null: false
   end
@@ -702,6 +703,13 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.string   "info"
     t.boolean  "online"
   end
+
+    create_table 'page_views', force: true do |t|
+      t.integer 'user_id'
+      t.string 'request_url', :limit => 200
+      t.string 'ip_address', :limit => 16
+      t.string 'created_at'
+    end
 
   create_table "word_processing_fluentcies", force: true do |t|
     t.integer "user_id"
