@@ -72,6 +72,7 @@ First_Website::Application.routes.draw do
   resources :photos
   resources :shopping_lists
   resources :flagged_candidates
+  resources :flagged_jobs
   
   resources :surveys do
     member do
@@ -125,6 +126,8 @@ First_Website::Application.routes.draw do
   get 'privatechat', to: 'messages#privatechat'
   get 'storemsg', to: 'messages#storemsg'
   get 'employee_list', to: 'shopping_lists#index'
+  get 'flagged', to: 'postings#flagged'
+  get 'people', to: 'postings#people'
 
 
    # get 'signin' => 'devise/sessions#new', :as => :new_user_session

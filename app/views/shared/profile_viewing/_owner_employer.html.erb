@@ -72,6 +72,7 @@
       <div class = "col-lg-6"> 
         <ul class="nav nav-tabs" id="myTab">          
           <li class = "active"><a href="#posemply" data-toggle="tab">Possible Employees</a></li>
+          <li><a href="#postings" data-toggle="tab">Postings</a></li>
         </ul>
 
         <div class="tab-content">        
@@ -109,6 +110,16 @@
                 </div>
               </div> <!-- closes the row -->
 
+            </div>  <!-- closes the job listing tab -->
+
+            <div class="tab-pane fade in content" id="postings">
+
+                <% @post = Posting.where(:user_id => @owner.user_id).first(3) %>
+
+                <% @post.each do |p| %>
+                    <p> <%= link_to p.title,postings_path(:id=>@user.user_id, :anchor=>p.title.delete(' ')), :id => "more"%> </p>
+                <% end %>
+                
             </div>
 
         </div> <!-- closes tab-content div -->

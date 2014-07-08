@@ -58,10 +58,10 @@
           <%= render :partial => 'shared/profile_viewing/owner_employee' %>
         <% end %>
     <% else %> <!-- The viewer is not the owner -->
-        <% if @owner.employee? %>
+        <% if !@owner.employer? %>
             <%= render :partial => 'shared/profile_viewing/guest_employee' %>
         <% else %>
-            Render guest employer page
+            <%= render :partial => 'shared/profile_viewing/guest_employer' %>
         <% end %>
   <% end %>
 </body>

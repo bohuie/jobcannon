@@ -70,7 +70,7 @@ class ProfileController < ApplicationController
     else
       @userskills = Skill.where(user_id: @user.user_id)
       @postings = find_postings(@userskills)
-      @postings = sort_postings(@postings)
+      #@postings = sort_postings(@postings)
     end
   end
   def find_postings(userskills)
@@ -91,6 +91,7 @@ class ProfileController < ApplicationController
 
   def sort_postings(postings)
     @hash = {0 => 0}
+
     postings.each do |p|
       if @hash[p.posting_id].nil?
         @hash.merge!({p.posting_id => 1})

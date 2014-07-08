@@ -1,0 +1,45 @@
+
+
+<div class = "row" style = "margin-bottom: 10px;">
+  <div class = "col-lg-5">
+      <font size = "4" > <%= @p.title %></font>
+  </div>
+</div>
+
+<% if !@p.salary.nil? %>
+  
+  <div class = "row">
+      <div class = "col-lg-5">
+        <%= @p.salary %>
+      </div>
+  </div>
+<% end %>
+
+<hr>
+
+<div class = "row">
+  <div class = "col-lg-10" style = "margin-bottom: 10px;">
+      <%= @p.description %>
+  </div>
+</div>
+
+<% @requirments.each do |r| %>
+    
+    <div class = "row">
+      <div class = "col-lg-4">
+        <%= r.label %>
+      </div>
+    </div>
+
+<% end %>
+
+<div class = "row" style = "margin-top: 10px;">
+  <div class = "col-lg-3">
+    <% @j = FlaggedJob.find_by(:user_id=>@user.user_id, :posting_id=> @p.posting_id) %>
+    <%= link_to "Remove", @j, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
+  </div>
+
+  <div class = "col-lg-5">
+    <p> Status: <%= @j.status %> </p>
+  </div>
+</div>

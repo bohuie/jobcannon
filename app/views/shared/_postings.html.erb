@@ -1,26 +1,68 @@
-<head>
-</head>
-  <body>
-    <% if !postings.nil? %>
-    <table>
-      <tr>
-        <td style = "width:12em"><p><%= postings.title %></p></td>
-        <% if !postings.nil? %>
-          <% if postings.user_id == @userID %>
-            <td><%= link_to "Edit this Posting", edit_posting_path(postings.posting_id), class: "btn btn-small btn-info"%></td>
-            <td><%= link_to "Delete this Posting", postings, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %></td>
-            <td><%= link_to "Add a Requirement", skills_path(:postID => postings.posting_id), class: "btn btn-small btn-primary" %></td>
-            <% end %>
-          <% end %>
-      </tr>
-      <tr>
-        <td style = "max-width:12em"><p><%= postings.description %></p></td>
-      </tr>
-      <tr>
-        <% if !postings.salary.nil? %>
-          <td style = "max-width:12em"><p><%= number_to_currency(postings.salary) %></p></td>
-        <% end %>
-      </tr>
-    </table>
-    <% end %>
- </body>
+
+
+<div class = "row" style = "margin-bottom: 10px;" >
+  <div class = "col-lg-9">
+      <font size = "4" > <%= @p.title %></font>
+  </div>
+</div>
+
+<% if !@p.salary.nil? %>
+  
+  <div class = "row">
+      <div class = "col-lg-5">
+        <%= @p.salary %>
+      </div>
+  </div>
+<% end %>
+
+<hr style = "border-color: black" >
+
+<div class = "row">
+  <div class = "col-lg-10" style = "margin-bottom: 10px;">
+      <%= @p.description %>
+  </div>
+</div>
+
+<hr style = "border-color: black" >
+<p> <strong> Requirements: </strong> </p>
+<% @requirments.each do |r| %>
+    
+    <div class = "row">
+
+      <div class = "col-lg-8">
+        <%= r.label %>
+        <%= link_to image_tag('remove.png', :size => "15x15", :crop=> :fill), r,method: :delete, data: { confirm: "You sure?" }%>
+      </div>
+
+      <div class = "col-lg-1"> 
+        <div style = "width: 20px; height: 20px;">
+          
+        </div>
+      </div>
+
+    </div>          
+<% end %>
+
+
+<% if @user.user_id == @owner.user_id %>
+    <div class = "row" style = "margin-top: 10px;">
+      <div class = "col-lg-3">
+        <%= link_to "Edit this Posting", edit_posting_path(@p.posting_id), class: "btn btn-small btn-info"%>
+      </div>
+
+      <div class = "col-lg-3">
+        <%= link_to "Delete this Posting", @p, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
+      </div>
+
+      <div class = "col-lg-3">
+          <%= link_to "See All Interested Candidates", people_path(:id=>@p.posting_id), class: "btn btn-small btn-info"%>
+      </div>
+    </div>
+<% else %>
+    
+    <div class = "row">
+      <div class = "col-lg-3">
+        <%= link_to "Add to job list",class: "btn btn-small btn-primary", :controller => "postings", :action => "flagged", :post_id=>@p.posting_id  %>
+      </div>
+    </div>
+<% end %>

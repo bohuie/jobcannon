@@ -20,14 +20,20 @@ class SkillsController < ApplicationController
 
   def destroy
     @skill = Skill.find(params[:id])
-    @userID = current_user.user_id
-    if (user_signed_in? && current_user.user_id == @skill.user_id)
-      @skill.destroy
+    @userID = current_user.user_id    
+    
+    if @skill.destroy
       flash[:success] = "Skill Removed."
     else
-      flash[:error] = "No access"
+      flash[:error] = "No access here "
     end
-    redirect_to skills_path(:owner =>@userID)
+
+    if current_user.employer?
+        @posting = Posting.find_by(:posting_id=>@skill.posting_id)
+        redirect_to postings_path(:id=>@userID, :anchor=>@posting.title.delete(' '))      
+    else
+      redirect_to skills_path(:owner =>@userID)
+    end
 
   end
 
