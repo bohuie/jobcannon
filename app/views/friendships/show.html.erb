@@ -49,11 +49,12 @@ text {
 <body>
   <div class = "row" id = "search-row" style = "padding: 0; height: 50px;">
     <%= simple_form_for NetworkSearch.new, :html => { :id => "allSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
-      <div class = "col-md-12" style = "padding-left: 30px; padding-right: 0px; height: auto;">
+      <div class = "col-md-3" style = "padding-left: 30px; padding-right: 0px; height: auto;">
         <%= f.text_field :query, :autocomplete => "off", :autofocus => true, style: "height: 10px;" %>
       </div>
       <%= f.hidden_field :user_id, :value => @user.user_id %>
-      <%= f.hidden_field :type, :value => "all" %>
+      <%= f.hidden_field :qtype, :value => "all" %>
+      <%= f.submit "Submit",:label => "Submit", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
   <div class = "row" id = "body-row" style = "padding: 0;">
@@ -80,7 +81,9 @@ text {
                                                                     references: link.sourcereferences,
                                                                     experiences: link.sourceexperiences,
                                                                     company: link.sourcecompany,
-                                                                    flaggedjobs: link.sourceflaggedjobs});
+                                                                    flaggedjobs: link.sourceflaggedjobs,
+                                                                    interests: link.sourceinterests,
+                                                                    following: link.sourcefollowing});
           link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, 
                                                                     id: link.targetid,
                                                                     skills: link.targetskills,
@@ -88,7 +91,9 @@ text {
                                                                     email: link.targetemail,
                                                                     references: link.targetreferences,
                                                                     experiences: link.targetexperiences,
-                                                                    company: link.targetcompany});
+                                                                    company: link.targetcompany,
+                                                                    interests: link.targetinterests,
+                                                                    following: link.targetfollowing});
           linkedByIndex[link.source.name + "," + link.target.name] = 1;
           linkedByIndex[link.target.name + "," + link.source.name] = 1;
         });
@@ -230,7 +235,17 @@ text {
               .append("xhtml:body")
               .append("p")
                 .attr("class", "profilecontenttext")
-                .text("Java, Ruby, Coding, Reading, Eating, Tweeting, Chilling")
+                .text(function(d){
+                  var result = "";
+                  var x;
+                  for(x in d.skills){
+                    result += d.skills[x].label+", ";
+                  }
+                  result = result.substring(0, result.length-2);
+                  if(result == "")
+                    result = "None added"
+                  return result;
+                })
                 .style("background", selectedcolor);
             current.append("foreignObject")
               .attr("x", -30) /*the position of the text (left to right)*/
@@ -252,7 +267,18 @@ text {
               .append("xhtml:body")
               .append("p")
                 .attr("class", "profilecontenttext")
-                .text("Reading, Writing, Learning new things, Walks on the beach")
+                .text(function(d){
+                  var result = "";
+                  var x;
+                  console.log(d);
+                  for(x in d.interests){
+                    result += d.interests[x].label+", ";
+                  }
+                  result = result.substring(0, result.length-2);
+                  if(result == "")
+                    result = "None added"
+                  return result;
+                })
                 .style("background", selectedcolor);
             current.append("foreignObject")
               .attr("x", 50) /*the position of the text (left to right)*/
@@ -274,7 +300,18 @@ text {
               .append("xhtml:body")
               .append("p")
                 .attr("class", "profilecontenttext")
-                .text("UBC-O, McDonald's, Popadoms")
+                .text(function(d){
+                  var result = "";
+                  var x;
+                  console.log(d);
+                  for(x in d.following){
+                    result += d.following[x].fname+", ";
+                  }
+                  result = result.substring(0, result.length-2);
+                  if(result == "")
+                    result = "None added"
+                  return result;
+                })
                 .style("background", selectedcolor);
             current.append("foreignObject")
               .attr("x", 130) /*the position of the text (left to right)*/
