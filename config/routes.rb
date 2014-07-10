@@ -10,6 +10,10 @@ First_Website::Application.routes.draw do
   resources :skills do 
     get :autocomplete_skilllabel_label, :on => :collection
   end
+
+  resources :interests do 
+    get :autocomplete_interestlabel_label, :on => :collection
+  end
   
   scope module: 'survey/tech' do
     resources :word_processing_fluentcies, :formats => "js"

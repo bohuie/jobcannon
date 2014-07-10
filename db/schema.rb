@@ -534,6 +534,17 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.boolean "mandatory"
   end
 
+  create_table "interestlabels", force: true do |t|
+    t.integer "interestlabel_id", default: 0,  null: false
+    t.string  "label",         default: "", null: false
+  end
+
+  create_table "interests", force: true do |t|
+    t.integer "interest_id",   default: 0,  null: false
+    t.string  "label",      default: "", null: false
+    t.integer "user_id",    default: 0,  null: false
+  end
+
   create_table "social_media_descs", force: true do |t|
     t.integer "user_id"
     t.integer "social_media_desc_id", default: 0, null: false
