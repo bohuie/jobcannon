@@ -1,7 +1,6 @@
 class NetworkSearchesController < ApplicationController
 
   def create
-    puts "This is where I am"
     @search = NetworkSearch.new
     @search.update_attributes(search_params)
     @search.save

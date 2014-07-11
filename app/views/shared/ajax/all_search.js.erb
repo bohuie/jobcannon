@@ -1,22 +1,72 @@
-d3.selectAll(".node").select("rect").transition().style("fill", "#ccc");
-d3.selectAll(".node")
-	.each(function(d){
-		var current = d3.select(this);
-		var info = nodes[current.select("text").text()]
-		if(info.name.indexOf("<%= escape_javascript @search.query%>") > -1){
-			current.select("rect").transition()
-				.style("fill", "red");
-		}
-		var current = nodes[d3.select(this).select("text").text()];
-		var contains = false
-		if(current.skills != null){
-			for (i = 0; i < current.skills.length; i++) { 
-	            contains = contains || current.skills[i].label.indexOf("<%= escape_javascript @search.query%>") > -1
-	        }
-	    }
-		if(contains){
-			d3.select(this).select("rect").transition()
-				.style("fill", "red");
-		}
- 	});
- $("#allSearch")[0].reset()
+if(searches == 0){
+	d3.selectAll(".node").select("rect").transition().style("stroke", function(d) { 
+		var current = ""+d3.select(this).style("stroke")
+          if(foundcolor[0].indexOf(current) > -1)
+            return "#666";
+          else{
+            return d3.select(this).style("stroke");
+          }
+        });
+}
+switch("<%= escape_javascript @search.qtype%>"){
+	case "name":
+		d3.selectAll(".node")
+			.each(function(d){
+				var current = d3.select(this);
+				var info = nodes[current.select("text").text()];
+				if(info == null)
+					info = nodes[current.select("text").select("tspan").text()];
+				if(info.name.indexOf("<%= escape_javascript @search.query%>") > -1){
+					var maxwidth = 0, maxheight = 0, minX = 0, minY = 0;
+					current.selectAll("rect").each(function(d){
+						var d = d3.select(this)
+						if(parseFloat(d.attr("x")) < minX)
+							minX = d.attr("x");
+						if(parseFloat(d.attr("y")) < minY)
+							minY = d.attr("y");
+						if(parseFloat(d.attr("width")) > maxwidth)
+							maxwidth = parseFloat(d.attr("width"));
+						if(parseFloat(d.attr("height")) > maxheight)
+							maxheight = parseFloat(d.attr("height"));
+					});
+					current.append("rect")
+						.attr("x", function(d){
+							return minX-1.75
+						})
+						.attr("y", function(d){
+							return minY-1.75
+						})
+						.attr("width", function(d){
+							return 3.5+maxwidth
+						})
+						.attr("height", function(d){
+							return 3.5+maxheight
+						})
+						.attr("rx", 5)
+						.style("stroke", foundcolor[searches]);
+					// current.select("rect").transition().style("fill", foundcolor[searches]);
+					// var id  = '#id'+info.id
+					// d3.selectAll(id).select("p").transition().style("background", foundcolor[searches]);
+				}
+			});
+		svg0.append("text")
+			.attr("x", 5)
+			.attr("y", 12*(searches+1))
+			.attr("class", "search text")
+			.style("stroke", foundcolor[searches])
+			.text("Name = <%= escape_javascript @search.query%>");
+		break;
+	case "skill":
+		break;
+	case "interest":
+		break;
+	case "all":
+		break;
+}
+$("#allSearch")[0].reset()
+if(searches < 2){
+	searches = searches + 1; 
+}
+else{ 
+	searches = 0;
+}
