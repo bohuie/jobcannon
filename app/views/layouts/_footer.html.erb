@@ -178,6 +178,7 @@ function change_chatbox3(){
                   <% else %>
                     <li><%= link_to "Explore your network", "/show_network",  id: "brand"%> </li>
                   <% end %>
+                  <li><%= link_to "Interests",interests_path(:owner =>@user.user_id)%></li>
               </ul>
           </div><!-- /.navbar-collapse -->
       </div>

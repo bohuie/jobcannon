@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   create_table "network_searches", force: true do |t|
     t.integer "user_id", default: 0, null: false
     t.string "query"
-    t.string "type"
+    t.string "qtype"
     t.integer "search_id"
   end
 
@@ -222,6 +222,13 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.datetime "sent_at",                       null: false
     t.boolean  "accepted",      default: false, null: false
     t.datetime "accepted_at"
+  end
+
+  create_table "followings", force: true do |t|
+    t.integer  "following_id", default: 0,     null: false
+    t.integer  "user_id",                     null: false
+    t.integer  "receiver_id",                   null: false
+    t.datetime "sent_at",                       null: false
   end
 
   create_table "internet_connections", force: true do |t|
@@ -527,6 +534,17 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "times_endorsed", default: 0, null: false
     t.integer "posting_id"
     t.boolean "mandatory"
+  end
+
+  create_table "interestlabels", force: true do |t|
+    t.integer "interestlabel_id", default: 0,  null: false
+    t.string  "label",         default: "", null: false
+  end
+
+  create_table "interests", force: true do |t|
+    t.integer "interest_id",   default: 0,  null: false
+    t.string  "label",      default: "", null: false
+    t.integer "user_id",    default: 0,  null: false
   end
 
   create_table "social_media_descs", force: true do |t|

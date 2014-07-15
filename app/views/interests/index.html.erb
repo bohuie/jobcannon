@@ -1,0 +1,33 @@
+
+<div class = "row">
+  <div class = "col-lg-1">
+  </div>
+
+  <div class = "col-lg-6" style = "background-color: #E6E6E6; padding-bottom: 10px;">
+      <% if !@interests.nil? %>
+        <h1 style = "margin-bottom: 0px; font-size: 30px">All Interests</h1>
+        <% @tracker = true %>
+        <%= render partial: 'shared/interests', collection: @interests %>
+      <% end %>
+  </div>
+
+  <div class = "col-lg-5">
+
+    <% if @owner.to_i == @userID.to_i %>
+
+      <h1 style = "margin-bottom: 0px; font-size: 30px">Add a Interest</h1>
+      <div class = "row" height = 30px style = "padding-left: 1.5em;">
+        <div class = "col-lg-1" style ="" ></div>
+          <div class = "col-lg-11" style ="" >
+            <%= simple_form_for @interest, :url => { :action => "create" } do |f| %>
+              <div> 
+                <%= f.autocomplete_field :label, autocomplete_interestlabel_label_interests_path, :default => @interest.label, :autofocus => true%>
+              </div>
+              <%= f.submit "Submit",:label => "Submit", class: "btn btn-large btn-primary" %>
+            <% end %>
+        </div>
+      </div>        
+    <% end %>
+  </div>
+</div>
+
