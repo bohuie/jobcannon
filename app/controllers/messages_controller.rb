@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     puts "Creating the message"
     @message = Message.new(msg_params)
     @message.sent_at = DateTime.now - 7.hours
-    @temp1 = @message.sender_id
+    @temp1 = @message.user_id
     @temp2 = @message.receiver_id
     if @temp1<@temp2  #lesser id comes first in the chat path and channel path
       @id1 = @temp1
@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
    private
     
     def msg_params
-        params.require(:message).permit(:message, :sender_id, :receiver_id, :sent_at, :sender_name)
+        params.require(:message).permit(:message, :user_id, :receiver_id, :sent_at, :sender_name)
     end
 
 end

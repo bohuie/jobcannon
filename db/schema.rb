@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
 
   create_table "friendships", force: true do |t|
     t.integer  "friendship_id", default: 0,     null: false
-    t.integer  "sender_id",                     null: false
+    t.integer  "user_id",                     null: false
     t.integer  "receiver_id",                   null: false
     t.datetime "sent_at",                       null: false
     t.boolean  "accepted",      default: false, null: false
@@ -351,7 +351,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   end
 
   create_table "messages", force: true do |t|
-    t.integer  "sender_id",   default: 0,  null: false
+    t.integer  "user_id",   default: 0,  null: false
     t.integer  "receiver_id", default: 0,  null: false
     t.datetime "sent_at",                  null: false
     t.text     "message",     default: "", null: false
@@ -702,7 +702,6 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.string   "gender"
     t.datetime "last_seen_at"
     t.string   "info"
-    t.boolean  "online"
   end
 
     create_table 'page_views', force: true do |t|

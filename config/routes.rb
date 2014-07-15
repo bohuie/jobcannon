@@ -1,5 +1,5 @@
 First_Website::Application.routes.draw do
-  root :to => 'static_pages#home'
+  #root :to => 'static_pages#home'
   resources :authentications, only: [:new, :destroy]
 
   devise_for :users, :controllers => { :registrations => 'registrations' }
@@ -79,7 +79,6 @@ First_Website::Application.routes.draw do
 
   resources :friendships, only: [:new, :create, :destroy]
   resources :messages
-  resources :friendships
   resources :network_searches
   
   resources :layouts

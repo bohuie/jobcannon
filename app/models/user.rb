@@ -2,58 +2,54 @@ class User < ActiveRecord::Base
 
   after_create :do_setID
   has_one :language, dependent: :destroy
-
   has_one :surveyprofile, dependent: :destroy 
-  has_one :accountabilitys, dependent: :destroy
-  has_one :self_direction_skills, dependent: :destroy
-  has_one :communication_skills, dependent: :destroy
-  has_one :interpersonal_skills, dependent: :destroy
-  has_one :thinking_skills, dependent: :destroy
-  has_many :authentications, dependent: :destroy
-  has_many :friendships, dependent: :destroy
-  has_one :basic_computer_skills, dependent: :destroy
+  has_one :accountability, dependent: :destroy
+  has_one :self_direction_skill, dependent: :destroy
+  has_one :communication_skill, dependent: :destroy
+  has_one :interpersonal_skill, dependent: :destroy
+  has_one :thinking_skill, dependent: :destroy
+  has_one :basic_computer_skill, dependent: :destroy
+  has_one :photo, dependent: :destroy
+  has_one :progress, dependent: :destroy 
+  has_one :operating_systems_usage, dependent: :destroy
+  has_one :advanced_computer_skill, dependent: :destroy
+  has_one :multi_media_skill, dependent: :destroy
+  has_one :technology_difference, dependent: :destroy
+  has_one :word_processing_skill, dependent: :destroy
+  has_one :word_processing_fluentcy, dependent: :destroy
+  has_one :presenting_skill, dependent: :destroy
+  has_one :presenting_fluentcy, dependent: :destroy
+  has_one :spreadsheet_skill, dependent: :destroy
+  has_one :spreadsheet_fluentcy, dependent: :destroy
+  has_one :email_skill, dependent: :destroy
+  has_one :email_fluentcy, dependent: :destroy
+  has_one :internet_term, dependent: :destroy
+  has_one :internet_task, dependent: :destroy
+  has_one :internet_connection, dependent: :destroy
+  has_one :browser, dependent: :destroy
+  has_one :social_media_skill, dependent: :destroy
+  has_one :social_media_desc, dependent: :destroy
+  has_one :social_media_platform, dependent: :destroy
+  has_one :online_colab_skill, dependent: :destroy
+  has_one :online_colab_fluentcy, dependent: :destroy
+  has_one :internet_term, dependent: :destroy
+  has_one :internet_task, dependent: :destroy
+  has_one :internet_connection, dependent: :destroy
+
   has_many :experiencetables, dependent: :destroy
-  has_one :photos, dependent: :destroy
   has_many :shopping_lists, dependent: :destroy
   has_many :flagged_jobs, dependent: :destroy 
-
-  has_one :progresses, dependent: :destroy 
-  has_one :operating_systems_usages, dependent: :destroy
-  has_one :advanced_computer_skills, dependent: :destroy
-  has_one :multi_media_skills, dependent: :destroy
-  has_one :technology_differences, dependent: :destroy
-  has_one :word_processing_skills, dependent: :destroy
-  has_one :word_processing_fluentcies, dependent: :destroy
-  has_one :presenting_skills, dependent: :destroy
-  has_one :presenting_fluentcies, dependent: :destroy
-  has_one :spreadsheet_skills, dependent: :destroy
-  has_one :spreadsheet_fluentcies, dependent: :destroy
-  has_one :email_skills, dependent: :destroy
-  has_one :email_fluentcies, dependent: :destroy
-  has_one :internet_terms, dependent: :destroy
-  has_one :internet_tasks, dependent: :destroy
-  has_one :internet_connections, dependent: :destroy
-  has_one :browsers, dependent: :destroy
-  has_one :social_media_skills, dependent: :destroy
-  has_one :social_media_descs, dependent: :destroy
-  has_one :social_media_platforms, dependent: :destroy
-  has_one :online_colab_skills, dependent: :destroy
-  has_one :online_colab_fluentcies, dependent: :destroy
-  has_one :internet_terms, dependent: :destroy
-  has_one :internet_tasks, dependent: :destroy
-  has_one :internet_connections, dependent: :destroy
-  has_one :browsers, dependent: :destroy
+  has_many :authentications, dependent: :destroy
+  has_many :friendships, dependent: :destroy
   has_many :network_searches, dependent: :destroy
-
-  
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :skills, dependent: :destroy
   has_many :references, dependent: :destroy
   has_many :postings, dependent: :destroy
   has_many :experiences, dependent: :destroy
-  
+
+
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lastseenable
 

@@ -47,7 +47,7 @@ class ProfileController < ApplicationController
     @owner = User.find(params[:id])
     @user.update_attribute(:online, true)
     puts @user
-    @friendsadded = Friendship.where(sender_id: @owner.user_id, accepted: true)
+    @friendsadded = Friendship.where(user_id: @owner.user_id, accepted: true)
     @friendsaccepted = Friendship.where(receiver_id: @owner.user_id, accepted: true)
     @friends = (@friendsaccepted + @friendsadded)
 
