@@ -1,17 +1,26 @@
 class EndorsesController < ApplicationController
 
 	def create
-		@endor = Endorse.new
-		@endor.update_attributes(endorse_params)
-		@endor.save
+		@endor = Endorse.new(endorse_params)		
+		
 
 		@skill = Skill.find(@endor.skill_id)
 		@skill.times_endorsed += 1
 		@skill.save
 
 		@owner = User.find(@skill.user_id)
+		@endor.endorse_id = @owner.user_id
+		@endor.save
 
-		redirect_to profile_path(:id=>@owner.user_id)
+		@id = "all_skills"
+        @file = "skills?owner=" + @owner.user_id
+        @skills = Skill.where(:user_id => @owner)
+
+		respond_to do |f|
+	      f.js { render 'shared/ajax/endorse_skill.js.erb'}
+	      f.html {redirect_to profile_path(:id=>@owner.user_id)}
+	    end
+		
 	end
 
 	def update

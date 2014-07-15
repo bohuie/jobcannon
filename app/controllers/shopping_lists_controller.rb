@@ -3,8 +3,13 @@ class ShoppingListsController < ApplicationController
 
 	def create
 		@shopping = ShoppingList.new(shopping_params)		
-		@shopping.save
-		redirect_to root_path
+		@shopping.save		
+
+		respond_to do |f|
+          f.js 
+          f.html {redirect_to root_path}
+        end
+		
 	end 
 
 	def update
@@ -27,7 +32,7 @@ class ShoppingListsController < ApplicationController
 	private
 
 	def shopping_params
-		params.require(:shopping_list).permit(:name,:user_id)
+		params.require(:shopping_list).permit(:posting_id,:user_id)
 
 	end
 

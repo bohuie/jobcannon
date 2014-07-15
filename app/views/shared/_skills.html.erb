@@ -34,7 +34,7 @@
               <% @endorsed = Endorse.find_by(skill_id: skills.skill_id, endorser_id: @userID) %>
               <% if @endorsed.nil? %>
                 <% @endor = Endorse.new %>
-                  <%= simple_form_for @endor, html: {style: "margin:0; position: relative; top: -15px;"} do |f|%>
+                  <%= simple_form_for @endor, html: {style: "margin:0; position: relative; top: -15px;"}, remote: true do |f|%>
 
                     <%= f.hidden_field :skill_id , :value => skills.skill_id %>
                     <%= f.hidden_field :endorser_id, :value => @userID %>
@@ -102,7 +102,7 @@
             <% end %>
 
             <div class = "col-lg-1" style = "padding: 0px; padding-top: 5px; text-align: center; width: 40px">        <% if skills.times_endorsed > 6 %>
-                  +<%= (t.times_endorsed -6) %>
+                  +<%= (skills.times_endorsed)-6 %>
                 <% end %>
             </div>
           </div> <!-- closes row-->

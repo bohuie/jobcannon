@@ -10,7 +10,7 @@
   
   <div class = "row">
       <div class = "col-lg-5">
-        <%= @p.salary %>
+        Salary: <%= @p.salary %>
       </div>
   </div>
 <% end %>
@@ -24,45 +24,72 @@
 </div>
 
 <hr style = "border-color: black" >
-<p> <strong> Requirements: </strong> </p>
-<% @requirments.each do |r| %>
-    
-    <div class = "row">
+<p> <strong> Requirements: (Bold = Mandatory) </strong> </p>
 
-      <div class = "col-lg-8">
-        <%= r.label %>
-        <%= link_to image_tag('remove.png', :size => "15x15", :crop=> :fill), r,method: :delete, data: { confirm: "You sure?" }%>
+<div class = "row">
+  <div class = "col-lg-8">
+      <div style = "">
+        <% @requirments.each do |r| %>
+
+          <div style = "background-color: #EFEFEF; padding: 5px; margin: 5px auto; width: auto; display: inline-table;"> 
+            
+            <% if r.mandatory %>
+              <strong> <%= r.label %> </strong>
+            <% else %>
+              <%= r.label %>
+            <% end %>
+
+            <% if @user.user_id == @owner.user_id %>
+                <%= link_to image_tag('remove.png', :size => "15x15", :crop=> :fill), r,method: :delete, remote: true %>
+            <% end %>
+          </div>
+
+        <% end %>
       </div>
+    </div>
+  </div>
 
-      <div class = "col-lg-1"> 
-        <div style = "width: 20px; height: 20px;">
-          
-        </div>
-      </div>
-
-    </div>          
-<% end %>
 
 
 <% if @user.user_id == @owner.user_id %>
+  <%
+    @ic = FlaggedJob.where(:id=>@p.posting_id).count
+    @tc = ShoppingList.where(:posting_id=>@p.posting_id).count 
+  %>
     <div class = "row" style = "margin-top: 10px;">
-      <div class = "col-lg-3">
-        <%= link_to "Edit this Posting", edit_posting_path(@p.posting_id), class: "btn btn-small btn-info"%>
+      <div class = "col-lg-1" style = "padding-right: 0px">
+        <%= link_to image_tag('edit.png', :size => "25x25"), edit_posting_path(@p.posting_id), class: "btn btn-small btn-info", :style=>"padding:3px 3px; width: 36px; height: 36px"%>
       </div>
 
-      <div class = "col-lg-3">
-        <%= link_to "Delete this Posting", @p, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
+      <div class = "col-lg-1" style = "padding-right: 0px">
+        <%= link_to image_tag('delete.png', :size => "25x25"), @p, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger", :style=>"padding:0px; width: 36px; height: 36px" %>
       </div>
 
-      <div class = "col-lg-3">
-          <%= link_to "See All Interested Candidates", people_path(:id=>@p.posting_id), class: "btn btn-small btn-info"%>
+      <div class = "col-lg-4" style = "padding-right: 0px">
+          <%= link_to "Interested Candidates (" + @ic.to_s + ")", people_path(:id=>@p.posting_id), class: "btn btn-small btn-info test"%>
+      </div>
+
+      <div class = "col-lg-3" style = "padding-right: 0px">
+          <%= link_to "Tagged Candidates (" + @tc.to_s + ")", candidate_path(:id=>@p.posting_id), class: "btn btn-small btn-primary test" %>
       </div>
     </div>
 <% else %>
     
-    <div class = "row">
+    <div class = "row" style = "margin-top: 10px;">
       <div class = "col-lg-3">
-        <%= link_to "Add to job list",class: "btn btn-small btn-primary", :controller => "postings", :action => "flagged", :post_id=>@p.posting_id  %>
+
+        <% @k = FlaggedJob.new %>
+
+        <%= simple_form_for(@k) do |f| %>
+
+          <%= f.hidden_field :user_id, :value=>@user.user_id %>
+          <%= f.hidden_field :posting_id, :value=>@p.posting_id %>
+          <%= f.hidden_field :status, :value => "Not Seen" %>
+
+          <%= f.submit "Add To Job List", class: "btn btn-small btn-primary"%>
+
+        <% end %>
+        
       </div>
     </div>
 <% end %>

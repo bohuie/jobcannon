@@ -2,13 +2,18 @@
 
 	<%
 		@owner = User.find(params[:id])
-		@job_list = ShoppingList.where(:user_id=>@user.user_id)
-
-		@owner = User.find(params[:id])
 		#@job_list = ShoppingList.where(:user_id=>@user.user_id)
-		@job_list = @job_list.where.not( list_id: FlaggedCandidate.where( flagged_user_id: @owner.user_id ).pluck(:list_id) )
 
-		@candidate = FlaggedCandidate.new	
+		@jl = Posting.where(:user_id=>@user.user_id)
+
+		
+		#@job_list = ShoppingList.where(:user_id=>@user.user_id)
+		#@job_list = @job_list.where.not( list_id: FlaggedCandidate.where( flagged_user_id: @owner.user_id ).pluck(:list_id) )
+
+		@jl = @jl.where.not(posting_id: ShoppingList.where(user_id: @owner.user_id).pluck(:list_id))
+		@job_list = @jl
+
+		@candidate = ShoppingList.new	
 		
 	%>
 
@@ -16,9 +21,9 @@
 		<%= form_for @candidate do |f| %>
 
 			<%= f.label "Save this person to a job listing" %>
-			<%= f.collection_select(:list_id,  @job_list, :list_id, :name) %>
+			<%= f.collection_select(:posting_id,  @job_list, :posting_id, :title) %>
 
-			<%= f.hidden_field :flagged_user_id, :value=>@owner.user_id %>
+			<%= f.hidden_field :user_id, :value=>@owner.user_id %>
 
 			<%= f.submit "Submit", class: "btn btn-primary" %>
 		<% end %>

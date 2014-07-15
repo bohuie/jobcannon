@@ -1,7 +1,5 @@
 <div class = "row" height = 30px style = "">
-        <div class = "col-lg-1">
-          <%= link_to'Generate your Resume', {controller: "profile", action: "resume", :format => :pdf, id: @user.id} %> 
-        </div>
+        
         <div class = "col-lg-4" style ="" >
             <div style = "">
                 <%  @p = Photo.find_by(:user_id=>@user.user_id) %>

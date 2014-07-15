@@ -70,54 +70,21 @@
     
 
       <div class = "col-lg-6"> 
-        <ul class="nav nav-tabs" id="myTab">          
-          <li class = "active"><a href="#posemply" data-toggle="tab">Possible Employees</a></li>
-          <li><a href="#postings" data-toggle="tab">Postings</a></li>
+        <ul class="nav nav-tabs" id="myTab">                    
+          <li class = "active"><a href="#postings" data-toggle="tab">Postings</a></li>
         </ul>
 
-        <div class="tab-content">        
-            <div class="tab-pane fade in active content" id="posemply">
+        <div class="tab-content">                    
 
-              <div class = "row">
-                <div class = "col-lg-5">
-
-                  <div style = "background-color: #FFFFFF; padding: 10px; border-radius: 5px; margin-bottom: 0px">
-                    <%= form_for @new_list, :html => { :style => 'margin-bottom: 0px;' } do |f| %>
-
-                    <%= f.label "Enter a job title"%>
-                    <br>
-
-                    <%= f.text_field :name, :style=>"Width: 90%" %> 
-
-                    <%=f.hidden_field :user_id, :value => @owner.user_id %>
-
-                    <%= f.submit "submit", class: "btn btn-primary"%>
-
-                    <% end %>
-                  </div>
-
-                </div>
-                <div class = "col-lg-7">
-                                                             
-                    <% if !@shopping_lists.nil? %>
-                      <% @shopping_lists.each do |t| %>
-                          <div>                            
-                            <%= link_to t.name,shopping_lists_path(:id=>t.list_id, :anchor => t.name.to_s.gsub(/\s+/, "")), :id => "more"%> 
-                          </div>
-                      <% end %>
-                    <% end %>
-
-                </div>
-              </div> <!-- closes the row -->
-
-            </div>  <!-- closes the job listing tab -->
-
-            <div class="tab-pane fade in content" id="postings">
+            <div class="tab-pane fade in content active" id="postings">
 
                 <% @post = Posting.where(:user_id => @owner.user_id).first(3) %>
 
+                <p> <%= link_to "Add a Posting",postings_path(:id=>@user.user_id, :post=> '0', :anchor=>"addposting"), :id=> "more" %>
+                </p>
+
                 <% @post.each do |p| %>
-                    <p> <%= link_to p.title,postings_path(:id=>@user.user_id, :anchor=>p.title.delete(' ')), :id => "more"%> </p>
+                    <p> <%= link_to p.title,postings_path(:id=>@user.user_id, :post=> p.posting_id, :anchor=>p.title.delete(' ')), :id => "more"%> </p>
                 <% end %>
                 
             </div>

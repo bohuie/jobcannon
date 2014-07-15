@@ -13,6 +13,7 @@ class ProfileController < ApplicationController
       @skills = Skill.where(:user_id => @owner.user_id)
       @references = Reference.where(:user_id => @owner.user_id)
     end
+
   end
 
   def online
@@ -62,6 +63,14 @@ class ProfileController < ApplicationController
       progress()
     end
     reccomend()
+
+    
+    if params[:seen]
+        @job = FlaggedJob.find_by(:user_id=> @owner.user_id, :posting_id=> params[:pid])
+        @job.status = "Seen"
+        @job.save
+    end
+
   end
 
   def reccomend

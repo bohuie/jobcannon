@@ -4,7 +4,8 @@ class PostingsController < ApplicationController
   	@posting = Posting.new
     @user = current_user
     @userID = @user.user_id
-    @skill = Skill.new    
+    @skill = Skill.new
+    @id = params[:post]
 
     @owner = User.find(params[:id])
     @postings = Posting.where(:user_id => @owner.user_id)
@@ -23,10 +24,10 @@ class PostingsController < ApplicationController
   		@posting.user_id = current_user.user_id
   		if(@posting.save)
   			flash[:success] = "Posting created!"
-        	redirect_to '/postings'
+        	redirect_to postings_path(:id=>@user.user_id, :anchor=>@posting.title.delete(' '),:post=>@posting.posting_id)
         else
   			flash[:error] = "Fill in all required fields"
-        	redirect_to '/postings'
+        	redirect_to postings_path(:id=>@user.user_id, :anchor=>@posting.title.delete(' '), :post=>'0')
     end
   	else
   		flash[:error] = "No access"
@@ -49,7 +50,7 @@ class PostingsController < ApplicationController
     else
       flash[:error] = "No access"      
     end
-    redirect_to postings_path(:id=>@user.user_id, :anchor=>@posting.title.delete(' '))
+    redirect_to postings_path(:id=>@user.user_id, :anchor=>@posting.title.delete(' '), :post=>@posting.posting_id)
   end
 
   def edit
@@ -65,7 +66,16 @@ class PostingsController < ApplicationController
     else
       flash[:error] = "No access"
     end
-    redirect_to '/postings'
+    redirect_to postings_path(:id=>@user.user_id, :anchor=>"addposting", :post=>'0')
+
+  end
+
+  def candidate
+    @postingID = params[:id]
+
+    @candidates = ShoppingList.where(:posting_id=>@postingID)
+
+    puts "made it to this method"
 
   end
 

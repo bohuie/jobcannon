@@ -30,15 +30,10 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   end
 
   create_table "shopping_lists", force: true do |t|
-    t.integer "user_id"
+    t.integer "user_id"     #the user id of the interested candidate (an employee)
     t.integer "list_id"
-    t.string  "name"
+    t.integer  "posting_id"
   end 
-
-  create_table "flagged_candidates", forse: true do |t|
-    t.integer "list_id"
-    t.integer "flagged_user_id"
-  end
 
   create_table "accountabilities", force: true do |t|
     t.integer "user_id"
@@ -428,7 +423,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   create_table "postings", force: true do |t|
     t.string  "title",       default: "", null: false
     t.string  "description", default: "", null: false
-    t.integer "salary"
+    t.string "salary"
     t.integer "user_id",                  null: false
     t.integer "posting_id",  default: 0,  null: false
   end
@@ -754,7 +749,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
 
   create_table "endorses", force: true do |t|
     t.integer "skill_id"
-    t.integer "endorser_id"
+    t.integer "endorser_id", null: false
     t.integer "endorse_id"
   end 
 

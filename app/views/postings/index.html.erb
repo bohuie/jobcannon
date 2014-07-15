@@ -7,6 +7,18 @@
       $(hash+'-li').addClass('active');
       //$('#'+hash.replace(prefix,"")).addClass('active');
       $(hash).addClass('active');
+
+      var element = document.getElementById("skill_posting_id");
+      element.value = <%= @id %>;
+
+    }
+
+    function reset(pid){ 
+
+      // $('skill_posting_id').value = pid;
+      var element = document.getElementById("skill_posting_id");
+      element.value = pid;
+          
     }
 
   </script>
@@ -18,10 +30,13 @@
   <div class = "row">
     <div class = "col-lg-2">
       <ul class="nav nav-pills nav-stacked">
+        <li id = "addposting-li">
+          <a href = "#addposting" data-toggle="tab" onclick = "reset(0)">Add a Posting</a>
+        </li>
 
         <% @postings.each do |p| %>
           <li id = "<%=p.title.delete(' ')%>-li">
-            <a href="#<%=p.title.delete(' ')%>" data-toggle="tab"><%= p.title %></a>
+            <a href="#<%=p.title.delete(' ')%>" data-toggle="tab" onclick = "reset(<%= p.posting_id %>)"><%= p.title %></a>
           </li>
         <% end %>
 
@@ -30,13 +45,45 @@
     <div class = "col-lg-7">
       <div class = "tab-content">
 
+        <div class="tab-pane fade in content survey-tabs" id="addposting">
+          <%
+            @newposting = Posting.new
+          %>
+
+          <%= simple_form_for @newposting do |f| %>
+
+              <p> Fields marked with * are required </p>
+              
+              <div><%= f.label "Title *" %> 
+              <%= f.text_field :title, :autofocus => true %></div>
+
+              <div>
+                <%= f.label "Description/Responsibilities *" %>
+                <%= f.text_area :description %>
+              </div>
+
+              <div>
+                <%= f.input :salary %>
+              </div>
+
+               <div>
+                <%= f.hidden_field :posting_id %>
+                
+              </div>
+
+
+             <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+
+          <% end %>
+        </div>
+
         <% @postings.each do |p| %>
-              <div class="tab-pane fade in content survey-tabs" id="<%=p.title.delete(' ')%>">                 
-                <% @p = p
+              <% @p = p
                     $postID = p.posting_id
                     @requirments = Skill.where(:posting_id => $postID)
                 %>
-              <%= render partial: "shared/postings" %>
+              <div class="tab-pane fade in content survey-tabs" id="<%=p.title.delete(' ')%>">
+                  <%= render partial: "shared/postings" %>              
               </div>
         <% end %>
 
@@ -46,13 +93,13 @@
     <% if @user.user_id == @owner.user_id %>
       <div class = "col-lg-3" id = "requirements_form">
 
-         <%= simple_form_for @skill, :url => { :action => "create", :controller=>"skills" } do |f| %>
+         <%= simple_form_for @skill, :url => { :action => "create", :controller=>"skills" }, remote: true do |f| %>
             
             <%= f.label "Enter a Requirment for the selected posting" %>
 
             <%= f.text_field :label %>               
               
-            <%= f.hidden_field :posting_id, :value => $postID %>
+            <%= f.hidden_field :posting_id, :value=> $postID %>
                       
             <%= f.input :mandatory, collection: [['Mandatory', true], ['Optional',false]], :default => 1, :style => "width: 40%"%>
             <br>
