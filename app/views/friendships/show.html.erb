@@ -208,11 +208,6 @@ text {
                 .style("opacity", "0.75");
             current.transition()
               .style("opacity", "1");
-            //Increase size of picture border
-            current
-              .selectAll("rect").transition()
-                .attr("width", 40)
-                .attr("height", 40);
             //Increase size of photo
             current
               .select("image").transition()
@@ -220,10 +215,28 @@ text {
                 .attr('height', 38);
             //Increase size of node to hold information
             current
-              .select("rect").transition()
-                .attr("width", 250)
-                .attr("height", 150)
-                .style("fill", selectedcolor);
+              .selectAll("rect").transition()
+                .attr("width", function(d){
+                  if(parseFloat(d3.select(this).attr("width"))>50){
+                    return 150+parseFloat(d3.select(this).attr("width"))
+                  }else{
+                    return 40
+                  }
+                })
+                .attr("height", function(d){
+                  if(parseFloat(d3.select(this).attr("width"))>50){
+                    return 125+parseFloat(d3.select(this).attr("height"))
+                  }else{
+                    return 40
+                  }
+                })
+                .style("fill", function(d){
+                  if(d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1){
+                    return "rgba(0, 0, 0, 0)";
+                  }else{
+                    return selectedcolor;
+                  }
+                });
             //Position text to display relevent information
             current.
               select("text")
@@ -367,10 +380,28 @@ text {
                 .attr('height', 23);
             //Revert container size
             current
-              .select("rect").transition()
-                .attr("width", 100)
-                .attr("height", 25)
-                .style("fill", color);
+              .selectAll("rect").transition()
+                .attr("width", function(d){
+                  if(parseFloat(d3.select(this).attr("width"))>50){
+                    return -150+parseFloat(d3.select(this).attr("width"))
+                  }else{
+                    return 25
+                  }
+                })
+                .attr("height", function(d){
+                  if(parseFloat(d3.select(this).attr("width"))>50){
+                    return -125+parseFloat(d3.select(this).attr("height"))
+                  }else{
+                    return 25
+                  }
+                })
+                .style("fill", function(d){
+                  if(d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1){
+                    return "rgba(0, 0, 0, 0)";
+                  }else{
+                    return color;
+                  }
+                });
             //Revert Text
             current.select("text")
               .attr("x", -5)
