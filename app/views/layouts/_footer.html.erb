@@ -53,13 +53,13 @@ function change_chatbox3(){
               <ul class="nav pull-right">
                   <% if user_signed_in?%>
                     <% @friends = Friendship.where(receiver_id: @user.user_id, accepted: true) %>
-                    <% @friends = @friends + Friendship.where(sender_id: @user.user_id, accepted: true) %>
+                    <% @friends = @friends + Friendship.where(user_id: @user.user_id, accepted: true) %>
                     <% @online = Array.new %>
                     <% @offline = Array.new %>
                     
                     <% @friends.each do |r|
                       if r.receiver_id==@user.user_id
-                        @friend = User.find_by(user_id: r.sender_id)
+                        @friend = User.find_by(user_id: r.user_id)
                         if @friend.online
                           @online.push(@friend)
                         else
@@ -77,8 +77,8 @@ function change_chatbox3(){
                     
                     <li id = "testchat3" >
                       <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
-                          <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).sender_id) %>
-                          <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, sender_id: @other.user_id) %>
+                          <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).user_id) %>
+                          <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, user_id: @other.user_id) %>
                           
                           <% @seenMessages.each do |m|
                             m.update_attribute(:seen, true)
@@ -102,8 +102,8 @@ function change_chatbox3(){
                     </li>
                     <li id = "testchat2">
                       <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
-                        <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).sender_id) %>
-                        <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, sender_id: @other.user_id) %>
+                        <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).user_id) %>
+                        <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, user_id: @other.user_id) %>
                         <% @seenMessages.each do |m|
                           m.update_attribute(:seen, true)
                           end %>
@@ -125,8 +125,8 @@ function change_chatbox3(){
                     </li>
                     <li id = "testchat1">
                       <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
-                        <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).sender_id) %>
-                        <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, sender_id: @other.user_id) %>
+                        <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).user_id) %>
+                        <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, user_id: @other.user_id) %>
                         <% @seenMessages.each do |m|
                           m.update_attribute(:seen, true)
                           end %>

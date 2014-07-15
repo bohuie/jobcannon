@@ -5,14 +5,14 @@ class FriendshipsController < ApplicationController
     @user = current_user
     @userID = current_user.user_id
     @requests = Friendship.where(receiver_id: @user.user_id, accepted: false)
-    @requested = Friendship.where(sender_id: @user.user_id, accepted: true)
+    @requested = Friendship.where(user_id: @user.user_id, accepted: true)
     @accepted = Friendship.where(receiver_id: @user.user_id, accepted: true)
     @friends= @requested+@accepted
-    @companies = Following.where(sender_id: @user.user_id)
+    @companies = Following.where(user_id: @user.user_id)
     @online = Array.new
     @friends.each do |r|
       if r.receiver_id==@user.user_id
-        @friend = User.find_by(user_id: r.sender_id)
+        @friend = User.find_by(user_id: r.user_id)
          if @friend.online
           @online.push(r)
         end
@@ -32,50 +32,50 @@ class FriendshipsController < ApplicationController
   def show
     @user = current_user
     @network = NetworkSearch.new
-    @temp1 = Friendship.where(sender_id: @user.user_id, accepted: true)
+    @temp1 = Friendship.where(user_id: @user.user_id, accepted: true)
     @temp2 = Friendship.where(receiver_id: @user.user_id, accepted: true)
     @temp = @temp1+@temp2
     #Add friends of friends to the network
     @temp.each do |t|
-      @temp1 = @temp1 + Friendship.where(sender_id: t.receiver_id, accepted: true)
-      @temp1 = @temp1 + Friendship.where(receiver_id: t.sender_id, accepted: true)
+      @temp1 = @temp1 + Friendship.where(user_id: t.receiver_id, accepted: true)
+      @temp1 = @temp1 + Friendship.where(receiver_id: t.user_id, accepted: true)
     end
     @temp = @temp1+@temp2
     @temp = @temp.uniq
     @friendships = []
     @temp.each do |r|
-      if(Photo.find_by(:user_id=>r.sender_id).nil?)
+      if(Photo.find_by(:user_id=>r.user_id).nil?)
         @sourcephoto = "" 
       else
-        @sourcephoto = Photo.find_by(:user_id=>r.sender_id).photo.url
+        @sourcephoto = Photo.find_by(:user_id=>r.user_id).photo.url
       end
       if(Photo.find_by(:user_id=>r.receiver_id).nil?)
         @targetphoto = "" 
       else
         @targetphoto = Photo.find_by(:user_id=>r.receiver_id).photo.url
       end
-      @source = User.find(r.sender_id)
+      @source = User.find(r.user_id)
       @target = User.find(r.receiver_id)
-      @sourcefollowing = Following.where(sender_id: r.sender_id)
+      @sourcefollowing = Following.where(user_id: r.user_id)
       @sourceusers = Array.new
       @sourcefollowing.each do |sf|
         @sourceusers.push(User.find(sf.receiver_id))
       end
-      @targetfollowing = Following.where(sender_id: r.receiver_id)
+      @targetfollowing = Following.where(user_id: r.receiver_id)
       @targetusers = Array.new
       @targetfollowing.each do |sf|
         @targetusers.push(User.find(sf.receiver_id))
       end
         @friendships.push({source: @source.fname + " " + @source.lname,
-                          sourceid: r.sender_id, 
-                          sourceskills: Skill.where(user_id: r.sender_id), 
+                          sourceid: r.user_id, 
+                          sourceskills: Skill.where(user_id: r.user_id), 
                           sourcephoto: @sourcephoto, 
                           sourceemail: @source.email,
-                          sourcereferences: Reference.where(user_id: r.sender_id),
-                          sourceexperiences: Experience.where(user_id: r.sender_id), 
+                          sourcereferences: Reference.where(user_id: r.user_id),
+                          sourceexperiences: Experience.where(user_id: r.user_id), 
                           sourcecompany: false,
-                          sourceflaggedjobs: FlaggedCandidate.where(flagged_user_id: r.sender_id),
-                          sourceinterests: Interest.where(user_id: r.sender_id),
+                          sourceflaggedjobs: FlaggedCandidate.where(flagged_user_id: r.user_id),
+                          sourceinterests: Interest.where(user_id: r.user_id),
                           sourcefollowing: @sourceusers,
                           targetreferences: Reference.where(user_id: r.receiver_id),
                           targetexperiences: Experience.where(user_id: r.receiver_id),
@@ -112,10 +112,10 @@ class FriendshipsController < ApplicationController
     if user_signed_in?
       @sender = params[:sender]
       @receiver = params[:receiver]
-      if Friendship.find_by(sender_id: @sender, receiver_id: @receiver).nil? &&
-        Friendship.find_by(sender_id: @receiver, receiver_id: @sender).nil?
+      if Friendship.find_by(user_id: @sender, receiver_id: @receiver).nil? &&
+        Friendship.find_by(user_id: @receiver, receiver_id: @sender).nil?
 
-        @friend = Friendship.create(friendship_id: 0, sender_id: @sender, receiver_id: @receiver, sent_at: DateTime.now, accepted: false)
+        @friend = Friendship.create(friendship_id: 0, user_id: @sender, receiver_id: @receiver, sent_at: DateTime.now, accepted: false)
 
         if @friend.save
 
@@ -137,9 +137,9 @@ class FriendshipsController < ApplicationController
     if user_signed_in?
       @sender = params[:sender]
       @receiver = params[:receiver]
-      if Following.find_by(sender_id: @sender, receiver_id: @receiver).nil?
+      if Following.find_by(user_id: @sender, receiver_id: @receiver).nil?
 
-        @friend = Following.create(following_id: 0, sender_id: @sender, receiver_id: @receiver, sent_at: DateTime.now)
+        @friend = Following.create(following_id: 0, user_id: @sender, receiver_id: @receiver, sent_at: DateTime.now)
 
         if @friend.save
 
@@ -192,7 +192,7 @@ class FriendshipsController < ApplicationController
   def destroy
 
     @friendship = Friendship.find(params[:id])
-    if user_signed_in? && (current_user.user_id == @friendship.sender_id || current_user.user_id== @friendship.receiver_id)
+    if user_signed_in? && (current_user.user_id == @friendship.user_id || current_user.user_id== @friendship.receiver_id)
       @friendship.destroy
       flash[:success] = "Friendship destroyed."
     else

@@ -16,7 +16,7 @@
 </head>
 
 <% if @user.user_id == friendslist.receiver_id %>
-	<% @friend = User.find_by(user_id: friendslist.sender_id) %>
+	<% @friend = User.find_by(user_id: friendslist.user_id) %>
 <% else %>
 	<% @friend = User.find_by(user_id: friendslist.receiver_id) %>
 <% end %>

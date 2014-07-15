@@ -16,7 +16,7 @@
 </head>
 
 <% if @user.user_id == companieslist.receiver_id %>
-	<% @company = User.find_by(user_id: companieslist.sender_id) %>
+	<% @company = User.find_by(user_id: companieslist.user_id) %>
 <% else %>
 	<% @company = User.find_by(user_id: companieslist.receiver_id) %>
 <% end %>

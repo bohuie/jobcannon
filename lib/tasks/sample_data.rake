@@ -108,19 +108,19 @@ namespace :db do
   Endorse.create!(skill_id: 10, endorser_id: 13)
   Endorse.create!(skill_id: 11, endorser_id: 14)
 
-  Friendship.create!(friendship_id: 8, sender_id: 9, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 9, sender_id: 10, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 10, sender_id: 11, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 11, sender_id: 11, receiver_id: 10, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 12, sender_id: 12, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 13, sender_id: 12, receiver_id: 9, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 14, sender_id: 13, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 15, sender_id: 13, receiver_id: 10, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 16, sender_id: 14, receiver_id: 12, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 8, user_id: 9, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 9, user_id: 10, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 10, user_id: 11, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 11, user_id: 11, receiver_id: 10, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 12, user_id: 12, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 13, user_id: 12, receiver_id: 9, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 14, user_id: 13, receiver_id: 8, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 15, user_id: 13, receiver_id: 10, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 16, user_id: 14, receiver_id: 12, sent_at: "2014-02-21 02:31:24", accepted: true)
   #Followers of Company Mr. Money
-  Friendship.create!(friendship_id: 17, sender_id: 13, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 18, sender_id: 12, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 19, sender_id: 14, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 17, user_id: 13, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 18, user_id: 12, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Friendship.create!(friendship_id: 19, user_id: 14, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
 
   end
 end
