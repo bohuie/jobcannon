@@ -1,0 +1,450 @@
+								Prefix Verb   URI Pattern                                     Controller#Action
+								
+                                root GET    /                                               static_pages#home
+                  new_authentication GET    /authentications/new(.:format)                  authentications#new
+                      authentication DELETE /authentications/:id(.:format)                  authentications#destroy
+                    new_user_session GET    /users/sign_in(.:format)                        devise/sessions#new
+                        user_session POST   /users/sign_in(.:format)                        devise/sessions#create
+                destroy_user_session DELETE /users/sign_out(.:format)                       devise/sessions#destroy
+                       user_password POST   /users/password(.:format)                       devise/passwords#create
+                   new_user_password GET    /users/password/new(.:format)                   devise/passwords#new
+                  edit_user_password GET    /users/password/edit(.:format)                  devise/passwords#edit
+                                     PATCH  /users/password(.:format)                       devise/passwords#update
+                                     PUT    /users/password(.:format)                       devise/passwords#update
+            cancel_user_registration GET    /users/cancel(.:format)                         registrations#cancel
+                   user_registration POST   /users(.:format)                                registrations#create
+               new_user_registration GET    /users/sign_up(.:format)                        registrations#new
+              edit_user_registration GET    /users/edit(.:format)                           registrations#edit
+                                     PATCH  /users(.:format)                                registrations#update
+                                     PUT    /users(.:format)                                registrations#update
+                                     DELETE /users(.:format)                                registrations#destroy
+autocomplete_skilllabel_label_skills GET    /skills/autocomplete_skilllabel_label(.:format) skills#autocomplete_skilllabel_label {:formats=>"js"}
+                              skills GET    /skills(.:format)                               skills#index
+                                     POST   /skills(.:format)                               skills#create
+                           new_skill GET    /skills/new(.:format)                           skills#new
+                          edit_skill GET    /skills/:id/edit(.:format)                      skills#edit
+                               skill GET    /skills/:id(.:format)                           skills#show
+                                     PATCH  /skills/:id(.:format)                           skills#update
+                                     PUT    /skills/:id(.:format)                           skills#update
+                                     DELETE /skills/:id(.:format)                           skills#destroy
+          word_processing_fluentcies GET    /word_processing_fluentcies(.:format)           survey/tech/word_processing_fluentcies#index {:formats=>"js"}
+                                     POST   /word_processing_fluentcies(.:format)           survey/tech/word_processing_fluentcies#create {:formats=>"js"}
+        new_word_processing_fluentcy GET    /word_processing_fluentcies/new(.:format)       survey/tech/word_processing_fluentcies#new {:formats=>"js"}
+       edit_word_processing_fluentcy GET    /word_processing_fluentcies/:id/edit(.:format)  survey/tech/word_processing_fluentcies#edit {:formats=>"js"}
+            word_processing_fluentcy GET    /word_processing_fluentcies/:id(.:format)       survey/tech/word_processing_fluentcies#show {:formats=>"js"}
+                                     PATCH  /word_processing_fluentcies/:id(.:format)       survey/tech/word_processing_fluentcies#update {:formats=>"js"}
+                                     PUT    /word_processing_fluentcies/:id(.:format)       survey/tech/word_processing_fluentcies#update {:formats=>"js"}
+                                     DELETE /word_processing_fluentcies/:id(.:format)       survey/tech/word_processing_fluentcies#destroy {:formats=>"js"}
+              word_processing_skills GET    /word_processing_skills(.:format)               survey/tech/word_processing_skills#index {:formats=>"js"}
+                                     POST   /word_processing_skills(.:format)               survey/tech/word_processing_skills#create {:formats=>"js"}
+           new_word_processing_skill GET    /word_processing_skills/new(.:format)           survey/tech/word_processing_skills#new {:formats=>"js"}
+          edit_word_processing_skill GET    /word_processing_skills/:id/edit(.:format)      survey/tech/word_processing_skills#edit {:formats=>"js"}
+               word_processing_skill GET    /word_processing_skills/:id(.:format)           survey/tech/word_processing_skills#show {:formats=>"js"}
+                                     PATCH  /word_processing_skills/:id(.:format)           survey/tech/word_processing_skills#update {:formats=>"js"}
+                                     PUT    /word_processing_skills/:id(.:format)           survey/tech/word_processing_skills#update {:formats=>"js"}
+                                     DELETE /word_processing_skills/:id(.:format)           survey/tech/word_processing_skills#destroy {:formats=>"js"}
+               basic_computer_skills GET    /basic_computer_skills(.:format)                survey/tech/basic_computer_skills#index {:formats=>"js"}
+                                     POST   /basic_computer_skills(.:format)                survey/tech/basic_computer_skills#create {:formats=>"js"}
+            new_basic_computer_skill GET    /basic_computer_skills/new(.:format)            survey/tech/basic_computer_skills#new {:formats=>"js"}
+           edit_basic_computer_skill GET    /basic_computer_skills/:id/edit(.:format)       survey/tech/basic_computer_skills#edit {:formats=>"js"}
+                basic_computer_skill GET    /basic_computer_skills/:id(.:format)            survey/tech/basic_computer_skills#show {:formats=>"js"}
+                                     PATCH  /basic_computer_skills/:id(.:format)            survey/tech/basic_computer_skills#update {:formats=>"js"}
+                                     PUT    /basic_computer_skills/:id(.:format)            survey/tech/basic_computer_skills#update {:formats=>"js"}
+                                     DELETE /basic_computer_skills/:id(.:format)            survey/tech/basic_computer_skills#destroy {:formats=>"js"}
+            operating_systems_usages GET    /operating_systems_usages(.:format)             survey/tech/operating_systems_usages#index {:formats=>"js"}
+                                     POST   /operating_systems_usages(.:format)             survey/tech/operating_systems_usages#create {:formats=>"js"}
+         new_operating_systems_usage GET    /operating_systems_usages/new(.:format)         survey/tech/operating_systems_usages#new {:formats=>"js"}
+        edit_operating_systems_usage GET    /operating_systems_usages/:id/edit(.:format)    survey/tech/operating_systems_usages#edit {:formats=>"js"}
+             operating_systems_usage GET    /operating_systems_usages/:id(.:format)         survey/tech/operating_systems_usages#show {:formats=>"js"}
+                                     PATCH  /operating_systems_usages/:id(.:format)         survey/tech/operating_systems_usages#update {:formats=>"js"}
+                                     PUT    /operating_systems_usages/:id(.:format)         survey/tech/operating_systems_usages#update {:formats=>"js"}
+                                     DELETE /operating_systems_usages/:id(.:format)         survey/tech/operating_systems_usages#destroy {:formats=>"js"}
+           operating_systems_fluents GET    /operating_systems_fluents(.:format)            survey/tech/operating_systems_fluents#index {:formats=>"js"}
+                                     POST   /operating_systems_fluents(.:format)            survey/tech/operating_systems_fluents#create {:formats=>"js"}
+        new_operating_systems_fluent GET    /operating_systems_fluents/new(.:format)        survey/tech/operating_systems_fluents#new {:formats=>"js"}
+       edit_operating_systems_fluent GET    /operating_systems_fluents/:id/edit(.:format)   survey/tech/operating_systems_fluents#edit {:formats=>"js"}
+            operating_systems_fluent GET    /operating_systems_fluents/:id(.:format)        survey/tech/operating_systems_fluents#show {:formats=>"js"}
+                                     PATCH  /operating_systems_fluents/:id(.:format)        survey/tech/operating_systems_fluents#update {:formats=>"js"}
+                                     PUT    /operating_systems_fluents/:id(.:format)        survey/tech/operating_systems_fluents#update {:formats=>"js"}
+                                     DELETE /operating_systems_fluents/:id(.:format)        survey/tech/operating_systems_fluents#destroy {:formats=>"js"}
+            advanced_computer_skills GET    /advanced_computer_skills(.:format)             survey/tech/advanced_computer_skills#index {:formats=>"js"}
+                                     POST   /advanced_computer_skills(.:format)             survey/tech/advanced_computer_skills#create {:formats=>"js"}
+         new_advanced_computer_skill GET    /advanced_computer_skills/new(.:format)         survey/tech/advanced_computer_skills#new {:formats=>"js"}
+        edit_advanced_computer_skill GET    /advanced_computer_skills/:id/edit(.:format)    survey/tech/advanced_computer_skills#edit {:formats=>"js"}
+             advanced_computer_skill GET    /advanced_computer_skills/:id(.:format)         survey/tech/advanced_computer_skills#show {:formats=>"js"}
+                                     PATCH  /advanced_computer_skills/:id(.:format)         survey/tech/advanced_computer_skills#update {:formats=>"js"}
+                                     PUT    /advanced_computer_skills/:id(.:format)         survey/tech/advanced_computer_skills#update {:formats=>"js"}
+                                     DELETE /advanced_computer_skills/:id(.:format)         survey/tech/advanced_computer_skills#destroy {:formats=>"js"}
+                  multi_media_skills GET    /multi_media_skills(.:format)                   survey/tech/multi_media_skills#index {:formats=>"js"}
+                                     POST   /multi_media_skills(.:format)                   survey/tech/multi_media_skills#create {:formats=>"js"}
+               new_multi_media_skill GET    /multi_media_skills/new(.:format)               survey/tech/multi_media_skills#new {:formats=>"js"}
+              edit_multi_media_skill GET    /multi_media_skills/:id/edit(.:format)          survey/tech/multi_media_skills#edit {:formats=>"js"}
+                   multi_media_skill GET    /multi_media_skills/:id(.:format)               survey/tech/multi_media_skills#show {:formats=>"js"}
+                                     PATCH  /multi_media_skills/:id(.:format)               survey/tech/multi_media_skills#update {:formats=>"js"}
+                                     PUT    /multi_media_skills/:id(.:format)               survey/tech/multi_media_skills#update {:formats=>"js"}
+                                     DELETE /multi_media_skills/:id(.:format)               survey/tech/multi_media_skills#destroy {:formats=>"js"}
+              technology_differences GET    /technology_differences(.:format)               survey/tech/technology_differences#index {:formats=>"js"}
+                                     POST   /technology_differences(.:format)               survey/tech/technology_differences#create {:formats=>"js"}
+           new_technology_difference GET    /technology_differences/new(.:format)           survey/tech/technology_differences#new {:formats=>"js"}
+          edit_technology_difference GET    /technology_differences/:id/edit(.:format)      survey/tech/technology_differences#edit {:formats=>"js"}
+               technology_difference GET    /technology_differences/:id(.:format)           survey/tech/technology_differences#show {:formats=>"js"}
+                                     PATCH  /technology_differences/:id(.:format)           survey/tech/technology_differences#update {:formats=>"js"}
+                                     PUT    /technology_differences/:id(.:format)           survey/tech/technology_differences#update {:formats=>"js"}
+                                     DELETE /technology_differences/:id(.:format)           survey/tech/technology_differences#destroy {:formats=>"js"}
+                  spreadsheet_skills GET    /spreadsheet_skills(.:format)                   survey/tech/spreadsheet_skills#index {:formats=>"js"}
+                                     POST   /spreadsheet_skills(.:format)                   survey/tech/spreadsheet_skills#create {:formats=>"js"}
+               new_spreadsheet_skill GET    /spreadsheet_skills/new(.:format)               survey/tech/spreadsheet_skills#new {:formats=>"js"}
+              edit_spreadsheet_skill GET    /spreadsheet_skills/:id/edit(.:format)          survey/tech/spreadsheet_skills#edit {:formats=>"js"}
+                   spreadsheet_skill GET    /spreadsheet_skills/:id(.:format)               survey/tech/spreadsheet_skills#show {:formats=>"js"}
+                                     PATCH  /spreadsheet_skills/:id(.:format)               survey/tech/spreadsheet_skills#update {:formats=>"js"}
+                                     PUT    /spreadsheet_skills/:id(.:format)               survey/tech/spreadsheet_skills#update {:formats=>"js"}
+                                     DELETE /spreadsheet_skills/:id(.:format)               survey/tech/spreadsheet_skills#destroy {:formats=>"js"}
+              spreadsheet_fluentcies GET    /spreadsheet_fluentcies(.:format)               survey/tech/spreadsheet_fluentcies#index {:formats=>"js"}
+                                     POST   /spreadsheet_fluentcies(.:format)               survey/tech/spreadsheet_fluentcies#create {:formats=>"js"}
+            new_spreadsheet_fluentcy GET    /spreadsheet_fluentcies/new(.:format)           survey/tech/spreadsheet_fluentcies#new {:formats=>"js"}
+           edit_spreadsheet_fluentcy GET    /spreadsheet_fluentcies/:id/edit(.:format)      survey/tech/spreadsheet_fluentcies#edit {:formats=>"js"}
+                spreadsheet_fluentcy GET    /spreadsheet_fluentcies/:id(.:format)           survey/tech/spreadsheet_fluentcies#show {:formats=>"js"}
+                                     PATCH  /spreadsheet_fluentcies/:id(.:format)           survey/tech/spreadsheet_fluentcies#update {:formats=>"js"}
+                                     PUT    /spreadsheet_fluentcies/:id(.:format)           survey/tech/spreadsheet_fluentcies#update {:formats=>"js"}
+                                     DELETE /spreadsheet_fluentcies/:id(.:format)           survey/tech/spreadsheet_fluentcies#destroy {:formats=>"js"}
+                   presenting_skills GET    /presenting_skills(.:format)                    survey/tech/presenting_skills#index {:formats=>"js"}
+                                     POST   /presenting_skills(.:format)                    survey/tech/presenting_skills#create {:formats=>"js"}
+                new_presenting_skill GET    /presenting_skills/new(.:format)                survey/tech/presenting_skills#new {:formats=>"js"}
+               edit_presenting_skill GET    /presenting_skills/:id/edit(.:format)           survey/tech/presenting_skills#edit {:formats=>"js"}
+                    presenting_skill GET    /presenting_skills/:id(.:format)                survey/tech/presenting_skills#show {:formats=>"js"}
+                                     PATCH  /presenting_skills/:id(.:format)                survey/tech/presenting_skills#update {:formats=>"js"}
+                                     PUT    /presenting_skills/:id(.:format)                survey/tech/presenting_skills#update {:formats=>"js"}
+                                     DELETE /presenting_skills/:id(.:format)                survey/tech/presenting_skills#destroy {:formats=>"js"}
+               presenting_fluentcies GET    /presenting_fluentcies(.:format)                survey/tech/presenting_fluentcies#index {:formats=>"js"}
+                                     POST   /presenting_fluentcies(.:format)                survey/tech/presenting_fluentcies#create {:formats=>"js"}
+             new_presenting_fluentcy GET    /presenting_fluentcies/new(.:format)            survey/tech/presenting_fluentcies#new {:formats=>"js"}
+            edit_presenting_fluentcy GET    /presenting_fluentcies/:id/edit(.:format)       survey/tech/presenting_fluentcies#edit {:formats=>"js"}
+                 presenting_fluentcy GET    /presenting_fluentcies/:id(.:format)            survey/tech/presenting_fluentcies#show {:formats=>"js"}
+                                     PATCH  /presenting_fluentcies/:id(.:format)            survey/tech/presenting_fluentcies#update {:formats=>"js"}
+                                     PUT    /presenting_fluentcies/:id(.:format)            survey/tech/presenting_fluentcies#update {:formats=>"js"}
+                                     DELETE /presenting_fluentcies/:id(.:format)            survey/tech/presenting_fluentcies#destroy {:formats=>"js"}
+                        email_skills GET    /email_skills(.:format)                         survey/tech/email_skills#index {:formats=>"js"}
+                                     POST   /email_skills(.:format)                         survey/tech/email_skills#create {:formats=>"js"}
+                     new_email_skill GET    /email_skills/new(.:format)                     survey/tech/email_skills#new {:formats=>"js"}
+                    edit_email_skill GET    /email_skills/:id/edit(.:format)                survey/tech/email_skills#edit {:formats=>"js"}
+                         email_skill GET    /email_skills/:id(.:format)                     survey/tech/email_skills#show {:formats=>"js"}
+                                     PATCH  /email_skills/:id(.:format)                     survey/tech/email_skills#update {:formats=>"js"}
+                                     PUT    /email_skills/:id(.:format)                     survey/tech/email_skills#update {:formats=>"js"}
+                                     DELETE /email_skills/:id(.:format)                     survey/tech/email_skills#destroy {:formats=>"js"}
+                    email_fluentcies GET    /email_fluentcies(.:format)                     survey/tech/email_fluentcies#index {:formats=>"js"}
+                                     POST   /email_fluentcies(.:format)                     survey/tech/email_fluentcies#create {:formats=>"js"}
+                  new_email_fluentcy GET    /email_fluentcies/new(.:format)                 survey/tech/email_fluentcies#new {:formats=>"js"}
+                 edit_email_fluentcy GET    /email_fluentcies/:id/edit(.:format)            survey/tech/email_fluentcies#edit {:formats=>"js"}
+                      email_fluentcy GET    /email_fluentcies/:id(.:format)                 survey/tech/email_fluentcies#show {:formats=>"js"}
+                                     PATCH  /email_fluentcies/:id(.:format)                 survey/tech/email_fluentcies#update {:formats=>"js"}
+                                     PUT    /email_fluentcies/:id(.:format)                 survey/tech/email_fluentcies#update {:formats=>"js"}
+                                     DELETE /email_fluentcies/:id(.:format)                 survey/tech/email_fluentcies#destroy {:formats=>"js"}
+                      internet_terms GET    /internet_terms(.:format)                       survey/tech/internet_terms#index {:formats=>"js"}
+                                     POST   /internet_terms(.:format)                       survey/tech/internet_terms#create {:formats=>"js"}
+                   new_internet_term GET    /internet_terms/new(.:format)                   survey/tech/internet_terms#new {:formats=>"js"}
+                  edit_internet_term GET    /internet_terms/:id/edit(.:format)              survey/tech/internet_terms#edit {:formats=>"js"}
+                       internet_term GET    /internet_terms/:id(.:format)                   survey/tech/internet_terms#show {:formats=>"js"}
+                                     PATCH  /internet_terms/:id(.:format)                   survey/tech/internet_terms#update {:formats=>"js"}
+                                     PUT    /internet_terms/:id(.:format)                   survey/tech/internet_terms#update {:formats=>"js"}
+                                     DELETE /internet_terms/:id(.:format)                   survey/tech/internet_terms#destroy {:formats=>"js"}
+                      internet_tasks GET    /internet_tasks(.:format)                       survey/tech/internet_tasks#index {:formats=>"js"}
+                                     POST   /internet_tasks(.:format)                       survey/tech/internet_tasks#create {:formats=>"js"}
+                   new_internet_task GET    /internet_tasks/new(.:format)                   survey/tech/internet_tasks#new {:formats=>"js"}
+                  edit_internet_task GET    /internet_tasks/:id/edit(.:format)              survey/tech/internet_tasks#edit {:formats=>"js"}
+                       internet_task GET    /internet_tasks/:id(.:format)                   survey/tech/internet_tasks#show {:formats=>"js"}
+                                     PATCH  /internet_tasks/:id(.:format)                   survey/tech/internet_tasks#update {:formats=>"js"}
+                                     PUT    /internet_tasks/:id(.:format)                   survey/tech/internet_tasks#update {:formats=>"js"}
+                                     DELETE /internet_tasks/:id(.:format)                   survey/tech/internet_tasks#destroy {:formats=>"js"}
+                internet_connections GET    /internet_connections(.:format)                 survey/tech/internet_connections#index {:formats=>"js"}
+                                     POST   /internet_connections(.:format)                 survey/tech/internet_connections#create {:formats=>"js"}
+             new_internet_connection GET    /internet_connections/new(.:format)             survey/tech/internet_connections#new {:formats=>"js"}
+            edit_internet_connection GET    /internet_connections/:id/edit(.:format)        survey/tech/internet_connections#edit {:formats=>"js"}
+                 internet_connection GET    /internet_connections/:id(.:format)             survey/tech/internet_connections#show {:formats=>"js"}
+                                     PATCH  /internet_connections/:id(.:format)             survey/tech/internet_connections#update {:formats=>"js"}
+                                     PUT    /internet_connections/:id(.:format)             survey/tech/internet_connections#update {:formats=>"js"}
+                                     DELETE /internet_connections/:id(.:format)             survey/tech/internet_connections#destroy {:formats=>"js"}
+                            browsers GET    /browsers(.:format)                             survey/tech/browsers#index {:formats=>"js"}
+                                     POST   /browsers(.:format)                             survey/tech/browsers#create {:formats=>"js"}
+                         new_browser GET    /browsers/new(.:format)                         survey/tech/browsers#new {:formats=>"js"}
+                        edit_browser GET    /browsers/:id/edit(.:format)                    survey/tech/browsers#edit {:formats=>"js"}
+                             browser GET    /browsers/:id(.:format)                         survey/tech/browsers#show {:formats=>"js"}
+                                     PATCH  /browsers/:id(.:format)                         survey/tech/browsers#update {:formats=>"js"}
+                                     PUT    /browsers/:id(.:format)                         survey/tech/browsers#update {:formats=>"js"}
+                                     DELETE /browsers/:id(.:format)                         survey/tech/browsers#destroy {:formats=>"js"}
+                 social_media_skills GET    /social_media_skills(.:format)                  survey/tech/social_media_skills#index {:formats=>"js"}
+                                     POST   /social_media_skills(.:format)                  survey/tech/social_media_skills#create {:formats=>"js"}
+              new_social_media_skill GET    /social_media_skills/new(.:format)              survey/tech/social_media_skills#new {:formats=>"js"}
+             edit_social_media_skill GET    /social_media_skills/:id/edit(.:format)         survey/tech/social_media_skills#edit {:formats=>"js"}
+                  social_media_skill GET    /social_media_skills/:id(.:format)              survey/tech/social_media_skills#show {:formats=>"js"}
+                                     PATCH  /social_media_skills/:id(.:format)              survey/tech/social_media_skills#update {:formats=>"js"}
+                                     PUT    /social_media_skills/:id(.:format)              survey/tech/social_media_skills#update {:formats=>"js"}
+                                     DELETE /social_media_skills/:id(.:format)              survey/tech/social_media_skills#destroy {:formats=>"js"}
+                  social_media_descs GET    /social_media_descs(.:format)                   survey/tech/social_media_descs#index {:formats=>"js"}
+                                     POST   /social_media_descs(.:format)                   survey/tech/social_media_descs#create {:formats=>"js"}
+               new_social_media_desc GET    /social_media_descs/new(.:format)               survey/tech/social_media_descs#new {:formats=>"js"}
+              edit_social_media_desc GET    /social_media_descs/:id/edit(.:format)          survey/tech/social_media_descs#edit {:formats=>"js"}
+                   social_media_desc GET    /social_media_descs/:id(.:format)               survey/tech/social_media_descs#show {:formats=>"js"}
+                                     PATCH  /social_media_descs/:id(.:format)               survey/tech/social_media_descs#update {:formats=>"js"}
+                                     PUT    /social_media_descs/:id(.:format)               survey/tech/social_media_descs#update {:formats=>"js"}
+                                     DELETE /social_media_descs/:id(.:format)               survey/tech/social_media_descs#destroy {:formats=>"js"}
+              social_media_platforms GET    /social_media_platforms(.:format)               survey/tech/social_media_platforms#index {:formats=>"js"}
+                                     POST   /social_media_platforms(.:format)               survey/tech/social_media_platforms#create {:formats=>"js"}
+           new_social_media_platform GET    /social_media_platforms/new(.:format)           survey/tech/social_media_platforms#new {:formats=>"js"}
+          edit_social_media_platform GET    /social_media_platforms/:id/edit(.:format)      survey/tech/social_media_platforms#edit {:formats=>"js"}
+               social_media_platform GET    /social_media_platforms/:id(.:format)           survey/tech/social_media_platforms#show {:formats=>"js"}
+                                     PATCH  /social_media_platforms/:id(.:format)           survey/tech/social_media_platforms#update {:formats=>"js"}
+                                     PUT    /social_media_platforms/:id(.:format)           survey/tech/social_media_platforms#update {:formats=>"js"}
+                                     DELETE /social_media_platforms/:id(.:format)           survey/tech/social_media_platforms#destroy {:formats=>"js"}
+                 online_colab_skills GET    /online_colab_skills(.:format)                  survey/tech/online_colab_skills#index {:formats=>"js"}
+                                     POST   /online_colab_skills(.:format)                  survey/tech/online_colab_skills#create {:formats=>"js"}
+              new_online_colab_skill GET    /online_colab_skills/new(.:format)              survey/tech/online_colab_skills#new {:formats=>"js"}
+             edit_online_colab_skill GET    /online_colab_skills/:id/edit(.:format)         survey/tech/online_colab_skills#edit {:formats=>"js"}
+                  online_colab_skill GET    /online_colab_skills/:id(.:format)              survey/tech/online_colab_skills#show {:formats=>"js"}
+                                     PATCH  /online_colab_skills/:id(.:format)              survey/tech/online_colab_skills#update {:formats=>"js"}
+                                     PUT    /online_colab_skills/:id(.:format)              survey/tech/online_colab_skills#update {:formats=>"js"}
+                                     DELETE /online_colab_skills/:id(.:format)              survey/tech/online_colab_skills#destroy {:formats=>"js"}
+             online_colab_fluentcies GET    /online_colab_fluentcies(.:format)              survey/tech/online_colab_fluentcies#index {:formats=>"js"}
+                                     POST   /online_colab_fluentcies(.:format)              survey/tech/online_colab_fluentcies#create {:formats=>"js"}
+           new_online_colab_fluentcy GET    /online_colab_fluentcies/new(.:format)          survey/tech/online_colab_fluentcies#new {:formats=>"js"}
+          edit_online_colab_fluentcy GET    /online_colab_fluentcies/:id/edit(.:format)     survey/tech/online_colab_fluentcies#edit {:formats=>"js"}
+               online_colab_fluentcy GET    /online_colab_fluentcies/:id(.:format)          survey/tech/online_colab_fluentcies#show {:formats=>"js"}
+                                     PATCH  /online_colab_fluentcies/:id(.:format)          survey/tech/online_colab_fluentcies#update {:formats=>"js"}
+                                     PUT    /online_colab_fluentcies/:id(.:format)          survey/tech/online_colab_fluentcies#update {:formats=>"js"}
+                                     DELETE /online_colab_fluentcies/:id(.:format)          survey/tech/online_colab_fluentcies#destroy {:formats=>"js"}
+                           languages GET    /languages(.:format)                            survey/profile/languages#index {:formats=>"js"}
+                                     POST   /languages(.:format)                            survey/profile/languages#create {:formats=>"js"}
+                        new_language GET    /languages/new(.:format)                        survey/profile/languages#new {:formats=>"js"}
+                       edit_language GET    /languages/:id/edit(.:format)                   survey/profile/languages#edit {:formats=>"js"}
+                            language GET    /languages/:id(.:format)                        survey/profile/languages#show {:formats=>"js"}
+                                     PATCH  /languages/:id(.:format)                        survey/profile/languages#update {:formats=>"js"}
+                                     PUT    /languages/:id(.:format)                        survey/profile/languages#update {:formats=>"js"}
+                                     DELETE /languages/:id(.:format)                        survey/profile/languages#destroy {:formats=>"js"}
+                      surveyprofiles GET    /surveyprofiles(.:format)                       survey/profile/surveyprofiles#index
+                                     POST   /surveyprofiles(.:format)                       survey/profile/surveyprofiles#create
+                   new_surveyprofile GET    /surveyprofiles/new(.:format)                   survey/profile/surveyprofiles#new
+                  edit_surveyprofile GET    /surveyprofiles/:id/edit(.:format)              survey/profile/surveyprofiles#edit
+                       surveyprofile GET    /surveyprofiles/:id(.:format)                   survey/profile/surveyprofiles#show
+                                     PATCH  /surveyprofiles/:id(.:format)                   survey/profile/surveyprofiles#update
+                                     PUT    /surveyprofiles/:id(.:format)                   survey/profile/surveyprofiles#update
+                                     DELETE /surveyprofiles/:id(.:format)                   survey/profile/surveyprofiles#destroy
+                communication_skills GET    /communication_skills(.:format)                 survey/personality/communication_skills#index {:formats=>"js"}
+                                     POST   /communication_skills(.:format)                 survey/personality/communication_skills#create {:formats=>"js"}
+             new_communication_skill GET    /communication_skills/new(.:format)             survey/personality/communication_skills#new {:formats=>"js"}
+            edit_communication_skill GET    /communication_skills/:id/edit(.:format)        survey/personality/communication_skills#edit {:formats=>"js"}
+                 communication_skill GET    /communication_skills/:id(.:format)             survey/personality/communication_skills#show {:formats=>"js"}
+                                     PATCH  /communication_skills/:id(.:format)             survey/personality/communication_skills#update {:formats=>"js"}
+                                     PUT    /communication_skills/:id(.:format)             survey/personality/communication_skills#update {:formats=>"js"}
+                                     DELETE /communication_skills/:id(.:format)             survey/personality/communication_skills#destroy {:formats=>"js"}
+                     thinking_skills GET    /thinking_skills(.:format)                      survey/personality/thinking_skills#index {:formats=>"js"}
+                                     POST   /thinking_skills(.:format)                      survey/personality/thinking_skills#create {:formats=>"js"}
+                  new_thinking_skill GET    /thinking_skills/new(.:format)                  survey/personality/thinking_skills#new {:formats=>"js"}
+                 edit_thinking_skill GET    /thinking_skills/:id/edit(.:format)             survey/personality/thinking_skills#edit {:formats=>"js"}
+                      thinking_skill GET    /thinking_skills/:id(.:format)                  survey/personality/thinking_skills#show {:formats=>"js"}
+                                     PATCH  /thinking_skills/:id(.:format)                  survey/personality/thinking_skills#update {:formats=>"js"}
+                                     PUT    /thinking_skills/:id(.:format)                  survey/personality/thinking_skills#update {:formats=>"js"}
+                                     DELETE /thinking_skills/:id(.:format)                  survey/personality/thinking_skills#destroy {:formats=>"js"}
+               self_direction_skills GET    /self_direction_skills(.:format)                survey/personality/self_direction_skills#index {:formats=>"js"}
+                                     POST   /self_direction_skills(.:format)                survey/personality/self_direction_skills#create {:formats=>"js"}
+            new_self_direction_skill GET    /self_direction_skills/new(.:format)            survey/personality/self_direction_skills#new {:formats=>"js"}
+           edit_self_direction_skill GET    /self_direction_skills/:id/edit(.:format)       survey/personality/self_direction_skills#edit {:formats=>"js"}
+                self_direction_skill GET    /self_direction_skills/:id(.:format)            survey/personality/self_direction_skills#show {:formats=>"js"}
+                                     PATCH  /self_direction_skills/:id(.:format)            survey/personality/self_direction_skills#update {:formats=>"js"}
+                                     PUT    /self_direction_skills/:id(.:format)            survey/personality/self_direction_skills#update {:formats=>"js"}
+                                     DELETE /self_direction_skills/:id(.:format)            survey/personality/self_direction_skills#destroy {:formats=>"js"}
+                    accountabilities GET    /accountabilities(.:format)                     survey/personality/accountabilities#index {:formats=>"js"}
+                                     POST   /accountabilities(.:format)                     survey/personality/accountabilities#create {:formats=>"js"}
+                  new_accountability GET    /accountabilities/new(.:format)                 survey/personality/accountabilities#new {:formats=>"js"}
+                 edit_accountability GET    /accountabilities/:id/edit(.:format)            survey/personality/accountabilities#edit {:formats=>"js"}
+                      accountability GET    /accountabilities/:id(.:format)                 survey/personality/accountabilities#show {:formats=>"js"}
+                                     PATCH  /accountabilities/:id(.:format)                 survey/personality/accountabilities#update {:formats=>"js"}
+                                     PUT    /accountabilities/:id(.:format)                 survey/personality/accountabilities#update {:formats=>"js"}
+                                     DELETE /accountabilities/:id(.:format)                 survey/personality/accountabilities#destroy {:formats=>"js"}
+                interpersonal_skills GET    /interpersonal_skills(.:format)                 survey/personality/interpersonal_skills#index {:formats=>"js"}
+                                     POST   /interpersonal_skills(.:format)                 survey/personality/interpersonal_skills#create {:formats=>"js"}
+             new_interpersonal_skill GET    /interpersonal_skills/new(.:format)             survey/personality/interpersonal_skills#new {:formats=>"js"}
+            edit_interpersonal_skill GET    /interpersonal_skills/:id/edit(.:format)        survey/personality/interpersonal_skills#edit {:formats=>"js"}
+                 interpersonal_skill GET    /interpersonal_skills/:id(.:format)             survey/personality/interpersonal_skills#show {:formats=>"js"}
+                                     PATCH  /interpersonal_skills/:id(.:format)             survey/personality/interpersonal_skills#update {:formats=>"js"}
+                                     PUT    /interpersonal_skills/:id(.:format)             survey/personality/interpersonal_skills#update {:formats=>"js"}
+                                     DELETE /interpersonal_skills/:id(.:format)             survey/personality/interpersonal_skills#destroy {:formats=>"js"}
+                         experiences GET    /experiences(.:format)                          experiences#index
+                                     POST   /experiences(.:format)                          experiences#create
+                      new_experience GET    /experiences/new(.:format)                      experiences#new
+                     edit_experience GET    /experiences/:id/edit(.:format)                 experiences#edit
+                          experience GET    /experiences/:id(.:format)                      experiences#show
+                                     PATCH  /experiences/:id(.:format)                      experiences#update
+                                     PUT    /experiences/:id(.:format)                      experiences#update
+                                     DELETE /experiences/:id(.:format)                      experiences#destroy
+                          references GET    /references(.:format)                           references#index
+                                     POST   /references(.:format)                           references#create
+                       new_reference GET    /references/new(.:format)                       references#new
+                      edit_reference GET    /references/:id/edit(.:format)                  references#edit
+                           reference GET    /references/:id(.:format)                       references#show
+                                     PATCH  /references/:id(.:format)                       references#update
+                                     PUT    /references/:id(.:format)                       references#update
+                                     DELETE /references/:id(.:format)                       references#destroy
+                            postings GET    /postings(.:format)                             postings#index
+                                     POST   /postings(.:format)                             postings#create
+                         new_posting GET    /postings/new(.:format)                         postings#new
+                        edit_posting GET    /postings/:id/edit(.:format)                    postings#edit
+                             posting GET    /postings/:id(.:format)                         postings#show
+                                     PATCH  /postings/:id(.:format)                         postings#update
+                                     PUT    /postings/:id(.:format)                         postings#update
+                                     DELETE /postings/:id(.:format)                         postings#destroy
+                            projects GET    /projects(.:format)                             projects#index
+                                     POST   /projects(.:format)                             projects#create
+                         new_project GET    /projects/new(.:format)                         projects#new
+                        edit_project GET    /projects/:id/edit(.:format)                    projects#edit
+                             project GET    /projects/:id(.:format)                         projects#show
+                                     PATCH  /projects/:id(.:format)                         projects#update
+                                     PUT    /projects/:id(.:format)                         projects#update
+                                     DELETE /projects/:id(.:format)                         projects#destroy
+                               links GET    /links(.:format)                                links#index
+                                     POST   /links(.:format)                                links#create
+                            new_link GET    /links/new(.:format)                            links#new
+                           edit_link GET    /links/:id/edit(.:format)                       links#edit
+                                link GET    /links/:id(.:format)                            links#show
+                                     PATCH  /links/:id(.:format)                            links#update
+                                     PUT    /links/:id(.:format)                            links#update
+                                     DELETE /links/:id(.:format)                            links#destroy
+                       profile_index GET    /profile(.:format)                              profile#index
+                                     POST   /profile(.:format)                              profile#create
+                         new_profile GET    /profile/new(.:format)                          profile#new
+                        edit_profile GET    /profile/:id/edit(.:format)                     profile#edit
+                             profile GET    /profile/:id(.:format)                          profile#show
+                                     PATCH  /profile/:id(.:format)                          profile#update
+                                     PUT    /profile/:id(.:format)                          profile#update
+                                     DELETE /profile/:id(.:format)                          profile#destroy
+                          progresses GET    /progresses(.:format)                           progresses#index
+                                     POST   /progresses(.:format)                           progresses#create
+                        new_progress GET    /progresses/new(.:format)                       progresses#new
+                       edit_progress GET    /progresses/:id/edit(.:format)                  progresses#edit
+                            progress GET    /progresses/:id(.:format)                       progresses#show
+                                     PATCH  /progresses/:id(.:format)                       progresses#update
+                                     PUT    /progresses/:id(.:format)                       progresses#update
+                                     DELETE /progresses/:id(.:format)                       progresses#destroy
+                            endorses GET    /endorses(.:format)                             endorses#index
+                                     POST   /endorses(.:format)                             endorses#create
+                         new_endorse GET    /endorses/new(.:format)                         endorses#new
+                        edit_endorse GET    /endorses/:id/edit(.:format)                    endorses#edit
+                             endorse GET    /endorses/:id(.:format)                         endorses#show
+                                     PATCH  /endorses/:id(.:format)                         endorses#update
+                                     PUT    /endorses/:id(.:format)                         endorses#update
+                                     DELETE /endorses/:id(.:format)                         endorses#destroy
+                              photos GET    /photos(.:format)                               photos#index
+                                     POST   /photos(.:format)                               photos#create
+                           new_photo GET    /photos/new(.:format)                           photos#new
+                          edit_photo GET    /photos/:id/edit(.:format)                      photos#edit
+                               photo GET    /photos/:id(.:format)                           photos#show
+                                     PATCH  /photos/:id(.:format)                           photos#update
+                                     PUT    /photos/:id(.:format)                           photos#update
+                                     DELETE /photos/:id(.:format)                           photos#destroy
+                      shopping_lists GET    /shopping_lists(.:format)                       shopping_lists#index
+                                     POST   /shopping_lists(.:format)                       shopping_lists#create
+                   new_shopping_list GET    /shopping_lists/new(.:format)                   shopping_lists#new
+                  edit_shopping_list GET    /shopping_lists/:id/edit(.:format)              shopping_lists#edit
+                       shopping_list GET    /shopping_lists/:id(.:format)                   shopping_lists#show
+                                     PATCH  /shopping_lists/:id(.:format)                   shopping_lists#update
+                                     PUT    /shopping_lists/:id(.:format)                   shopping_lists#update
+                                     DELETE /shopping_lists/:id(.:format)                   shopping_lists#destroy
+                  flagged_candidates GET    /flagged_candidates(.:format)                   flagged_candidates#index
+                                     POST   /flagged_candidates(.:format)                   flagged_candidates#create
+               new_flagged_candidate GET    /flagged_candidates/new(.:format)               flagged_candidates#new
+              edit_flagged_candidate GET    /flagged_candidates/:id/edit(.:format)          flagged_candidates#edit
+                   flagged_candidate GET    /flagged_candidates/:id(.:format)               flagged_candidates#show
+                                     PATCH  /flagged_candidates/:id(.:format)               flagged_candidates#update
+                                     PUT    /flagged_candidates/:id(.:format)               flagged_candidates#update
+                                     DELETE /flagged_candidates/:id(.:format)               flagged_candidates#destroy
+                        flagged_jobs GET    /flagged_jobs(.:format)                         flagged_jobs#index
+                                     POST   /flagged_jobs(.:format)                         flagged_jobs#create
+                     new_flagged_job GET    /flagged_jobs/new(.:format)                     flagged_jobs#new
+                    edit_flagged_job GET    /flagged_jobs/:id/edit(.:format)                flagged_jobs#edit
+                         flagged_job GET    /flagged_jobs/:id(.:format)                     flagged_jobs#show
+                                     PATCH  /flagged_jobs/:id(.:format)                     flagged_jobs#update
+                                     PUT    /flagged_jobs/:id(.:format)                     flagged_jobs#update
+                                     DELETE /flagged_jobs/:id(.:format)                     flagged_jobs#destroy
+                         back_survey GET    /surveys/:id/back(.:format)                     surveys#back {:formats=>"js"}
+                             surveys GET    /surveys(.:format)                              surveys#index
+                                     POST   /surveys(.:format)                              surveys#create
+                          new_survey GET    /surveys/new(.:format)                          surveys#new
+                         edit_survey GET    /surveys/:id/edit(.:format)                     surveys#edit
+                              survey GET    /surveys/:id(.:format)                          surveys#show
+                                     PATCH  /surveys/:id(.:format)                          surveys#update
+                                     PUT    /surveys/:id(.:format)                          surveys#update
+                                     DELETE /surveys/:id(.:format)                          surveys#destroy
+                         friendships POST   /friendships(.:format)                          friendships#create
+                      new_friendship GET    /friendships/new(.:format)                      friendships#new
+                          friendship DELETE /friendships/:id(.:format)                      friendships#destroy
+                            messages GET    /messages(.:format)                             messages#index
+                                     POST   /messages(.:format)                             messages#create
+                         new_message GET    /messages/new(.:format)                         messages#new
+                        edit_message GET    /messages/:id/edit(.:format)                    messages#edit
+                             message GET    /messages/:id(.:format)                         messages#show
+                                     PATCH  /messages/:id(.:format)                         messages#update
+                                     PUT    /messages/:id(.:format)                         messages#update
+                                     DELETE /messages/:id(.:format)                         messages#destroy
+                                     GET    /friendships(.:format)                          friendships#index
+                                     POST   /friendships(.:format)                          friendships#create
+                                     GET    /friendships/new(.:format)                      friendships#new
+                     edit_friendship GET    /friendships/:id/edit(.:format)                 friendships#edit
+                                     GET    /friendships/:id(.:format)                      friendships#show
+                                     PATCH  /friendships/:id(.:format)                      friendships#update
+                                     PUT    /friendships/:id(.:format)                      friendships#update
+                                     DELETE /friendships/:id(.:format)                      friendships#destroy
+                    network_searches GET    /network_searches(.:format)                     network_searches#index
+                                     POST   /network_searches(.:format)                     network_searches#create
+                  new_network_search GET    /network_searches/new(.:format)                 network_searches#new
+                 edit_network_search GET    /network_searches/:id/edit(.:format)            network_searches#edit
+                      network_search GET    /network_searches/:id(.:format)                 network_searches#show
+                                     PATCH  /network_searches/:id(.:format)                 network_searches#update
+                                     PUT    /network_searches/:id(.:format)                 network_searches#update
+                                     DELETE /network_searches/:id(.:format)                 network_searches#destroy
+                             layouts GET    /layouts(.:format)                              layouts#index
+                                     POST   /layouts(.:format)                              layouts#create
+                          new_layout GET    /layouts/new(.:format)                          layouts#new
+                         edit_layout GET    /layouts/:id/edit(.:format)                     layouts#edit
+                              layout GET    /layouts/:id(.:format)                          layouts#show
+                                     PATCH  /layouts/:id(.:format)                          layouts#update
+                                     PUT    /layouts/:id(.:format)                          layouts#update
+                                     DELETE /layouts/:id(.:format)                          layouts#destroy
+          vol_update_experiencetable PATCH  /experiencetables/:id/vol_update(.:format)      experiencetables#vol_update {:formats=>"js"}
+           ft_update_experiencetable PATCH  /experiencetables/:id/ft_update(.:format)       experiencetables#ft_update {:formats=>"js"}
+           pt_update_experiencetable PATCH  /experiencetables/:id/pt_update(.:format)       experiencetables#pt_update {:formats=>"js"}
+       employ_update_experiencetable PATCH  /experiencetables/:id/employ_update(.:format)   experiencetables#employ_update {:formats=>"js"}
+                    experiencetables GET    /experiencetables(.:format)                     experiencetables#index
+                                     POST   /experiencetables(.:format)                     experiencetables#create
+                 new_experiencetable GET    /experiencetables/new(.:format)                 experiencetables#new
+                edit_experiencetable GET    /experiencetables/:id/edit(.:format)            experiencetables#edit
+                     experiencetable GET    /experiencetables/:id(.:format)                 experiencetables#show
+                                     PATCH  /experiencetables/:id(.:format)                 experiencetables#update
+                                     PUT    /experiencetables/:id(.:format)                 experiencetables#update
+                                     DELETE /experiencetables/:id(.:format)                 experiencetables#destroy
+                        show_network GET    /show_network(.:format)                         friendships#show
+                           ft_update GET    /ft_update(.:format)                            experiencetables#ft_update
+                           pt_update GET    /pt_update(.:format)                            experiencetables#pt_update
+                          vol_update GET    /vol_update(.:format)                           experiencetables#vol_update
+                       employ_update GET    /employ_update(.:format)                        experiencetables#employ_update
+                              search GET    /search(.:format)                               search#search
+                          findfriend GET    /findfriend(.:format)                           friendships#findfriend
+                         findcompany GET    /findcompany(.:format)                          friendships#findcompany
+                             results POST   /results(.:format)                              surveys#add
+                         reccomended GET    /reccomended(.:format)                          skills#reccomend
+                             details GET    /details(.:format)                              experiences#details
+                             one_ref GET    /one_ref(.:format)                              references#one_ref
+                             add_exp GET    /add_exp(.:format)                              experiences#add
+                              resume GET    /resume(.:format)                               profile#resume
+                         privatechat GET    /privatechat(.:format)                          layouts#privatechat
+                                     GET    /auth/:provider/callback(.:format)              authentications#create
+                           addfriend GET    /addfriend(.:format)                            friendships#addfriend
+                                     POST   /addfriend(.:format)                            friendships#addfriend
+                          addcompany GET    /addcompany(.:format)                           friendships#addcompany
+                                     POST   /addcompany(.:format)                           friendships#addcompany
+                              accept GET    /accept(.:format)                               friendships#accept
+                             decline GET    /decline(.:format)                              friendships#decline
+                             network GET    /network(.:format)                              friendships#index
+                                     GET    /privatechat(.:format)                          messages#privatechat
+                            storemsg GET    /storemsg(.:format)                             messages#storemsg
+                       employee_list GET    /employee_list(.:format)                        shopping_lists#index
+                             flagged GET    /flagged(.:format)                              postings#flagged
+                              people GET    /people(.:format)                               postings#people
+                           candidate GET    /candidate(.:format)                            postings#candidate

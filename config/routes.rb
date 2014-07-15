@@ -3,7 +3,6 @@ First_Website::Application.routes.draw do
   resources :authentications, only: [:new, :destroy]
 
   devise_for :users, :controllers => { :registrations => 'registrations' }
-  resources :users
 
   resources :skills do 
     get :autocomplete_skilllabel_label, :on => :collection, :formats => "js"
