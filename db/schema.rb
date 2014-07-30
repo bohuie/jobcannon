@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.integer "user_id", default: 0, null: false
     t.string "query"
     t.string "qtype"
+    t.string "networktype"
     t.integer "search_id"
   end
 
@@ -170,6 +171,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.string   "description",      default: "", null: false
     t.datetime "sdate",                         null: false
     t.datetime "fdate"
+    t.boolean  "current",           default: false
     t.string   "company_name",     default: "", null: false
     t.string   "company_address"
     t.string   "company_city"

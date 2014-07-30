@@ -32,6 +32,7 @@ class FriendshipsController < ApplicationController
   def show
     @user = current_user
     @network = NetworkSearch.new
+    #Find all friends and friends of friends to display in the friendships tab
     @temp1 = Friendship.where(user_id: @user.user_id, accepted: true)
     @temp2 = Friendship.where(receiver_id: @user.user_id, accepted: true)
     @temp = @temp1+@temp2
@@ -72,6 +73,53 @@ class FriendshipsController < ApplicationController
                           sourcephoto: @sourcephoto, 
                           sourceemail: @source.email,
                           sourcereferences: Reference.where(user_id: r.user_id),
+                          sourceexperiences: Experience.where(user_id: r.user_id).order('sdate DESC'), 
+                          sourcecompany: false,
+                          sourceflaggedjobs: FlaggedCandidate.where(flagged_user_id: r.user_id),
+                          sourceinterests: Interest.where(user_id: r.user_id),
+                          sourcefollowing: @sourceusers,
+                          sourcecurrent: Experience.where(user_id: r.user_id, current: true),
+                          targetreferences: Reference.where(user_id: r.receiver_id),
+                          targetexperiences: Experience.where(user_id: r.receiver_id).order('sdate DESC'),
+                          target: @target.fname + " " + @target.lname,
+                          targetid: r.receiver_id, 
+                          targetskills: Skill.where(user_id: r.receiver_id),
+                          targetphoto: @targetphoto, 
+                          targetemail: @target.email, 
+                          targetcompany: @target.employer,
+                          targetinterests: Interest.where(user_id: r.receiver_id),
+                          targetfollowing: @targetusers,
+                          targercurrent: Experience.where(user_id: r.receiver_id, current: true)})
+    end
+    @friendships = @friendships.to_json
+    #Find all companies that the user follows to display in the businesses tab
+    @temp1 = Following.where(user_id: @user.user_id)
+    @temp = @temp1
+    @businesses = []
+    @temp.each do |r|
+      if(Photo.find_by(:user_id=>r.user_id).nil?)
+        @sourcephoto = "" 
+      else
+        @sourcephoto = Photo.find_by(:user_id=>r.user_id).photo.url
+      end
+      if(Photo.find_by(:user_id=>r.receiver_id).nil?)
+        @targetphoto = "" 
+      else
+        @targetphoto = Photo.find_by(:user_id=>r.receiver_id).photo.url
+      end
+      @source = User.find(r.user_id)
+      @target = User.find(r.receiver_id)
+      @sourcefollowing = Following.where(user_id: r.user_id)
+      @sourceusers = Array.new
+      @sourcefollowing.each do |sf|
+        @sourceusers.push(User.find(sf.receiver_id))
+      end
+        @businesses.push({source: @source.fname + " " + @source.lname,
+                          sourceid: r.user_id, 
+                          sourceskills: Skill.where(user_id: r.user_id), 
+                          sourcephoto: @sourcephoto, 
+                          sourceemail: @source.email,
+                          sourcereferences: Reference.where(user_id: r.user_id),
                           sourceexperiences: Experience.where(user_id: r.user_id), 
                           sourcecompany: false,
                           sourceflaggedjobs: FlaggedCandidate.where(flagged_user_id: r.user_id),
@@ -88,8 +136,8 @@ class FriendshipsController < ApplicationController
                           targetinterests: Interest.where(user_id: r.receiver_id),
                           targetfollowing: @targetusers})
     end
-    @friendships = @friendships.to_json
-    @friendship = Friendship.new
+    @businesses = @businesses.to_json
+
   end
 
   def findfriend

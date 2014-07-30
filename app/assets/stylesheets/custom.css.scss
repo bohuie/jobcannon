@@ -1,5 +1,53 @@
 @import "bootstrap";
 
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+  stroke-opacity: 0.4;
+}
+
+.node rect {
+  fill: transparent;
+  stroke: #666;
+  stroke-width: 2.4px;
+}
+
+.node{
+  opacity: 1;
+}
+
+text {
+  font: 12px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.profilenametext {
+  font: 20px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.profiletagtext{
+  font: 16px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.profilecontenttext{
+  font: 12px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+  padding: 3px;
+}
+
+.searchtext{
+  font: 14px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
 
 #all_in_one{
   

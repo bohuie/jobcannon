@@ -1,0 +1,427 @@
+var currsearch = searches;
+switch("<%= escape_javascript @search.qtype%>"){
+	case "name":
+		bothsvg.selectAll(".node").each(function(d){
+			var shrink = false;
+			d3.select(this).selectAll("rect").each(function(d){
+					var current = ""+d3.select(this).style("stroke")
+					if(foundcolor[currsearch].indexOf(current) > -1){
+						shrink = true;
+						d3.select(this).remove();					
+					}
+				})
+			.attr("x", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return 1.75+parseFloat(d3.select(this).attr("x"))
+				}else{
+					return d3.select(this).attr("x")
+				}
+			})
+			.attr("y", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return 1.75+parseFloat(d3.select(this).attr("y"))
+				}else{
+					return d3.select(this).attr("y")
+				}
+			})
+			.attr("width", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return -3.4+parseFloat(d3.select(this).attr("width"))
+				}else{
+					return d3.select(this).attr("width")
+				}
+			})
+			.attr("height", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return -3.4+parseFloat(d3.select(this).attr("height"))
+				}else{
+					return d3.select(this).attr("height")
+				}
+			})
+		});	
+		bothsvg.selectAll(".node").each(function(d){
+			var current = d3.select(this);
+			var info = bothnodes[current.select("text").text()];
+			if(info == null)
+				info = bothnodes[current.select("text").select("tspan").text()];
+			if(info.name.indexOf("<%= escape_javascript @search.query%>") > -1){
+				var maxwidth = 0, maxheight = 0, minX = 0, minY = 0;
+				current.selectAll("rect").each(function(d){
+					var d = d3.select(this)
+					if(parseFloat(d.attr("x")) < minX)
+						minX = d.attr("x");
+					if(parseFloat(d.attr("y")) < minY)
+						minY = d.attr("y");
+					if(parseFloat(d.attr("width")) > maxwidth)
+						maxwidth = parseFloat(d.attr("width"));
+					if(parseFloat(d.attr("height")) > maxheight)
+						maxheight = parseFloat(d.attr("height"));
+				});
+				current.append("rect")
+					.attr("x", function(d){
+						return minX-1.75
+					})
+					.attr("y", function(d){
+						return minY-1.75
+					})
+					.attr("width", function(d){
+						return 3.4+maxwidth
+					})
+					.attr("height", function(d){
+						return 3.4+maxheight
+					})
+					.attr("rx", 5)
+					.style("stroke", foundcolor[currsearch]);
+			}
+		});
+		bothsvg0.selectAll("text").each(function(d){ 
+			var current = ""+d3.select(this).style("stroke")
+			if(foundcolor[currsearch].indexOf(current) > -1)
+				d3.select(this).remove();
+		});	
+		bothsvg0.append("text")
+			.attr("x", 5)
+			.attr("y", 12*(searches+1))
+			.attr("class", "searchtext")
+			.style("stroke", foundcolor[searches])
+			.text("Name: <%= escape_javascript @search.query%>");
+		break;
+	case "skill":
+		bothsvg.selectAll(".node").each(function(d){
+			var shrink = false;
+			d3.select(this).selectAll("rect").each(function(d){
+					var current = ""+d3.select(this).style("stroke")
+					if(foundcolor[currsearch].indexOf(current) > -1){
+						shrink = true;
+						d3.select(this).remove();					
+					}
+				})
+			.attr("x", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return 1.75+parseFloat(d3.select(this).attr("x"))
+				}else{
+					return d3.select(this).attr("x")
+				}
+			})
+			.attr("y", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return 1.75+parseFloat(d3.select(this).attr("y"))
+				}else{
+					return d3.select(this).attr("y")
+				}
+			})
+			.attr("width", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return -3.4+parseFloat(d3.select(this).attr("width"))
+				}else{
+					return d3.select(this).attr("width")
+				}
+			})
+			.attr("height", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return -3.4+parseFloat(d3.select(this).attr("height"))
+				}else{
+					return d3.select(this).attr("height")
+				}
+			})
+		});	
+		bothsvg.selectAll(".node").each(function(d){
+			var current = d3.select(this);
+			var info = bothnodes[current.select("text").text()];
+			if(info == null)
+				info = bothnodes[current.select("text").select("tspan").text()];
+			for(var i = 0; i < info.skills.length; i++){
+				if(info.skills[i].label.indexOf("<%= escape_javascript @search.query%>") > -1){
+					var maxwidth = 0, maxheight = 0, minX = 0, minY = 0;
+					current.selectAll("rect").each(function(d){
+						var d = d3.select(this)
+						if(parseFloat(d.attr("x")) < minX)
+							minX = d.attr("x");
+						if(parseFloat(d.attr("y")) < minY)
+							minY = d.attr("y");
+						if(parseFloat(d.attr("width")) > maxwidth)
+							maxwidth = parseFloat(d.attr("width"));
+						if(parseFloat(d.attr("height")) > maxheight)
+							maxheight = parseFloat(d.attr("height"));
+					});
+					current.append("rect")
+						.attr("x", function(d){
+							return minX-1.75
+						})
+						.attr("y", function(d){
+							return minY-1.75
+						})
+						.attr("width", function(d){
+							return 3.4+maxwidth
+						})
+						.attr("height", function(d){
+							return 3.4+maxheight
+						})
+						.attr("rx", 5)
+						.style("stroke", foundcolor[currsearch]);
+				}
+			}
+		});
+		bothsvg0.selectAll("text").each(function(d){ 
+			var current = ""+d3.select(this).style("stroke")
+			if(foundcolor[currsearch].indexOf(current) > -1)
+				d3.select(this).remove();
+		});	
+		bothsvg0.append("text")
+			.attr("x", 5)
+			.attr("y", 12*(searches+1))
+			.attr("class", "searchtext")
+			.style("stroke", foundcolor[searches])
+			.text("Skill: <%= escape_javascript @search.query%>");
+		break;
+	case "interest":
+		bothsvg.selectAll(".node").each(function(d){
+			var shrink = false;
+			d3.select(this).selectAll("rect").each(function(d){
+					var current = ""+d3.select(this).style("stroke")
+					if(foundcolor[currsearch].indexOf(current) > -1){
+						shrink = true;
+						d3.select(this).remove();					
+					}
+				})
+			.attr("x", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return 1.75+parseFloat(d3.select(this).attr("x"))
+				}else{
+					return d3.select(this).attr("x")
+				}
+			})
+			.attr("y", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return 1.75+parseFloat(d3.select(this).attr("y"))
+				}else{
+					return d3.select(this).attr("y")
+				}
+			})
+			.attr("width", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return -3.4+parseFloat(d3.select(this).attr("width"))
+				}else{
+					return d3.select(this).attr("width")
+				}
+			})
+			.attr("height", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return -3.4+parseFloat(d3.select(this).attr("height"))
+				}else{
+					return d3.select(this).attr("height")
+				}
+			})
+		});	
+		bothsvg.selectAll(".node").each(function(d){
+			var current = d3.select(this);
+			var info = bothnodes[current.select("text").text()];
+			if(info == null)
+				info = bothnodes[current.select("text").select("tspan").text()];
+			for(var i = 0; i < info.interests.length; i++){
+				if(info.interests[i].label.indexOf("<%= escape_javascript @search.query%>") > -1){
+					var maxwidth = 0, maxheight = 0, minX = 0, minY = 0;
+					current.selectAll("rect").each(function(d){
+						var d = d3.select(this)
+						if(parseFloat(d.attr("x")) < minX)
+							minX = d.attr("x");
+						if(parseFloat(d.attr("y")) < minY)
+							minY = d.attr("y");
+						if(parseFloat(d.attr("width")) > maxwidth)
+							maxwidth = parseFloat(d.attr("width"));
+						if(parseFloat(d.attr("height")) > maxheight)
+							maxheight = parseFloat(d.attr("height"));
+					});
+					current.append("rect")
+						.attr("x", function(d){
+							return minX-1.75
+						})
+						.attr("y", function(d){
+							return minY-1.75
+						})
+						.attr("width", function(d){
+							return 3.4+maxwidth
+						})
+						.attr("height", function(d){
+							return 3.4+maxheight
+						})
+						.attr("rx", 5)
+						.style("stroke", foundcolor[currsearch]);
+				}
+			}
+		});
+		bothsvg0.selectAll("text").each(function(d){ 
+			var current = ""+d3.select(this).style("stroke")
+			if(foundcolor[currsearch].indexOf(current) > -1)
+				d3.select(this).remove();
+		});	
+		bothsvg0.append("text")
+			.attr("x", 5)
+			.attr("y", 12*(searches+1))
+			.attr("class", "searchtext")
+			.style("stroke", foundcolor[searches])
+			.text("Interest: <%= escape_javascript @search.query%>");
+		break;
+	case "":
+		bothsvg.selectAll(".node").each(function(d){
+			var shrink = false;
+			d3.select(this).selectAll("rect").each(function(d){
+					var current = ""+d3.select(this).style("stroke")
+					if(foundcolor[currsearch].indexOf(current) > -1){
+						shrink = true;
+						d3.select(this).remove();					
+					}
+				})
+			.attr("x", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return 1.75+parseFloat(d3.select(this).attr("x"))
+				}else{
+					return d3.select(this).attr("x")
+				}
+			})
+			.attr("y", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return 1.75+parseFloat(d3.select(this).attr("y"))
+				}else{
+					return d3.select(this).attr("y")
+				}
+			})
+			.attr("width", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return -3.4+parseFloat(d3.select(this).attr("width"))
+				}else{
+					return d3.select(this).attr("width")
+				}
+			})
+			.attr("height", function(d){
+				if(shrink && d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1 && parseFloat(d3.select(this).attr("width"))>50){
+					return -3.4+parseFloat(d3.select(this).attr("height"))
+				}else{
+					return d3.select(this).attr("height")
+				}
+			})
+		});	
+		bothsvg.selectAll(".node").each(function(d){
+			var current = d3.select(this);
+			var found = false;
+			var info = bothnodes[current.select("text").text()];
+			if(info == null)
+				info = bothnodes[current.select("text").select("tspan").text()];
+			for(var i = 0; i < info.skills.length; i++){
+				if(info.skills[i].label.indexOf("<%= escape_javascript @search.query%>") > -1){
+					found = true
+					var maxwidth = 0, maxheight = 0, minX = 0, minY = 0;
+					current.selectAll("rect").each(function(d){
+						var d = d3.select(this)
+						if(parseFloat(d.attr("x")) < minX)
+							minX = d.attr("x");
+						if(parseFloat(d.attr("y")) < minY)
+							minY = d.attr("y");
+						if(parseFloat(d.attr("width")) > maxwidth)
+							maxwidth = parseFloat(d.attr("width"));
+						if(parseFloat(d.attr("height")) > maxheight)
+							maxheight = parseFloat(d.attr("height"));
+					});
+					current.append("rect")
+						.attr("x", function(d){
+							return minX-1.75
+						})
+						.attr("y", function(d){
+							return minY-1.75
+						})
+						.attr("width", function(d){
+							return 3.4+maxwidth
+						})
+						.attr("height", function(d){
+							return 3.4+maxheight
+						})
+						.attr("rx", 5)
+						.style("stroke", foundcolor[currsearch]);
+				}
+			}
+			if(!found){
+				for(var i = 0; i < info.interests.length; i++){
+					if(info.interests[i].label.indexOf("<%= escape_javascript @search.query%>") > -1){
+						found = true;
+						var maxwidth = 0, maxheight = 0, minX = 0, minY = 0;
+						current.selectAll("rect").each(function(d){
+							var d = d3.select(this)
+							if(parseFloat(d.attr("x")) < minX)
+								minX = d.attr("x");
+							if(parseFloat(d.attr("y")) < minY)
+								minY = d.attr("y");
+							if(parseFloat(d.attr("width")) > maxwidth)
+								maxwidth = parseFloat(d.attr("width"));
+							if(parseFloat(d.attr("height")) > maxheight)
+								maxheight = parseFloat(d.attr("height"));
+						});
+						current.append("rect")
+							.attr("x", function(d){
+								return minX-1.75
+							})
+							.attr("y", function(d){
+								return minY-1.75
+							})
+							.attr("width", function(d){
+								return 3.4+maxwidth
+							})
+							.attr("height", function(d){
+								return 3.4+maxheight
+							})
+							.attr("rx", 5)
+							.style("stroke", foundcolor[currsearch]);
+					}
+				}
+			}
+			if(!found){
+				if(info.name.indexOf("<%= escape_javascript @search.query%>") > -1){
+				var maxwidth = 0, maxheight = 0, minX = 0, minY = 0;
+				current.selectAll("rect").each(function(d){
+					var d = d3.select(this)
+					if(parseFloat(d.attr("x")) < minX)
+						minX = d.attr("x");
+					if(parseFloat(d.attr("y")) < minY)
+						minY = d.attr("y");
+					if(parseFloat(d.attr("width")) > maxwidth)
+						maxwidth = parseFloat(d.attr("width"));
+					if(parseFloat(d.attr("height")) > maxheight)
+						maxheight = parseFloat(d.attr("height"));
+				});
+				current.append("rect")
+					.attr("x", function(d){
+						return minX-1.75
+					})
+					.attr("y", function(d){
+						return minY-1.75
+					})
+					.attr("width", function(d){
+						return 3.4+maxwidth
+					})
+					.attr("height", function(d){
+						return 3.4+maxheight
+					})
+					.attr("rx", 5)
+					.style("stroke", foundcolor[currsearch]);
+			}
+			}
+		 });
+		bothsvg0.selectAll("text").each(function(d){ 
+			var current = ""+d3.select(this).style("stroke")
+			if(foundcolor[currsearch].indexOf(current) > -1)
+				d3.select(this).remove();
+		});	
+		bothsvg0.append("text")
+			.attr("x", 5)
+			.attr("y", 12*(searches+1))
+			.attr("class", "searchtext")
+			.style("stroke", foundcolor[searches])
+			.text("<%= escape_javascript @search.query%>");
+		break;
+}
+$("#bothSearch")[0].reset()
+if(searches < 2){
+	searches = searches + 1; 
+}
+else{ 
+	searches = 0;
+}

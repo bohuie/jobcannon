@@ -118,9 +118,15 @@ namespace :db do
   Friendship.create!(friendship_id: 15, user_id: 13, receiver_id: 10, sent_at: "2014-02-21 02:31:24", accepted: true)
   Friendship.create!(friendship_id: 16, user_id: 14, receiver_id: 12, sent_at: "2014-02-21 02:31:24", accepted: true)
   #Followers of Company Mr. Money
-  Friendship.create!(friendship_id: 17, user_id: 13, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 18, user_id: 12, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
-  Friendship.create!(friendship_id: 19, user_id: 14, receiver_id: 1, sent_at: "2014-02-21 02:31:24", accepted: true)
+  Following.create!(following_id: 17, user_id: 8, receiver_id: 1, sent_at: "2014-02-21 02:31:24")
+  Following.create!(following_id: 18, user_id: 12, receiver_id: 1, sent_at: "2014-02-21 02:31:24")
+  Following.create!(following_id: 19, user_id: 14, receiver_id: 1, sent_at: "2014-02-21 02:31:24")
+
+  #Experiences of Peter West
+  Experience.create!(title: "Worker", description: "blah", sdate: DateTime.now, current: true, company_name: "Business inc.", experience_id: 1, user_id: 8)
+  Experience.create!(title: "Worker", description: "blah", sdate: DateTime.now, fdate: DateTime.now, current: false, company_name: "Old Job", experience_id: 1, user_id: 8)
+  Experience.create!(title: "Worker", description: "blah", sdate: "2014-02-21 02:31:24", fdate: DateTime.now, current: false, company_name: "Older Job", experience_id: 1, user_id: 8)
+
 
   end
 end
