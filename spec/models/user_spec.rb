@@ -253,6 +253,30 @@ describe User do
     end
   end
 
+  describe "employee attributes" do
+    it "should be valid" do
+        employee.employer.should eq false
+        employee.admin.should eq false
+        employee.employee.should eq true
+    end
+  end
+
+  describe "employer attributes" do
+    it "should be valid" do
+        employer.employer.should eq true
+        employer.admin.should eq false
+        employer.employee.should eq false
+    end
+  end
+
+  describe "admin attributes" do
+    it "should be valid" do
+        admin.employer.should eq false
+        admin.admin.should eq true
+        admin.employee.should eq false
+    end
+  end
+
   describe "skills associations" do
     before do
       @skill = FactoryGirl.create(:skill, user_id: employee.user_id)
