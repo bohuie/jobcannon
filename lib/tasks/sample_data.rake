@@ -49,8 +49,8 @@ namespace :db do
   User.create!(email: 'peterwest@uft.ca', username: 'peterwest', 
     password: 'peterpeter', password_confirmation: 'peterpeter', 
     fname: 'Peter', lname: 'West', info: "I am a high school student with interests in designing websites. I am very eager to work and quick learner.  I have moderate experience with many aspects of web design such as HTML, CSS and Javascript.")
-  Surveyprofile.create!(id: 1, user_id: 8, survey_id: 1, postalcode: "V1X 2G4", education: "Grade 10", 
-    city: "Kelowna", province: "British Columbia", gender: "Male", birthday: "2014-06-12 00:00:00")
+  #Surveyprofile.create!(id: 1, user_id: 8, survey_id: 1, postalcode: "V1X 2G4", education: "Grade 10", 
+   # city: "Kelowna", province: "British Columbia", gender: "Male", birthday: "2014-06-12 00:00:00")
   Experience.create!(experience_id: 1, user_id: 8, sdate: "2014-06-12 00:00:00", fdate: "2014-06-18 00:00:00", 
     company_name: "NASA", title: "Head Honcho", supervisor: "Barrack Obama", description: "In charge of sending off rockets and creating new ways to live in space")
   Experience.create!(experience_id: 2, user_id: 8, sdate: "2013-01-12 00:00:00", fdate: "2013-06-12 00:00:00", 
@@ -126,7 +126,6 @@ namespace :db do
   Experience.create!(title: "Worker", description: "blah", sdate: DateTime.now, current: true, company_name: "Business inc.", experience_id: 1, user_id: 8)
   Experience.create!(title: "Worker", description: "blah", sdate: DateTime.now, fdate: DateTime.now, current: false, company_name: "Old Job", experience_id: 1, user_id: 8)
   Experience.create!(title: "Worker", description: "blah", sdate: "2014-02-21 02:31:24", fdate: DateTime.now, current: false, company_name: "Older Job", experience_id: 1, user_id: 8)
-
 
   end
 end

@@ -10,11 +10,12 @@
 
 </script>
 </head>
-
+<% @instruction = "Which languages do you know or have training in? Check all that apply" %>
 <% @language = Language.find_by(:user_id => @user.user_id) %>
 <body>
 	<div id = "form">
 		<%= simple_form_for @language, :remote => true, :authenticity_token => true do |f| %>
+		<%= f.label @instruction%>
 				<table id="lang">
 				<tr>
 					<th>

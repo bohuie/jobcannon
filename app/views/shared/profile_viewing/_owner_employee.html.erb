@@ -61,11 +61,11 @@
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane fade in active content" id="do"> 
+                <div class="tab-pane fade in active content" id="do" style = "overflow: hidden"> 
                   <%= form_for (@owner),url: profile_path(@owner), :controller => "profile_controller", :action => 'update', :class => "form" do |f| %>
                   <%= f.text_area :info, :class => "change" %>
 
-                  <%= f.submit "Change", :class => "btnChange", :id => "more" %>
+                  <%= f.submit "Save Changes", :class => "btnChange", :id => "more" %>
                   <% end %>
 
                 </div>          
@@ -128,7 +128,7 @@
             <%end%>
           </div>
 
-          <div class ="tab-pane fade content" id = "survey" style="height:auto">
+          <div class ="tab-pane fade content" id = "survey" style="height:auto; overflow: hidden;">
             
             <div class="row">
                 <div class = "col-lg-4"> 
@@ -196,9 +196,9 @@
               <hr style = "margin-bottom: 0px; border-color: black">
 
               <div class = "row">
-                <div class = "col-lg-5"></div>
+                <div class = "col-lg-4"></div>
                 <div class = "col-lg-4">
-                  Technology
+                  <%= link_to image_tag('tech.png'), survey_path(@user, :type=>3,:anchor => "basic-computer-skills"), class: "btn btn-primary", id: "survey_pic", :style => "margin-bottom: 1em; margin-top:5px;"%> 
 
                     <% if @progress.tech_progress >= 35 %>
                       <div class="progress" style = "width: 90%; color: black; text-align: left">

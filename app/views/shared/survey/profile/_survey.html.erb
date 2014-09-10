@@ -22,6 +22,10 @@
         $("#surveyprofile_gender").prop("selectedIndex", -1)
     }
 
+    function selectorlocation(){
+        $("#surveyprofile_province").prop("selectedIndex", -1)        
+    }
+
     function selectoreducation(){
         $("#surveyprofile_education").prop("selectedIndex", -1)
     }
@@ -40,6 +44,11 @@
 <% @city = "What City do you Live in" %>
 <% @birthday = "When were you Born" %>
 <% @other = "Other (specify)" %> 
+<% @LOCATION = [['Alberta','Alberta'], ['British Columbia','British Columbia'],
+                    ['Manitoba', 'Manitoba'], ['New Brunswick', 'New Brunswick'],
+                    ['Newfoundland and Labrador', 'Newfoundland and Labrador'], 
+                    ['Nova Scotia', 'Nova Scotia'], ['Ontario','Ontario'], ['Quebec', 'Quebec'], 
+                    ['Saskatchewan', 'Saskatchewan']] %>
 
 <% @profile = Surveyprofile.find_by(:user_id => @user.user_id)  %>
 <div class = "row">
@@ -57,7 +66,8 @@
         			<div class = "col-lg-7">
                         <%= simple_form_for @profile, remote: true do |f| %>
         		    		<%= f.label @birthday %><br />
-        		  			<%= f.date_field :birthday, :default => @profile.birthday %>
+        		  			<%= f.date_field :birthday, start_year: Time.now.year - 100, 
+                                end_year: Time.now.year-12, :default => @profile.birthday %>
         		    		<br>
         		    		<br>
         		    		<%= f.label @gender %> <br>
@@ -95,8 +105,13 @@
         	<div class="tab-pane fade in content survey-tabs" id="location"> 
         		<div class = "row">
         			<div class = "col-lg-7">
-        				<%= f.label @province%>
-        				<%= f.text_field :province%>
+        				<%= f.label @province%> <br>
+                        <%= f.select :province, @LOCATION, :default => @profile.province %>   
+                        <% if @profile.province.nil? %>
+                            <script type="text/javascript">
+                                selectorlocation();
+                            </script>
+                        <% end %>     		
         				<br>
         				<br>
         				<%= f.label @city%>
