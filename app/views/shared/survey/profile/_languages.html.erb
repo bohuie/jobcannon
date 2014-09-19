@@ -7,11 +7,19 @@
       $("#saved3").fadeIn();
       setTimeout(function(){$("#saved3").fadeOut("slow")}, 1000)
     }
+    function showText(){
+      $("#textbox").fadeIn();
+    }
 
 </script>
 </head>
 
 <% @language = Language.find_by(:user_id => @user.user_id) %>
+<% if @language.nil?
+	@language = Language.new
+	@language.user_id = @user.user_id
+	@language.save
+end%>
 <body>
 	<div id = "form">
 		<%= simple_form_for @language, :remote => true, :authenticity_token => true do |f| %>
@@ -317,9 +325,9 @@
 					</td>
 				</tr>
 
-				<tr id = "lang_other">
+				<tr id = "lang_other" onClick = "showText()">
 					<td>
-						<%= f.label @other %>	    					
+						Other	    					
 					</td>	    				
 					<td>
 						<%= f.input :other_speak, :label => false, as: :boolean do 
@@ -342,7 +350,10 @@
 							end %>
 					</td>
 				</tr>
-				<tr>
+				<tr style = "display: none;" id = "textbox">
+					<td>
+						Please Specify
+					</td>
 					<td style = "border: 0px;" colspan="2">
 						<%= f.input :other, :input_html=>{:maxlength=>10}, label: false, :default => @language.other%>
 					</td>

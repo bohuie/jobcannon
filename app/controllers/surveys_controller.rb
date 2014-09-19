@@ -45,7 +45,13 @@ class SurveysController < ApplicationController
 		@accountability = Accountability.find_by(:user_id=>@user.user_id)
 		@interpersonal = InterpersonalSkill.find_by(:user_id=>@user.user_id)
 
-		@profile = Surveyprofile.find_by(:user_id => @user.user_id)  
+		@profile = Surveyprofile.find_by(:user_id => @user.user_id)
+		@progress = Progress.find_by(:user_id=> @user_id)  
+		if(@progress.nil?)
+			@progress = Progress.new
+			@progress.user_id = current_user.user_id
+			@progress.save
+		end
 
 		
 		if (@profile.nil?)

@@ -157,17 +157,14 @@ function change_chatbox3(){
                           <li><%= link_to r.fname+" "+r.lname, {controller: "layouts", action: "privatechat", id1: @user.user_id, id2: r.user_id}, remote: true%></li>
                         <% end %>
 
-      <%if !@newmessages.empty?%>
-        <li> <%= link_to "New Message(s)", network_path, id: "brand",  style:"text-shadow:none;" %> </li>
-        <%end%>
         <% @friends = Friendship.where(receiver_id: @user.user_id, accepted: true) %>
-        <% @friends = @friends + Friendship.where(sender_id: @user.user_id, accepted: true) %>
+        <% @friends = @friends + Friendship.where(user_id: @user.user_id, accepted: true) %>
         <% @online = Array.new %>
         <% @offline = Array.new %>
         <% 
         @friends.each do |r|
           if r.receiver_id==@user.user_id
-            @friend = User.find_by(user_id: r.sender_id)
+            @friend = User.find_by(user_id: r.user_id)
             if @friend.online
               @online.push(@friend)
             else
@@ -206,18 +203,8 @@ function change_chatbox3(){
             <li><%= link_to "All friends", network_path%> </li>
           </ul>              
         </li>
-      <% end %>
       </ul>
-                        <li role="presentation" class="dropdown-header">Offline Friends</li>
-                        <% @offline.each do |t| %>
-                          <li><%= link_to t.fname+" "+t.lname, profile_path(t) %></li>
-                        <% end %>
-
-                        <% if @offline.empty? %>
-                            <li role = "presentation" class = "divider"></li>
-                        <% end %>
-                        <li><%= link_to "All friends", network_path%> </li>
-                      </ul>              
+             
                     </li>
                   <% end %>
                   <% if @user.employer? %>
@@ -225,7 +212,7 @@ function change_chatbox3(){
                   <% else %>
                     <li><%= link_to "Explore your network", "/show_network",  id: "brand"%> </li>
                   <% end %>
-                  <li><%= link_to "Interests",interests_path(:owner =>@user.user_id)%></li>
+                  <!--<li><%= link_to "Interests",interests_path(:owner =>@user.user_id)%></li>-->
               </ul>
           </div><!-- /.navbar-collapse -->
       </div>

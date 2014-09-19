@@ -49,6 +49,27 @@ function myFunction(){
    @volunteer = Experiencetable.find_by(:user_id => @user.user_id, :volunteer => true)  
    @full_time = Experiencetable.find_by(:user_id => @user.user_id, :full_time => true) 
    @part_time = Experiencetable.find_by(:user_id => @user.user_id, :part_time => true) %>
+<% if @employ.nil?
+   @full_time = Experiencetable.new
+      @full_time.user_id = @user.user_id
+      @full_time.full_time = true
+      @full_time.save
+
+      @part_time = Experiencetable.new
+      @part_time.user_id = @user.user_id
+      @part_time.part_time = true
+      @part_time.save
+
+      @volunteer = Experiencetable.new
+      @volunteer.user_id = @user.user_id
+      @volunteer.volunteer = true
+      @volunteer.save
+
+      @employ = Experiencetable.new
+      @employ.user_id = @user.user_id
+      @employ.employ = true
+      @employ.save
+      end%>
 
 <div class = "row">
 	<div class = "col-lg-2">

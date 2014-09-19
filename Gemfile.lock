@@ -179,11 +179,8 @@ GEM
     pdf-core (0.2.5)
     pg (0.15.1)
     polyglot (0.3.3)
-
     private_pub (1.0.3)
       faye
-
-s
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -326,11 +323,8 @@ DEPENDENCIES
   omniauth-facebook
   paperclip
   pg (= 0.15.1)
-<<<<<<< HEAD
-  private_pub
-=======
   prawn
->>>>>>> 5beb2005f81af4587a778b10264bc3302a20b811
+  private_pub
   rails (= 4.0.0)
   rails3-jquery-autocomplete!
   rails_12factor (= 0.0.2)

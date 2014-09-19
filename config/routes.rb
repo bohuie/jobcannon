@@ -1,5 +1,5 @@
 First_Website::Application.routes.draw do
-  #root :to => 'static_pages#home'
+  root :to => 'static_pages#home'
   resources :authentications, only: [:new, :destroy]
 
   devise_for :users, :controllers => { :registrations => 'registrations' }

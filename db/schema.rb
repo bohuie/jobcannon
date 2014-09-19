@@ -720,6 +720,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
     t.string   "gender"
     t.datetime "last_seen_at"
     t.string   "info"
+    t.boolean  "online"
   end
 
     create_table 'page_views', force: true do |t|
