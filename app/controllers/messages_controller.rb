@@ -16,8 +16,8 @@ class MessagesController < ApplicationController
     @temp1 = @message.sender_id
     @temp2 = @message.receiver_id
     if @temp1<@temp2  #lesser id comes first in the chat path and channel path
-      @id1 = @temp1
-      @id2 = @temp2
+     @id1 = @temp1
+     @id2 = @temp2
     else
       @id1 = @temp2
       @id2 = @temp1

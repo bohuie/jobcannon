@@ -169,6 +169,8 @@ GEM
     orm_adapter (0.4.0)
     pg (0.15.1)
     polyglot (0.3.3)
+    private_pub (1.0.3)
+      faye
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -310,6 +312,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   pg (= 0.15.1)
+  private_pub
   rails (= 4.0.0)
   rails3-jquery-autocomplete!
   rails_12factor (= 0.0.2)

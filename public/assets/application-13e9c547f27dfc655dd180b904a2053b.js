@@ -10702,10 +10702,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   }
 
   function clearMenus() {
-    $('.dropdown-backdrop').remove()
-    $(toggle).each(function () {
-      getParent($(this)).removeClass('open')
-    })
+    
   }
 
   function getParent($this) {
@@ -10755,8 +10752,13 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
    * =================================== */
 
   $(document)
-    .on('click.dropdown.data-api', clearMenus)
-    .on('click.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+.bind('click', function(e) {
+    var $clicked = $(e.target);
+    if (!$clicked.hasClass("dropdown-menu") &&
+            !$clicked.parents().hasClass("dropdown-menu")){
+        clearMenus();
+    }
+}     .on('click.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
     .on('keydown.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 

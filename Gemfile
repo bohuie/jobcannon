@@ -22,6 +22,7 @@ gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquer
 gem 'jquery-rails', '2.3.0'
 gem 'gon'
 gem 'rego-devise-lastseenable'
+gem 'private_pub'
 
 
 group :development, :test do
