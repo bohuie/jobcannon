@@ -1,6 +1,132 @@
 @import "bootstrap";
 
 
+#all_in_one{
+  
+  li{
+    color:white !important; 
+    padding-top: 10px;       
+  }
+}
+
+.volunteer_select{
+  width: 20% !important;
+}
+
+/* Responcible for making chat ul black when not over it */
+html:hover{
+  
+  /* Can be found in  _footer.html.erb */
+  .marker{
+    background-color: black;
+  }
+}
+
+/* Used to make button text white */
+.test{
+  color:white !important;
+}
+
+
+/* Questions for the Survey */
+
+#ft-exp{      /* for the full time experience table */
+  margin-left: 10px;
+  td{
+    padding: 3px;
+    border-bottom: 1px solid black;
+  }
+
+}
+
+/* for the communication table in survey */
+
+#survey_format{
+  
+  th{
+    padding-left: 10px;
+    text-align: center;
+  }  
+  td{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin: 20px;    
+    text-align: center;
+    border-bottom: 1px solid black;
+  }
+  
+}
+
+#question_text{
+  text-align: left;
+}
+
+#last_row{
+  
+  td{
+    border:0px;
+  }
+}
+
+
+#lang{
+  td{
+    width: 7em;
+    text-align: left;
+    padding: 3px;    
+    border-bottom: 1px solid black;
+
+    }
+    th{
+      width: 7em;
+    }
+    tr{
+      
+    }
+}
+
+#lang_other{
+  
+  td{
+    border: 0px;
+
+  }
+
+}
+
+#survey_pic{
+      width: 6em;
+      height: 5em;
+            
+    }
+
+
+.questions{
+  background-color: #E6E6E6;
+  border-radius: 5px;
+  padding-left: 0.5em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
+.survey-tabs{
+  margin-top: 10px !important; 
+  height: auto !important; 
+}
+
+.content{
+      margin-top: 1em;
+      background-color: #E6E6E6;
+      border-radius: 5px;
+      padding-left: 0.5em;
+      padding-top: 0.5em;
+      height:11em;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+      padding: 1em;
+
+    }
+
 .hover {
         position:relative;
 }
@@ -35,6 +161,53 @@
 
 }
 
+div.message-time-sender{
+  font-size: 10px;
+  text-align:right;
+}
+
+div.message-time-reciever{
+  font-size: 10px;
+  text-align:left;
+}
+
+div.sender-message{
+  margin-left:auto;
+  margin-right: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  width: 175px;
+  padding: 2px;
+  background: #C4D2FF;
+  border: #7F7F7F solid 1px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px; 
+}
+
+div.reciever-message{
+  position: relative;
+  max-width: 175px;
+  padding: 2px;
+  margin: 4px;
+  background: #F0F0F0;
+  border: #7F7F7F solid 1px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+div.message-body-sender{
+  text-align:right;
+  padding: 0px;
+  margin: 0px;
+
+}
+div.message-body-reciever{
+  text-align:left;
+  padding: 0px;
+  margin: 0px;
+}
 
 #more{
       color: blue;
@@ -343,7 +516,7 @@ aside {
 }
 /* forms */
 
-input, textarea, select, .uneditable-input {
+input, textarea, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;

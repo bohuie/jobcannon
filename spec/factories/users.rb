@@ -5,21 +5,17 @@ FactoryGirl.define do
     lname	"test"
     email "test1@email.com"
     password "foobarfoobar"
-    password_confirmation "foobarfoobar"
-    phone_number "test"
+    password_confirmation "foobarfoobar"    
     city		"test" 
     province    "test"
-    country		"test"
-   	gender		"test"
-    birthday	"test"
+   	gender		"test"    
     admin       false
     employer    false
     employee    false
     user_id     1
 
     
-    trait :employee do
-    	goals "test"
+    trait :employee do    	
     	admin       false
         employer    false
         employee    true

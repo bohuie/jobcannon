@@ -2,7 +2,7 @@
  <script type = "text/javascript">
   function myFunction(){
     var toggle_employer = new Boolean;
-    toggle_employer = document.getElementById('employer_select').value; 
+    toggle_employer = document.getElementById('employer_select').value;
        if (toggle_employer == "true")
        {
           $("#employer_form").show();
@@ -20,6 +20,24 @@
 <body>
 
   <%= link_to "Link this profile to facebook!", '/auth/facebook' %>
+
+
+  <p> This is where it should be </p>
+   <% @photo = Photo.find_by(:user_id=>@user.user_id) %>
+
+   <% if @photo.nil?
+      @photo = Photo.new 
+      @photo.user_id = @user.user_id
+      @photo.save
+    end %>
+
+  <%= simple_form_for @photo, :html => { :multipart => true } do |t| %>
+
+      <%= t.label "Photo" %>
+      <%= t.file_field :photo %>
+
+      <%= t.submit "Submit photo" %>
+  <% end %>
 
 
 
@@ -55,106 +73,57 @@
   </div>
 
   <div class="row">
-  <div class="rform1"><%= f.label "Phone Number" %><br />
-  <%= f.phone_field :phone_number %></div></div>
-
-  <div class="row">
-  <div class="rform1"><%= f.label "City" %><br />
-  <%= f.text_field :city %></div>
-
-  <div class="rform1"><%= f.label "State/ province" %><br />
-  <%= f.text_field :province %></div>
-
-  <div class="rform1"><%= f.label "Country" %><br />
-  <%= f.text_field :country %></div></div>
-
-  <div class="row">
-  <div class="rform1">
-    <%= f.input :gender, collection: ['I am..', :Male, :Female, :Other],:default => 1 %>
-  </div></div>
-
-  <div class="row">
-  <div class="rform1"><%= f.label "Birthday" %><br />
-  <%= f.date_field :birthday %></div></div>
-
- 
-
-
-  <div class="row">
   <div class="rform1">
     <%= f.input :employer, collection: [['Looking for work', false], ['Looking to hire',true]], :default => 1, label: "I am" , :input_html => {id: "employer_select",  onchange: "myFunction()"} %>
   </div></div>
 
   <%if @user.employer?%>
-  <div id= 'employee_form', style = "display: none">
-    <div class="row">
-      <div class="rform1"><%= f.label "Goals" %><br />
-        <%= f.text_field :goals %>
+    <div id= 'employer_form'>
+      <div class="row">
+        <div class="rform1"><%= f.label "Company Name" %><br />
+          <%= f.text_field :company_name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="rform1"><%= f.label "Company Address" %><br />
+          <%= f.text_field :company_address %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="rform1"><%= f.label "Field" %><br />
+          <%= f.text_field :field %>
+        </div>
       </div>
     </div>
-  </div>
-  <div id= 'employer_form'>
-    <div class="row">
-      <div class="rform1"><%= f.label "Company Name" %><br />
-        <%= f.text_field :company_name %>
+  <% else %>
+     <div id= 'employer_form', style = "display: none;">
+      <div class="row">
+        <div class="rform1"><%= f.label "Company Name" %><br />
+          <%= f.text_field :company_name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="rform1"><%= f.label "Company Address" %><br />
+          <%= f.text_field :company_address %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="rform1"><%= f.label "Field" %><br />
+          <%= f.text_field :field %>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="rform1"><%= f.label "Company Address" %><br />
-        <%= f.text_field :company_address %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="rform1"><%= f.label "Field" %><br />
-        <%= f.text_field :field %>
-      </div>
-    </div>
-  </div>
-  <%else%>
-  <div id= 'employee_form'>
-    <div class="row">
-      <div class="rform1"><%= f.label "Goals" %><br />
-        <%= f.text_field :goals %>
-      </div>
-    </div>
-  </div>
-  <div id= 'employer_form', style = "display: none">
-    <div class="row">
-      <div class="rform1"><%= f.label "Company Name" %><br />
-        <%= f.text_field :company_name %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="rform1"><%= f.label "Company Address" %><br />
-        <%= f.text_field :company_address %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="rform1"><%= f.label "Field" %><br />
-        <%= f.text_field :field %>
-      </div>
-    </div>
-  </div>
   <%end%>
 
 
   <div class="row">
-  <div class="rform1"><%= f.label 'Confirm changes w/ current password' %> <br />
+  <div class="rform1"><%= f.label 'Confirm changes with current password' %> <br />
   <%= f.password_field :current_password %></div></div>
 
 
   <div><%= f.submit "Update" , class: "btn btn-medium btn-primary"%></div>
 <% end %>
 
-<h3>Cancel my account</h3>
-
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
-
-<%= link_to "Back", :back %>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete , class: "btn btn-medium btn-danger"%></p>
 
 </body>
-
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete , class: "btn btn-medium btn-primary"%></p>
-

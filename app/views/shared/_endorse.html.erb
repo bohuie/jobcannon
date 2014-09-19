@@ -1,0 +1,11 @@
+
+<% @endor = Endorse.new %>
+
+<%= simple_form_for @endor do |f| %>
+
+	<%= f.hidden_field :skill_id , :value => params[:s] %>
+	<%= f.hidden_field :endorser_id, :value => @userID %>
+		
+<%= f.submit "Endorse" %>
+
+<% end %>

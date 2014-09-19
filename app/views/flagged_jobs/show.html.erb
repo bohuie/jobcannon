@@ -1,0 +1,49 @@
+
+<head>
+  <script>
+
+	function first(){		
+		var hash = document.location.hash;
+		$(hash+'-li').addClass('active');
+		//$('#'+hash.replace(prefix,"")).addClass('active');
+		$(hash).addClass('active');
+		
+	}
+
+  </script>
+</head>
+
+
+<body onload = "first()">
+
+  <div class = "row">
+    <div class = "col-lg-2">
+      <ul class="nav nav-pills nav-stacked">
+
+        <% @postings.each do |p| %>
+          <li id = "<%=p.title.delete(' ')%>-li">
+            <a href="#<%=p.title.delete(' ')%>" data-toggle="tab"><%= p.title %></a>
+          </li>
+        <% end %>
+
+      </ul>
+    </div>
+    <div class = "col-lg-7">
+      <div class = "tab-content">
+
+        <% @postings.each do |p| %>
+              <div class="tab-pane fade in content survey-tabs" id="<%=p.title.delete(' ')%>">                 
+                <% @p = p
+                    @postID = p.posting_id
+                    @requirments = Skill.where(:posting_id => @postID)
+                %>
+              <%= render partial: "shared/job_listings" %>
+              </div>
+        <% end %>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>

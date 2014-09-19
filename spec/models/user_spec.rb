@@ -1,41 +1,84 @@
 require 'spec_helper'
 
 describe User do
-	  let(:employee) { FactoryGirl.build(:user, :employee) }
+    let(:employee) { FactoryGirl.build(:user, :employee) }
     let(:employer) { FactoryGirl.build(:user, :employer) }
     let(:admin)    { FactoryGirl.build(:user, :admin) }
     let(:user)     { FactoryGirl.create(:user) }
-  subject{user}
+  
+  subject{employee}
+
   it { should be_valid }
   it { should respond_to(:username) }
   it { should respond_to(:fname) }
   it { should respond_to(:lname) }
   it { should respond_to(:email) }
   it { should respond_to(:password) }
-  it { should respond_to(:password_confirmation) }
-  it { should respond_to(:phone_number) }
+  it { should respond_to(:password_confirmation) }  
   it { should respond_to(:city) }
-  it { should respond_to(:province) }
-  it { should respond_to(:country) }
+  it { should respond_to(:province) }  
   it { should respond_to(:gender) }
-  it { should respond_to(:birthday) }
-  it { should respond_to(:goals) }
   it { should respond_to(:field) }
   it { should respond_to(:company_name) }
   it { should respond_to(:company_address) }
   it { should respond_to(:employer) }
   it { should respond_to(:admin) }
   it { should respond_to(:user_id) }
-  it { should have_many (:skills) }
-  it { should have_many (:postings) }
-  it { should have_many (:references) }
-  it { should have_many (:experiences) }
+  it { should respond_to(:info) }
+  it { should respond_to(:last_seen_at) }
+  it { should respond_to(:field) }
+  it { should respond_to(:sign_in_count) }
+
+  it { should have_one (:language) }
+  it { should have_one ( :surveyprofile )}
+  it { should have_one ( :accountability)}
+  it { should have_one ( :self_direction_skill)}
+  it { should have_one ( :communication_skill)}
+  it { should have_one ( :interpersonal_skill)}
+  it { should have_one ( :thinking_skill)}
+  it { should have_one ( :basic_computer_skill)}
+  it { should have_one ( :photo)}
+  it { should have_one ( :progress)}
+  it { should have_one ( :operating_systems_usage)}
+  it { should have_one ( :advanced_computer_skill)}
+  it { should have_one ( :multi_media_skill)}
+  it { should have_one ( :technology_difference)}
+  it { should have_one ( :word_processing_skill)}
+  it { should have_one ( :word_processing_fluentcy)}
+  it { should have_one ( :presenting_skill)}
+  it { should have_one ( :presenting_fluentcy)}
+  it { should have_one ( :spreadsheet_skill)}
+  it { should have_one ( :spreadsheet_fluentcy)}
+  it { should have_one ( :email_skill)}
+  it { should have_one ( :email_fluentcy)}
+  it { should have_one ( :internet_term)}
+  it { should have_one ( :internet_task)}
+  it { should have_one ( :internet_connection)}
+  it { should have_one ( :browser)}
+  it { should have_one ( :social_media_skill)}
+  it { should have_one ( :social_media_desc)}
+  it { should have_one ( :social_media_platform)}
+  it { should have_one ( :online_colab_skill)}
+  it { should have_one ( :online_colab_fluentcy)}
+  it { should have_one ( :internet_term)}
+  it { should have_one ( :internet_task)}
+  it { should have_one ( :internet_connection)}  
+
+  it { should have_many ( :authentications)}
+  it { should have_many ( :friendships)}
+  it { should have_many ( :experiencetables)}
+  it { should have_many ( :shopping_lists)}
+  it { should have_many ( :flagged_jobs )}
+  it { should have_many ( :network_searches)}
+  it { should have_many ( :skills)}
+  it { should have_many ( :references)}
+  it { should have_many ( :postings)}
+  it { should have_many ( :experiences)}
 
   describe "when user_id is set" do
     it "should equal user.id" do
       @user = FactoryGirl.create(:user)
-      @user.user_id.should eq @user.id
-      
+      @user.user_id.should eq @user.id      
     end
   end
 
@@ -65,7 +108,9 @@ describe User do
       user1.should be_valid
       user2.should_not be_valid
     end
-  end
+  end  
+
+
   describe "when username is not present" do
     before { user.username = " " }
     it { should_not be_valid }
@@ -79,6 +124,7 @@ describe User do
       user2.should_not be_valid
     end
   end
+
   describe "when fname is not present" do
     before { user.fname = " " }
     it { should_not be_valid }
@@ -142,11 +188,7 @@ describe User do
       employee.field.should eq ""
     end
   end
-  describe "employee goals should not be empty" do
-    it "checks field" do
-      employee.goals.should_not eq ""
-    end
-  end
+  
   describe "employer checking if admin " do
     it "checks admin" do
       employer.admin.should eq false
@@ -162,16 +204,13 @@ describe User do
       employer.employee.should eq false
     end
   end
-  describe "employer goals should be empty" do
-    it "checks company name" do
-      employer.goals.should eq ""
-    end
-  end
+  
   describe "employer company name should not be empty" do
     it "checks company name" do
       employer.company_name.should_not eq ""
     end
   end
+
   describe "employer company address should not be empty" do
     it "checks company address" do
       employer.company_address.should_not eq ""
@@ -197,11 +236,7 @@ describe User do
       admin.employee.should eq false
     end
   end
-  describe "admin goals should be empty" do
-    it "checks company name" do
-      admin.goals.should eq ""
-    end
-  end
+
   describe "admin company name should be empty" do
     it "checks company name" do
       admin.company_name.should eq ""
@@ -217,6 +252,7 @@ describe User do
       admin.field.should eq ""
     end
   end
+
   describe "skills associations" do
     before do
       @skill = FactoryGirl.create(:skill, user_id: employee.user_id)
@@ -234,6 +270,7 @@ describe User do
       Skill.all.should include(@skill1)
     end
   end
+
   describe "experiences associations" do
     before do
       @experience = FactoryGirl.build(:experience, user_id: employee.user_id)
@@ -285,4 +322,5 @@ describe User do
       Posting.all.should include(@posting1)
     end
   end
+
 end

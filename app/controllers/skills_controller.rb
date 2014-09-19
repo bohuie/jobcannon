@@ -2,10 +2,13 @@ class SkillsController < ApplicationController
   autocomplete :skilllabel, :label, :full => true
 
   def index
+    #@owner_skills = Skill.where(:user_id => params[:owner]) 
   	@skill = Skill.new
+    @owner = params[:owner]
+
     @user = current_user
-    @userID = current_user.user_id
-    @skills = Skill.where(:user_id => current_user.user_id).paginate(page: params[:page])
+    @userID = current_user.user_id    
+    @skills = Skill.where(:user_id => @owner).paginate(page: params[:page])
   end
 
   def show
@@ -17,13 +20,33 @@ class SkillsController < ApplicationController
 
   def destroy
     @skill = Skill.find(params[:id])
-    if (user_signed_in? && current_user.user_id == @skill.user_id)
-      @skill.destroy
+    @userID = current_user.user_id    
+    
+    if @skill.destroy
       flash[:success] = "Skill Removed."
     else
-      flash[:error] = "No access"
+      flash[:error] = "No access here "
     end
-    redirect_to '/skills'
+
+    if current_user.employer?
+        @posting = Posting.find_by(:posting_id=>@skill.posting_id)
+        @id = @posting.title.delete(' ')
+        @file = "shared/postings"
+
+        @p = @posting
+        $postID = @p.posting_id
+        @requirments = Skill.where(:posting_id => $postID)
+        @owner = @user = current_user
+
+        respond_to do |f|
+          f.js { render 'shared/ajax/posting.js.erb'}
+          f.html {redirect_to postings_path(:id=>@userID, :anchor=>@posting.title.delete(' ')) }     
+        end
+
+        
+    else
+      redirect_to skills_path(:owner =>@userID)
+    end
 
   end
 
@@ -44,20 +67,43 @@ class SkillsController < ApplicationController
   	if(user_signed_in?)
   		@skill = Skill.new(skill_params)
       @skill.user_id = current_user.user_id
+      @userID = current_user.user_id
       if(Skilllabel.find_by(label: @skill.label).nil?)
         @skilllabel = Skilllabel.new
         @skilllabel.label = @skill.label
         @skilllabel.save
       end
-  		if(@skill.save)
-  			flash[:success] = "Skill created!"
-      	redirect_to "/skills"
-      else
-  			flash[:error] = "Fill in all required fields"
-       	redirect_to "/skills"
+      if @skill.posting_id != 0
+      		if(@skill.save)
+      			flash[:success] = "Skill created!"
+
+            if @skill.posting_id.nil?
+          	   redirect_to skills_path(:owner =>@userID)
+            else
+                @post = Posting.find(@skill.posting_id)
+                @id = @post.title.delete(' ')
+                @file = "shared/postings"
+
+                @p = @post
+                $postID = @p.posting_id
+                @requirments = Skill.where(:posting_id => $postID)
+                @owner = @user = current_user
+                
+                respond_to do |f|
+                  f.js { render 'shared/ajax/posting.js.erb'}
+                  f.html {redirect_to postings_path(:id=>@user.user_id, :post=> @skill.posting_id, :anchor=>@post.title.delete(' '))}
+                end
+                
+            end
+          else
+      			flash[:error] = "Fill in all required fields"
+           	redirect_to "/skills"
+          end
+      else 
+          flash[:error] = "Cant add a requirement to nothing"
+          redirect_to root_path
       end
-      @skills = Skill.where(:user_id => current_user.user_id).paginate(page: params[:page])
-      @userID = current_user.user_id
+            
   	else
   		flash[:error] = "No access"
       redirect_to root_path

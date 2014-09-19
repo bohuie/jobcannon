@@ -1,0 +1,90 @@
+
+<% @label = "Which operating system(s) have you used?" %>
+
+<% @windows = "Windows" %>
+<% @mac = "Mac OS" %>
+<% @linux = "Linux" %>
+<% @os = OperatingSystemsUsage.find_by(:user_id=> @user.user_id) %>
+
+<body>	
+	<%= simple_form_for @os, remote: true do |f| %>
+
+		<%= f.label @label %>
+		<br>
+		<br>
+
+		<table id = "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= $header13 %>
+				</th>
+				<th>
+					<%= $header14 %>
+				</th>
+				<th>
+					<%= $header15 %>
+				</th>
+			</tr>
+			<tr>
+				<td style = "text-align: left; width: 20%">
+					<%= @windows %>
+				</td>
+				<td style = "width: 20%">
+					<%= f.radio_button :windows,3, :default => @os.windows  %>				
+				</td>
+				<td style = "width: 20%">
+					<%= f.radio_button :windows,2, :default => @os.windows  %>				
+				</td>
+				<td style = "width: 20%">
+					<%= f.radio_button :windows,1, :default => @os.windows  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @mac %>
+				</td>
+				<td>
+					<%= f.radio_button :mac,3, :default => @os.mac  %>				
+				</td>
+				<td>
+					<%= f.radio_button :mac,2, :default => @os.mac  %>				
+				</td>
+				<td>
+					<%= f.radio_button :mac,1, :default => @os.mac  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @linux %>
+				</td>
+				<td>
+					<%= f.radio_button :linux,3, :default => @os.linux  %>				
+				</td>
+				<td>
+					<%= f.radio_button :linux,2, :default => @os.linux  %>				
+				</td>
+				<td>
+					<%= f.radio_button :linux,1, :default => @os.linux  %>				
+				</td>
+			</tr>
+			<tr id = "last_row">
+				<td style = "text-align: left">
+					<%= f.label $other %>
+					<br>
+					<%= f.text_field :other %>
+				</td>
+			</tr>		
+		</table>
+
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "basic", :file => "shared/survey/tech/basic_computer_a"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>
+			<div class = "col-lg-2">
+				<%= f.submit $continue, class: "btn btn-primary"%>
+			</div>
+		</div>
+	<% end %>
+</body>

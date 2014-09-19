@@ -1,34 +1,161 @@
 <head>
+  <script language = "javascript">
+  
+  function change_chatbox1(){
+    var NAME = document.getElementById("chatbox1");
+    var currentClass = NAME.className;
+    if (currentClass == "dropup open") { // Check the current class name
+        NAME.className = "dropup";   // Set other class name
+    } else {
+        NAME.className = "dropup open";  // Otherwise, use `second_name`
+    }
+}
+
+function change_chatbox2(){
+    var NAME = document.getElementById("chatbox12");
+    var currentClass = NAME.className;
+    if (currentClass == "dropup open") { // Check the current class name
+        NAME.className = "dropup";   // Set other class name
+    } else {
+        NAME.className = "dropup open";  // Otherwise, use `second_name`
+    }
+}
+function change_chatbox3(){
+    var NAME = document.getElementById("chatbox13");
+    var currentClass = NAME.className;
+    if (currentClass == "dropup open") { // Check the current class name
+        NAME.className = "dropup";   // Set other class name
+    } else {
+        NAME.className = "dropup open";  // Otherwise, use `second_name`
+    }
+  }
+  function hold(){
+
+    document.getElementsByTagName("html")[0].setAttribute("style","overflow:hidden");
+  }
+
+  function scroll(){
+
+    document.getElementsByTagName("html")[0].setAttribute("style","overflow:scroll");
+  }
+  </script>  
 </head>
+
 <body>
-  <nav class="navbar" role="navigation" >
+  <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style = "border: 0px solid white; 
+              background: rgba(255,255,255,0); width: 100%" >
     <!-- Brand and toggle get grouped for better mobile display -->
-    
+      <div class = "container" style= "width: 100%; padding: 0px">
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 88em">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 100%;margin-top:10px;">
 
-      <ul class="nav pull-left">
-        <% if user_signed_in?%>
-        <p style = "height: 30px;"></p>
-      <!--    <li><%= link_to "Survey", survey_path(@user), id: "brand",  style:"text-shadow:none;" %></li>
-          <li><%= link_to "Reccomended", {controller: "skills", action: "reccomend"}, id: "brand",  style:"text-shadow:none;" %></li>-->
-          <% end %>
-      </ul>
+              <ul class="nav pull-right">
+                  <% if user_signed_in?%>
+                    <% @friends = Friendship.where(receiver_id: @user.user_id, accepted: true) %>
+                    <% @friends = @friends + Friendship.where(user_id: @user.user_id, accepted: true) %>
+                    <% @online = Array.new %>
+                    <% @offline = Array.new %>
+                    
+                    <% @friends.each do |r|
+                      if r.receiver_id==@user.user_id
+                        @friend = User.find_by(user_id: r.user_id)
+                        if @friend.online
+                          @online.push(@friend)
+                        else
+                          @offline.push(@friend)
+                        end
+                      else
+                        @friend = User.find_by(user_id: r.receiver_id)
+                        if @friend.online
+                          @online.push(@friend)
+                        else
+                          @offline.push(@friend)
+                        end
+                      end
+                    end %>  
+                    
+                    <li id = "testchat3" >
+                      <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
+                          <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).user_id) %>
+                          <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, user_id: @other.user_id) %>
+                          
+                          <% @seenMessages.each do |m|
+                            m.update_attribute(:seen, true)
+                          end %>
 
-      <ul class="nav pull-right">
-      <% if user_signed_in?%>
-        <%
-        @newmessages = Message.where(receiver_id: @user.user_id)
-        @newmessages.each do |r|
-          @lastviewed = "2013-02-23 19:49:25"
-          @chatviews = Chatview.where(id1: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC") + Chatview.where(id2: r.sender_id, viewer: @user.user_id).order("last_viewed_at DESC")
-          if !@chatviews.empty?
-            @lastviewed =  @chatviews.first.last_viewed_at
-          end
-          @newmessages.delete_if {|s| s.sent_at < @lastviewed}
-        end
-        %>
+                          <%= render("layouts/chat3") %>
+                          <script>
+                              $("#chatbox2").load('layouts/_chat3.html.erb').scrollTop($("#chatbox2").load('layouts/_chat3.html.erb')[0].scrollHeight);
+                          </script>
+                          
+                          <% if @user.user_id<@other.user_id    
+                            @id1 = @user.user_id
+                            @id2 = @other.user_id   
+                          else
+                            @id2 = @user.user_id
+                            @id1 = @other.user_id   
+                          end
+                          @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
+
+                      <% end %>
+                    </li>
+                    <li id = "testchat2">
+                      <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
+                        <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).user_id) %>
+                        <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, user_id: @other.user_id) %>
+                        <% @seenMessages.each do |m|
+                          m.update_attribute(:seen, true)
+                          end %>
+                        <%= render("layouts/chat2") %>
+                        <script>
+                        $("#chatbox2").load('layouts/_chat2.html.erb').scrollTop($("#chatbox2").load('layouts/_chat2.html.erb')[0].scrollHeight);
+
+                        </script>
+                        <%
+                        if @user.user_id<@other.user_id    
+                          @id1 = @user.user_id
+                          @id2 = @other.user_id   
+                        else
+                          @id2 = @user.user_id
+                          @id1 = @other.user_id   
+                        end
+                        @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
+                      <% end %>
+                    </li>
+                    <li id = "testchat1">
+                      <% if Message.find_by(receiver_id: @user.user_id, seen: nil) %>
+                        <% @other = User.find(Message.find_by(receiver_id: @user.user_id, seen: nil).user_id) %>
+                        <% @seenMessages = Message.where(receiver_id: @user.user_id, seen: nil, user_id: @other.user_id) %>
+                        <% @seenMessages.each do |m|
+                          m.update_attribute(:seen, true)
+                          end %>
+                        <%= render("layouts/chat1") %>
+                        <script>
+                        $("#chatbox2").load('layouts/_chat1.html.erb').scrollTop($("#chatbox2").load('layouts/_chat1.html.erb')[0].scrollHeight);
+
+                        </script>
+                        <%
+                        if @user.user_id<@other.user_id    
+                          @id1 = @user.user_id
+                          @id2 = @other.user_id   
+                        else
+                          @id2 = @user.user_id
+                          @id1 = @other.user_id   
+                        end
+                        @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
+                      <% end %>
+                    </li>
+                    <li class="dropup marker" id="accountmenu" style = "width: 160px; text-align: right;">  
+                      <a class="dropdown-toggle marker" id = "brand" data-toggle="dropdown" style = "text-shadow:   
+                        none;  cursor:pointer"> Chat<b class="caret"></b>
+                      </a>  
+                      <ul class="dropdown-menu flist" style = "text-align: left; width: 120px;">  
+                        <li role="presentation" class="dropdown-header">Online Friends</li>
+                        
+                        <% @online.each do |r| %>
+                          <li><%= link_to r.fname+" "+r.lname, {controller: "layouts", action: "privatechat", id1: @user.user_id, id2: r.user_id}, remote: true%></li>
+                        <% end %>
 
       <%if !@newmessages.empty?%>
         <li> <%= link_to "New Message(s)", network_path, id: "brand",  style:"text-shadow:none;" %> </li>
@@ -81,8 +208,26 @@
         </li>
       <% end %>
       </ul>
+                        <li role="presentation" class="dropdown-header">Offline Friends</li>
+                        <% @offline.each do |t| %>
+                          <li><%= link_to t.fname+" "+t.lname, profile_path(t) %></li>
+                        <% end %>
 
-    </div><!-- /.navbar-collapse -->
-
+                        <% if @offline.empty? %>
+                            <li role = "presentation" class = "divider"></li>
+                        <% end %>
+                        <li><%= link_to "All friends", network_path%> </li>
+                      </ul>              
+                    </li>
+                  <% end %>
+                  <% if @user.employer? %>
+                    <li><%= link_to "See your followers", "/show_network",  id: "brand"%> </li>
+                  <% else %>
+                    <li><%= link_to "Explore your network", "/show_network",  id: "brand"%> </li>
+                  <% end %>
+                  <li><%= link_to "Interests",interests_path(:owner =>@user.user_id)%></li>
+              </ul>
+          </div><!-- /.navbar-collapse -->
+      </div>
   </nav>
 </body>

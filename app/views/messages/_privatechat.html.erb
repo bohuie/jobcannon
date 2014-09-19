@@ -1,0 +1,17 @@
+<ul id="chat" style = "margin: 0px; padding: 0px;">
+	<% if @messages.nil? %>
+		<%	@messages = Message.where(user_id: @other.user_id, receiver_id: @user.user_id)
+	      @messages = @messages + Message.where(user_id: @user.user_id, receiver_id: @other.user_id)
+	      @messages = @messages.sort_by { |obj| obj.sent_at } %>
+	<% end %>
+	<%
+            if @user.user_id<@other.user_id    
+              @id1 = @user.user_id
+              @id2 = @other.user_id   
+            else
+              @id2 = @user.user_id
+              @id1 = @other.user_id   
+            end
+            @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s %>
+  	<%= render @messages %>
+</ul>

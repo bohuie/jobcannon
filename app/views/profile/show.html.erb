@@ -1,4 +1,4 @@
-<head>
+<head>  
   <style type="text/css">
 
     #title{
@@ -14,20 +14,28 @@
       padding-bottom: 1em;
 
     }
-.content{
+    
+    .change{
+      background-color: #E6E6E6;
+      height: 7em;
+      border: none;
+      resize: none;
+    }
 
-  margin-top: 1em;
-  background-color: #E6E6E6;
-  border-radius: 5px;
-  padding-left: 0.5em;
-  padding-top: 0.5em;
-  height:11em;
-  padding-bottom: 0.5em;
-  margin-bottom: 1em;
-  padding: 1em;
+    .form{
+      height: 100%;
+    }
 
-}
+    .btnChange{
+      background: none;
+      border: none;
+    }    
 
+    #pic_fix{
+      background-color: #428bca;
+      border-color: #428bca;
+      border-radius: 3px;
+    }
 
   </style>
 
@@ -37,212 +45,23 @@
   e.preventDefault()
   $(this).tab('show')
 })
-
+    $('#myTab a[href="#exp"]').tab('show'); 
   </script>
 </head>
 
 
-<body>
-
-  <% if  @owner.employer?%>
-      <div border = 0 style ="margin-left: 5.5em" >
-        <div class = "row" height = 30px style = "padding-left: 1.5em;">
-            <div class = "col-lg-4" style ="" >
-                <div>
-                    <%= image_tag('prof.jpeg', :class => "pic") %>
-                 </div>
-            </div>
-            <div class = "col-lg-8" style = "">
-                <p id = "title"> <%= @owner.fname %> <%= @owner.lname %> </p>
-                <p id = "title"> Hiring At  <%= @owner.company_name %> </p>
-
-                <p id = "title"> 
-                  <% if(!@owner.phone_number.nil?) %>
-                    Contact: <%= @owner.phone_number %>
-                  <% end %>
-                </p>
-                <p id = "title" style = "font-size: 3em"> 
-                  <% if(!@owner.email.nil?) %>
-                    <%= @owner.email %>
-                  <% end %>
-                </p>
-            </div>
-        </div>
-        <!-- render profile postings >
-         
-      </div>
-
-    <!-- -------------------------------------------------------------------------------- -->
-<% else %>
-
-  <div class = "row" height = 30px style = "">
-
-      <div class = "col-lg-1">
-      </div>
-      <div class = "col-lg-4" style ="" >
-          <div style = "">
-              <%= image_tag('prof.jpeg', :class => "pic") %>
-           </div>
-      </div>
-      <div class = "col-lg-5" style = "">
-          <p id = "title" style = "font-size: 3em"> <%= @owner.fname%> <%= @owner.lname%> </p>
-          <p id = "title" style = "font-size:2em"> <%= @owner.city%> <%= @owner.province%> </p>
-          <p id = "title" style = "font-size: 1em"> <%= @owner.email%></p>
-          <% @postings = @postings.to_a %>
-          <% if @postings.size >= 1 %>
-
-            <table style = "width: 520px; max-height: 165px; background: #FFFFE0; border-radius: 5px; padding: 1em;">
-              <tr style = "background: #FFFFB4; border-radius: 5px;">
-                <td>
-                  Notifications
-                </tr>
-              </td>
-              <tr>
-                <td style = "padding-left: 1em;">
-                  Recommendations
-                  <ul>
-                    <% if !@postings.empty? && !@posting.nil? %>
-                      <% if @postings.size >= 1 %>
-                        <li><%= @postings[0].title %></li>
-                      <% end %>
-                      <% if @postings.size >= 2 %>
-                        <li><%= @postings[1].title %></li>
-                      <% end %>
-                      <% if @postings.size >= 3 %>
-                        <li><%= @postings[2].title %></li>
-                      <% end %>
-                    <%end%>
-                  </ul>
-                  <% if @postings.size >= 4 %>
-                      <p style = "text-align: right; padding: 0em; margin: 0em; padding-right: 1em; padding-bottom: 1em;"><%= link_to "More", {controller: "skills", action: "reccomend"} %></p>
-                  <% end %>
-                </td>
-              </tr>
-            </table>
-          <% end %>
-      </div>
-  </div>
-
-
-  <div class = "row" style = "padding-top: 2em">
-
-    <div class = "col-lg-5" style = "height: 20em; vertical-align: top;">
-
-         
-          <ul class="nav nav-tabs">
-            <li class = "active"><a href="#do" data-toggle="tab">About Me</a></li>
-            <li><a href="#network" data-toggle="tab">Your Network</a></li>
-          </ul>
-
-      <div class="tab-content">
-        <div class="tab-pane fade in active content" id="do"> 
-          After Studying at the University of Alberta I worked in Seatle for 6 years
-          under the supervision of Robert kale (project director). There I worked with a team of 20
-          people on software that was bought out by Apple. 
-        </div>
-        <div class="tab-pane fade content" id="network"> 
-          
-              <% if @friends.length <= 4 %>
-
-                <% for i in 0..@friends.length-1 %>
-                  <% @friend = User.find_by(user_id: @friends[i].receiver_id) %>
-                  <%= link_to @friend.fname+" "+@friend.lname, profile_path(@friend) %> 
-                <%end%>
-              <% else %>
-                <% for i in 0..4 %>
-                    <% @friend = User.find_by(user_id: @friends[i].receiver_id) %>
-                    <%= link_to @friend.fname+" "+@friend.lname, profile_path(@friend) %>
-                  <%end%> 
-              <%end%>
-
-
-              <div style = "" align = "right">
-                <%= link_to "More",network_path, :id => "more"%> 
-              </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class = "col-lg-5">
-      <ul class="nav nav-tabs">
-        <li class = "active"><a href="#skills" data-toggle="tab">Skills</a></li>
-        <li><a href="#survey" data-toggle="tab">Survey</a></li>
-        <li><a href="#exp" data-toggle="tab">Experiences</a></li>
-        <li><a href="#ref" data-toggle="tab">References</a></li>
-      </ul>
-
-
-      <div class="tab-content">
-        <div class="tab-pane fade in active content" id="skills" style = ""> 
-          <% @array = @skills.to_a %>
-          <% if(@array.empty?) %>
-            No skills added yet
-          <%else%>
-            <% finish = 4 %>
-            <ul>
-              <% for i in 0..finish%>
-                <% if(i < @array.length) %>
-                  <li> <%= @array[i].label %> </li>
-                <%end%>
-              <%end%>
-            </ul>
-            <% if @array.length > finish %>
-              <div style = "" align = "right">
-                <%= link_to "More",skills_path, :id => "more"%> 
-              </div>
-            <% end %>
-          <%end%>
-        </div>
-
-        <div class ="tab-pane fade content" id = "survey">
-          Take our survey to see how we are doing
-        </div>
-
-        <div class="tab-pane fade content" id="exp">
-            <% @array = @experiences.to_a %>
-          <% if(@array.empty?) %>
-            No experiences added yet
-          <%else %>
-            <% finish = 4 %>
-            <% for i in 0..finish%>
-              <% if(i < @array.length) %>
-                <% exp = @array[i].title + " - " + @array[i].company_name %>
-                  <%= link_to exp, {:controller => "experiences", :action => "details", :id => @array[i].experience_id}, :id => "more"%></br>
-              <%end%>
-            <%end%>
-            
-              <div style = "" align = "right">
-                <%= link_to "More",experiences_path, :id => "more"%>
-            </div>
-          <%end%>
-
-
-        </div>
-        <div class="tab-pane fade content" id="ref">
-          <% @array = @references.to_a %>
-           <% if(@array.empty?) %>
-              No references added yet
-          <%else%>
-            <% finish = 4 %>
-            <% for i in 0..finish%>
-              <% if(i < @array.length) %>
-                <% ref = @array[i].fname + " " + @array[i].lname + " - " + @array[i].relationship %>
-                
-                  <%= link_to ref, {:controller => "references", :action => "one_ref", :id => @array[i].reference_id}, :id => "more"%></br>
-              <% end %>
-            <% end %>
-            <% if @array.length > finish + 1 %>
-              </br>
-              <div style = "" align = "right">
-                <%= link_to "More",skills_path, :id => "more"%>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-    </div>
-
-    </div>
-  </div>
+<body>  
+    <% if @user.user_id == @owner.user_id %>
+        <% if @owner.employer? %>          
+          <%= render :partial => 'shared/profile_viewing/owner_employer' %>
+        <% else %>        
+          <%= render :partial => 'shared/profile_viewing/owner_employee' %>
+        <% end %>
+    <% else %> <!-- The viewer is not the owner -->
+        <% if !@owner.employer? %>
+            <%= render :partial => 'shared/profile_viewing/guest_employee' %>
+        <% else %>
+            <%= render :partial => 'shared/profile_viewing/guest_employer' %>
+        <% end %>
   <% end %>
 </body>

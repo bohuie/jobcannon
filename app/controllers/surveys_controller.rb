@@ -5,126 +5,216 @@ class SurveysController < ApplicationController
 		@survey = Survey.new
 	end
 	def show
+
+		 $header1 = "Completely Fluent" 
+		 $header2 = "Quite Fluent" 
+		 $header3 = "Somewhat Fluent" 
+		 $header4 = "Minimal Fluency" 
+		 $header5 = "Not Fluent" 
+		 $header6 = "I don't know" 
+
+		 $header7 = "Very Easy" 
+		 $header8 = "Easy" 
+		 $header9 = "Neutral" 
+		 $header10 = "Difficult" 
+		 $header11 = "Very Difficult" 
+		 $header12 = "I don't know what this is" 
+
+		 $header13 = "Disagree" 
+		 $header14 = "Somewhat Disagree" 
+		 $header15 = "Neutral" 
+		 $header16 = "Somewhat Agree"
+		 $header17 = "Agree" 
+
+		 $header13 = "Yes, I have used this" 
+		 $header14 = "No, I have not used this" 
+		 $header15 = "Not sure"
+
+		 $other = "Other" 
+		 $other_label = "If Other Please Specify" 
+		 $continue = "Save & Continue" 
+		 $submit = "Submit"
+		 $previous = "Previous" 
+
 		@user = current_user
-		@survey = Survey.new
-		@user.save
-	end
-	def create
-		if(user_signed_in? && !current_user.employer)
-			@user = current_user
-			@survey = Survey.new(survey_params)
-			@survey.user_id = @user.user_id
-			@survey.save
-			if(@survey.question1 == 1)
-				@test = Skill.where(label: "Leadership", user_id: @user.user_id)
-				if(@test.empty?)
-					$skill1 = Skill.new()
-					$skill1.label = "Leadership"
-					$skill1.user_id = @user.user_id
-					$skill1.save
-				end
-			elsif (@survey.question1 == 2)
-				@test = Skill.where(label: "Taking Instruction", user_id: @user.user_id)
-				if(@test.empty? || @test.nil?)
-					$skill1 = Skill.new()
-					$skill1.label = "Taking Instruction"
-					$skill1.user_id = @user.user_id
-					$skill1.save
-				end
-			end
-			if(@survey.question2 == 1)
-				@test = Skill.where(label: "Teamwork", user_id: @user.user_id)
-				if(@test.empty? || @test.nil?)
-					$skill2 = Skill.new()
-					$skill2.label = "Teamwork"
-					$skill2.user_id = @user.user_id
-					$skill2.save
-				end
-			elsif (@survey.question2 == 2)
-				@test = Skill.where(label: "Working Independently", user_id: @user.user_id)
-				if(@test.empty? || @test.nil?)
-					$skill2 = Skill.new()
-					$skill2.label = "Working Independently"
-					$skill2.user_id = @user.user_id
-					$skill2.save
-				end
-			end
-			if(@survey.question3 == 1)
-				@test = Skill.where(label: "First aid Training", user_id: @user.user_id)
-				if(@test.empty? || @test.nil?)
-					$skill3 = Skill.new()
-					$skill3.label = "First aid Training"
-					$skill3.user_id = @user.user_id
-					$skill3.save
-				end
-			elsif (@survey.question3 == 2)
-				@test = Skill.where(label: "Willingness to learn", user_id: @user.user_id)
-				if(@test.empty? || @test.nil?)
-					$skill3 = Skill.new()
-					$skill3.label = "Willingness to learn"
-					$skill3.user_id = @user.user_id
-					$skill3.save
-				end
-			end
-			if(@survey.question4 == 1)
-				@test = Skill.where(label: "Challenge seeker", user_id: @user.user_id)
-				if(@test.empty? || @test.nil?)
-					$skill4 = Skill.new()
-					$skill4.label = "Challenge seeker"
-					$skill4.user_id = @user.user_id
-					$skill4.save
-				end
-			elsif (@survey.question4 == 2)
-				@test = Skill.where(label: "Focused", user_id: @user.user_id)
-				if(@test.empty? || @test.nil?)
-					$skill4 = Skill.new()
-					$skill4.label = "Focused"
-					$skill4.user_id = @user.user_id
-					$skill4.save
-				end
-			end
-			if(@survey.question5 == 1)
-				@test = Skill.where(label: "Multilingual", user_id: @user.user_id)
-				if(@test.empty? || @test.nil?)
-					$skill5 = Skill.new()
-					$skill5.label = "Multilingual"
-					$skill5.user_id = @user.user_id
-					$skill5.save
-				end
+		@survey_type = params[:type]		
+		
+		@communication = CommunicationSkill.find_by(:user_id=>@user.user_id)
+		@thinking = ThinkingSkill.find_by(:user_id=>@user.user_id)
+		@self = SelfDirectionSkill.find_by(:user_id=>@user.user_id)
+		@accountability = Accountability.find_by(:user_id=>@user.user_id)
+		@interpersonal = InterpersonalSkill.find_by(:user_id=>@user.user_id)
+
+		@profile = Surveyprofile.find_by(:user_id => @user.user_id)  
+
+		
+		if (@profile.nil?)
+			@profile = Surveyprofile.new
+			@profile.user_id = current_user.user_id
+			@profile.save
+
+			@language = Language.new
+			@language.user_id = @user.user_id
+			@language.save
+
+			@full_time = Experiencetable.new
+			@full_time.user_id = @user.user_id
+			@full_time.full_time = true
+			@full_time.save
+
+			@part_time = Experiencetable.new
+			@part_time.user_id = @user.user_id
+			@part_time.part_time = true
+			@part_time.save
+
+			@volunteer = Experiencetable.new
+			@volunteer.user_id = @user.user_id
+			@volunteer.volunteer = true
+			@volunteer.save
+
+			@employ = Experiencetable.new
+			@employ.user_id = @user.user_id
+			@employ.employ = true
+			@employ.save
+
+			@communication = CommunicationSkill.new
+			@communication.user_id = @user.user_id
+			@communication.save
+
+			@thinking = ThinkingSkill.new
+			@thinking.user_id = @user.user_id
+			@thinking.save
+
+			@self = SelfDirectionSkill.new
+			@self.user_id = @user.user_id
+			@self.save
+
+			@accountability = Accountability.new
+			@accountability.user_id = @user.user_id
+			@accountability.save
+
+			@interpersonal = InterpersonalSkill.new
+			@interpersonal.user_id= @user.user_id
+			@interpersonal.save
+
+			@basic = BasicComputerSkill.new
+			@basic.user_id = @user.user_id
+			@basic.save
+
+			@os = OperatingSystemsUsage.new
+			@os.user_id = @user.user_id
+			@os.save
+
+			@fluent = OperatingSystemsFluent.new
+			@fluent.user_id = @user.user_id
+			@fluent.save
+
+			@advanced = AdvancedComputerSkill.new
+			@advanced.user_id = @user.user_id
+			@advanced.save
+
+			@media = MultiMediaSkill.new
+			@media.user_id = @user.user_id
+			@media.save
+
+			@tech_diff = TechnologyDifference.new
+			@tech_diff.user_id = @user.user_id
+			@tech_diff.save
+
+			@word = WordProcessingSkill.new
+			@word.user_id=@user.user_id
+			@word.save
+
+			@word_fluent = WordProcessingFluentcy.new
+			@word_fluent.user_id = @user.user_id
+			@word_fluent.save
+
+			@spreadsheet = SpreadsheetSkill.new
+			@spreadsheet.user_id = @user.user_id
+			@spreadsheet.save
+
+			@spreadsheet_fluentcy = SpreadsheetFluentcy.new
+			@spreadsheet_fluentcy.user_id = @user.user_id
+			@spreadsheet_fluentcy.save 
+
+			@present = PresentingSkill.new
+			@present.user_id = @user.user_id
+			@present.save
+
+			@present_fluentcy = PresentingFluentcy.new
+			@present_fluentcy.user_id = @user.user_id
+			@present_fluentcy.save 
+
+			@email = EmailSkill.new
+			@email.user_id = @user.user_id
+			@email.save
+
+			@email_fluentcy = EmailFluentcy.new
+			@email_fluentcy.user_id = @user.user_id
+			@email_fluentcy.save 
+
+			@internetterm = InternetTerm.new
+			@internetterm.user_id = @user.user_id
+			@internetterm.save 
+
+			@internettask = InternetTask.new
+			@internettask.user_id = @user.user_id
+			@internettask.save
+
+			@internetconnection = InternetConnection.new
+			@internetconnection.user_id = @user.user_id
+			@internetconnection.save
+
+			@browser = Browser.new
+			@browser.user_id = @user.user_id
+			@browser.save
+
+			@socialmedia = SocialMediaSkill.new
+			@socialmedia.user_id = @user.user_id
+			@socialmedia.save
+
+			@socialmediadesc = SocialMediaDesc.new
+			@socialmediadesc.user_id = @user.user_id
+			@socialmediadesc.save
+
+			@socialmediaplat = SocialMediaPlatform.new
+			@socialmediaplat.user_id = @user.user_id
+			@socialmediaplat.save
+
+			@onlinecolab = OnlineColabSkill.new
+			@onlinecolab.user_id = @user.user_id
+			@onlinecolab.save
+
+			@onlinecolab_fluentcy = OnlineColabFluentcy.new
+			@onlinecolab_fluentcy.user_id = @user.user_id
+			@onlinecolab_fluentcy.save			
+
+		end		
+		@file = params[:file]
+		@id = params[:div]
+		puts "THIS IS THE SHOW METHOD IN THE SURVEY CONTROLLER"
+		puts @file
+		unless @file.nil?
+			respond_to do |f|		
+				f.js { render 'shared/ajax/previous.js.erb' }
 			end
 		end
-		@survey.destroy
-		@anssurvey = Survey.new
 	end
 
-	def add
-		@user = current_user
-		@anssurvey = Survey.new(survey_params)
-		@anssurvey.user_id = @user.user_id
-		@anssurvey.save
-		if(@anssurvey.question1 == 1)
-			$skill1.destroy
-		end
-		if(@anssurvey.question2 == 1)
-			$skill2.destroy
-		end
-		if(@anssurvey.question3 == 1)
-			$skill3.destroy
-		end
-		if(@anssurvey.question4 == 1)
-			$skill4.destroy
-		end
-		if(@anssurvey.question5 == 1)
-			$skill5.destroy
-		end
-		$skill1 = $skill2 = $skill3 = $skill4 = $skill5 = nil
+	def create		
+		@survey = Surveyprofile.new(survey_params)
+		@survey.user_id = current_user.user_id
+		@survey.save
 		redirect_to root_path
 	end
 
-	private
-	    
-	    def survey_params
-	        params.require(:survey).permit(:question1, :question2, :question3, :question4, :question5)
-	    end
-
+	def back
+		@file = params[:file]
+		@id = params[:div]
+		puts "THIS IS THE BACK METHOD IN THE SURVEY CONTROLLER"
+		puts @id
+			respond_to do |f|		
+			f.js { render 'shared/ajax/previous.js.erb' }
+		end
+	end
 end

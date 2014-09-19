@@ -1,0 +1,506 @@
+<head>
+	<script>
+		function showq1(){
+	 		$('#q1detailsa').show()
+	 		$('#q1detailsb').show()
+	    }
+	    function hideq1(){
+	 		$('#q1detailsa').hide()
+	 		$('#q1detailsb').hide()
+	    }
+	    function showq2(){
+	 		$('#q2detailsa').show()
+	 		$('#q2detailsb').show()
+	    }
+	    function hideq2(){
+	 		$('#q2detailsa').hide()
+	 		$('#q2detailsb').hide()
+	    }
+	    function showq3(){
+	 		$('#q3detailsa').show()
+	 		$('#q3detailsb').show()
+	    }
+	    function hideq3(){
+	 		$('#q3detailsa').hide()
+	 		$('#q3detailsb').hide()
+	    }
+	    function showq4(){
+	 		$('#q4detailsa').show()
+	 		$('#q4detailsb').show()
+	    }
+	    function hideq4(){
+	 		$('#q4detailsa').hide()
+	 		$('#q4detailsb').hide()
+	    }
+	    function showq5(){
+	 		$('#q5detailsa').show()
+	 		$('#q5detailsb').show()
+	    }
+	    function hideq5(){
+	 		$('#q5detailsa').hide()
+	 		$('#q5detailsb').hide()
+	    }
+	    function showmagnitude_other(){
+	 		$('#magnitude_otherdetailsa').show()
+	 		$('#magnitude_otherdetailsb').show()
+	    }
+	    function hidemagnitude_other(){
+	 		$('#magnitude_otherdetailsa').hide()
+	 		$('#magnitude_otherdetailsb').hide()
+	    }
+
+	    function showSaved1(){
+      		$("#saved8").fadeIn();
+      		setTimeout(function(){$("#saved8").fadeOut("slow")}, 1000)
+    	}
+    </script>
+</head>
+<% @label = "Do you know what the following types of internet connections?" %>
+
+<% @q1 = "Firefox" %>
+<% @q2 = "Explorer" %>
+<% @q3 = "Safari" %>
+<% @q4 = "Chrome" %>
+<% @q5 = "Mozilla" %>
+<% @other = "Other (Please Specify)" %>
+
+<% @private_header1 = "I don't know what this is" %>
+<% @private_header2 = "I know what this is but I don't know how to use it" %>
+<% @private_header3 = "I know what this is and know how to use it" %>
+<% @private_header4 = "I know what this is and can use it a little" %>
+<% @private_header5 = "I know what this is and can use it somewhat" %>
+<% @private_header6 = "I know what this is and can use it well" %>
+<% @private_header7 = "I know what this is and am very skill in its use" %>
+<% @browser = Browser.find_by(:user_id=> @user.user_id) %>
+
+<body>
+	<%= simple_form_for @browser, remote: true do |f| %>
+
+		<%= f.label @label %>
+		<br>
+		<table id = "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= @private_header1 %>
+				</th>
+				<th>
+					<%= @private_header2 %>
+				</th>
+				<th>
+					<%= @private_header3 %>
+				</th>			
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q1 %>
+				</td>
+				<td>
+					<%= f.radio_button :q1, 1, :default => @browser.q1, :onClick => "hideq1()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 2, :default => @browser.q1, :onClick => "hideq1()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 50, :onClick => "showq1()" %>				
+				</td>
+			</tr>
+			<tr id = "q1detailsa" 
+				<% if @browser.q1 <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr id = "q1detailsb" 
+				<% if @browser.q1 <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= f.radio_button :q1, 4, :default => @browser.q1%>
+						</div>
+						<div class = "col-lg-3">				
+				
+						<%= f.radio_button :q1, 5, :default => @browser.q1%>
+						</div>
+						<div class = "col-lg-3">				
+						<%= f.radio_button :q1, 6, :default => @browser.q1%>	
+						</div>
+						<div class = "col-lg-3">			
+						<%= f.radio_button :q1, 7, :default => @browser.q1%>	
+						</div>
+					</div>			
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q2 %>
+				</td>
+				<td>
+					<%= f.radio_button :q2, 1, :default => @browser.q2, :onClick => "hideq2()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 2, :default => @browser.q2, :onClick => "hideq2()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 3, :default => @browser.q2, :onClick => "showq2()" %>				
+				</td>
+			</tr>
+			<tr id = "q2detailsa" 
+				<% if @browser.q2  <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr id = "q2detailsb" 
+				<% if @browser.q2 <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+					<%= f.radio_button :q2, 4, :default => @browser.q2, :onClick => "showq2()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q2, 5, :default => @browser.q2, :onClick => "showq2()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q2, 6, :default => @browser.q2, :onClick => "showq2()" %>				
+						</div>
+						<div class = "col-lg-3">			
+				
+					<%= f.radio_button :q2, 7, :default => @browser.q2, :onClick => "showq2()" %>				
+						</div>
+					</div>			
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q3 %>
+				</td>
+				<td>
+					<%= f.radio_button :q3, 1, :default => @browser.q3, :onClick => "hideq3()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 2, :default => @browser.q3, :onClick => "hideq3()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 3, :default => @browser.q3, :onClick => "showq3()" %>				
+				</td>
+			</tr>
+			<tr id = "q3detailsa" 
+				<% if @browser.q3 <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr id = "q3detailsb" 
+				<% if @browser.q3 <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+					<%= f.radio_button :q3, 4, :default => @browser.q3, :onClick => "showq3()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q3, 5, :default => @browser.q3, :onClick => "showq3()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q3, 6, :default => @browser.q3, :onClick => "showq3()" %>				
+						</div>
+						<div class = "col-lg-3">			
+				
+					<%= f.radio_button :q3, 7, :default => @browser.q3, :onClick => "showq3()" %>				
+						</div>
+					</div>			
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q4 %>
+				</td>
+				<td>
+					<%= f.radio_button :q4, 1, :default => @browser.q4, :onClick => "hideq4()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 2, :default => @browser.q4, :onClick => "hideq4()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 3, :default => @browser.q4, :onClick => "showq4()" %>				
+				</td>
+			</tr>
+			<tr id = "q4detailsa" 
+				<% if @browser.q4 <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr id = "q4detailsb" 
+				<% if @browser.q4 <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+					<%= f.radio_button :q4, 4, :default => @browser.q4, :onClick => "showq4()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q4, 5, :default => @browser.q4, :onClick => "showq4()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q4, 6, :default => @browser.q4, :onClick => "showq4()" %>				
+						</div>
+						<div class = "col-lg-3">			
+				
+					<%= f.radio_button :q4, 7, :default => @browser.q4, :onClick => "showq4()" %>				
+						</div>
+					</div>			
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q5 %>
+				</td>
+				<td>
+					<%= f.radio_button :q5, 1, :default => @browser.q5, :onClick => "hideq5()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 2, :default => @browser.q5, :onClick => "hideq5()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 3, :default => @browser.q5, :onClick => "showq5()" %>				
+				</td>
+			</tr>
+			<tr id = "q5detailsa" 
+				<% if @browser.q5  <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr id = "q5detailsb" 
+				<% if @browser.q5 <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+					<%= f.radio_button :q5, 4, :default => @browser.q5, :onClick => "showq5()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q5, 5, :default => @browser.q5, :onClick => "showq5()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :q5, 6, :default => @browser.q5, :onClick => "showq5()" %>				
+						</div>
+						<div class = "col-lg-3">			
+				
+					<%= f.radio_button :q5, 7, :default => @browser.q5, :onClick => "showq5()" %>				
+						</div>
+					</div>			
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= $other_label %>
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 1, :default => @browser.magnitude_other, :onClick => "hidemagnitude_other()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 2, :default => @browser.magnitude_other, :onClick => "hidemagnitude_other()" %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 3, :default => @browser.magnitude_other, :onClick => "showmagnitude_other()" %>				
+				</td>
+			</tr>
+			<tr id = "magnitude_otherdetailsa" 
+				<% if @browser.magnitude_other <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0; ">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+							<%= @private_header4 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header5 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header6 %>
+						</div>
+						<div class = "col-lg-3">
+							<%= @private_header7 %>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr id = "magnitude_otherdetailsb" 
+				<% if @browser.magnitude_other <= 2%> 
+					style = "display: none"
+				<% end %>
+			>
+				<td style = "border: 0;">
+				</td>
+				<td style = "border: 0; border-left: 1px solid black; border-right: 1px solid black; background-color: #F8F8F8; border-bottom: 1px solid black;" colspan="3">
+					<div class = "row">
+						<div class = "col-lg-3">
+					<%= f.radio_button :magnitude_other, 4, :default => @browser.magnitude_other, :onClick => "showmagnitude_other()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :magnitude_other, 5, :default => @browser.magnitude_other, :onClick => "showmagnitude_other()" %>				
+						</div>
+						<div class = "col-lg-3">				
+				
+					<%= f.radio_button :magnitude_other, 6, :default => @browser.magnitude_other, :onClick => "showmagnitude_other()" %>				
+						</div>
+						<div class = "col-lg-3">			
+				
+					<%= f.radio_button :magnitude_other, 7, :default => @browser.magnitude_other, :onClick => "showmagnitude_other()" %>				
+						</div>
+					</div>			
+				</td>
+			</tr>
+		</table>
+		<div class = "row">
+			<div class = "col-lg-5">			
+				<%= f.label $other_label %>							
+				<br>
+				<%= f.text_field :other, style: "" %>
+			</div>						
+		</div>
+
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "internet", :file => "shared/survey/tech/internet_c"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>
+			<div class = "col-lg-2">
+				<%= f.submit $submit, class: "btn btn-primary", onClick: "showSaved1();" %>
+			</div>
+			<div class = "col-lg-4" id = "saved8" style= "display: none">				
+				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+					Changes Saved
+				</div>
+			</div>
+		</div>
+	<% end %>
+</body>

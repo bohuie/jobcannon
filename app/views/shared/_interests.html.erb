@@ -1,0 +1,46 @@
+<head>
+
+  <style = "text/css">
+    #space{
+      padding: 0em;      
+      width: 4em;
+      padding-right: 0px;
+      margin-left: 0px;
+    }
+  </style>
+
+  <script type = "text/javascript">
+      
+  </script>
+</head>
+
+  <body> 
+    <% if !interests.nil? %>  
+      	<% if @tracker 
+          	@color = "#EFEFEF"
+        else
+          	@color = "#DCDCDC"
+        end        
+        %>
+      	<% @tracker = !@tracker %>       
+      	<div class = "row" style= "padding-top: 5px; background-color:<%= @color%>; width: 95%; margin-left:auto; margin-right: auto" >
+        	<div class = "col-lg-3">
+          		<h2 style = "margin: 0px; padding-left: 0px; padding-bottom: 0px; text-align: left"><%= interests.label %> </h2>
+        	</div>
+		</div>        
+
+      <div class = "row" style = "padding-bottom: 5px; background-color:<%= @color%>;width: 95%; margin-left: auto; margin-right: auto; position: relative; y=-15px">        
+
+        <% if interests.user_id == @userID %>
+            <div class = "col-lg-2" id = "space">
+              <div class = "hover" style = "width: 70%; height: 29px; ">
+                  <%= link_to image_tag('delete.png'), interests, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger", :style=>"padding: 3px; padding-top: 0px; height: 29px", :id=> "delete" %>
+                  <div class = "tooltip">
+                    Click here to delete
+                  </div>
+              </div>
+            </div>       
+        <%end%>        
+      </div> <!-- closes row -->
+    <% end%>
+ </body>

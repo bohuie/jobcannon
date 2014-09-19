@@ -1,0 +1,14 @@
+
+if (!($('#chatbox1').length)) {     
+        $('#testchat1').hide().after('<%= escape_javascript render("layouts/chat1") %>');
+        $("#chatbox2").load('layouts/_chat1.html.erb').scrollTop($("#chatbox2").load('layouts/_chat1.html.erb')[0].scrollHeight);   
+} 
+else if(!($('#chatbox12').length)){
+        $('#testchat2').hide().after('<%= escape_javascript render("layouts/chat2") %>');
+        $("#chatbox2").load('layouts/_chat2.html.erb').scrollTop($("#chatbox2").load('layouts/_chat2.html.erb')[0].scrollHeight);
+}
+else if (!($('#chatbox13').length)){
+	$('#testchat3').hide().after('<%= escape_javascript render("layouts/chat3") %>');
+	$("#chatbox2").load('layouts/_chat3.html.erb').scrollTop($("#chatbox2").load('layouts/_chat3.html.erb')[0].scrollHeight);
+}
+

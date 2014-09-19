@@ -1,0 +1,157 @@
+<% @label = "How well does each of the following statements describe you?" %>
+
+<% @private_header1 = "Does not describe me at all" %>
+<% @private_header2 = "Does not describe me" %>
+<% @private_header3 = "Describes me a little" %>
+<% @private_header4 = "Describes me" %>
+<% @private_header5 = "Describes me a lot" %>
+
+<% @q1 = "I am an influencer when it comes to social media" %>
+<% @q2 = "I enjoy creating content to post on social media" %>
+<% @q3 = "I prefer to see what others are doing on social media rather than creating my own content" %>
+<% @q4 = "I enjoy interacting with people online" %>
+<% @q5 = "I have a good understanding of current emerging trends in social media" %>
+<% @socialmediadesc = SocialMediaDesc.find_by(:user_id=> @user.user_id) %>
+
+<body>
+	<%= simple_form_for @socialmediadesc, remote: true do |f| %>
+
+	<%= f.label @label %>
+
+		<table id= "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= @private_header1 %>
+				</th>
+				<th>
+					<%= @private_header2 %>
+				</th>
+				<th>
+					<%= @private_header3 %>				
+				</th>
+				<th>
+					<%= @private_header4 %>				
+				</th>
+				<th>
+					<%= @private_header5 %>				
+				</th>				
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q1 %>
+				</td>
+				<td>
+					<%= f.radio_button :q1, 1, :default => @socialmediadesc.q1  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 2, :default => @socialmediadesc.q1  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 3, :default => @socialmediadesc.q1  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 4, :default => @socialmediadesc.q1  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 5, :default => @socialmediadesc.q1  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q2 %>
+				</td>
+				<td>
+					<%= f.radio_button :q2, 1, :default => @socialmediadesc.q2  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 2, :default => @socialmediadesc.q2  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 3, :default => @socialmediadesc.q2  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 4, :default => @socialmediadesc.q2  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 5, :default => @socialmediadesc.q2  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q3 %>
+				</td>
+				<td>
+					<%= f.radio_button :q3, 1, :default => @socialmediadesc.q3  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 2, :default => @socialmediadesc.q3  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 3, :default => @socialmediadesc.q3  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 4, :default => @socialmediadesc.q3  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 5, :default => @socialmediadesc.q3  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q4 %>
+				</td>
+				<td>
+					<%= f.radio_button :q4, 1, :default => @socialmediadesc.q4  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 2, :default => @socialmediadesc.q4  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 3, :default => @socialmediadesc.q4  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 4, :default => @socialmediadesc.q4  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 5, :default => @socialmediadesc.q4  %>				
+				</td>
+			</tr>
+			<tr id = "last_row">
+				<td style = "text-align: left">
+					<%= @q5 %>
+				</td>
+				<td>
+					<%= f.radio_button :q5, 1, :default => @socialmediadesc.q5  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 2, :default => @socialmediadesc.q5  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 3, :default => @socialmediadesc.q5  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 4, :default => @socialmediadesc.q5  %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 5, :default => @socialmediadesc.q5  %>				
+				</td>
+			</tr>
+		</table>
+		<br>
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "social_media", :file => "shared/survey/tech/social_media_a"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>				
+			<div class="col-lg-2">
+				<%= f.submit $continue, class: "btn btn-primary" %>
+			</div>
+			<div class = "col-lg-4" id = "saved6" style= "display: none">
+				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+					Changes Saved
+				</div>
+			</div>
+		</div>		
+	<% end %>	
+</body>

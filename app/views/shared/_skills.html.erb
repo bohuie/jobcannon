@@ -1,36 +1,137 @@
 <head>
 
   <style = "text/css">
-    .space{
-      padding: 0.5em;
+    #space{
+      padding: 0em;      
+      width: 4em;
+      padding-right: 0px;
+      margin-left: 0px;
     }
-
   </style>
+
+  <script type = "text/javascript">
+      
+  </script>
 </head>
-  <body>
-    <table border = "0">
-      <tr>
-        <td class = "space" style = "max-width:12em; width: 12em"><p><%= skills.label %></p></td>
-        <% if !skills.nil? %>
-          <% if skills.user_id == @userID %>
-            <td class = "space">
-              <div class = "hover">
-                <%= link_to image_tag('edit.png'), edit_skill_path(skills.skill_id), class: "btn btn-small btn-info"%>
-              <div class = "tooltip">
-                Click here to edit
-              </div>
-            </div>
-            </td>
-            <td class = "space">
-              <div class = "hover">
-                <%= link_to image_tag('delete.png'), skills, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
-              <div class = "tooltip">
-                Click here to delete
-              </div>
-            </div>
-            </td>
-            <% end %>
+
+  <body> 
+    <% if !skills.nil? %>  
+      <% if @tracker 
+          @color = "#EFEFEF"
+        else
+          @color = "#DCDCDC"
+        end        
+        %>
+      <% @tracker = !@tracker 
+          @endorsers = Endorse.where(:skill_id=>skills.skill_id).first(6)
+      %>       
+      <div class = "row" style= "padding-top: 5px; background-color:<%= @color%>; width: 95%; margin-left:auto; margin-right: auto" >
+        <div class = "col-lg-3">
+          <h2 style = "margin: 0px; padding-left: 0px; padding-bottom: 0px; text-align: left"><%= skills.label %> </h2>
+          <% if skills.user_id != @userID %>
+              
+              
+              <% @endorsed = Endorse.find_by(skill_id: skills.skill_id, endorser_id: @userID) %>
+              <% if @endorsed.nil? %>
+                <% @endor = Endorse.new %>
+                  <%= simple_form_for @endor, html: {style: "margin:0; position: relative; top: -15px;"}, remote: true do |f|%>
+
+                    <%= f.hidden_field :skill_id , :value => skills.skill_id %>
+                    <%= f.hidden_field :endorser_id, :value => @userID %>
+                    <br>
+                    <div class = "hover" style = "width: 70%; height: 20px; ">                      
+                      <%= image_submit_tag("plus.png")  %>
+                      <div class = "tooltip">
+                        Endorse this skill
+                      </div>
+                    </div>
+                  <% end %>
+              <% else %>
+                <%= simple_form_for @endorsed do |f| %>                    
+
+                    <% f.hidden_field :skill_id , :value => @endorsed.skill_id %>
+                    <% f.hidden_field :endorser_id, :value => @endorsed.endorser_id %>
+                    <br>  
+                    <div class = "hover" style = "width: 70%; height: 29px; ">                      
+                      <%= image_submit_tag("minus.png") %>
+                      <div class = "tooltip">
+                        Unendorse this skill
+                      </div>
+                    </div>
+                <% end %>
+              <% end %>
+
           <% end %>
-      </tr>
-    </table>
+
+        </div>
+        <div class = "col-lg-7">
+          <div class = "row" style = "margin-top: 15px;">
+            <% @endorsers.each do |y| %>
+              <%  @p = Photo.find_by(:user_id=>y.endorser_id) 
+                  @pic_owner = User.find(y.endorser_id)
+                  @pic_skills = Skill.where(user_id: y.endorser_id).first(3)
+              %>
+              
+              <div class = "col-lg-1" style = "padding: 0px; padding-bottom: 5px; width: 40px; text-align: center;">
+                <div class = "hover" style = "width: 100%; height: 29px; ">                      
+                  <% if !@p.nil? %>
+                      <%= image_tag @p.photo.url, :class => "pic", :style => "width: 30px; height: 30px;" %>
+                    <% else %>
+                      <%= image_tag "prof.jpeg", :class => "pic", :style => "width: 30px; height: 30px;" %>
+                    <% end %>
+                    <div class = "tooltip top" data-toggle="tooltip" style = "width: 20em; ">
+                        <div class = "row">                            
+                            <div class = "col-lg-5">                              
+                              <%= image_tag "prof.jpeg", :class => "pic", :style => "width: 70px; height: 70px; padding-top: 10px; padding-left:10px;" %>
+                            </div>
+                            <div class = "col-lg-7" style = "text-align:left; padding: 5px; ">
+                              <%= link_to @pic_owner.fname+" "+@pic_owner.lname, profile_path(@pic_owner), :style => "color: blue;"%> 
+                              <br>
+                              <font size="1"><%= @pic_owner.email %> </font> <br>
+                              Skills: 
+                              <% @pic_skills.each do |p| %>
+                                  <%= p.label %>,
+                              <% end %>
+                              
+                            </div>
+                          </div>                        
+                    </div>
+                  </div>
+              </div>
+
+            <% end %>
+
+            <div class = "col-lg-1" style = "padding: 0px; padding-top: 5px; text-align: center; width: 40px">        <% if skills.times_endorsed > 6 %>
+                  +<%= (skills.times_endorsed)-6 %>
+                <% end %>
+            </div>
+          </div> <!-- closes row-->
+        </div>
+      </div>
+
+      <div class = "row" style = "padding-bottom: 5px; background-color:<%= @color%>;width: 95%; margin-left: auto; margin-right: auto; position: relative; y=-15px">        
+
+        <% if skills.user_id == @userID %>
+
+            <div class = "col-lg-2" id = "space" style = "padding-left: 1.2em">
+                <div class = "hover" style = "width: 70%">
+                  <%= link_to image_tag('edit.png'), edit_skill_path(skills.skill_id), class: "btn btn-small btn-info",
+                  :style =>"padding:3px", :id => "edit"%>
+                  <div class = "tooltip">
+                    Click here to edit
+                  </div>
+                </div>
+            </div>
+
+            <div class = "col-lg-2" id = "space">
+              <div class = "hover" style = "width: 70%; height: 29px; ">
+                  <%= link_to image_tag('delete.png'), skills, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger", :style=>"padding: 3px; padding-top: 0px; height: 29px", :id=> "delete" %>
+                  <div class = "tooltip">
+                    Click here to delete
+                  </div>
+              </div>
+            </div>       
+        <%end%>        
+      </div> <!-- closes row -->
+    <% end%>
  </body>

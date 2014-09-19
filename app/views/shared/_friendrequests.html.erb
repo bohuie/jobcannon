@@ -1,4 +1,4 @@
-<% @friend = User.find_by(user_id: friendrequests.sender_id) %>
+<% @friend = User.find_by(user_id: friendrequests.user_id) %>
 <p> <%= @friend.fname %> <%= @friend.lname %>
 
 <%= link_to "+Accept", {:controller => "friendships", :action => 'accept', :friend_id => friendrequests.friendship_id},  class: "btn btn-small btn-primary" %>

@@ -1,0 +1,373 @@
+<head>
+<script>	
+    function showSaved1(){
+      $("#saved10").fadeIn();
+      setTimeout(function(){$("#saved10").fadeOut("slow")}, 1000)
+    }
+</script>
+</head>
+
+<% @label = "How fluent are you with the following online collaboration tools?" %>
+
+<% @q1 = "Skype" %>
+<% @q2 = "FaceTime" %>
+<% @q3 = "Google Voice/Google Talk" %>
+<% @q4 = "Google docs" %>
+<% @q5 = "Dropbox" %>
+<% @q6 = "Zoho" %>
+<% @q7 = "Microsoft Office Live" %>
+<% @q8 = "Doodle" %>
+<% @q9 = "GoToMeeting" %>
+<% @q10 = "Click Meeting" %>
+<% @q11 = "MeetingBurner" %>
+<% @q12 = "WebEx" %>
+<% @onlinecolab_fluentcy = OnlineColabFluentcy.find_by(:user_id=> @user.user_id) %>
+
+<body>
+	<%= simple_form_for @onlinecolab_fluentcy, :remote=>true do |f| %>
+
+		<%= f.label @label %>
+		<br>
+		<table id = "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= $header1 %>
+				</th>
+				<th>
+					<%= $header2 %>
+				</th>
+				<th>
+					<%= $header3 %>
+				</th>
+				<th>
+					<%= $header4 %>
+				</th>
+				<th>
+					<%= $header5 %>
+				</th>
+				<th>
+					<%= $header6 %>
+				</th>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q1 %>
+				</td>
+				<td>
+					<%= f.radio_button :q1, 6, :default => @onlinecolab_fluentcy.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 5, :default => @onlinecolab_fluentcy.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 4, :default => @onlinecolab_fluentcy.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 3, :default => @onlinecolab_fluentcy.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 2, :default => @onlinecolab_fluentcy.q1 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q1, 1, :default => @onlinecolab_fluentcy.q1 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q2 %>
+				</td>
+				<td>
+					<%= f.radio_button :q2, 6, :default => @onlinecolab_fluentcy.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 5, :default => @onlinecolab_fluentcy.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 4, :default => @onlinecolab_fluentcy.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 3, :default => @onlinecolab_fluentcy.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 2, :default => @onlinecolab_fluentcy.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 1, :default => @onlinecolab_fluentcy.q2 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q3 %>
+				</td>
+				<td>
+					<%= f.radio_button :q3, 6, :default => @onlinecolab_fluentcy.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 5, :default => @onlinecolab_fluentcy.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 4, :default => @onlinecolab_fluentcy.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 3, :default => @onlinecolab_fluentcy.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 2, :default => @onlinecolab_fluentcy.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 1, :default => @onlinecolab_fluentcy.q3 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q4 %>
+				</td>
+				<td>
+					<%= f.radio_button :q4, 6, :default => @onlinecolab_fluentcy.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 5, :default => @onlinecolab_fluentcy.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 4, :default => @onlinecolab_fluentcy.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 3, :default => @onlinecolab_fluentcy.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 2, :default => @onlinecolab_fluentcy.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 1, :default => @onlinecolab_fluentcy.q4 %>				
+				</td>
+			</tr>
+				<tr>
+				<td style = "text-align: left">
+					<%= @q5 %>
+				</td>
+				<td>
+					<%= f.radio_button :q5, 6, :default => @onlinecolab_fluentcy.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 5, :default => @onlinecolab_fluentcy.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 4, :default => @onlinecolab_fluentcy.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 3, :default => @onlinecolab_fluentcy.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 2, :default => @onlinecolab_fluentcy.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 1, :default => @onlinecolab_fluentcy.q5 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q6 %>
+				</td>
+				<td>
+					<%= f.radio_button :q6, 6, :default => @onlinecolab_fluentcy.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 5, :default => @onlinecolab_fluentcy.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 4, :default => @onlinecolab_fluentcy.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 3, :default => @onlinecolab_fluentcy.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 2, :default => @onlinecolab_fluentcy.q6 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q6, 1, :default => @onlinecolab_fluentcy.q6 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q7 %>
+				</td>
+				<td>
+					<%= f.radio_button :q7, 6, :default => @onlinecolab_fluentcy.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 5, :default => @onlinecolab_fluentcy.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 4, :default => @onlinecolab_fluentcy.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 3, :default => @onlinecolab_fluentcy.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 2, :default => @onlinecolab_fluentcy.q7 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q7, 1, :default => @onlinecolab_fluentcy.q7 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q8 %>
+				</td>
+				<td>
+					<%= f.radio_button :q8, 6, :default => @onlinecolab_fluentcy.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 5, :default => @onlinecolab_fluentcy.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 4, :default => @onlinecolab_fluentcy.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 3, :default => @onlinecolab_fluentcy.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 2, :default => @onlinecolab_fluentcy.q8 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q8, 1, :default => @onlinecolab_fluentcy.q8 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q9 %>
+				</td>
+				<td>
+					<%= f.radio_button :q9, 6, :default => @onlinecolab_fluentcy.q9 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 5, :default => @onlinecolab_fluentcy.q9 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 4, :default => @onlinecolab_fluentcy.q9 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 3, :default => @onlinecolab_fluentcy.q9 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 2, :default => @onlinecolab_fluentcy.q9 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q9, 1, :default => @onlinecolab_fluentcy.q9 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q10 %>
+				</td>
+				<td>
+					<%= f.radio_button :q10, 6, :default => @onlinecolab_fluentcy.q10 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 5, :default => @onlinecolab_fluentcy.q10 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 4, :default => @onlinecolab_fluentcy.q10 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 3, :default => @onlinecolab_fluentcy.q10 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 2, :default => @onlinecolab_fluentcy.q10 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q10, 1, :default => @onlinecolab_fluentcy.q10 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q11 %>
+				</td>
+				<td>
+					<%= f.radio_button :q11, 6, :default => @onlinecolab_fluentcy.q11 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 5, :default => @onlinecolab_fluentcy.q11 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 4, :default => @onlinecolab_fluentcy.q11 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 3, :default => @onlinecolab_fluentcy.q11 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 2, :default => @onlinecolab_fluentcy.q11 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q11, 1, :default => @onlinecolab_fluentcy.q11 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q12 %>
+				</td>
+				<td>
+					<%= f.radio_button :q12, 6, :default => @onlinecolab_fluentcy.q12 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 5, :default => @onlinecolab_fluentcy.q12 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 4, :default => @onlinecolab_fluentcy.q12 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 3, :default => @onlinecolab_fluentcy.q12 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 2, :default => @onlinecolab_fluentcy.q12 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q12, 1, :default => @onlinecolab_fluentcy.q12 %>				
+				</td>
+			</tr>
+			<tr id = "last_row">
+				<td style = "text-align: left">
+					<%= $other %>
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 6, :default => @onlinecolab_fluentcy.magnitude_other %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 5, :default => @onlinecolab_fluentcy.magnitude_other %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 4, :default => @onlinecolab_fluentcy.magnitude_other %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 3, :default => @onlinecolab_fluentcy.magnitude_other %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 2, :default => @onlinecolab_fluentcy.magnitude_other %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 1, :default => @onlinecolab_fluentcy.magnitude_other %>				
+				</td>
+			</tr>
+		</table>
+		<br>
+		<%= f.label $other_label %>
+		<br>
+		<%= f.text_field :other, style: "width: 50%" %>
+
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "online", :file => "shared/survey/tech/online_a"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>				
+			<div class="col-lg-2">
+				<%= f.submit $submit, class: "btn btn-primary", onClick: "showSaved1();" %>
+			</div>
+			<div class = "col-lg-4" id = "saved10" style= "display: none">
+				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+					Changes Saved
+				</div>
+			</div>
+		</div>						 
+	<% end %>
+</body>

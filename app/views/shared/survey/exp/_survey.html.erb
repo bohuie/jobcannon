@@ -1,0 +1,113 @@
+<script type="text/javascript">
+
+$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+
+function myFunction(){
+    var toggle_vol = new Boolean;
+    toggle_vol = document.getElementById('volunteer_select').value; 
+       if (toggle_vol == true)
+       {
+          <% @temp = true %>          
+       }
+       else 
+       {
+          <% @temp = false %>          
+       }
+    }
+
+</script>
+
+<% @ft_years = "Number of years: " %>
+<% @ft_months = "Number of Months: " %>
+
+<% @ft_agr = "Agriculture, forestry,fishing and hunting" %>
+<% @ft_mining = "Mining, quarrying, and oil and gas extraction" %>
+<% @ft_utilities = "Utilities (Ex. Electricity and Natural Gas distribution)" %>
+<% @ft_construction = "Construction" %>
+<% @ft_manufactoring = "Manufacturing" %>
+<% @ft_wholesale = "Wholesale trade (EX. Motor Vehicle Parts wholesaler)" %>
+<% @ft_retail = "Retail trade (Ex. Clothing, computer, grocery store)" %>
+<% @ft_transport = "Transportation and warehousing (EX. taxi, general warehousing and storage)" %>
+<% @ft_info = "Information and cultural industries (EX. Publisher, Video production, Radio station)" %>
+<% @ft_finance = "Finance and insurance" %>
+<% @ft_real = "Real estate and rental and leasing" %>
+<% @ft_prof = "Professional, scientific and technical services (EX. Legal services, accounting, engineering services" %>
+<% @ft_managment = "Managment of companies and enterprises (EX. Corporate managing offices)" %>
+<% @ft_admin = "Administrative and support, waste managment and remediation services" %>
+<% @ft_education = "Education services" %>
+<% @ft_health = "Health care and social assistance" %>
+<% @ft_arts = "Arts, entertainment and recreation (EX. Amusment park, zoo, museum)" %>
+<% @ft_accom = "Accomodation and food services (EX. Hotel, restaurant)" %>
+<% @ft_public = "Public administration" %>
+<% @ft_other = "Other: Please Specify" %>
+
+<% @employ = Experiencetable.find_by(:user_id => @user.user_id, :employ => true)  
+   @volunteer = Experiencetable.find_by(:user_id => @user.user_id, :volunteer => true)  
+   @full_time = Experiencetable.find_by(:user_id => @user.user_id, :full_time => true) 
+   @part_time = Experiencetable.find_by(:user_id => @user.user_id, :part_time => true) %>
+
+<div class = "row">
+	<div class = "col-lg-2">
+		<ul class="nav nav-pills nav-stacked" style = "margin-top: 10px">
+	        <li class = "active"><a href="#work" data-toggle="tab">Full Time Experience</a></li>
+	        <li><a href="#part" data-toggle="tab">Part Time Experience</a></li>
+	        <li><a href="#employ" data-toggle="tab">Employment</a></li>
+	        <li><a href="#vol" data-toggle="tab">Volunteer</a></li>
+	    </ul>
+	</div>
+
+	<div class ="col-lg-10">
+    	<div class = "tab-content">
+    		<div class="tab-pane fade in active content survey-tabs" id="work"> 
+    			<div class = "row">
+    				<div class = "col-lg-10">
+    					<% @time = @full_time %>
+    					<% @ft_question = "How many years/months of FULL TIME work experience do you have?" %>
+    					<% @industryQ = "In what industries have you worked?" %>
+    					<%= render 'shared/survey/exp/full_time' %>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade in content survey-tabs" id="part"> 
+    			<div class = "row">
+    				<div class = "col-lg-10">
+    					<% @time = @part_time %>
+    					<% @industryQ = "In what industries have you worked?" %>
+    					<% @ft_question = "How many years/months of PART TIME work experience do you have?" %>
+    					<%= render 'shared/survey/exp/part_time' %>
+					</div>
+				</div>
+			</div>
+			<% if !@user.employer? %>
+				<div class="tab-pane fade in content survey-tabs" id="employ"> 
+	    			<div class = "row">
+	    				<div class = "col-lg-10">
+	    					<% @time = @employ%>
+	    					<% @industryQ = "In what industries are you looking for work? (Select three that apply)" %>
+	    					<% @ft_question = "soemthing" %>
+	    					<%= render 'shared/survey/exp/employ' %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+			<div class="tab-pane fade in content survey-tabs" id="vol"> 
+    			<div class = "row">
+    				<div class = "col-lg-10">
+    					<% @time = @volunteer%>
+    					<% @industryQ = "Volunteer Work" %>
+    					<% @ft_question = "Have you gained work experience through volunteer work?" %>
+    					<% @vol_hours = "How many hours of volunteer experience do you have?" %>
+    					<% @table_info = "Identify which industru/industries you have gained work experience
+    					through your volunteer work. (Check all that apply)" %>
+    					<% @vol_hours = "How many hours of volunteer Work do you have?" %>
+    					<%= render 'shared/survey/exp/volunteer' %>    								    				
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
