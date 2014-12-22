@@ -74,7 +74,6 @@ class FriendshipsController < ApplicationController
                           sourcereferences: Reference.where(user_id: r.user_id),
                           sourceexperiences: Experience.where(user_id: r.user_id), 
                           sourcecompany: false,
-                          sourceflaggedjobs: FlaggedCandidate.where(flagged_user_id: r.user_id),
                           sourceinterests: Interest.where(user_id: r.user_id),
                           sourcefollowing: @sourceusers,
                           targetreferences: Reference.where(user_id: r.receiver_id),
