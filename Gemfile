@@ -29,8 +29,9 @@ gem 'coffee-rails', '4.0.0'
 gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'prawn'
-gem 'capistrano', '~> 3.3.0'
-gem 'rvm-capistrano'
+gem 'capistrano', '~> 3.0'
+gem 'capistrano-rvm'
+
 
 
 group :development, :test do
