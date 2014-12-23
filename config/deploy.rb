@@ -1,4 +1,5 @@
 
+set :rvm_type, :user                     # Defaults to: :auto
 set :rvm_ruby_version, '2.0@jobcannon'      # Defaults to: 'default'
 #
 # config valid only for current version of Capistrano
