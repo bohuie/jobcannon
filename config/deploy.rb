@@ -1,11 +1,11 @@
 
 set :rvm_type, :user                     # Defaults to: :auto
-set :rvm_ruby_version, '2.0@jobcannon'      # Defaults to: 'default'
+set :rvm_ruby_version, 'ruby-2.0.0-p598@jobcannon'      # Defaults to: 'default'
 #
 # config valid only for current version of Capistrano
 lock '3.3.5'
 
-set :application, 'jobcanonn'
+set :application, 'jobcannon'
 set :repo_url, 'git@github.com:bohuie/jobcannon.git'
 
 # Default branch is :master
