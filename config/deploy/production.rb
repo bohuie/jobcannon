@@ -12,6 +12,7 @@
 # used to set extended properties on the server.
 
 server 'jobcannon.ok.ubc.ca', user: 'bowenhui', roles: %w{web}
+set :use_sudo, true
 set :deploy_to, "/UBC-O/bowenhui/public"
 
 

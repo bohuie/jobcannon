@@ -1,9 +1,6 @@
-require 'rvm/capistrano'
-set :rvm_ruby_string, '2.0@jobcannon'
-set :rvm_type, :user  # Literal ":user"
-before 'deploy:setup', 'rvm:install_rvm'  # install/update RVM
-before 'deploy:setup', 'rvm:install_ruby' # install Ruby and create gemset, OR:
-before 'deploy:setup', 'rvm:create_gemset' # only create gemset
+
+set :rvm_type, :user                     # Defaults to: :auto
+set :rvm_ruby_version, '2.0@jobcannon'      # Defaults to: 'default'
 #
 # config valid only for current version of Capistrano
 lock '3.3.5'
