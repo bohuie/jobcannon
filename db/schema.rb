@@ -358,12 +358,12 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   end
 
   create_table "messages", force: true do |t|
-    t.integer  "user_id",   default: 0,  null: false
-    t.integer  "receiver_id", default: 0,  null: false
-    t.datetime "sent_at",                  null: false
-    t.text     "message",     default: "", null: false
-    t.string   "sender_name"
-    t.boolean  "seen"
+    create_table "messages", force: true do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.string "message"
+    t.boolean "seen", default: false, null: false
+    t.datetime "sent_at"
   end
 
   create_table "multi_media_skills", force: true do |t|

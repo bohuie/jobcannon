@@ -1,7 +1,3 @@
-<% broadcast @channel do %>
-  $("#chat").load('messages/_privatechatform.html.erb').append("<%= escape_javascript render(@message) %>");
-  $("#chatbox2").load('layouts/_chat1.html.erb').scrollTop($("#chatbox2").load('layouts/_chat1.html.erb')[0].scrollHeight);
-  $("#chatbox2").load('layouts/_chat2.html.erb').scrollTop($("#chatbox2").load('layouts/_chat2.html.erb')[0].scrollHeight);
-  $("#chatbox2").load('layouts/_chat3.html.erb').scrollTop($("#chatbox2").load('layouts/_chat3.html.erb')[0].scrollHeight);
-<% end %>
+$("#chatfield").load('messages/_privatechat.html.erb').append("<%= escape_javascript render(@message) %>");
+$("#chatbox_div").load('layouts/_chat.html.erb').scrollTop($("#chatbox_div").load('layouts/_chat.html.erb')[0].scrollHeight);
 $("#new_message")[0].reset();

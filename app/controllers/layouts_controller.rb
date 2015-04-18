@@ -1,43 +1,99 @@
 class LayoutsController < ApplicationController
 
-	def privatechat
-	   	@user = current_user
-	   	if params[:id1]<params[:id2]		#the convention will be to have the lesser number come first in the path and the channel
-	    	@id1 = params[:id1].to_i
-	    	@id2 = params[:id2].to_i
-	    else
-	    	@id2 = params[:id1].to_i
-	    	@id1 = params[:id2].to_i
+	def show
+		if user_signed_in?
+			#This checks for currently online users
+			@user = current_user
+		    @online = User.where(last_seen_at: (Time.now-7.hours-15.seconds..Time.now-7.hours)).where.not(id: @user.id)
+		    #check for unread messages
+		    @messagesreceived = Message.where(receiver_id: @user.id, seen: false).order(:sent_at)
+		    if !@messagesreceived.empty? || !@user.partner_id.nil? || @user.partner_id != -1		    	
+		    	#find the sender of the most recent unread message
+		    	if(@messagesreceived.first)
+		    		@other = User.find(@messagesreceived.first.sender_id)
+		    		if(@other.partner_id = @user.id)
+		    			@user.update_attribute(:partner_id, @other.id)
+		    		end
+		    	elsif !@user.partner_id.nil? && @user.partner_id != -1
+		    		@other = User.find(@user.partner_id)
+		    	end
+		    	if !@other.nil?
+		    		@user.update_attribute(:available, false)
+			    	#find all messages send to current user
+			    	@messagesreceived = Message.where(sender_id: @other.id, receiver_id: @user.id).order(:sent_at)
+			    	#find all messages sent from user to other messager
+			    	@messagessent = Message.where(sender_id: @user.id, receiver_id: @other.id).order(:sent_at)
+			    end
+		    end
+		    if !@messagesreceived.nil?
+		    	@messages = @messagesreceived
+		    else
+		    	@messages = []
+		    end
+		    if !@messagessent.nil?		    
+		    	@messages = @messages+@messagessent
+		    end
+		    #order all messages between these two and store it in messages
+		    @messages = @messages.sort_by { |obj| obj.sent_at }
+		    @unseen = @messagesreceived.where(seen: false)
+		end
+		respond_to do |format|
+	      format.js { 
+	      	if @messages.nil? || @messages.empty?
+	      		render :online 
+	      	elsif @user.partner_id == -1
+	      		render :nochat
+	      	elsif !@unseen.empty?
+	      		render :chat
+	      	else
+	      		render :closedchat
+	      	end
+	      }
 	    end
-
-	    if @user.user_id==@id1
-	  		@other = User.find(@id2)
-	  		@requested = Friendship.where(user_id: @user.user_id, receiver_id: @other.user_id, accepted: true)
-	    	@accepted = Friendship.where(user_id: @other.user_id, receiver_id: @user.user_id, accepted: true)
-	    	if @accepted.empty? and @requested.empty? #make sure they are friends
-	    		redirect_to root_path
-	    	end 
-	    elsif @user.user_id==@id2
-	  		@other = User.find(@id1)
-	  		@requested = Friendship.where(user_id: @user.user_id, receiver_id: @other.user_id, accepted: true)
-	    	@accepted = Friendship.where(user_id: @other.user_id, receiver_id: @user.user_id, accepted: true)
-	    	if @accepted.empty? and @requested.empty? #make sure they are friends
-	    		redirect_to root_path
-	    	end
-	  	else 
-	  		redirect_to root_path
-	  	end
-	    if !@other.nil? #make sure the other user exists
-	      @messages = Message.where(user_id: @other.user_id, receiver_id: @user.user_id)
-	      @messages = @messages + Message.where(user_id: @user.user_id, receiver_id: @other.user_id)
-	      @messages = @messages.sort_by { |obj| obj.sent_at } #loads all the past messages, ordered by date
-	    end
-
-	    @channel = "/"+@id1.to_s+"chatwith"+ @id2.to_s    #create the channel variable
-
-	    respond_to do |format|
-          	format.js
-    	end
   	end
 
+  	def openchat
+		if user_signed_in?
+			@user = current_user
+			@other = User.find(params[:id2])
+		    @online = User.where(last_seen_at: (Time.now-7.hours-15.seconds..Time.now-7.hours)).where.not(id: @user.id)
+		    @invitation = Message.new(sender_id: @user.id, receiver_id: @other.id, 
+		    	sent_at: DateTime.now-7.hours, 
+		    	message: "" )
+		    @invitation.save
+		end
+		respond_to do |format|
+	      format.js { render :chat }
+	    end
+  	end
+
+  	def accept_inv
+  		@message = Message.find(params[:id])
+  		@sender = User.find(@message.sender_id)
+  		@receiver = User.find(@message.receiver_id)
+  		@response = Message.new(sender_id: @receiver.id, receiver_id: @sender.id, 
+		    	sent_at: DateTime.now-7.hours, 
+		    	message: "Yes, thank-you")
+  		@response.save
+  		respond_to do |format|
+	      format.js { render :chat }
+	    end
+  	end
+
+  	def decline_inv
+  		@message = Message.find(params[:id])
+  		@sender = User.find(@message.sender_id)
+  		@receiver = User.find(@message.receiver_id)
+  		respond_to do |format|
+	      format.js { render :nochat }
+	    end
+  	end
+
+  	def endchat
+  		@sender = User.find(params[:id1])
+  		@receiver = User.find(params[:id2])
+  		respond_to do |format|
+	      format.js { render :nochat }
+	    end
+  	end
 end

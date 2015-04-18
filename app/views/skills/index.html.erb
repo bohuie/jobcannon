@@ -34,24 +34,11 @@
               <%= f.submit "Submit",:label => "Submit", class: "btn btn-large btn-primary" %>
             <% end %>
             <br><br>
-            <div style = "background-color: #E6E6E6; padding: 10px; border-radius: 5px;">
-              <%= render partial: 'shared/skills_triangle'%>
-            </div>
+            
         </div>
       </div>
     <% else %>
-        <div class = "row">
-          <div class = "col-lg-1">
-          </div>
-
-          <div class ="col-lg-11">
-
-            <div style = "background-color: #E6E6E6; padding: 10px; border-radius: 5px;">
-              <%= render partial: 'shared/skills_triangle'%>
-            </div>
-
-          </div>
-        </div>
+        
     <% end %>
     
   </div>

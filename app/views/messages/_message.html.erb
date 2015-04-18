@@ -1,6 +1,6 @@
 <% if !message.message.eql? "" %>
 	<li style = "list-style-type: none; padding: 0px; margin: 0px;">
-		<% if message.user_id == @current_user.id  %>
+		<% if message.sender_id == @user.id  %>
 			<div class = "sender-message">
 				<div class = "message-body-sender"><%= message.message %></div>
 				<div class = "message-time-sender"> 
@@ -12,8 +12,11 @@
 				</div>
 			</div>
 		<% else %>
+			<% message.update_attribute(:seen, true) %>
 			<div class = "reciever-message">
-				<div class = "message-body-reciever"><%= message.message %></div>
+				<div class = "message-body-reciever">
+					<%= message.message %>
+				</div>
 				<div class = "message-time-reciever"> 
 					<% if message.sent_at > Date.yesterday %>
 						Sent at: <%= message.sent_at.strftime("%H:%M") %>
@@ -21,8 +24,7 @@
 						Sent on: <%= message.sent_at.strftime("%b . %-d") %>
 					<% end %>
 				</div>
-				<% message.seen = true
-					message.save %>
+				<% message.update_attribute(:seen, true) %>
 			</div>
 		<% end %>
 	</li>
