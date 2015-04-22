@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_last_seen_at, if: proc { |p| user_signed_in? }
-  before_filter :log_page_view, if: proc { |p| user_signed_in? }
+  #before_filter :log_page_view, if: proc { |p| user_signed_in? }
 
   before_action :set_user
 
