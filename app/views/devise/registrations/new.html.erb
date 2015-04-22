@@ -22,6 +22,9 @@
 
 <h2>Sign up</h2>
 
+<%= params[:provider] %>
+
+
 <%= simple_form_for(@user, :url => { :action => "create" }) do |f| %>
   <%= devise_error_messages! %>
 
@@ -77,6 +80,7 @@
     </div>
   </div>
 
+<%= f.hidden_field :provider, :value => params[:provider]  %>
 
   <div class="row">
   <div class="rformsubmit"><%= f.submit "Sign up", class: "btn btn-medium btn-primary" %></div></div>

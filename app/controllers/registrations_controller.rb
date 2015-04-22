@@ -2,7 +2,9 @@ class RegistrationsController < Devise::RegistrationsController
 
 
 	def create
-  		super
+      if params[:provider].nil?
+  		  super
+      end
   		#session[:omniauth] = nil unless @user.new_record? 
 	end
 
