@@ -51,7 +51,7 @@
 
 
 <body>  
-    <% if @user.user_id == @owner.user_id %>
+    <% if @user.id == @owner.id %>
         <% if @owner.employer? %>          
           <%= render :partial => 'shared/profile_viewing/owner_employer' %>
         <% else %>        
