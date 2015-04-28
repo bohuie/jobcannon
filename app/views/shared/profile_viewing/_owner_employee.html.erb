@@ -70,24 +70,7 @@
 
                 <div class = "tab-pane fade in content" id = "jobs">
 
-                  <%
-                    @jobs = FlaggedJob.where(:user_id=>@user.user_id).first(3)
-
-                    @jobs.each do |j|
-                      if !j.posting_id.nil?
-                        @p = Posting.find(j.posting_id)
-                      end
-                  %>                      
-                      <div class = "row" style = "padding-bottom: 10px">
-                        <div class = "col-lg-8">
-                            <%= link_to @p.title,flagged_job_path(:anchor => @p.title.delete(' '))  %>
-                        </div>
-                        <div class = "col-lg-4">
-                            Status: <%= j.status %>
-                        </div>
-                      </div>
-
-                    <% end %>
+                  
 
                 </div>
             </div>
