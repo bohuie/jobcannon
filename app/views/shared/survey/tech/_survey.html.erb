@@ -1,0 +1,128 @@
+<head>
+	<script>
+
+
+		$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+
+	function mine(){
+	var hash = document.location.hash;
+	$(hash+'-li').addClass('active');
+	//$('#'+hash.replace(prefix,"")).addClass('active');
+	$(hash).addClass('active');
+}
+	</script>
+</head>
+
+
+<body onload = "mine()">
+	<div class = "row">
+	    <div class = "col-lg-3">
+		    <ul class="nav nav-pills nav-stacked" style = "margin-top: 10px" id="myTab">
+		        <li id = "basic-computer-skills-li">
+		        	<a href="#basic-computer-skills" data-toggle="tab">Basic Computer Skills</a>
+		        </li>
+		        <li id = "advanced-computer-skills-li">
+		        	<a href="#advanced-computer-skills" data-toggle="tab">Advanced Computer Skills</a>
+		        </li>
+		        <li id = "multi-media-skills-li">
+		        	<a href="#multi-media-skills" data-toggle="tab">Multi-Media Skills</a>
+		        </li>
+		        <li id = "word-processing-skills-li">
+		        	<a href="#word-processing-skills" data-toggle="tab">Word Processing Skills</a>
+		        </li>
+		        <li id = "spreadsheet-skills-li">
+		        	<a href="#spreadsheet-skills" data-toggle="tab">Spreadsheet Skills</a>
+		        </li>
+		        <li id = "presentation-skills-li">
+		        	<a href="#presentation-skills" data-toggle="tab">Presentation Skills</a>
+		        </li>
+		        <li id="email-skills-li"><a href="#email-skills" data-toggle="tab">Email Skills</a></li>
+		        <li id = "internet-skills-li">
+		        	<a href="#internet-skills" data-toggle="tab">Internet/Network Skills</a>
+		        </li>
+		        <li id = "social-media-skills-li">
+		        	<a href="#social-media-skills" data-toggle="tab">Social Media Skills</a>
+		        </li>
+		        <li id  = "online-skills-li"><a href="#online-skills" data-toggle="tab">Online Collaboration</a></li>
+		    </ul>
+		</div>
+		<div class= "col-lg-9">
+			<div class = "tab-content">
+				<div class="tab-pane fade in content survey-tabs" id="basic-computer-skills">
+					<div class ="row">
+						<div class = "col-lg-12" id ="basic">												
+							<%= render 'shared/survey/tech/basic_computer_a' %>					
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade in content survey-tabs" id="advanced-computer-skills">
+					<div class="row">
+						<div class ="col-lg-12">
+							<%= render 'shared/survey/tech/advanced_computer' %>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade in content survey-tabs" id="multi-media-skills">
+					<div class="row">
+						<div class ="col-lg-12" id = "media">						
+							<%= render 'shared/survey/tech/multi_media_a' %>						
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade in content survey-tabs" id="word-processing-skills">
+					<div class="row">
+						<div class ="col-lg-12" id="word">						
+							<%= render'shared/survey/tech/word_processing_a' %>						
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade in content survey-tabs" id="spreadsheet-skills">
+					<div class="row">
+						<div class ="col-lg-12" id="spreadsheet">
+							<%= render 'shared/survey/tech/spreadsheet_a' %>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade in content survey-tabs" id="presentation-skills">
+					<div class="row">
+						<div class ="col-lg-12" id ="presentation">
+							<%= render 'shared/survey/tech/presentation_a' %>												
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade in content survey-tabs" id="email-skills">
+					<div class="row">
+						<div class ="col-lg-12" id = "email">										
+							<%= render 'shared/survey/tech/email_a' %>						
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade in content survey-tabs" id="internet-skills">
+					<div class="row">
+						<div class ="col-lg-12" id="internet">												
+							<%= render 'shared/survey/tech/internet_a' %>						
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade in content survey-tabs" id="social-media-skills">
+					<div class="row">
+						<div class ="col-lg-12" id ="social_media">						
+							<%= render 'shared/survey/tech/social_media_a' %>						
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade in content survey-tabs" id="online-skills">
+					<div class="row">
+						<div class ="col-lg-12" id = "online">						
+							<%= render 'shared/survey/tech/online_a' %>												
+						</div>
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+</body>

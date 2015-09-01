@@ -1,0 +1,36 @@
+<div class='myClass'>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="panel-heading">Number of responses</div>
+      <div class = 'col-md-12'>
+        <%= data['numResponses'] %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="panel-heading">Ages</div>
+      <div class = 'col-md-12'>
+        <%= render :partial => 'age_graph', :locals => {data: data['ages']}%>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="panel-heading">Gender</div>
+      <div class = 'col-md-12'>
+        <%= render :partial => 'gender_graph', :locals => {data: data['genders']}%>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="panel-heading">Education</div>
+      <div class = 'col-md-12'>
+        <%= render :partial => 'education_graph', :locals => {data: data['education']}%>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script type="text/javascript" src="assets/javascripts/d3.js"></script>
+<style>
+
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+  stroke-opacity: 0.4;
+}
+
+.node rect {
+  fill: transparent;
+  stroke: #666;
+  stroke-width: 2.4px;
+}
+
+.node{
+  opacity: 1;
+}
+
+text {
+  font: 12px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.profilenametext {
+  font: 20px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.profiletagtext{
+  font: 16px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.profilecontenttext{
+  font: 12px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.searchtext{
+  font: 10px sans-serif;
+  pointer-events: none;
+  opacity: 1;
+}
+
+</style>
+
+<body>
+  <div class = "row" id = "search-row" style = "padding: 0; height: 50px;">
+    <%= simple_form_for NetworkSearch.new, :html => { :id => "allSearch" }, :controller => "NetworkSearch", :action => "create" , remote: true do |f| %>
+      <div class = "col-md-1" style = "width:15px;">
+        <%= f.input :qtype, collection: ["all", "name", "skill", "interest"], label: false, :autocomplete => "off", :autofocus => true, :input_html => {style: "display: inline; width: 15px;"} %>
+      </div>
+      <div class = "col-md-3" style = "padding-left: 0px; padding-right: 0px; height: 50px; display: inline;">
+        <%= f.text_field :query, :autocomplete => "off", :autofocus => true,  style: "display: inline;" %>
+      </div>
+
+      <%= f.hidden_field :user_id, :value => @user.user_id %>
+    <% end %>
+  </div>
+  <div class = "row" id = "body-row" style = "padding: 0;">
+    <div class = "col-md-12" id = "body-col" style = "padding: 0; vertical-align: top;">
+      <div id = "display" style = "width: 100%; height: 100%; border: 1px solid black;">
+        <script>
+        d3.selection.prototype.moveToFront = function() {
+          return this.each(function(){
+            this.parentNode.appendChild(this);
+          });
+        };
+        var foundcolor = ["rgb(255, 0, 0) ", "rgb(0, 255, 0) ", "rgb(0, 0, 255) "];
+        var searches = 0;
+        var links = <%= @friendships.to_s.html_safe %>
+        var nodes = [];
+        var linkedByIndex = {};
+        var color = "#FEDCBA"
+        var selectedcolor = "#ABCDEF"
+        // Compute the distinct nodes from the links.
+        links.forEach(function(link) {
+          link.source = nodes[link.source] || (nodes[link.source] = {name: link.source, 
+                                                                    id: link.sourceid,
+                                                                    skills: link.sourceskills,
+                                                                    photo: link.sourcephoto, 
+                                                                    email: link.sourceemail,
+                                                                    references: link.sourcereferences,
+                                                                    experiences: link.sourceexperiences,
+                                                                    company: link.sourcecompany,
+                                                                    flaggedjobs: link.sourceflaggedjobs,
+                                                                    interests: link.sourceinterests,
+                                                                    following: link.sourcefollowing});
+          link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, 
+                                                                    id: link.targetid,
+                                                                    skills: link.targetskills,
+                                                                    photo: link.targetphoto,
+                                                                    email: link.targetemail,
+                                                                    references: link.targetreferences,
+                                                                    experiences: link.targetexperiences,
+                                                                    company: link.targetcompany,
+                                                                    interests: link.targetinterests,
+                                                                    following: link.targetfollowing});
+          linkedByIndex[link.source.name + "," + link.target.name] = 1;
+          linkedByIndex[link.target.name + "," + link.source.name] = 1;
+        });
+        var width = $('#body-col').width(),
+            height = window.innerHeight-185;
+        var svg0 = d3.select("#display").append("svg")
+            .attr("width", 100)
+            .attr("height", 38)
+            .append("g");
+        var svg = d3.select("#display").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .call(d3.behavior.zoom().scaleExtent([0.4, 3]).on("zoom", zoom))
+            .append("g");
+
+        function zoom() {
+          svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+        }
+
+        var force = d3.layout.force()
+          .nodes(d3.values(nodes))
+          .links(links)
+          .size([width, height])
+          .linkDistance(150)
+          .charge(-2000)
+          .friction(0.85)
+          .on("tick", tick)
+          .start();
+
+        var link = svg.selectAll(".link")
+            .data(force.links())
+            .enter().append("line")
+            .attr("class", "link");
+
+        var node = svg.selectAll(".node")
+            .data(force.nodes())
+            .enter().append("g")
+            .attr("class", "node")
+            .on("click", expand)
+            .call(force.drag);
+
+        node.append("rect")
+            .attr("x", -36)
+            .attr("y", -12)
+            .attr("width", 100)
+            .attr("height", 25)
+            .attr("rx", 5)
+            .style("fill",function(d) { 
+              if(d.company)
+                return "#ABCDEF";
+              else{
+                return "#FEDCBA";
+              }
+            });
+
+        node.append("svg:image")
+            .attr('x',-35)
+            .attr('y',-11)
+            .attr('width', 23)
+            .attr('height', 23)
+            .attr("xlink:href", function(d) { 
+              if(d.photo)
+                return d.photo;
+              else{
+                d.photo = "/assets/per.png";
+                return d.photo;
+              }
+            });
+        
+        node.append("rect")
+            .attr("x", -36)
+            .attr("y", -12)
+            .attr("width", 25)
+            .attr("height", 25)
+            .attr("rx", 5);
+
+        node.append("text")
+            .attr("x", -5)
+            .attr("y", 0)
+            .attr("clip-path", "url(#clip1)")
+            .text(function(d) { return d.name; });
+        
+
+        function tick() {
+          link
+              .attr("x1", function(d) { return d.source.x; })
+              .attr("y1", function(d) { return d.source.y; })
+              .attr("x2", function(d) { return d.target.x; })
+              .attr("y2", function(d) { return d.target.y; });
+
+          node
+              .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+        }
+
+        function expand(){
+          var current = d3.select(this);
+          current.moveToFront();
+          if(current.select("rect").attr("width") == 100){
+            var info = nodes[current.select("text").text()]
+            //Fade all other nodes
+            d3.selectAll(".node").transition()
+                .style("opacity", "0.75");
+            current.transition()
+              .style("opacity", "1");
+            //Increase size of photo
+            current
+              .select("image").transition()
+                .attr('width', 38)
+                .attr('height', 38);
+            //Increase size of node to hold information
+            current
+              .selectAll("rect").transition()
+                .attr("width", function(d){
+                  if(parseFloat(d3.select(this).attr("width"))>50){
+                    return 150+parseFloat(d3.select(this).attr("width"))
+                  }else{
+                    return 40
+                  }
+                })
+                .attr("height", function(d){
+                  if(parseFloat(d3.select(this).attr("width"))>50){
+                    return 125+parseFloat(d3.select(this).attr("height"))
+                  }else{
+                    return 40
+                  }
+                })
+                .style("fill", function(d){
+                  if(d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1){
+                    return "rgba(0, 0, 0, 0)";
+                  }else{
+                    return selectedcolor;
+                  }
+                });
+            //Position text to display relevent information
+            current.
+              select("text")
+              .text("")
+              .attr("clip-path", "url(#clip2)")
+              .attr("x", 16)
+              .append("tspan")
+                .attr("dy", 4)
+                .text(info.name)
+                .attr("class", "profilenametext");
+            current.select("text")
+              .append("tspan")
+                .attr("dy", 19)
+                .attr("x", 16)
+                .text(info.email);
+            current.append("foreignObject")
+              .attr("x", -30) /*the position of the text (left to right)*/
+              .attr("y", 52) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 72)
+              .attr("id", "id"+info.id)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profilecontenttext")
+                .text(function(d){
+                  var result = "";
+                  var x;
+                  for(x in d.skills){
+                    result += d.skills[x].label+", ";
+                  }
+                  result = result.substring(0, result.length-2);
+                  if(result == "")
+                    result = "None added"
+                  return result;
+                })
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", -30) /*the position of the text (left to right)*/
+              .attr("y", 34) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 18)
+              .attr("id", "id"+info.id)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profiletagtext")
+                .text("Skills")
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", 50) /*the position of the text (left to right)*/
+              .attr("y", 52) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 72)
+              .attr("id", "id"+info.id)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profilecontenttext")
+                .text(function(d){
+                  var result = "";
+                  var x;
+                  console.log(d);
+                  for(x in d.interests){
+                    result += d.interests[x].label+", ";
+                  }
+                  result = result.substring(0, result.length-2);
+                  if(result == "")
+                    result = "None added"
+                  return result;
+                })
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", 50) /*the position of the text (left to right)*/
+              .attr("y", 34) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 18)
+              .attr("id", "id"+info.id)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profiletagtext")
+                .text("Interests")
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", 130) /*the position of the text (left to right)*/
+              .attr("y", 52) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 60)
+              .attr("id", "id"+info.id)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profilecontenttext")
+                .text(function(d){
+                  var result = "";
+                  var x;
+                  console.log(d);
+                  for(x in d.following){
+                    result += d.following[x].fname+", ";
+                  }
+                  result = result.substring(0, result.length-2);
+                  if(result == "")
+                    result = "None added"
+                  return result;
+                })
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", 130) /*the position of the text (left to right)*/
+              .attr("y", 34) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 18)
+              .attr("id", "id"+info.id)
+              .append("xhtml:body")
+              .append("p")
+                .attr("class", "profiletagtext")
+                .text("Following")
+                .style("background", selectedcolor);
+            current.append("foreignObject")
+              .attr("x", 130) /*the position of the text (left to right)*/
+              .attr("y", 112) /*the position of the text (Up and Down)*/
+              .attr("width", 80)
+              .attr("height", 18)
+              .attr("id", "id"+info.id)
+              .append("xhtml:body")
+              .append("a")
+                .attr("href", "/profile/8")
+                .append("p")
+                  .attr("class", "profiletagtext")
+                  .text("Full Profile")
+                  .style("background", selectedcolor);
+          }else{
+            var info = nodes[current.select("text").select("tspan").text()]
+            //Re-color all nodes
+            d3.selectAll(".node").transition()
+              .style("opacity", "1");
+            //Revert image border
+            current
+              .selectAll("rect").transition()
+                .attr("width", 25)
+                .attr("height", 25);
+            //Revert image size
+            current
+              .select("image").transition()
+                .attr('width', 23)
+                .attr('height', 23);
+            //Revert container size
+            current
+              .selectAll("rect").transition()
+                .attr("width", function(d){
+                  if(parseFloat(d3.select(this).attr("width"))>50){
+                    return -150+parseFloat(d3.select(this).attr("width"))
+                  }else{
+                    return 25
+                  }
+                })
+                .attr("height", function(d){
+                  if(parseFloat(d3.select(this).attr("width"))>50){
+                    return -125+parseFloat(d3.select(this).attr("height"))
+                  }else{
+                    return 25
+                  }
+                })
+                .style("fill", function(d){
+                  if(d3.select(this).style("fill").indexOf("rgba(0, 0, 0, 0)") > -1){
+                    return "rgba(0, 0, 0, 0)";
+                  }else{
+                    return color;
+                  }
+                });
+            //Revert Text
+            current.select("text")
+              .attr("x", -5)
+              .attr("y", 0)
+              .attr("clip-path", "url(#clip1)")
+              .text(function(d) { return d.name; });
+            //Remove all extra information
+            var id  = '#id'+info.id
+            d3.selectAll(id).remove();
+            }
+        }
+
+        function unhighlightFriends(p1){
+          var current = d3.select(p1);
+          d3.selectAll('.node').each(function(e){
+              d3.select(this).select("rect").transition()
+                  .style("fill", "#ccc");
+            });
+        }
+
+        function highlightFriends(p1){
+          var current = d3.select(p1);
+          d3.selectAll('.node').each(function(e){
+              var other = d3.select(this)
+              var info = nodes[other.select("text").text()]
+              if(other.select("text").select("tspan")[0][0] == null){
+                if(linkedByIndex[current.select("text").text() + "," + other.select("text").text()]){
+                    other.select("rect").transition().style("fill", "yellow");
+                }
+              }else{
+                if(linkedByIndex[current.select("text").text() + "," + other.select("text").select("tspan").text()]){
+                    other.select("rect").transition().style("fill", "yellow");
+                }
+              }
+            });
+        }
+        </script>
+      </div>
+    </div>
+  </div>
+  <svg id="mySvg" width="0" height="0">
+    <clipPath id="clip1">
+        <rect x="-5" y="-12" width="65" height="90"/>
+    </clipPath>
+    <clipPath id="clip2">
+        <rect x="16" y="-12" width="180" height="90"/>
+    </clipPath>
+    <clipPath id="clip3">
+        <rect x="-30" y="-12" width="80" height="90"/>
+    </clipPath>
+  </svg>
+</body>

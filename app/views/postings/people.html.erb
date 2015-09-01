@@ -1,0 +1,128 @@
+<head>
+	<script>
+		function hide(id){
+			alert("made it");
+			$('#' + id).hide();
+
+		}
+	</script>
+</head>
+<body>
+
+
+<% @left=true %>
+<% @candidates.each do |c| %>
+	<% 
+		@temp = User.find(c.user_id) 
+		@photo = Photo.find_by(:user_id=>@temp.user_id)
+		@skills = Skill.where(:user_id=>@temp.user_id).first(3)
+	%>
+
+	<% if @left %>
+			<div class="row">
+				<div class = "col-lg-5">
+					<div style = "border: 1px solid grey; width: 32em; margin-top: 20px;">				
+						<div class = "row">
+							<div class = "col-lg-6">
+								<div style = "width: 200px; margin: 5px">
+									<% if @photo.nil? %>
+								    	<%= image_tag('prof.jpeg', :class => "pic") %>
+							    	<% else %>
+							    		<%= image_tag @photo.photo.url, :class => "pic" %>
+							    	<% end %>
+								</div>
+							</div>
+							<div class = "col-lg-6">
+								<font size = "3"> <%= @temp.fname %> <%= @temp.lname %> </font>
+								<p style = "font-size: 10px"> <%= @temp.email %> </p>
+
+								<p> Some Skills:
+									<% if !@skills.nil? %>
+										<% @skills.each do |s| %>								
+											<%= s.label %>,
+										<% end %>
+									<% end %>
+								</p>
+							</div>
+						</div>
+
+						<div style = "border: 1px solid grey; margin: 5px; padding: 2px; width: 30em; background-color:#D8D8DC; height: 3em;">
+
+							<div class = "row">
+								<div class = "col-lg-3">
+									<%= link_to "See More", profile_path(@temp, :seen=>true, :pid=>@postingID), class: "btn btn-primary test" %>
+								</div>
+
+								<div class = "col-lg-5" id= "tagg_candidates">
+
+									<% 
+										# used to add a user from the public list to the private one
+										@exist = ShoppingList.find_by(:user_id=>@temp.user_id, :posting_id=>@postingID)
+										@addition = ShoppingList.new 										
+									%>
+
+									<% if @exist.nil? %>
+										<%= simple_form_for @addition, remote: true do |f|%>
+											<%= f.hidden_field :posting_id, :value=> @postingID %>
+											<%= f.hidden_field :user_id, :value=> @temp.user_id %>
+
+											<%= f.submit "Tag Candidate", onclick: "hide(#{@temp.user_id});", class: "btn btn-primary", :id=> @temp.user_id %>
+
+										<% end %>
+									<% end %>
+								</div>
+
+								<div class = "col-lg-3">
+									<%= link_to "Remove", c, method: :delete, class: "btn btn-small btn-danger" %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			<% @left = false %>
+		<% else %>
+				<div class = "col-lg-1"></div>
+				<div class = "col-lg-5">
+					<div style = "border: 1px solid grey; width: 32em; margin-top: 20px;">				
+						<div class = "row">
+							<div class = "col-lg-6">
+								<div style = "width: 200px; margin: 5px">
+									<% if @photo.nil? %>
+								    	<%= image_tag('prof.jpeg', :class => "pic") %>
+							    	<% else %>
+							    		<%= image_tag @photo.photo.url, :class => "pic" %>
+							    	<% end %>
+								</div>
+							</div>
+							<div class = "col-lg-6">
+								<font size = "3"> <%= @temp.fname %> <%= @temp.lname %> </font>
+								<p style = "font-size: 10px"> <%= @temp.email %> </p>
+
+								<p> Some Skills:
+									<% if !@skills.nil? %>
+										<% @skills.each do |s| %>								
+											<%= s.label %>,
+										<% end %>
+									<% end %>
+								</p>
+							</div>
+						</div>
+
+						<div style = "border: 1px solid grey; margin: 5px; padding: 2px; width: 30em; background-color:#D8D8DC; height: 3em;">
+							<%= link_to "See More", profile_path(@temp, :seen=>true, :pid=>@postingID), class: "btn btn-primary test" %> 
+							<div style= "position: relative; float:right;">					
+							<%= link_to "Remove", c, method: :delete, class: "btn btn-small btn-danger" %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> <!-- This should close the row -->
+				<% @left = true %>
+		<% end %>
+<% end %>
+
+<% if @left == false %>
+	</div>
+<% end %>
+</body>

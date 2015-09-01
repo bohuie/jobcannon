@@ -1,0 +1,22 @@
+<html>
+	<body>
+		<p> Name: <%= @one.fname %> <%= @one.lname %> </p>
+		<p> Relationship: <%= @one.relationship %> </p>
+
+		<p>
+			
+		</p>
+
+		<p>
+			<% if(!@one.email.empty?) %>
+				Phone: Number: <%= @one.email %>
+			<%end%>
+		</p>
+
+		<p>
+			<% if(!@one.yrsknown.nil?) %>
+				Years Known: <%= @one.yrsknown %>
+			<%end%>
+		</p>
+	</body>
+</html>

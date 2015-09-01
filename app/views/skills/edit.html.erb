@@ -1,0 +1,18 @@
+<h1>Edit this Skill</h1>
+
+<%= simple_form_for @skill, :html => { :method => :put} do |f| %>
+
+  <p> Fields marked with * are required </p>
+  
+  <div><%= f.label "Title *" %> 
+  E.g. "Programming with Java" <br />
+  <%= f.autocomplete_field :label, autocomplete_skill_label_skills_path, :default => @skill.label%></div>
+
+  <div>
+  	<%= f.label "Description *" %>
+    <%= f.text_area :description, :autofocus => true , :default => @skill.description %>
+  </div>
+
+ <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+
+<% end %>

@@ -1,0 +1,90 @@
+<head>
+ <script type = "text/javascript">
+  function myFunction(){
+    var toggle_employer = new Boolean;
+    toggle_employer = document.getElementById('employer_select').value; 
+       if (toggle_employer == "true")
+       {
+          $("#employer_form").show();
+          $("#employee_form").hide();
+       }
+       else 
+       {
+          $("#employer_form").hide();
+          $("#employee_form").show();
+       }
+    }
+  </script> 
+</head>
+
+<body>
+
+
+<h2>Sign up</h2>
+
+<%= simple_form_for(@user, :url => { :action => "create" }) do |f| %>
+  <%= devise_error_messages! if request.original_url=='http://localhost:3000/users' %>
+
+  <p> Fields marked with * are required </p>
+  <div class="row">
+  <div class="rform"><%= f.label "Email *" %><br />
+  <%= f.email_field :email, :value => params[:email] %></div></div>
+
+  <div class="row">
+  <div class="rform"><%= f.label "Username *" %><br />
+  <%= f.text_field :username %></div></div>
+
+  <% if @user.password_required? %>
+  <div class="row">
+  <div class="rform"><%= f.label "Password *" %><br />
+  <%= f.password_field :password %></div></div>
+
+  <div class="row">
+  <div class="rform"><%= f.label "Password Confirmation *" %><br />
+  <%= f.password_field :password_confirmation %></div></div>
+  <% end%>
+
+  <div class="row">
+  <div class="rform1"><%= f.label "First Name *" %><br />
+  <%= f.text_field :fname, :value => params[:fname] %></div>
+
+  <div class="rform1"><%= f.label "Last Name *" %><br />
+  <%= f.text_field :lname, :value => params[:lname] %></div>
+  </div>
+
+
+  <div class="row">
+  <div class="rform1">
+    <%= f.input :employer, collection: [['Looking for work', false], ['Looking to hire',true]], :default => 1, label: "I am" , :input_html => {id: "employer_select",  onchange: "myFunction()"} %>
+  </div></div>
+
+
+  <div id= 'employee_form'>
+  </div>
+  <div id= 'employer_form', style = "display: none">
+    <div class="row">
+      <div class="rform1"><%= f.label "Company Name" %><br />
+        <%= f.text_field :company_name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rform1"><%= f.label "Company Address" %><br />
+        <%= f.text_field :company_address %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rform1"><%= f.label "Field" %><br />
+        <%= f.text_field :field %>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+  <div class="row">
+  <div class="rformsubmit"><%= f.submit "Sign up", class: "btn btn-medium btn-primary" %></div></div>
+<% end %>
+
+</body>
+

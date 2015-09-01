@@ -1,0 +1,375 @@
+<head>
+	<script type="text/javascript">
+    function hide(){        
+        document.getElementById("gen").selectedIndex = -1;
+    }
+    function showSaved3(){
+      $("#saved3").fadeIn();
+      setTimeout(function(){$("#saved3").fadeOut("slow")}, 1000)
+    }
+    function showText(){
+      $("#textbox").fadeIn();
+    }
+
+</script>
+</head>
+
+<% @language = Language.find_by(:user_id => @user.user_id) %>
+<% if @language.nil?
+	@language = Language.new
+	@language.user_id = @user.user_id
+	@language.save
+end%>
+<body>
+	<div id = "form">
+		<%= simple_form_for @language, :remote => true, :authenticity_token => true do |f| %>
+				<table id="lang">
+				<tr>
+					<th>
+						Language
+					</th>
+					<th>
+						Speak
+					</th>
+					<th>
+						Write
+					</th>
+					<th>
+						Read
+					</th>
+					<th>
+						Formal Instruction
+					</th>
+				</tr>
+				<tr>
+					<td style ="width: 8.5em">
+						English
+					</td>
+					<td>
+						<%= f.input :eng_speak, :label => false, as: :boolean do 
+							f.check_box :eng_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :eng_write, :label => false, as: :boolean do 
+							f.check_box :eng_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :eng_read, :label => false, as: :boolean do 
+							f.check_box :eng_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :eng_formal, :label => false, as: :boolean do 
+							f.check_box :eng_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						French
+					</td>
+					<td>
+						<%= f.input :fren_speak, :label => false, as: :boolean do 
+							f.check_box :fren_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :fren_write, :label => false, as: :boolean do 
+							f.check_box :fren_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :fren_read, :label => false, as: :boolean do 
+							f.check_box :fren_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :fren_formal, :label => false, as: :boolean do 
+							f.check_box :fren_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Spanish
+					</td>
+					<td>
+						<%= f.input :spnish_speak, :label => false, as: :boolean do 
+							f.check_box :spnish_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :spnish_write, :label => false, as: :boolean do 
+							f.check_box :spnish_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :spnish_read, :label => false, as: :boolean do 
+							f.check_box :spnish_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :spnish_formal, :label => false, as: :boolean do 
+							f.check_box :spnish_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Tagalog
+					</td>
+					<td>
+						<%= f.input :tagalog_speak, :label => false, as: :boolean do 
+							f.check_box :tagalog_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :tagalog_write, :label => false, as: :boolean do 
+							f.check_box :tagalog_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :tagalog_read, :label => false, as: :boolean do 
+							f.check_box :tagalog_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :tagalog_formal, :label => false, as: :boolean do 
+							f.check_box :tagalog_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Mandarin
+					</td>
+					<td>
+						<%= f.input :mandarin_speak, :label => false, as: :boolean do 
+							f.check_box :mandarin_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :mandarin_write, :label => false, as: :boolean do 
+							f.check_box :mandarin_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :mandarin_read, :label => false, as: :boolean do 
+							f.check_box :mandarin_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :mandarin_formal, :label => false, as: :boolean do 
+							f.check_box :mandarin_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Cantonese
+					</td>
+					<td>
+						<%= f.input :cantonese_speak, :label => false, as: :boolean do 
+							f.check_box :cantonese_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :cantonese_write, :label => false, as: :boolean do 
+							f.check_box :cantonese_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :cantonese_read, :label => false, as: :boolean do 
+							f.check_box :cantonese_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :cantonese_formal, :label => false, as: :boolean do 
+							f.check_box :cantonese_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Punjabi
+					</td>
+					<td>
+						<%= f.input :punjabi_speak, :label => false, as: :boolean do 
+							f.check_box :punjabi_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :punjabi_write, :label => false, as: :boolean do 
+							f.check_box :punjabi_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :punjabi_read, :label => false, as: :boolean do 
+							f.check_box :punjabi_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :punjabi_formal, :label => false, as: :boolean do 
+							f.check_box :punjabi_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Urdu
+					</td>
+					<td>
+						<%= f.input :urdu_speak, :label => false, as: :boolean do 
+							f.check_box :urdu_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :urdu_write, :label => false, as: :boolean do 
+							f.check_box :urdu_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :urdu_read, :label => false, as: :boolean do 
+							f.check_box :urdu_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :urdu_formal, :label => false, as: :boolean do 
+							f.check_box :urdu_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Tamil
+					</td>
+					<td>
+						<%= f.input :tamil_speak, :label => false, as: :boolean do 
+							f.check_box :tamil_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :tamil_write, :label => false, as: :boolean do 
+							f.check_box :tamil_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :tamil_read, :label => false, as: :boolean do 
+							f.check_box :tamil_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :tamil_formal, :label => false, as: :boolean do 
+							f.check_box :tamil_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Persian (Farsi)
+					</td>
+					<td>
+						<%= f.input :persian_speak, :label => false, as: :boolean do 
+							f.check_box :persian_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :persian_write, :label => false, as: :boolean do 
+							f.check_box :persian_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :persian_read, :label => false, as: :boolean do 
+							f.check_box :persian_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :persian_formal, :label => false, as: :boolean do 
+							f.check_box :persian_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Italian
+					</td>
+					<td>
+						<%= f.input :italian_speak, :label => false, as: :boolean do 
+							f.check_box :italian_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :italian_write, :label => false, as: :boolean do 
+							f.check_box :italian_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :italian_read, :label => false, as: :boolean do 
+							f.check_box :italian_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :italian_formal, :label => false, as: :boolean do 
+							f.check_box :italian_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+
+				<tr id = "lang_other" onClick = "showText()">
+					<td>
+						Other	    					
+					</td>	    				
+					<td>
+						<%= f.input :other_speak, :label => false, as: :boolean do 
+							f.check_box :other_speak, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :other_write, :label => false, as: :boolean do 
+							f.check_box :other_write, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :other_read, :label => false, as: :boolean do 
+							f.check_box :other_read, {}, "true", "false"
+							end %>
+					</td>
+					<td>
+						<%= f.input :other_formal, :label => false, as: :boolean do 
+							f.check_box :other_formal, {}, "true", "false"
+							end %>
+					</td>
+				</tr>
+				<tr style = "display: none;" id = "textbox">
+					<td>
+						Please Specify
+					</td>
+					<td style = "border: 0px;" colspan="2">
+						<%= f.input :other, :input_html=>{:maxlength=>10}, label: false, :default => @language.other%>
+					</td>
+				</tr>
+
+			</table>
+			<div class="row">
+				<div class = "col-lg-3">
+					<%= f.submit "Submit", class: "btn btn-large btn-primary", onClick: "showSaved3();"%> 
+				</div>
+				<div class = "col-lg-4" id = "saved3" style= "display: none">
+					<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+						Changes Saved
+					</div>
+				</div>
+			</div>      
+		<% end %>
+	</div>
+</body>

@@ -1,0 +1,7 @@
+
+  <% if !@experiences.nil? %>
+    <h1>All Experiences</h1>
+   <%= link_to "Add an Experience", {:controller => "experiences", :action => "add"}, class: "btn btn-small btn-info"%>
+    <%= render partial: 'shared/experiences', collection: @experiences %>
+  <% end %>
+

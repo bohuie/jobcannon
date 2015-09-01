@@ -1,0 +1,99 @@
+<style type="text/css">
+    
+    .tab_header2{
+      background: #70B8FF; 
+      width: 12em; 
+      height: 2em;
+      border-top-left-radius:12px; 
+      border-top-right-radius:36px; 
+      position: relative;
+      text-align: left;
+      /*font-weight: bold;*/
+      font-size: 16px;
+      padding-top: 2px;
+      padding-right: 2px;
+      padding-left: 10px;
+      margin-right: 2px;
+    }
+
+    .salary{
+      background: #70B8FF; 
+      width: 12.4em; 
+      height: 2em;
+      border-top-left-radius:12px; 
+      border-top-right-radius:10px; 
+      position: relative;
+      text-align: left;
+      /*font-weight: bold;*/
+      font-size: 16px;
+      padding-top: 2px;
+      padding-right: 2px;
+      padding-left: 10px;
+      margin-right: 2px;
+    }
+
+    .content2{
+       border: solid #3399FF 2px;
+       position: relative; 
+       top: -2.5em; 
+       height: 5em;
+       background: white;
+       line-height: 20px;
+       padding-left: 5px;
+       min-width: 10em;
+       max-width: 30em;
+       max-height: 15em;
+       overflow: scroll;
+    }
+  </style>
+
+<div class = "row">
+    <div class = "col-lg-6">
+
+        <div class = "tab_header2" style = "background: #3399FF">
+          <% if !profilepostings.title.nil? %>
+            <%= profilepostings.title%>
+            <%end%>
+        </div>
+
+        <div class = "salary" style = "left: 12em; top: -2em;" >
+          <% if !profilepostings.salary.nil? %>
+            $<%= profilepostings.salary%>
+            <%end%>
+        </div>
+        <div class = "content2" style = "">
+          <% if !profilepostings.description.nil? %>
+            <%= profilepostings.description%>
+            <%end%>
+        </div>
+
+    </div>
+
+     <div class = "col-lg-6">
+
+        <div class = "tab_header2" style = "top: 0em; background: #3399FF; width: 9em">
+            Skills Needed
+        </div>
+
+        <div class = "content2" style = "top: 0em">
+            <% @array = @skills.to_a %>
+          <% if(@array.empty?) %>
+            No specific Skills are needed for this job
+          <%else%>
+            <% finish = 3 %>
+            <% for i in 0..finish%>
+              <% if(i < @array.length) %>
+              <p>
+                <%= @array[i].mandatory %> : <%= @array[i].label %> 
+              </p>
+              <%end%>
+            <%end%>
+            <% if @array.length > finish + 1 %>
+              </br>
+              </br>
+              <%= link_to "More",skills_path, :id => "more"%>
+            <% end %>
+          <%end%>
+        </div>
+    </div>
+</div>

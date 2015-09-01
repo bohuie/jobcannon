@@ -1,0 +1,167 @@
+<head>
+<script>	
+    function showSaved1(){
+      $("#saved1").fadeIn();
+      setTimeout(function(){$("#saved1").fadeOut("slow")}, 1000)
+    }
+</script>
+</head>
+
+<% @label = "How fluent are you with each of the following operating systems? (How well would you be able to work using each?) " %>
+
+<% @windows = "Windows" %>
+<% @mac = "Mac OS" %>
+<% @linux = "Linux" %>
+<% @fluent = OperatingSystemsFluent.find_by(:user_id=> @user.user_id) %>
+
+<body>	
+	<%= simple_form_for @fluent,remote: true do |g| %>
+
+		<%= g.label @label %>
+		<br>
+		<br>
+
+		<table id = "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= $header7 %>
+				</th>
+				<th>
+					<%= $header8 %>
+				</th>
+				<th>
+					<%= $header9 %>
+				</th>
+				<th>
+					<%= $header10 %>
+				</th>
+				<th>
+					<%= $header11 %>
+				</th>
+				<th>
+					<%= $header12 %>
+				</th>
+			</tr>
+			<tr>
+				<td style = "text-align: left; width: 15%">
+					<%= @windows %>
+				</td>
+				<td style = "width:10%">
+					<%= g.radio_button :windows,6, :default => @fluent.windows  %>				
+				</td>
+				<td style = "width:10%">
+					<%= g.radio_button :windows,5, :default => @fluent.windows  %>				
+				</td>
+				<td style = "width:10%">
+					<%= g.radio_button :windows,4, :default => @fluent.windows  %>				
+				</td>
+				<td style = "width:10%">
+					<%= g.radio_button :windows,3, :default => @fluent.windows  %>				
+				</td>
+				<td style = "width:10%">
+					<%= g.radio_button :windows,2, :default => @fluent.windows  %>				
+				</td>
+				<td style = "width:20%">
+					<%= g.radio_button :windows,1, :default => @fluent.windows  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @mac %>
+				</td>
+				<td>
+					<%= g.radio_button :mac,6, :default => @fluent.mac  %>				
+				</td>
+				<td>
+					<%= g.radio_button :mac,5, :default => @fluent.mac  %>				
+				</td>
+				<td>
+					<%= g.radio_button :mac,4, :default => @fluent.mac  %>				
+				</td>
+				<td>
+					<%= g.radio_button :mac,3, :default => @fluent.mac  %>				
+				</td>
+				<td>
+					<%= g.radio_button :mac,2, :default => @fluent.mac  %>				
+				</td>
+				<td>
+					<%= g.radio_button :mac,1, :default => @fluent.mac  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @linux %>
+				</td>
+				<td>
+					<%= g.radio_button :linux,6, :default => @fluent.linux  %>				
+				</td>
+				<td>
+					<%= g.radio_button :linux,5, :default => @fluent.linux  %>				
+				</td>
+				<td>
+					<%= g.radio_button :linux,4, :default => @fluent.linux  %>				
+				</td>
+				<td>
+					<%= g.radio_button :linux,3, :default => @fluent.linux  %>				
+				</td>
+				<td>
+					<%= g.radio_button :linux,2, :default => @fluent.linux  %>				
+				</td>
+				<td>
+					<%= g.radio_button :linux,1, :default => @fluent.linux  %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= $other %>
+				</td>
+				<td>
+					<%= g.radio_button :magnitude_other,6, :default => @fluent.magnitude_other  %>				
+				</td>
+				<td>
+					<%= g.radio_button :magnitude_other,5, :default => @fluent.magnitude_other  %>				
+				</td>
+				<td>
+					<%= g.radio_button :magnitude_other,4, :default => @fluent.magnitude_other  %>				
+				</td>
+				<td>
+					<%= g.radio_button :magnitude_other,3, :default => @fluent.magnitude_other  %>				
+				</td>
+				<td>
+					<%= g.radio_button :magnitude_other,2, :default => @fluent.magnitude_other  %>				
+				</td>
+				<td>
+					<%= g.radio_button :magnitude_other,1, :default => @fluent.magnitude_other  %>				
+				</td>
+			</tr>
+		</table>
+
+		<div class = "row">								
+			<div class = "col-lg-6">
+				<%= g.label $other_label %>							
+				<br>
+				<%= g.text_field :other %>
+			</div>						
+		</div>
+
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "basic", :file => "shared/survey/tech/basic_computer_b"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>
+			<div class = "col-lg-2">
+				<%= g.submit $submit, class: "btn btn-primary", onClick: "showSaved1();" %>
+			</div>
+			<div class = "col-lg-4" id = "saved1" style= "display: none">				
+				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+					Changes Saved
+				</div>
+			</div>
+		</div>
+
+
+		
+	<% end %>
+	
+</body>

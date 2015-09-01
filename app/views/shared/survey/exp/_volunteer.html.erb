@@ -1,0 +1,255 @@
+<head>
+	<script type="text/javascript">
+    
+
+    function selectorvol(){
+    	$("#experiencetable_vol_work").prop("selectedIndex", -1)
+    }
+    function showSaved3(){
+      $("#saved3").fadeIn();
+      setTimeout(function(){$("#saved3").fadeOut("slow")}, 1000)
+    }
+
+</script>
+</head>
+<body>
+	<%= simple_form_for @time, :url=>vol_update_experiencetable_path, remote: true do |f| %>
+		<%= f.hidden_field :user_id , :value => @time.user_id %>
+
+		<%= f.label @industryQ %>
+
+		<p style = "font-size: 15px;"> <b> <%=  @ft_question %> </b></p>			
+		
+		<%= f.select :vol_work, [['No',false],["Yes",true]], :default=>@time.vol_work, class: "volunteer_select" %>	
+		<div id = "volindustries">
+			<% if @time.vol_work.nil? %>
+	            <script type="text/javascript">
+	                selectorvol();
+	            </script>
+	        <% end %>								
+
+			<br> <br>					    					
+			<%= f.label @vol_hours %>
+			<br>
+			<%= f.text_field :vol_hours, style: "width: 20%"%>
+
+			<br>
+			<br> 
+
+			<%= f.label @table_info %>
+			<table style = "margin-left: 10px;" id = "ft-exp">
+				<tr>
+					<td>
+						<%= @ft_agr %>
+					</td>
+					<td>
+						<%= f.input :agriculture, :label => false, as: :boolean do 
+								f.check_box :agriculture, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_mining %>
+					</td>
+					<td>
+						<%= f.input :mining, :label => false, as: :boolean do 
+								f.check_box :mining, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_utilities %>
+					</td>
+					<td>
+						<%= f.input :utilities, :label => false, as: :boolean do 
+								f.check_box :utilities, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_construction %>
+					</td>
+					<td>
+						<%= f.input :construction, :label => false, as: :boolean do 
+								f.check_box :construction, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_manufactoring %>
+					</td>
+					<td>
+						<%= f.input :manufacturing, :label => false, as: :boolean do 
+								f.check_box :manufacturing, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_wholesale %>
+					</td>
+					<td>
+						<%= f.input :wholesale, :label => false, as: :boolean do 
+								f.check_box :wholesale, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_retail %>
+					</td>
+					<td>
+						<%= f.input :retail, :label => false, as: :boolean do 
+								f.check_box :retail, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_transport %>
+					</td>
+					<td>
+						<%= f.input :transport, :label => false, as: :boolean do 
+								f.check_box :transport, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_info %>
+					</td>
+					<td>
+						<%= f.input :information, :label => false, as: :boolean do 
+								f.check_box :information, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_finance %>
+					</td>
+					<td>
+						<%= f.input :finance, :label => false, as: :boolean do 
+								f.check_box :finance, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_real %>
+					</td>
+					<td>
+						<%= f.input :real_estate, :label => false, as: :boolean do 
+								f.check_box :real_estate, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_prof %>
+					</td>
+					<td>
+						<%= f.input :professional, :label => false, as: :boolean do 
+								f.check_box :professional, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_managment %>
+					</td>
+					<td>
+						<%= f.input :managment, :label => false, as: :boolean do 
+								f.check_box :managment, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_admin %>
+					</td>
+					<td>
+						<%= f.input :administrative, :label => false, as: :boolean do 
+								f.check_box :administrative, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_education %>
+					</td>
+					<td>
+						<%= f.input :education, :label => false, as: :boolean do 
+								f.check_box :education, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_health %>
+					</td>
+					<td>
+						<%= f.input :health, :label => false, as: :boolean do 
+								f.check_box :health, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_arts %>
+					</td>
+					<td>
+						<%= f.input :arts, :label => false, as: :boolean do 
+								f.check_box :arts, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_accom %>
+					</td>
+					<td>
+						<%= f.input :accomodation, :label => false, as: :boolean do 
+								f.check_box :accomodation, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td>
+						<%= @ft_public %>
+					</td>
+					<td>
+						<%= f.input :public, :label => false, as: :boolean do 
+								f.check_box :public, {}, "true", "false"
+						end %>
+					</td>									
+				</tr>
+				<tr>
+					<td style = "border: 0px">
+						<%= @ft_other %>
+					</td>
+				</tr>
+				<tr>
+					<td style = "border: 0px">
+						<%= f.text_field :other %>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<%=f.hidden_field :volunteer, :value=>true, :name=>"temp" %>
+		<div class="row">
+			<div class = "col-lg-2">
+				<%= f.submit $submit, class: "btn btn-large btn-primary", onClick: "showSaved3();"%> 
+			</div>
+			<div class = "col-lg-4" id = "saved3" style= "display: none">
+				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+					Changes Saved
+				</div>
+			</div>
+		</div>
+	<% end %>
+</body>

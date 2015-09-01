@@ -1,0 +1,14 @@
+
+<% if !@results.nil? %>
+	<%= render partial: 'shared/findcompany', collection: @results %>
+
+<%else%>
+	<p> Sorry, unable to find friend. Search again? </p>
+<% end %>
+	<%= form_tag("/findcompany", method: "get") do %>
+	    <div style = "max-width:500px;">
+	    	<p>Find a company</p>
+	    	<%= text_field_tag(:q)%> 
+	    </div>
+	    <%= submit_tag("Find Company",class: "btn btn-small btn-primary") %> 
+	<% end %>

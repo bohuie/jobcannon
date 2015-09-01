@@ -1,0 +1,160 @@
+<head>
+<script>	
+    function showSaved1(){    	
+      $("#saved4").fadeIn();
+      setTimeout(function(){$("#saved4").fadeOut("slow")}, 1000);
+    }
+</script>
+</head>
+<% @label2 = "How fluent are you with each of the following spreadsheet programs? (How well would you
+				be able to use each)" %>
+<% @label3 = "If Other Please Specify" %>
+
+<% @excel = "Excel (Microsoft)" %>
+<% @numbers = "Numbers (Apple)" %>
+<% @calc = "Calc (Apple)" %>
+<% @spreadsheet_fluentcy = SpreadsheetFluentcy.find_by(:user_id=> @user.user_id) %>
+
+<body>
+	<%= simple_form_for @spreadsheet_fluentcy,remote: true do |f| %>
+			<%= f.label @label2 %>
+			<br>
+			<br>
+
+			<table id = "survey_format" >
+				<tr>
+					<th>
+					</th>
+					<th>
+						<%= $header1 %>
+					</th>
+					<th>
+						<%= $header2 %>
+					</th>
+					<th>
+						<%= $header3 %>
+					</th>
+					<th>
+						<%= $header4 %>
+					</th>
+					<th>
+						<%= $header5 %>
+					</th>
+					<th>
+						<%= $header6 %>
+					</th>
+				</tr>
+				<tr>
+					<td style="text-align: left">
+						<%= @excel %>
+					</td>
+					<td>
+						<%= f.radio_button :excel, 6, :default => @spreadsheet_fluentcy.excel %>				
+					</td>
+					<td>
+						<%= f.radio_button :excel, 5, :default => @spreadsheet_fluentcy.excel %>				
+					</td>
+					<td>
+						<%= f.radio_button :excel, 4, :default => @spreadsheet_fluentcy.excel %>				
+					</td>
+					<td>
+						<%= f.radio_button :excel, 3, :default => @spreadsheet_fluentcy.excel %>				
+					</td>
+					<td>
+						<%= f.radio_button :excel, 2, :default => @spreadsheet_fluentcy.excel %>				
+					</td>
+					<td>
+						<%= f.radio_button :excel, 1, :default => @spreadsheet_fluentcy.excel %>				
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: left">
+						<%= @numbers %>
+					</td>
+					<td>
+						<%= f.radio_button :numbers, 6, :default => @spreadsheet_fluentcy.numbers %>				
+					</td>
+					<td>
+						<%= f.radio_button :numbers, 5, :default => @spreadsheet_fluentcy.numbers %>				
+					</td>
+					<td>
+						<%= f.radio_button :numbers, 4, :default => @spreadsheet_fluentcy.numbers %>				
+					</td>
+					<td>
+						<%= f.radio_button :numbers, 3, :default => @spreadsheet_fluentcy.numbers %>				
+					</td>
+					<td>
+						<%= f.radio_button :numbers, 2, :default => @spreadsheet_fluentcy.numbers %>				
+					</td>
+					<td>
+						<%= f.radio_button :numbers, 1, :default => @spreadsheet_fluentcy.numbers %>				
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: left">
+						<%= @calc %>
+					</td>
+					<td>
+						<%= f.radio_button :calc, 6, :default => @spreadsheet_fluentcy.calc %>				
+					</td>
+					<td>
+						<%= f.radio_button :calc, 5, :default => @spreadsheet_fluentcy.calc %>				
+					</td>
+					<td>
+						<%= f.radio_button :calc, 4, :default => @spreadsheet_fluentcy.calc %>				
+					</td>
+					<td>
+						<%= f.radio_button :calc, 3, :default => @spreadsheet_fluentcy.calc %>				
+					</td>
+					<td>
+						<%= f.radio_button :calc, 2, :default => @spreadsheet_fluentcy.calc %>				
+					</td>
+					<td>
+						<%= f.radio_button :calc, 1, :default => @spreadsheet_fluentcy.calc %>				
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: left">
+						<%= $other %>
+					</td>
+					<td>
+						<%= f.radio_button :magnitude_other, 6, :default => @spreadsheet_fluentcy.magnitude_other %>				
+					</td>
+					<td>
+						<%= f.radio_button :magnitude_other, 5, :default => @spreadsheet_fluentcy.magnitude_other %>				
+					</td>
+					<td>
+						<%= f.radio_button :magnitude_other, 4, :default => @spreadsheet_fluentcy.magnitude_other %>				
+					</td>
+					<td>
+						<%= f.radio_button :magnitude_other, 3, :default => @spreadsheet_fluentcy.magnitude_other %>				
+					</td>
+					<td>
+						<%= f.radio_button :magnitude_other, 2, :default => @spreadsheet_fluentcy.magnitude_other %>				
+					</td>
+					<td>
+						<%= f.radio_button :magnitude_other, 1, :default => @spreadsheet_fluentcy.magnitude_other %>				
+					</td>
+				</tr>		
+			</table>
+
+			<%= f.label @label3 %>
+			<br>
+			<%= f.text_field :other, style: "width: 50%" %>
+			<br>
+
+			<div class = "row">
+				<div class = "col-lg-2">
+					<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "spreadsheet", :file => "shared/survey/tech/spreadsheet_a"}, :remote=>true, class: "btn btn-primary" %> 
+				</div>				
+				<div class="col-lg-2">
+					<%= f.submit $submit, class: "btn btn-primary", onClick: "showSaved1();" %>
+				</div>
+				<div class = "col-lg-4" id = "saved4" style= "display: none">
+					<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+						Changes Saved
+					</div>
+				</div>
+			</div>									
+	<% end %>
+</body>

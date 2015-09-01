@@ -1,0 +1,158 @@
+<% @label1 = "How easy would you find the following tasks to complete on a computer?" %>
+
+<% @q1 = "Create and use image files" %>
+<% @q2 = "Create and use audio files" %>
+<% @q3 = "Create and use video files" %>
+<% @q4 = "Edit video files" %>
+<% @q5 = "Add graphics/subtitles to video files" %>
+<% @media = MultiMediaSkill.find_by(:user_id=> @user.user_id) %>
+
+<body>
+	<%= simple_form_for @media, :remote=>true do |f| %>
+
+		<%= f.label @label1 %>
+		<br>
+		<br>
+		<table id = "survey_format"	>
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= $header7 %>
+				</th>
+				<th>
+					<%= $header8 %>
+				</th>
+				<th>
+					<%= $header9 %>
+				</th>
+				<th>
+					<%= $header10 %>
+				</th>
+				<th>
+					<%= $header11 %>
+				</th>
+				<th>
+					<%= $header12 %>
+				</th>
+			</tr>
+			<tr>
+				<td style = "text-align: left; width: 30%">
+					<%= @q1 %>
+				</td>
+				<td style = "width: 10%">
+					<%= f.radio_button :q1, 6, :default => @media.q1 %>				
+				</td>
+				<td style = "width: 10%">
+					<%= f.radio_button :q1, 5, :default => @media.q1 %>				
+				</td>
+				<td style = "width: 10%">
+					<%= f.radio_button :q1, 4, :default => @media.q1 %>				
+				</td>
+				<td style = "width: 10%">
+					<%= f.radio_button :q1, 3, :default => @media.q1 %>				
+				</td>
+				<td style = "width: 10%">
+					<%= f.radio_button :q1, 2, :default => @media.q1 %>				
+				</td>
+				<td style = "width: 20%">
+					<%= f.radio_button :q1, 1, :default => @media.q1 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q2 %>
+				</td>
+				<td>
+					<%= f.radio_button :q2, 6, :default => @media.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 5, :default => @media.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 4, :default => @media.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 3, :default => @media.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 2, :default => @media.q2 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q2, 1, :default => @media.q2 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q3 %>
+				</td>
+				<td>
+					<%= f.radio_button :q3, 6, :default => @media.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 5, :default => @media.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 4, :default => @media.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 3, :default => @media.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 2, :default => @media.q3 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q3, 1, :default => @media.q3 %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @q4 %>
+				</td>
+				<td>
+					<%= f.radio_button :q4, 6, :default => @media.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 5, :default => @media.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 4, :default => @media.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 3, :default => @media.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 2, :default => @media.q4 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q4, 1, :default => @media.q4 %>				
+				</td>
+			</tr>
+			<tr id = "last_row">
+				<td style = "text-align: left">
+					<%= @q5 %>
+				</td>
+				<td>
+					<%= f.radio_button :q5, 6, :default => @media.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 5, :default => @media.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 4, :default => @media.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 3, :default => @media.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 2, :default => @media.q5 %>				
+				</td>
+				<td>
+					<%= f.radio_button :q5, 1, :default => @media.q5 %>				
+				</td>
+			</tr>
+		</table>
+
+		<%= f.submit $continue, class: "btn btn-primary" %>
+	<% end %>
+</body>

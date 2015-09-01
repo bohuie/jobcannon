@@ -1,0 +1,50 @@
+<div class = "row">
+    <div class = "col-lg-3">
+	    <ul class="nav nav-pills nav-stacked" style = "margin-top: 10px">
+	        <li class = "active"><a href="#communication" data-toggle="tab">Communication Skills</a></li>
+	        <li><a href="#problem" data-toggle="tab">Problem Solving Skills</a></li>
+	        <li><a href="#self" data-toggle="tab">Self-Direction Skills</a></li>
+	        <li><a href="#accountability" data-toggle="tab">Accountability and Adapability Skills</a></li>
+	        <li><a href="#interpersonal" data-toggle="tab">Interpersonal and Collaborative Skills</a></li>
+	    </ul>
+	</div>
+	<div class ="col-lg-9">
+	    <div class = "tab-content">
+	    	<div class="tab-pane fade in active content survey-tabs" id="communication"> 
+	    		<div class = "row">
+	    			<div class = "col-lg-12">
+	    				<%= render 'shared/survey/per/communication_table' %>
+	    			</div>
+	    		</div>
+	    	</div>	    	    
+	    	<div class="tab-pane fade in content survey-tabs" id="problem"> 
+	    		<div class = "row">
+	    			<div class = "col-lg-12">
+	    				<%= render 'shared/survey/per/thinking_table' %>
+	    			</div>
+	    		</div>
+	    	</div>	    	    
+	    	<div class="tab-pane fade in content survey-tabs" id="self"> 
+	    		<div class = "row">
+	    			<div class = "col-lg-12">
+	    				<%= render 'shared/survey/per/self_table' %>
+	    			</div>
+	    		</div>
+	    	</div>	    	    
+	    	<div class="tab-pane fade in content survey-tabs" id="accountability"> 
+	    		<div class = "row">
+	    			<div class = "col-lg-12">
+	    				<%= render 'shared/survey/per/accountability_table' %>
+	    			</div>
+	    		</div>
+	    	</div>	 	   
+	    	<div class="tab-pane fade in content survey-tabs" id="interpersonal"> 
+	    		<div class = "row">
+	    			<div class = "col-lg-12">
+	    				<%= render 'shared/survey/per/interpersonal_table' %>
+	    			</div>
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
+</div>

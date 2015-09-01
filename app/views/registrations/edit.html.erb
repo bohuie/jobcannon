@@ -1,0 +1,129 @@
+<head>
+ <script type = "text/javascript">
+  function myFunction(){
+    var toggle_employer = new Boolean;
+    toggle_employer = document.getElementById('employer_select').value;
+       if (toggle_employer == "true")
+       {
+          $("#employer_form").show();
+          $("#employee_form").hide();
+       }
+       else 
+       {
+          $("#employer_form").hide();
+          $("#employee_form").show();
+       }
+    }
+  </script> 
+</head>
+
+<body>
+
+  <%= link_to "Link this profile to facebook!", '/auth/facebook' %>
+
+
+  <p> This is where it should be </p>
+   <% @photo = Photo.find_by(:user_id=>@user.user_id) %>
+
+   <% if @photo.nil?
+      @photo = Photo.new 
+      @photo.user_id = @user.user_id
+      @photo.save
+    end %>
+
+  <%= simple_form_for @photo, :html => { :multipart => true } do |t| %>
+
+      <%= t.label "Photo" %>
+      <%= t.file_field :photo %>
+
+      <%= t.submit "Submit photo" %>
+  <% end %>
+
+
+
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+ <div class="row">
+  <div class="rform"><%= f.label "Email" %><br />
+  <%= f.email_field :email %></div></div>
+
+  <div class="row">
+  <div class="rform"><%= f.label "Username" %><br />
+  <%= f.text_field :username %></div></div>
+
+
+  <div class="row">
+  <div class="rform"><%= f.label "Password" %><br />
+  <%= f.password_field :password %></div></div>
+
+  <div class="row">
+  <div class="rform"><%= f.label "Password Confirmation" %><br />
+  <%= f.password_field :password_confirmation %></div></div>
+
+
+   <div class="row">
+  <div class="rform1"><%= f.label "First Name" %><br />
+  <%= f.text_field :fname %></div>
+
+  <div class="rform1"><%= f.label "Last Name" %><br />
+  <%= f.text_field :lname %></div>
+  </div>
+
+  <div class="row">
+  <div class="rform1">
+    <%= f.input :employer, collection: [['Looking for work', false], ['Looking to hire',true]], :default => 1, label: "I am" , :input_html => {id: "employer_select",  onchange: "myFunction()"} %>
+  </div></div>
+
+  <%if @user.employer?%>
+    <div id= 'employer_form'>
+      <div class="row">
+        <div class="rform1"><%= f.label "Company Name" %><br />
+          <%= f.text_field :company_name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="rform1"><%= f.label "Company Address" %><br />
+          <%= f.text_field :company_address %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="rform1"><%= f.label "Field" %><br />
+          <%= f.text_field :field %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+     <div id= 'employer_form', style = "display: none;">
+      <div class="row">
+        <div class="rform1"><%= f.label "Company Name" %><br />
+          <%= f.text_field :company_name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="rform1"><%= f.label "Company Address" %><br />
+          <%= f.text_field :company_address %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="rform1"><%= f.label "Field" %><br />
+          <%= f.text_field :field %>
+        </div>
+      </div>
+    </div>
+  <%end%>
+
+
+  <div class="row">
+  <div class="rform1"><%= f.label 'Confirm changes with current password' %> <br />
+  <%= f.password_field :current_password %></div></div>
+
+
+  <div><%= f.submit "Update" , class: "btn btn-medium btn-primary"%></div>
+<% end %>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete , class: "btn btn-medium btn-danger"%></p>
+
+</body>

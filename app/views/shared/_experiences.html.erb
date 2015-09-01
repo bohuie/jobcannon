@@ -1,0 +1,64 @@
+<head>
+    <style = "text/css">
+      .picholder{
+        width: 6em;
+      }
+
+    </style>
+
+</head>
+  <body>
+    <div class = "row" height = 30px style = "padding-left: 1.5em;">
+      <div class = "col-lg-12" style ="" >
+        <table border = 0 style ="margin: 2em">
+          <tr>
+            <td class = "picholder"> this is where the picture goes </td>
+            <td style = "width: 50em"><p>
+              <%= link_to experiences.title, {:controller => "experiences", :action => "details", :id => experiences.experience_id}, :id => "more"%></p>
+              <p><%= experiences.description %></p>
+            </td>
+          </tr>
+            <% if !experiences.nil? %>
+              <% if experiences.user_id == @userID %>
+              <tr>
+                <td></td>
+                <td>
+                  <table>
+                    <tr>
+                      <td>
+                        <div class = "hover">
+                          <%= link_to image_tag('edit.png'), edit_experience_path(experiences.experience_id), class: "btn btn-small btn-info"%>
+                          <div class = "tooltip">
+                            Click here to edit
+                           </div>
+                       </div>
+                     </td>
+                     <td>
+                      <div class = "hover">
+                          <%= link_to image_tag('delete.png'), experiences, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-small btn-danger" %>
+                          <div class = "tooltip">
+                            Click here to delete
+                           </div>
+                       </div>
+                     </td>
+
+                     <td>
+
+                      <div class = "hover">
+                         <%= link_to image_tag('pencil.png'), projects_path(:expID => experiences.experience_id), class: "btn btn-small btn-primary" %>
+
+                          <div class = "tooltip">
+                            Click here to add a project
+                           </div>
+                       </div>
+                     </td>
+                   </tr>
+                 </table>
+                </td>
+                <% end %>
+              <% end %>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </body>

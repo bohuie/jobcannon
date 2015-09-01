@@ -1,0 +1,74 @@
+<head>
+  <style type = "text/css">
+
+
+  #shrink{
+    width: 3.3em;
+    height: 3.3em;
+  }
+  
+  </style>
+</head>
+
+<body>
+  <nav class="navbar" role="navigation" style = "padding: 0px; background-color: black; border-radius: 0px">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = "background-color:black; width: 100%; margin: 0px;">
+      <ul class="nav pull-left">
+          <li><%= link_to "Job Cannon", root_path, id: "logo",  style:"text-shadow:none;" %></li>
+          <li style = "margin-bottom:0px; visibility: hidden;">
+              <%= form_tag("/search", method: "get") do %>
+                <div style = "height:10px; padding-top: 6px;" >
+                    <%= text_field_tag(:q)%> 
+                </div>           
+              <% end %>   
+          </li>
+          <li>
+            <div style = "height:10px; padding-top: 0px; padding-left:2px; visibility: hidden;" >
+                  <%= image_submit_tag("search.png", class: "btn btn-small btn-primary", id: "shrink") %>            
+            </div>
+              
+          </li>
+      </ul>
+      <ul class="nav pull-right">
+        <% if user_signed_in? %>          
+            <li> <%= link_to "Home", profile_path(@user), id: "brand",  style:"text-shadow:none;" %> </li>
+            <li class="dropdown" id="accountmenu">  
+                <a class="dropdown-toggle" id = "brand" data-toggle="dropdown" style = "text-shadow: none; cursor:pointer"> Account<b class="caret"></b></a>  
+                <ul class="dropdown-menu">  
+                    <li><%= link_to "Edit Your Account", edit_user_registration_path, id: "brand", style: "color: black" %></li>
+
+                    <% if @user.employee? %>
+                      <li><%= link_to'Generate your Resume', {controller: "profile", action: "resume", :format => :pdf, id: @user.id} %></li>
+                    <% end %>
+
+                     <li><%= link_to'Sign Out', destroy_user_session_path, :method => :delete, id:"brand", style:"text-shadow:none; color: black" %>  </li>
+                </ul>              
+            </li>
+        <% else %>
+
+        <li>
+            <ul class="nav pull-right" id = "all_in_one">
+              <li><%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %></li>
+
+              <li><%= f.label "Email: ", :style => "padding-left: 5px; padding-right: 5px; font-weight: normal;"%></li>
+              <li><%= f.email_field :email, :autofocus => true%></li>
+              <li><%= f.label "Password: ", :style => "padding-left: 5px; padding-right: 5px; font-weight: normal;" %></li>
+              <li><%= f.password_field :password, :style => "width: 100%;" %> <br>
+                
+                  <% if devise_mapping.rememberable? %>
+                      <%= f.check_box :remember_me %> <%= f.label :remember_me, :style=> "font-weight: normal;" %>
+                  <% end %>                          
+              </li>
+              <li>
+                  <%= f.submit "Sign in", class: "btn btn-medium btn-primary", :style=> "margin-left: 10px; margin-top:0px;" %>
+              </li>
+
+              <% end %>
+            </ul>
+        </li>
+            <li><%= link_to "Sign Up", new_user_registration_path, id: "brand",  style:"text-shadow:none;" %></li>
+        <% end %>
+      </ul>  
+    </div><!-- /.navbar-collapse -->
+  </nav>
+</body>

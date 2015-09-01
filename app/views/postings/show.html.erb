@@ -1,0 +1,17 @@
+<head>
+</head>
+  <body>
+    <table>
+      <tr>
+        <td style = "width:100%;font-weight:bold;font-size:24px"><p><%= @posting.title %></p></td>
+      </tr>
+      <tr>
+        <td style = "max-width:100%"><p><%= @posting.description %></p></td>
+      </tr>
+      <tr>
+        <% if !@posting.salary.nil? %>
+          <td style = "max-width: 100%;"><p><%= number_to_currency(@posting.salary) %></p></td>
+        <% end %>
+      </tr>
+    </table>
+ </body>

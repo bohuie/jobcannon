@@ -1,0 +1,181 @@
+<head>
+<script>	
+    function showSaved1(){    	
+      $("#saved5").fadeIn();
+      setTimeout(function(){$("#saved5").fadeOut("slow")}, 1000);
+    }
+</script>
+</head>
+
+<% @label = "How fluent are you with each of the following presentation programs? (How well would you be able to use each)" %>
+
+<% @powerpoint = "PowerPoint (Microsoft)" %>
+<% @keynote = "Keynote (Apple)" %>
+<% @impress = " Impress (OpenOffice)" %>
+<% @prezi = "Prezi (Prezi inc.)" %>
+<% @present_fluentcy = PresentingFluentcy.find_by(:user_id=> @user.user_id) %>
+
+<body>
+	<%= simple_form_for @present_fluentcy, remote: true do |f| %>
+
+		<%= f.label @label %>
+		<br>
+		<table id = "survey_format">
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= $header1 %>
+				</th>
+				<th>
+					<%= $header2 %>
+				</th>
+				<th>
+					<%= $header3 %>
+				</th>
+				<th>
+					<%= $header4 %>
+				</th>
+				<th>
+					<%= $header5 %>
+				</th>
+				<th>
+					<%= $header6 %>
+				</th>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @powerpoint %>
+				</td>
+				<td>
+					<%= f.radio_button :powerpoint, 6, :default => @present_fluentcy.powerpoint %>				
+				</td>
+				<td>
+					<%= f.radio_button :powerpoint, 5, :default => @present_fluentcy.powerpoint %>				
+				</td>
+				<td>
+					<%= f.radio_button :powerpoint, 4, :default => @present_fluentcy.powerpoint %>				
+				</td>
+				<td>
+					<%= f.radio_button :powerpoint, 3, :default => @present_fluentcy.powerpoint %>				
+				</td>
+				<td>
+					<%= f.radio_button :powerpoint, 2, :default => @present_fluentcy.powerpoint %>				
+				</td>
+				<td>
+					<%= f.radio_button :powerpoint, 1, :default => @present_fluentcy.powerpoint %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @keynote %>
+				</td>
+				<td>
+					<%= f.radio_button :keynote, 6, :default => @present_fluentcy.keynote %>				
+				</td>
+				<td>
+					<%= f.radio_button :keynote, 5, :default => @present_fluentcy.keynote %>				
+				</td>
+				<td>
+					<%= f.radio_button :keynote, 4, :default => @present_fluentcy.keynote %>				
+				</td>
+				<td>
+					<%= f.radio_button :keynote, 3, :default => @present_fluentcy.keynote %>				
+				</td>
+				<td>
+					<%= f.radio_button :keynote, 2, :default => @present_fluentcy.keynote %>				
+				</td>
+				<td>
+					<%= f.radio_button :keynote, 1, :default => @present_fluentcy.keynote %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @impress %>
+				</td>
+				<td>
+					<%= f.radio_button :impress, 6, :default => @present_fluentcy.impress %>				
+				</td>
+				<td>
+					<%= f.radio_button :impress, 5, :default => @present_fluentcy.impress %>				
+				</td>
+				<td>
+					<%= f.radio_button :impress, 4, :default => @present_fluentcy.impress %>				
+				</td>
+				<td>
+					<%= f.radio_button :impress, 3, :default => @present_fluentcy.impress %>				
+				</td>
+				<td>
+					<%= f.radio_button :impress, 2, :default => @present_fluentcy.impress %>				
+				</td>
+				<td>
+					<%= f.radio_button :impress, 1, :default => @present_fluentcy.impress %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= @prezi %>
+				</td>
+				<td>
+					<%= f.radio_button :prezi, 6, :default => @present_fluentcy.prezi %>				
+				</td>
+				<td>
+					<%= f.radio_button :prezi, 5, :default => @present_fluentcy.prezi %>				
+				</td>
+				<td>
+					<%= f.radio_button :prezi, 4, :default => @present_fluentcy.prezi %>				
+				</td>
+				<td>
+					<%= f.radio_button :prezi, 3, :default => @present_fluentcy.prezi %>				
+				</td>
+				<td>
+					<%= f.radio_button :prezi, 2, :default => @present_fluentcy.prezi %>				
+				</td>
+				<td>
+					<%= f.radio_button :prezi, 1, :default => @present_fluentcy.prezi %>				
+				</td>
+			</tr>
+			<tr>
+				<td style = "text-align: left">
+					<%= $other %>
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 6, :default => @present_fluentcy.magnitude_other %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 5, :default => @present_fluentcy.magnitude_other %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 4, :default => @present_fluentcy.magnitude_other %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 3, :default => @present_fluentcy.magnitude_other %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 2, :default => @present_fluentcy.magnitude_other %>				
+				</td>
+				<td>
+					<%= f.radio_button :magnitude_other, 1, :default => @present_fluentcy.magnitude_other %>				
+				</td>
+			</tr>
+		</table>
+
+		<%= f.label $other_label %>
+		<br>
+		<%= f.text_field :other, style: "width: 50%" %>
+		
+		<div class = "row">
+			<div class = "col-lg-2">
+				<%= link_to $previous, {:action => "back", :controller => "/surveys",  :div => "presentation", :file => "shared/survey/tech/presentation_a"}, :remote=>true, class: "btn btn-primary" %> 
+			</div>				
+			<div class="col-lg-2">
+				<%= f.submit $submit, class: "btn btn-primary", onClick: "showSaved1();" %>
+			</div>
+			<div class = "col-lg-4" id = "saved5" style= "display: none">
+				<div class = "alert alert-success" style = "width: 125px; padding: 6px; text-align: center; margin-bottom: 0px;">
+					Changes Saved
+				</div>
+			</div>
+		</div>									
+	<% end %>
+</body>

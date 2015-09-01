@@ -1,0 +1,20 @@
+class Project < ActiveRecord::Base
+
+
+    belongs_to :experience
+
+    
+
+    validates :name, :project_id, :experience_id, presence: true
+
+    after_create :do_setID
+    private
+    def do_setID
+      
+      newID = self.id
+      self.update_attributes(:project_id => newID)
+
+
+    end
+  
+end

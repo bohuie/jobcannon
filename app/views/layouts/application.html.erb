@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= stylesheet_link_tag "application", media: "all","data-turbolinks-track" => true %>
+
+
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true%>     
+
+    <%= javascript_include_tag "bootstrap.js", "data-turbolinks-track" => true%> 
+    <%= javascript_include_tag "http://localhost:9292/faye.js"%> 
+    <%= javascript_include_tag "autocomplete-rails.js" %>    
+    <%= include_gon %>
+
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+    <script type = "text/javascript">
+      window.onload = function online(){
+        $.ajax({
+            type:'GET',
+            url:"/"
+          });
+        setTimeout(online, 10000);
+      }
+    </script>
+    <script type="text/javascript">
+$(document).ready(function(){
+  setTimeout(function(){
+    $('.alert').remove();
+  }, 2000);
+ })
+</script>
+  </head>
+  <body>
+    <div class="container" style = "width: 100%; padding: 0px">
+      <%= render 'layouts/header' %>
+    </div>
+    
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+
+    <div class="container" style = "width: 90%; padding 10px">
+        <%=yield%>
+    </div>
+
+
+    <div class = "container" style = "width: 100%; padding: 0px">
+        
+
+    </div>
+
+  </body>
+</html>
