@@ -6,12 +6,9 @@ namespace :db do
   User.create!(email: 'employer@test.ca', username: 'employer', 
     password: 'testtest', password_confirmation: 'testtest', 
     fname: 'Mr.', lname: 'Money', employer: true)
-<<<<<<< HEAD
   User.create!(email: 'admin@test.ca', username: 'admin', 
     password: 'testtest', password_confirmation: 'testtest', 
     fname: 'Mr.', lname: 'Money', admin: true)
-=======
->>>>>>> f525c470cbce5b41f808865a5e8f71be2774a00f
   User.create!(email: 'employer1@test.ca', username: 'employer1', 
     password: 'testtest', password_confirmation: 'testtest', 
     fname: 'Cpt.', lname: 'Cash', employer: true)

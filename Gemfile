@@ -3,11 +3,7 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.0'
 gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
-<<<<<<< HEAD
-gem 'jquery-rails', '~> 2.3.0'
-=======
 gem 'jquery-rails', '2.3.0'
->>>>>>> f525c470cbce5b41f808865a5e8f71be2774a00f
 gem 'sass-rails', '>= 3.2'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'bcrypt-ruby', '3.0.1'
@@ -34,10 +30,6 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'prawn'
 gem 'capistrano', '~> 3.0'
-<<<<<<< HEAD
-=======
-gem 'capistrano-rvm'
->>>>>>> f525c470cbce5b41f808865a5e8f71be2774a00f
 gem 'capistrano-rails'
 gem 'capistrano-passenger'
 gem 'capistrano-rvm'
@@ -71,9 +63,5 @@ end
 
 group :production do
   gem 'pg', '0.15.1'
-<<<<<<< HEAD
-=======
-  gem 'sqlite3', '1.3.8'
->>>>>>> f525c470cbce5b41f808865a5e8f71be2774a00f
   gem 'rails_12factor', '0.0.2'
 end

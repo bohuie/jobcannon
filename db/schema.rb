@@ -773,7 +773,3 @@ ActiveRecord::Schema.define(version: 20140220233716) do
   end 
 
 end
-<<<<<<< HEAD
-end
-=======
->>>>>>> f525c470cbce5b41f808865a5e8f71be2774a00f

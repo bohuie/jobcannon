@@ -219,7 +219,6 @@ class SurveysController < ApplicationController
 		@id = params[:div]
 		puts "THIS IS THE BACK METHOD IN THE SURVEY CONTROLLER"
 		puts @id
-<<<<<<< HEAD
 		respond_to do |f|		
 			f.js { render 'shared/ajax/previous.js.erb' }
 		end
@@ -269,10 +268,4 @@ class SurveysController < ApplicationController
 
 		return result
 	end
-=======
-			respond_to do |f|		
-			f.js { render 'shared/ajax/previous.js.erb' }
-		end
-	end
->>>>>>> f525c470cbce5b41f808865a5e8f71be2774a00f
 end

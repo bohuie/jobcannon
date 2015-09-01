@@ -96,10 +96,7 @@ First_Website::Application.routes.draw do
     end 
   end
 
-<<<<<<< HEAD
   match '/show_results', to:'surveys#results', via: 'get'
-=======
->>>>>>> f525c470cbce5b41f808865a5e8f71be2774a00f
   match '/show_network', to:'friendships#show', via: 'get'
   match '/ft_update', to: 'experiencetables#ft_update', via: 'get'
   match '/pt_update', to: 'experiencetables#pt_update', via: 'get'
