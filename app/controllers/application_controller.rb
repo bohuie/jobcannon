@@ -2,7 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+<<<<<<< HEAD
   # before_filter :set_last_seen_at, if: proc { |p| user_signed_in? }
+=======
+  before_filter :set_last_seen_at, if: proc { |p| user_signed_in? }
+>>>>>>> f525c470cbce5b41f808865a5e8f71be2774a00f
   #before_filter :log_page_view, if: proc { |p| user_signed_in? }
 
   before_action :set_user

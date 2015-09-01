@@ -40,15 +40,24 @@
   </style>
 
   <script type="text/javascript">
+<<<<<<< HEAD
     $('#myTab a').click(function (e) {
       e.preventDefault()
       $(this).tab('show')
     })
+=======
+
+    $('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+>>>>>>> f525c470cbce5b41f808865a5e8f71be2774a00f
     $('#myTab a[href="#exp"]').tab('show'); 
   </script>
 </head>
 
 
+<<<<<<< HEAD
 <body>
   <% if @user.admin? %>
     <%= render :partial => 'shared/profile_viewing/admin' %>  
@@ -64,5 +73,20 @@
     <% else %>
         <%= render :partial => 'shared/profile_viewing/guest_employer' %>
     <% end %>
+=======
+<body>  
+    <% if @user.id == @owner.id %>
+        <% if @owner.employer? %>          
+          <%= render :partial => 'shared/profile_viewing/owner_employer' %>
+        <% else %>        
+          <%= render :partial => 'shared/profile_viewing/owner_employee' %>
+        <% end %>
+    <% else %> <!-- The viewer is not the owner -->
+        <% if !@owner.employer? %>
+            <%= render :partial => 'shared/profile_viewing/guest_employee' %>
+        <% else %>
+            <%= render :partial => 'shared/profile_viewing/guest_employer' %>
+        <% end %>
+>>>>>>> f525c470cbce5b41f808865a5e8f71be2774a00f
   <% end %>
 </body>
