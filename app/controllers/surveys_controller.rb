@@ -26,10 +26,6 @@ class SurveysController < ApplicationController
 		 $header16 = "Somewhat Agree"
 		 $header17 = "Agree" 
 
-		 $header13 = "Yes, I have used this" 
-		 $header14 = "No, I have not used this" 
-		 $header15 = "Not sure"
-
 		 $other = "Other" 
 		 $other_label = "If Other Please Specify" 
 		 $continue = "Save & Continue" 
@@ -225,7 +221,8 @@ class SurveysController < ApplicationController
 	end
 
 	def results
-		@profile = getProfile()
+		@profile = getProfile();
+		@personality = getPersonality();
 	end
 
 	def getProfile
@@ -253,8 +250,6 @@ class SurveysController < ApplicationController
 		result['languageLabels'] = languageLabels;
 		result['languageCategories'] = languageCategories;
 		result['languages'] = getLanguages().to_json;
-
-
 		return result
 	end
 
@@ -366,6 +361,109 @@ class SurveysController < ApplicationController
 		languages.push(italian);
 		languages.push(other);
 		return languages;
+	end
+
+	def getPersonality
+		result = Hash.new;
+
+		communicationLabels = ['Listen', 'Disagreement', 'Respect', 'Clear',
+			'Beyond: Group', 'Beyond: Alone', 'Clear Opinions', 'Different Views',
+			'Evidence', 'Language', 'Audience'];
+		thinkingLabels = ['Ideas with Guidelines', 'Ideas without Guidelines',
+		  'Prefer Group', 'Several Solutions',
+			'All Solutions', 'Viewpoints', 'Sub-goals', 'Think Ahead'];
+		selfLabels = ['Independent', 'Organize', 'Persevere', 'Ask Others',
+			'Consider Others', 'Reflect', 'Not Worry Others', 'Not Worry Mistakes',
+			'Support Unpopular', 'Not Clear Solutions', 'Try Again'];
+		accountabilityLabels = ['Punctual', 'Questions', 'Professional', 'Efficient',
+			'Variety of Tools'];
+		interpersonalLabels = ['Manage Conflict', 'Listen', 'Aware', 'Consider',
+			'Involved', 'Body Language'];
+		categories = ['Disagree', 'Somewhat Disagree', 'Not Sure',
+			'Somewhat Agree', 'Agree'];
+		result['communicationLabels'] = communicationLabels.to_json;
+		result['thinkingLabels'] = thinkingLabels.to_json;
+		result['selfLabels'] = selfLabels.to_json;
+		result['accountabilityLabels'] = accountabilityLabels.to_json;
+		result['interpersonalLabels'] = interpersonalLabels.to_json;
+		result['categories'] = categories.to_json;
+		result['communication'] = getCommunication().to_json;
+		result['thinking'] = getThinking().to_json;
+		result['self'] = getSelfDirection().to_json;
+		result['accountability'] = getAccountability().to_json;
+		result['interpersonal'] = getInterpersonal().to_json;
+
+		return result
+	end
+
+	def getCommunication
+		communication = [];
+		(1..11).each do |q|
+			questionArray = []
+			(1..5).each do |a|
+				question = 'q'+q.to_s;
+				questionArray.push(CommunicationSkill.where(''+question+' = ?', a).count());
+			end
+			communication.push(questionArray);
+		end
+
+		return communication;
+	end
+
+	def getThinking
+		thinking = [];
+		(1..8).each do |q|
+			questionArray = []
+			(1..5).each do |a|
+				question = 'q'+q.to_s;
+				questionArray.push(ThinkingSkill.where(''+question+' = ?', a).count());
+			end
+			thinking.push(questionArray);
+		end
+
+		return thinking;
+	end
+
+	def getSelfDirection
+		direction = [];
+		(1..11).each do |q|
+			questionArray = []
+			(1..5).each do |a|
+				question = 'q'+q.to_s;
+				questionArray.push(SelfDirectionSkill.where(''+question+' = ?', a).count());
+			end
+			direction.push(questionArray);
+		end
+
+		return direction;
+	end
+
+	def getAccountability
+		accountability = [];
+		(1..6).each do |q|
+			questionArray = []
+			(1..5).each do |a|
+				question = 'q'+q.to_s;
+				questionArray.push(Accountability.where(''+question+' = ?', a).count());
+			end
+			accountability.push(questionArray);
+		end
+
+		return accountability;
+	end
+
+	def getInterpersonal
+		interpersonal = [];
+		(1..6).each do |q|
+			questionArray = []
+			(1..5).each do |a|
+				question = 'q'+q.to_s;
+				questionArray.push(InterpersonalSkill.where(''+question+' = ?', a).count());
+			end
+			interpersonal.push(questionArray);
+		end
+
+		return interpersonal;
 	end
 
 end

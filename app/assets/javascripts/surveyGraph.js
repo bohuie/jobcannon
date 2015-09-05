@@ -1,6 +1,6 @@
-var singleBarGraph = function(container, data, labels){
+var singleBarGraph = function(container, data, labels, size){
 	var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = parseInt(d3.select(container).style('width'), 10) - margin.right - margin.left,
+    width = parseInt(d3.select('.'+size+'-graph').style('width'), 10) - 60 - margin.right - margin.left,
     height = 250 - margin.top - margin.bottom;
 
   var x = d3.scale.ordinal()
@@ -66,9 +66,9 @@ var singleBarGraph = function(container, data, labels){
   }
 }
 
-var multiBarGraph = function(container, data, labels, categories){
+var multiBarGraph = function(container, data, labels, categories, size){
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = parseInt(d3.select(container).style('width'), 10) - margin.left - margin.right,
+    width = parseInt(d3.select('.'+size+'-graph').style('width'), 10) - 60 - margin.left - margin.right,
     height = 250 - margin.top - margin.bottom;
 
   var x0 = d3.scale.ordinal()

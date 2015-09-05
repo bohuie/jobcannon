@@ -1,0 +1,88 @@
+<div class='report-wrapper'>
+  <div class = 'row'>
+    <div class = 'col-md-12'>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="panel-heading">Communication Skills</div>
+          <div class = 'col-md-12'>
+            <%= render :partial => 'multi_graph', :locals => {container: 'communication_graph', 
+            	data: data['communication'], 
+            	labels: data['communicationLabels'],
+            	categories: data['categories'],
+            	size: %q['full']}%>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class = 'row'>
+    <div class = 'col-md-12'>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="panel-heading">Problem Solving Skills</div>
+          <div class = 'col-md-12'>
+            <%= render :partial => 'multi_graph', :locals => {container: 'thinking_graph', 
+            	data: data['thinking'], 
+            	labels: data['thinkingLabels'],
+            	categories: data['categories'],
+            	size: %q['full']}%>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class = 'row'>
+    <div class = 'col-md-12'>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="panel-heading">Self-Direction Skills</div>
+          <div class = 'col-md-12'>
+            <%= render :partial => 'multi_graph', :locals => {container: 'self_graph', 
+            	data: data['self'], 
+            	labels: data['selfLabels'],
+            	categories: data['categories'],
+            	size: %q['full']}%>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class = 'row'>
+    <div class = 'col-md-12'>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="panel-heading">Accountablity and Adapability Skills</div>
+          <div class = 'col-md-12'>
+            <%= render :partial => 'multi_graph', :locals => {container: 'accountability_graph', 
+            	data: data['accountability'], 
+            	labels: data['accountabilityLabels'],
+            	categories: data['categories'],
+            	size: %q['full']}%>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class = 'row'>
+    <div class = 'col-md-12'>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="panel-heading">Interpersonal and Collaborative Skills</div>
+          <div class = 'col-md-12'>
+            <%= render :partial => 'multi_graph', :locals => {container: 'interpersonal_graph', 
+            	data: data['interpersonal'], 
+            	labels: data['interpersonalLabels'],
+            	categories: data['categories'],
+            	size: %q['full']}%>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class = 'row'>
+  </div>
+  <div class = 'row'>
+    <div class = 'col-md-12'>
+    </div>  
+  </div>
+</div>
