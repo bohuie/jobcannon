@@ -7,30 +7,51 @@
       </div>
     </div>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="panel-heading">Ages</div>
-      <div class = 'col-md-12'>
-        <%= render :partial => 'age_graph', :locals => {data: data['ages']}%>
+  <div class = 'row'>
+    <div class = 'col-md-6'>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="panel-heading">Ages</div>
+          <div class = 'col-md-12'>
+            <%= render :partial => 'graph', :locals => {container: 'age_graph', data: data['ages'], labels: data['ageLabels']}%>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class = 'col-md-6'>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="panel-heading">Gender</div>
+          <div class = 'col-md-12'>
+            <%= render :partial => 'graph', :locals => {container: 'gender_graph', data: data['genders'], labels: data['genderLabels']}%>
+          </div>
+        </div>
+      </div>  
     </div>
   </div>
-
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="panel-heading">Gender</div>
-      <div class = 'col-md-12'>
-        <%= render :partial => 'gender_graph', :locals => {data: data['genders']}%>
+  <div class = 'row'>
+    <div class = 'col-md-12'>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="panel-heading">Education</div>
+          <div class = 'col-md-12'>
+            <%= render :partial => 'graph', :locals => {container: 'education_graph', data: data['education'], labels: data['educationLabels']}%>
+          </div>
+        </div>
       </div>
-    </div>
+    </div>  
   </div>
-
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="panel-heading">Education</div>
-      <div class = 'col-md-12'>
-        <%= render :partial => 'education_graph', :locals => {data: data['education']}%>
+  <div class = 'row'>
+    <div class = 'col-md-12'>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="panel-heading">Language</div>
+          <div class = 'col-md-12'>
+            <%= render :partial => 'multi_graph', :locals => {container: 'language_graph', data: data['languages'], labels: data['languageLabels'],
+              categories: data['languageCategories']}%>
+          </div>
+        </div>
       </div>
-    </div>
+    </div>  
   </div>
 </div>

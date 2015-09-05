@@ -1,0 +1,10 @@
+<div class = 'row'>
+  <div class = 'col-md-12' id= <%= container %> >
+  </div>
+</div>
+<script>
+  var data = <%= data.to_s.html_safe %>
+  var labels =  <%= labels.to_s.html_safe %>
+  var container = <%= container %>;
+  singleBarGraph(container, data, labels)
+</script>

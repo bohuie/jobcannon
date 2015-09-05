@@ -231,6 +231,34 @@ class SurveysController < ApplicationController
 	def getProfile
 		result = Hash.new;
 		result['numResponses'] = Surveyprofile.count('user_id', :distinct => true);
+
+		ageLabels = ['<15', '15-16', '17-18', '19-20', '21-22', '23+'];
+		result['ageLabels'] = ageLabels.to_json;
+		result['ages'] = getAges().to_json;
+
+		genderLabels = ['Male', 'Female', 'Other'];
+		result['genderLabels'] = genderLabels.to_json;
+		result['genders'] = getGenders(genderLabels).to_json;
+
+		educationLabels = ['Grade 9','Grade 10','Grade 11','Grade 12',
+	  	'High School','Some College','College','Some University',
+	  	'Some Graduate Studies','Masters','Doctorial Degree'];
+		result['educationLabels'] = educationLabels.to_json;
+		result['education'] = getEducation(educationLabels).to_json;
+
+		languageLabels = ['English', 'French', 'Spanish', 'Tagalog', 
+			'Mandarin', 'Cantonese', 'Punjabi', 'Urdu', 'Tamil', 
+			'Persian (Farsi)', 'Italian', 'Other'];
+		languageCategories = ['Read', 'Write', 'Speak', 'Formal Instruction'];
+		result['languageLabels'] = languageLabels;
+		result['languageCategories'] = languageCategories;
+		result['languages'] = getLanguages().to_json;
+
+
+		return result
+	end
+
+	def getAges
 		ages = [];
 		@less15 = Surveyprofile.where('birthday > ?', Time.now - 15.years).count();
 		@less17 = Surveyprofile.where('birthday > ?', Time.now - 17.years).count();
@@ -244,28 +272,100 @@ class SurveysController < ApplicationController
 		ages.push(@less21 - @less19);
 		ages.push(@less23 - @less21);
 		ages.push(@greater23 - @less23);
-		result['ages'] = ages.to_json;
-
-		genders = [];
-		genders.push(Surveyprofile.where(gender: 'Male').count());
-		genders.push(Surveyprofile.where(gender: 'Female').count());
-		genders.push(Surveyprofile.where(gender: 'Other').count());
-		result['genders'] = genders.to_json;
-
-		education = [];
-		education.push(Surveyprofile.where(education: 'Grade 9').count());
-		education.push(Surveyprofile.where(education: 'Grade 10').count());
-		education.push(Surveyprofile.where(education: 'Grade 11').count());
-		education.push(Surveyprofile.where(education: 'Grade 12').count());
-		education.push(Surveyprofile.where(education: 'High School').count());
-		education.push(Surveyprofile.where(education: 'Some College').count());
-		education.push(Surveyprofile.where(education: 'College').count());
-		education.push(Surveyprofile.where(education: 'Some University').count());
-		education.push(Surveyprofile.where(education: 'Some Graduate Studies').count());
-		education.push(Surveyprofile.where(education: 'Masters').count());
-		education.push(Surveyprofile.where(education: 'Doctorial Degree').count());
-		result['education'] = education.to_json;
-
-		return result
+		return ages;		
 	end
+
+	def getGenders(labels)
+		genders = [];
+		labels.each do |l|
+			genders.push(Surveyprofile.where(gender: l).count());
+		end	
+		return genders;
+	end
+
+	def getEducation(labels)
+		education = [];
+		labels.each do |l|
+			education.push(Surveyprofile.where(education: l).count());
+		end
+		return education;
+	end
+
+	def getLanguages()
+		languages = [];
+		english = [];
+		english.push(Language.where(eng_speak: true).count());
+		english.push(Language.where(eng_read: true).count());
+		english.push(Language.where(eng_write: true).count());
+		english.push(Language.where(eng_formal: true).count());
+		french = [];
+		french.push(Language.where(fren_speak: true).count());
+		french.push(Language.where(fren_read: true).count());
+		french.push(Language.where(fren_write: true).count());
+		french.push(Language.where(fren_formal: true).count());
+		spanish = [];
+		spanish.push(Language.where(spnish_speak: true).count());
+		spanish.push(Language.where(spnish_read: true).count());
+		spanish.push(Language.where(spnish_write: true).count());
+		spanish.push(Language.where(spnish_formal: true).count());
+		tagalog = [];
+		tagalog.push(Language.where(tagalog_speak: true).count());
+		tagalog.push(Language.where(tagalog_read: true).count());
+		tagalog.push(Language.where(tagalog_write: true).count());
+		tagalog.push(Language.where(tagalog_formal: true).count());
+		mandarin = [];
+		mandarin.push(Language.where(mandarin_speak: true).count());
+		mandarin.push(Language.where(mandarin_read: true).count());
+		mandarin.push(Language.where(mandarin_write: true).count());
+		mandarin.push(Language.where(mandarin_formal: true).count());
+		cantonese = [];
+		cantonese.push(Language.where(cantonese_speak: true).count());
+		cantonese.push(Language.where(cantonese_read: true).count());
+		cantonese.push(Language.where(cantonese_write: true).count());
+		cantonese.push(Language.where(cantonese_formal: true).count());
+		punjabi = [];
+		punjabi.push(Language.where(punjabi_speak: true).count());
+		punjabi.push(Language.where(punjabi_read: true).count());
+		punjabi.push(Language.where(punjabi_write: true).count());
+		punjabi.push(Language.where(punjabi_formal: true).count());
+    urdu = [];
+		urdu.push(Language.where(urdu_speak: true).count());
+		urdu.push(Language.where(urdu_read: true).count());
+		urdu.push(Language.where(urdu_write: true).count());
+		urdu.push(Language.where(urdu_formal: true).count());
+    tamil = [];
+		tamil.push(Language.where(tamil_speak: true).count());
+		tamil.push(Language.where(tamil_read: true).count());
+		tamil.push(Language.where(tamil_write: true).count());
+		tamil.push(Language.where(tamil_formal: true).count());
+    persian = [];
+		persian.push(Language.where(persian_speak: true).count());
+		persian.push(Language.where(persian_read: true).count());
+		persian.push(Language.where(persian_write: true).count());
+		persian.push(Language.where(persian_formal: true).count());
+		italian = [];
+		italian.push(Language.where(italian_speak: true).count());
+		italian.push(Language.where(italian_read: true).count());
+		italian.push(Language.where(italian_write: true).count());
+		italian.push(Language.where(italian_formal: true).count());
+		other = [];
+		other.push(Language.where(other_speak: true).count());
+		other.push(Language.where(other_read: true).count());
+		other.push(Language.where(other_write: true).count());
+		other.push(Language.where(other_formal: true).count());
+		languages.push(english);
+		languages.push(french);
+		languages.push(spanish);
+		languages.push(tagalog);
+		languages.push(mandarin);
+		languages.push(cantonese);
+		languages.push(punjabi);
+		languages.push(urdu);
+		languages.push(tamil);
+		languages.push(persian);
+		languages.push(italian);
+		languages.push(other);
+		return languages;
+	end
+
 end

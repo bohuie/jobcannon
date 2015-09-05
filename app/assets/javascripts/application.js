@@ -18,5 +18,6 @@
 //= require bootstrap
 //= require turbolinks
 //= require private_pub
+//= require surveyGraph
 //= require_tree .
 
