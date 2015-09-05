@@ -67,12 +67,12 @@ var singleBarGraph = function(container, data, labels, size){
 }
 
 var multiBarGraph = function(container, data, labels, categories, size){
-  var margin = {top: 20, right: 20, bottom: 30, left: 40},
+  var margin = {top: 20, right: 20, bottom: 100, left: 40},
     width = parseInt(d3.select('.'+size+'-graph').style('width'), 10) - 60 - margin.left - margin.right,
     height = 250 - margin.top - margin.bottom;
 
   var x0 = d3.scale.ordinal()
-      .rangeRoundBands([0, width], .1);
+      .rangeRoundBands([0, width - 150], .25);
 
   var x1 = d3.scale.ordinal();
 
@@ -112,7 +112,12 @@ var multiBarGraph = function(container, data, labels, categories, size){
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+      .call(xAxis)
+      .selectAll("text")  
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "rotate(-65)" );
 
   svg.append("g")
       .attr("class", "y axis")

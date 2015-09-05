@@ -375,8 +375,8 @@ class SurveysController < ApplicationController
 		selfLabels = ['Independent', 'Organize', 'Persevere', 'Ask Others',
 			'Consider Others', 'Reflect', 'Not Worry Others', 'Not Worry Mistakes',
 			'Support Unpopular', 'Not Clear Solutions', 'Try Again'];
-		accountabilityLabels = ['Punctual', 'Questions', 'Professional', 'Efficient',
-			'Variety of Tools'];
+		accountabilityLabels = ['Punctual', 'Question', 'Professional', 'Efficient',
+			'Variety of Tools', 'Communicate'];
 		interpersonalLabels = ['Manage Conflict', 'Listen', 'Aware', 'Consider',
 			'Involved', 'Body Language'];
 		categories = ['Disagree', 'Somewhat Disagree', 'Not Sure',
