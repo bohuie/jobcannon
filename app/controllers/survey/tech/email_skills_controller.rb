@@ -24,7 +24,7 @@ end
 
 	    @DBprogress = Progress.find_by(:user_id=> @user.user_id)
 	    @email = EmailSkill.find_by(:user_id=> @user.user_id)
-	    @email_fluentcy = EmailFluentcy.find_by(:user_id=> @user.user_id)
+	    @email_fluency = EmailFluentcy.find_by(:user_id=> @user.user_id)
 
 	    if @email.nil?
 	      @email_progress = 0
@@ -35,7 +35,7 @@ end
 	        end
 	      end
 
-	      @email_fluentcy.attributes.each do |attr_name,attr_value|
+	      @email_fluency.attributes.each do |attr_name,attr_value|
 	      	if (attr_value != 0 && attr_name != "other" && attr_name != "magnitude_other")
 	      		@email_progress += 1
 	      	end

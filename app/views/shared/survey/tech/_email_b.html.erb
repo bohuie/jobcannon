@@ -12,10 +12,10 @@
 <% @outlook = "Outlook (Microsoft)" %>
 <% @mail = "Mail (Apple)" %>
 <% @impress = "Impress (OpenOffice)" %>
-<% @email_fluentcy = EmailFluentcy.find_by(:user_id=> @user.user_id) %>
+<% @email_fluency = EmailFluentcy.find_by(:user_id=> @user.user_id) %>
 
 <body>
-	<%= simple_form_for @email_fluentcy, remote: true do |f| %>
+	<%= simple_form_for @email_fluency, remote: true do |f| %>
 
 		<%= f.label @label %>
 		<table id = "survey_format">
@@ -46,22 +46,22 @@
 					<%= @outlook %>
 				</td>
 				<td>
-					<%= f.radio_button :outlook, 6, :default => @email_fluentcy.outlook %>				
+					<%= f.radio_button :outlook, 6, :default => @email_fluency.outlook %>				
 				</td>
 				<td>
-					<%= f.radio_button :outlook, 5, :default => @email_fluentcy.outlook %>				
+					<%= f.radio_button :outlook, 5, :default => @email_fluency.outlook %>				
 				</td>
 				<td>
-					<%= f.radio_button :outlook, 4, :default => @email_fluentcy.outlook %>				
+					<%= f.radio_button :outlook, 4, :default => @email_fluency.outlook %>				
 				</td>
 				<td>
-					<%= f.radio_button :outlook, 3, :default => @email_fluentcy.outlook %>				
+					<%= f.radio_button :outlook, 3, :default => @email_fluency.outlook %>				
 				</td>
 				<td>
-					<%= f.radio_button :outlook, 2, :default => @email_fluentcy.outlook %>				
+					<%= f.radio_button :outlook, 2, :default => @email_fluency.outlook %>				
 				</td>
 				<td>
-					<%= f.radio_button :outlook, 1, :default => @email_fluentcy.outlook %>				
+					<%= f.radio_button :outlook, 1, :default => @email_fluency.outlook %>				
 				</td>
 			</tr>
 			<tr>
@@ -69,22 +69,22 @@
 					<%= @mail %>
 				</td>
 				<td>
-					<%= f.radio_button :mail, 6, :default => @email_fluentcy.mail %>				
+					<%= f.radio_button :mail, 6, :default => @email_fluency.mail %>				
 				</td>
 				<td>
-					<%= f.radio_button :mail, 5, :default => @email_fluentcy.mail %>				
+					<%= f.radio_button :mail, 5, :default => @email_fluency.mail %>				
 				</td>
 				<td>
-					<%= f.radio_button :mail, 4, :default => @email_fluentcy.mail %>				
+					<%= f.radio_button :mail, 4, :default => @email_fluency.mail %>				
 				</td>
 				<td>
-					<%= f.radio_button :mail, 3, :default => @email_fluentcy.mail %>				
+					<%= f.radio_button :mail, 3, :default => @email_fluency.mail %>				
 				</td>
 				<td>
-					<%= f.radio_button :mail, 2, :default => @email_fluentcy.mail %>				
+					<%= f.radio_button :mail, 2, :default => @email_fluency.mail %>				
 				</td>
 				<td>
-					<%= f.radio_button :mail, 1, :default => @email_fluentcy.mail %>				
+					<%= f.radio_button :mail, 1, :default => @email_fluency.mail %>				
 				</td>
 			</tr>
 			<tr>
@@ -92,22 +92,22 @@
 					<%= @impress %>
 				</td>
 				<td>
-					<%= f.radio_button :impress, 6, :default => @email_fluentcy.impress %>				
+					<%= f.radio_button :impress, 6, :default => @email_fluency.impress %>				
 				</td>
 				<td>
-					<%= f.radio_button :impress, 5, :default => @email_fluentcy.impress %>				
+					<%= f.radio_button :impress, 5, :default => @email_fluency.impress %>				
 				</td>
 				<td>
-					<%= f.radio_button :impress, 4, :default => @email_fluentcy.impress %>				
+					<%= f.radio_button :impress, 4, :default => @email_fluency.impress %>				
 				</td>
 				<td>
-					<%= f.radio_button :impress, 3, :default => @email_fluentcy.impress %>				
+					<%= f.radio_button :impress, 3, :default => @email_fluency.impress %>				
 				</td>
 				<td>
-					<%= f.radio_button :impress, 2, :default => @email_fluentcy.impress %>				
+					<%= f.radio_button :impress, 2, :default => @email_fluency.impress %>				
 				</td>
 				<td>
-					<%= f.radio_button :impress, 1, :default => @email_fluentcy.impress %>				
+					<%= f.radio_button :impress, 1, :default => @email_fluency.impress %>				
 				</td>
 			</tr>
 			<tr>
@@ -115,22 +115,22 @@
 					<%= $other %>
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 6, :default => @email_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 6, :default => @email_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 5, :default => @email_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 5, :default => @email_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 4, :default => @email_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 4, :default => @email_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 3, :default => @email_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 3, :default => @email_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 2, :default => @email_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 2, :default => @email_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 1, :default => @email_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 1, :default => @email_fluency.magnitude_other %>				
 				</td>
 			</tr>
 		</table>

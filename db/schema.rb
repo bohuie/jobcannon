@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
 
   create_table "email_fluentcies", force: true do |t|
     t.integer "user_id"
-    t.integer "email_fluentcy_id", default: 0, null: false
+    t.integer "email_fluency_id", default: 0, null: false
     t.integer "outlook",           default: 0, null: false
     t.integer "mail",              default: 0, null: false
     t.integer "impress",           default: 0, null: false
@@ -379,7 +379,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
 
   create_table "online_colab_fluentcies", force: true do |t|
     t.integer "user_id"
-    t.integer "online_colab_fluentcy_id", default: 0, null: false
+    t.integer "online_colab_fluency_id", default: 0, null: false
     t.integer "q1",                       default: 0, null: false
     t.integer "q2",                       default: 0, null: false
     t.integer "q3",                       default: 0, null: false
@@ -438,7 +438,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
 
   create_table "presenting_fluentcies", force: true do |t|
     t.integer "user_id"
-    t.integer "presentation_fluentcy_id", default: 0, null: false
+    t.integer "presentation_fluency_id", default: 0, null: false
     t.integer "powerpoint",               default: 0, null: false
     t.integer "keynote",                  default: 0, null: false
     t.integer "impress",                  default: 0, null: false
@@ -630,7 +630,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
 
   create_table "spreadsheet_fluentcies", force: true do |t|
     t.integer "user_id"
-    t.integer "spreadsheet_fluentcy_id", default: 0, null: false
+    t.integer "spreadsheet_fluency_id", default: 0, null: false
     t.integer "excel",                   default: 0, null: false
     t.integer "numbers",                 default: 0, null: false
     t.integer "calc",                    default: 0, null: false
@@ -733,7 +733,7 @@ ActiveRecord::Schema.define(version: 20140220233716) do
 
   create_table "word_processing_fluentcies", force: true do |t|
     t.integer "user_id"
-    t.integer "word_fluentcy_id", default: 0, null: false
+    t.integer "word_fluency_id", default: 0, null: false
     t.integer "word",             default: 0, null: false
     t.integer "pages",            default: 0, null: false
     t.integer "writer",           default: 0, null: false

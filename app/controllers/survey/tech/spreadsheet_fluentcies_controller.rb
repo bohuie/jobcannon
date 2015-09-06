@@ -15,7 +15,7 @@ end
 	private
 
 	def spreadsheet_params
-		params.require(:spreadsheet_fluentcy).permit(:excel,:numbers,:calc,:magnitude_other,:other)
+		params.require(:spreadsheet_fluency).permit(:excel,:numbers,:calc,:magnitude_other,:other)
 			
 	end
 

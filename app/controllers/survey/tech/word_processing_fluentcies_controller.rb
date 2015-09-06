@@ -14,7 +14,7 @@ end
 	private
 
 	def word_params
-		params.require(:word_processing_fluentcy).permit(:word,:pages,:writer,:magnitude_other,:other)
+		params.require(:word_processing_fluency).permit(:word,:pages,:writer,:magnitude_other,:other)
 	end
 
 	def word_progression

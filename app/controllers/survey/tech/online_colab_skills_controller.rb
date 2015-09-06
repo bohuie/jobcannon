@@ -23,7 +23,7 @@ end
 
 	    @DBprogress = Progress.find_by(:user_id=> @user.user_id)
 	    @onlinecolab = OnlineColabSkill.find_by(:user_id=> @user.user_id)
-	    @onlinecolab_fluentcy = OnlineColabFluentcy.find_by(:user_id=> @user.user_id)
+	    @onlinecolab_fluency = OnlineColabFluentcy.find_by(:user_id=> @user.user_id)
 
 	    if @onlinecolab.nil?
 	      @online_progress = 0
@@ -34,7 +34,7 @@ end
 	        end
 	      end
 
-	      @onlinecolab_fluentcy.attributes.each do |attr_name, attr_value|
+	      @onlinecolab_fluency.attributes.each do |attr_name, attr_value|
 	      	if (attr_value != 0 && attr_name != "magnitude_other" && attr_name != "other")
 	          @online_progress += 1
 	        end

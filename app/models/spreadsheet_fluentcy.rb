@@ -5,6 +5,6 @@ class SpreadsheetFluentcy < ActiveRecord::Base
   private
     def do_setID    
       newID = self.id
-      self.update_attributes(:spreadsheet_fluentcy_id => newID)
+      self.update_attributes(:spreadsheet_fluency_id => newID)
     end
 end

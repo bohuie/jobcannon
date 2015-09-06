@@ -5,6 +5,6 @@ class EmailFluentcy < ActiveRecord::Base
   private
     def do_setID    
       newID = self.id
-      self.update_attributes(:email_fluentcy_id => newID)
+      self.update_attributes(:email_fluency_id => newID)
     end
 end

@@ -13,10 +13,10 @@
 <% @excel = "Excel (Microsoft)" %>
 <% @numbers = "Numbers (Apple)" %>
 <% @calc = "Calc (Apple)" %>
-<% @spreadsheet_fluentcy = SpreadsheetFluentcy.find_by(:user_id=> @user.user_id) %>
+<% @spreadsheet_fluency = SpreadsheetFluentcy.find_by(:user_id=> @user.user_id) %>
 
 <body>
-	<%= simple_form_for @spreadsheet_fluentcy,remote: true do |f| %>
+	<%= simple_form_for @spreadsheet_fluency,remote: true do |f| %>
 			<%= f.label @label2 %>
 			<br>
 			<br>
@@ -49,22 +49,22 @@
 						<%= @excel %>
 					</td>
 					<td>
-						<%= f.radio_button :excel, 6, :default => @spreadsheet_fluentcy.excel %>				
+						<%= f.radio_button :excel, 6, :default => @spreadsheet_fluency.excel %>				
 					</td>
 					<td>
-						<%= f.radio_button :excel, 5, :default => @spreadsheet_fluentcy.excel %>				
+						<%= f.radio_button :excel, 5, :default => @spreadsheet_fluency.excel %>				
 					</td>
 					<td>
-						<%= f.radio_button :excel, 4, :default => @spreadsheet_fluentcy.excel %>				
+						<%= f.radio_button :excel, 4, :default => @spreadsheet_fluency.excel %>				
 					</td>
 					<td>
-						<%= f.radio_button :excel, 3, :default => @spreadsheet_fluentcy.excel %>				
+						<%= f.radio_button :excel, 3, :default => @spreadsheet_fluency.excel %>				
 					</td>
 					<td>
-						<%= f.radio_button :excel, 2, :default => @spreadsheet_fluentcy.excel %>				
+						<%= f.radio_button :excel, 2, :default => @spreadsheet_fluency.excel %>				
 					</td>
 					<td>
-						<%= f.radio_button :excel, 1, :default => @spreadsheet_fluentcy.excel %>				
+						<%= f.radio_button :excel, 1, :default => @spreadsheet_fluency.excel %>				
 					</td>
 				</tr>
 				<tr>
@@ -72,22 +72,22 @@
 						<%= @numbers %>
 					</td>
 					<td>
-						<%= f.radio_button :numbers, 6, :default => @spreadsheet_fluentcy.numbers %>				
+						<%= f.radio_button :numbers, 6, :default => @spreadsheet_fluency.numbers %>				
 					</td>
 					<td>
-						<%= f.radio_button :numbers, 5, :default => @spreadsheet_fluentcy.numbers %>				
+						<%= f.radio_button :numbers, 5, :default => @spreadsheet_fluency.numbers %>				
 					</td>
 					<td>
-						<%= f.radio_button :numbers, 4, :default => @spreadsheet_fluentcy.numbers %>				
+						<%= f.radio_button :numbers, 4, :default => @spreadsheet_fluency.numbers %>				
 					</td>
 					<td>
-						<%= f.radio_button :numbers, 3, :default => @spreadsheet_fluentcy.numbers %>				
+						<%= f.radio_button :numbers, 3, :default => @spreadsheet_fluency.numbers %>				
 					</td>
 					<td>
-						<%= f.radio_button :numbers, 2, :default => @spreadsheet_fluentcy.numbers %>				
+						<%= f.radio_button :numbers, 2, :default => @spreadsheet_fluency.numbers %>				
 					</td>
 					<td>
-						<%= f.radio_button :numbers, 1, :default => @spreadsheet_fluentcy.numbers %>				
+						<%= f.radio_button :numbers, 1, :default => @spreadsheet_fluency.numbers %>				
 					</td>
 				</tr>
 				<tr>
@@ -95,22 +95,22 @@
 						<%= @calc %>
 					</td>
 					<td>
-						<%= f.radio_button :calc, 6, :default => @spreadsheet_fluentcy.calc %>				
+						<%= f.radio_button :calc, 6, :default => @spreadsheet_fluency.calc %>				
 					</td>
 					<td>
-						<%= f.radio_button :calc, 5, :default => @spreadsheet_fluentcy.calc %>				
+						<%= f.radio_button :calc, 5, :default => @spreadsheet_fluency.calc %>				
 					</td>
 					<td>
-						<%= f.radio_button :calc, 4, :default => @spreadsheet_fluentcy.calc %>				
+						<%= f.radio_button :calc, 4, :default => @spreadsheet_fluency.calc %>				
 					</td>
 					<td>
-						<%= f.radio_button :calc, 3, :default => @spreadsheet_fluentcy.calc %>				
+						<%= f.radio_button :calc, 3, :default => @spreadsheet_fluency.calc %>				
 					</td>
 					<td>
-						<%= f.radio_button :calc, 2, :default => @spreadsheet_fluentcy.calc %>				
+						<%= f.radio_button :calc, 2, :default => @spreadsheet_fluency.calc %>				
 					</td>
 					<td>
-						<%= f.radio_button :calc, 1, :default => @spreadsheet_fluentcy.calc %>				
+						<%= f.radio_button :calc, 1, :default => @spreadsheet_fluency.calc %>				
 					</td>
 				</tr>
 				<tr>
@@ -118,22 +118,22 @@
 						<%= $other %>
 					</td>
 					<td>
-						<%= f.radio_button :magnitude_other, 6, :default => @spreadsheet_fluentcy.magnitude_other %>				
+						<%= f.radio_button :magnitude_other, 6, :default => @spreadsheet_fluency.magnitude_other %>				
 					</td>
 					<td>
-						<%= f.radio_button :magnitude_other, 5, :default => @spreadsheet_fluentcy.magnitude_other %>				
+						<%= f.radio_button :magnitude_other, 5, :default => @spreadsheet_fluency.magnitude_other %>				
 					</td>
 					<td>
-						<%= f.radio_button :magnitude_other, 4, :default => @spreadsheet_fluentcy.magnitude_other %>				
+						<%= f.radio_button :magnitude_other, 4, :default => @spreadsheet_fluency.magnitude_other %>				
 					</td>
 					<td>
-						<%= f.radio_button :magnitude_other, 3, :default => @spreadsheet_fluentcy.magnitude_other %>				
+						<%= f.radio_button :magnitude_other, 3, :default => @spreadsheet_fluency.magnitude_other %>				
 					</td>
 					<td>
-						<%= f.radio_button :magnitude_other, 2, :default => @spreadsheet_fluentcy.magnitude_other %>				
+						<%= f.radio_button :magnitude_other, 2, :default => @spreadsheet_fluency.magnitude_other %>				
 					</td>
 					<td>
-						<%= f.radio_button :magnitude_other, 1, :default => @spreadsheet_fluentcy.magnitude_other %>				
+						<%= f.radio_button :magnitude_other, 1, :default => @spreadsheet_fluency.magnitude_other %>				
 					</td>
 				</tr>		
 			</table>

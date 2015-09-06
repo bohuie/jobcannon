@@ -1,0 +1,356 @@
+<div class = 'report-wrapper'>
+	<div class = 'row'>
+	  <div class = 'col-md-12'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Basic Computer Skills</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'basic_graph', 
+	          	data: data['basic'], 
+	          	labels: data['basicLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['full']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Operating Systems Usage</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'OSUsage_graph', 
+	          	data: data['OSUsage'], 
+	          	labels: data['OSUsageLabels'],
+	          	categories: data['confirmCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div> 
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Operating Systems Fluency</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'OSFluent_graph', 
+	          	data: data['OSFluent'], 
+	          	labels: data['OSFluentLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>   
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Multi-Media Skills</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'multiMedia_graph', 
+	          	data: data['multiMedia'], 
+	          	labels: data['multiMediaLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Technology Difference</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'techDifference_graph', 
+	          	data: data['techDifference'], 
+	          	labels: data['techDifferenceLabels'],
+	          	categories: data['confirmCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-12'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Word Processing Skills</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'wordProcessingSkill_graph',
+	          	data: data['wordProcessingSkill'], 
+	          	labels: data['wordProcessingSkillLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['full']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-12'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Spreadsheet Skills</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'spreadsheetSkill_graph', 
+	          	data: data['spreadsheetSkill'], 
+	          	labels: data['spreadsheetSkillLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['full']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-12'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Presentation Skills</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'presentingSkill_graph', 
+	          	data: data['presentingSkill'], 
+	          	labels: data['presentingSkillLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['full']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Word Processing Fluentcy</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'wordProcessingFluentcy_graph',
+	          	data: data['wordProcessingFluentcy'], 
+	          	labels: data['wordProcessingFluentcyLabels'],
+	          	categories: data['fluencyCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Spreadsheet Fluentcy</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'spreadsheetFluentcy_graph', 
+	          	data: data['spreadsheetFluentcy'], 
+	          	labels: data['spreadsheetFluentcyLabels'],
+	          	categories: data['fluencyCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Presentation Fluentcy</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'presentingFluentcy_graph', 
+	          	data: data['presentingFluentcy'], 
+	          	labels: data['presentingFluentcyLabels'],
+	          	categories: data['fluencyCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Advanced Computer Skills</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'advanced_graph', 
+	          	data: data['advanced'], 
+	          	labels: data['advancedLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-12'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Email Skills</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'emailSkill_graph', 
+	          	data: data['emailSkill'], 
+	          	labels: data['emailSkillLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['full']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Email Fluentcy</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'emailFluentcy_graph', 
+	          	data: data['emailFluentcy'], 
+	          	labels: data['emailFluentcyLabels'],
+	          	categories: data['fluencyCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Internet Terms</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'internetTerm_graph', 
+	          	data: data['internetTerm'], 
+	          	labels: data['internetTermLabels'],
+	          	categories: data['confirmCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-12'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Internet Tasks</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'internetTask_graph', 
+	          	data: data['internetTask'], 
+	          	labels: data['internetTaskLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['full']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Internet Connection</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'internetConnection_graph', 
+	          	data: data['internetConnection'], 
+	          	labels: data['internetConnectionLabels'],
+	          	categories: data['connectionCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Browser</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'browser_graph', 
+	          	data: data['browser'], 
+	          	labels: data['browserLabels'],
+	          	categories: data['browserCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-12'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Social Media Skills</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'socialMediaSkill_graph', 
+	          	data: data['socialMediaSkill'], 
+	          	labels: data['socialMediaSkillLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['full']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-12'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Social Media Description</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'socialMediaDesc_graph', 
+	          	data: data['socialMediaDesc'], 
+	          	labels: data['socialMediaDescLabels'],
+	          	categories: data['describeCategories'],
+	          	size: %q['full']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Social Media Platform</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'socialMediaPlatform_graph', 
+	          	data: data['socialMediaPlatform'], 
+	          	labels: data['socialMediaPlatformLabels'],
+	          	categories: data['socialCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	  <div class = 'col-md-6'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Online Collaboration Skills</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'onlineColabSkill_graph', 
+	          	data: data['onlineColabSkill'], 
+	          	labels: data['onlineColabSkillLabels'],
+	          	categories: data['easeCategories'],
+	          	size: %q['half']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<div class = 'row'>
+	  <div class = 'col-md-12'>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <div class="panel-heading">Online Collaboration Fluentcy</div>
+	        <div class = 'col-md-12'>
+	          <%= render :partial => 'multi_graph', :locals => {container: 'onlineColabFluentcy_graph', 
+	          	data: data['onlineColabFluentcy'], 
+	          	labels: data['onlineColabFluentcyLabels'],
+	          	categories: data['fluencyCategories'],
+	          	size: %q['full']}%>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+</div>

@@ -13,10 +13,10 @@
 <% @keynote = "Keynote (Apple)" %>
 <% @impress = " Impress (OpenOffice)" %>
 <% @prezi = "Prezi (Prezi inc.)" %>
-<% @present_fluentcy = PresentingFluentcy.find_by(:user_id=> @user.user_id) %>
+<% @present_fluency = PresentingFluentcy.find_by(:user_id=> @user.user_id) %>
 
 <body>
-	<%= simple_form_for @present_fluentcy, remote: true do |f| %>
+	<%= simple_form_for @present_fluency, remote: true do |f| %>
 
 		<%= f.label @label %>
 		<br>
@@ -48,22 +48,22 @@
 					<%= @powerpoint %>
 				</td>
 				<td>
-					<%= f.radio_button :powerpoint, 6, :default => @present_fluentcy.powerpoint %>				
+					<%= f.radio_button :powerpoint, 6, :default => @present_fluency.powerpoint %>				
 				</td>
 				<td>
-					<%= f.radio_button :powerpoint, 5, :default => @present_fluentcy.powerpoint %>				
+					<%= f.radio_button :powerpoint, 5, :default => @present_fluency.powerpoint %>				
 				</td>
 				<td>
-					<%= f.radio_button :powerpoint, 4, :default => @present_fluentcy.powerpoint %>				
+					<%= f.radio_button :powerpoint, 4, :default => @present_fluency.powerpoint %>				
 				</td>
 				<td>
-					<%= f.radio_button :powerpoint, 3, :default => @present_fluentcy.powerpoint %>				
+					<%= f.radio_button :powerpoint, 3, :default => @present_fluency.powerpoint %>				
 				</td>
 				<td>
-					<%= f.radio_button :powerpoint, 2, :default => @present_fluentcy.powerpoint %>				
+					<%= f.radio_button :powerpoint, 2, :default => @present_fluency.powerpoint %>				
 				</td>
 				<td>
-					<%= f.radio_button :powerpoint, 1, :default => @present_fluentcy.powerpoint %>				
+					<%= f.radio_button :powerpoint, 1, :default => @present_fluency.powerpoint %>				
 				</td>
 			</tr>
 			<tr>
@@ -71,22 +71,22 @@
 					<%= @keynote %>
 				</td>
 				<td>
-					<%= f.radio_button :keynote, 6, :default => @present_fluentcy.keynote %>				
+					<%= f.radio_button :keynote, 6, :default => @present_fluency.keynote %>				
 				</td>
 				<td>
-					<%= f.radio_button :keynote, 5, :default => @present_fluentcy.keynote %>				
+					<%= f.radio_button :keynote, 5, :default => @present_fluency.keynote %>				
 				</td>
 				<td>
-					<%= f.radio_button :keynote, 4, :default => @present_fluentcy.keynote %>				
+					<%= f.radio_button :keynote, 4, :default => @present_fluency.keynote %>				
 				</td>
 				<td>
-					<%= f.radio_button :keynote, 3, :default => @present_fluentcy.keynote %>				
+					<%= f.radio_button :keynote, 3, :default => @present_fluency.keynote %>				
 				</td>
 				<td>
-					<%= f.radio_button :keynote, 2, :default => @present_fluentcy.keynote %>				
+					<%= f.radio_button :keynote, 2, :default => @present_fluency.keynote %>				
 				</td>
 				<td>
-					<%= f.radio_button :keynote, 1, :default => @present_fluentcy.keynote %>				
+					<%= f.radio_button :keynote, 1, :default => @present_fluency.keynote %>				
 				</td>
 			</tr>
 			<tr>
@@ -94,22 +94,22 @@
 					<%= @impress %>
 				</td>
 				<td>
-					<%= f.radio_button :impress, 6, :default => @present_fluentcy.impress %>				
+					<%= f.radio_button :impress, 6, :default => @present_fluency.impress %>				
 				</td>
 				<td>
-					<%= f.radio_button :impress, 5, :default => @present_fluentcy.impress %>				
+					<%= f.radio_button :impress, 5, :default => @present_fluency.impress %>				
 				</td>
 				<td>
-					<%= f.radio_button :impress, 4, :default => @present_fluentcy.impress %>				
+					<%= f.radio_button :impress, 4, :default => @present_fluency.impress %>				
 				</td>
 				<td>
-					<%= f.radio_button :impress, 3, :default => @present_fluentcy.impress %>				
+					<%= f.radio_button :impress, 3, :default => @present_fluency.impress %>				
 				</td>
 				<td>
-					<%= f.radio_button :impress, 2, :default => @present_fluentcy.impress %>				
+					<%= f.radio_button :impress, 2, :default => @present_fluency.impress %>				
 				</td>
 				<td>
-					<%= f.radio_button :impress, 1, :default => @present_fluentcy.impress %>				
+					<%= f.radio_button :impress, 1, :default => @present_fluency.impress %>				
 				</td>
 			</tr>
 			<tr>
@@ -117,22 +117,22 @@
 					<%= @prezi %>
 				</td>
 				<td>
-					<%= f.radio_button :prezi, 6, :default => @present_fluentcy.prezi %>				
+					<%= f.radio_button :prezi, 6, :default => @present_fluency.prezi %>				
 				</td>
 				<td>
-					<%= f.radio_button :prezi, 5, :default => @present_fluentcy.prezi %>				
+					<%= f.radio_button :prezi, 5, :default => @present_fluency.prezi %>				
 				</td>
 				<td>
-					<%= f.radio_button :prezi, 4, :default => @present_fluentcy.prezi %>				
+					<%= f.radio_button :prezi, 4, :default => @present_fluency.prezi %>				
 				</td>
 				<td>
-					<%= f.radio_button :prezi, 3, :default => @present_fluentcy.prezi %>				
+					<%= f.radio_button :prezi, 3, :default => @present_fluency.prezi %>				
 				</td>
 				<td>
-					<%= f.radio_button :prezi, 2, :default => @present_fluentcy.prezi %>				
+					<%= f.radio_button :prezi, 2, :default => @present_fluency.prezi %>				
 				</td>
 				<td>
-					<%= f.radio_button :prezi, 1, :default => @present_fluentcy.prezi %>				
+					<%= f.radio_button :prezi, 1, :default => @present_fluency.prezi %>				
 				</td>
 			</tr>
 			<tr>
@@ -140,22 +140,22 @@
 					<%= $other %>
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 6, :default => @present_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 6, :default => @present_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 5, :default => @present_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 5, :default => @present_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 4, :default => @present_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 4, :default => @present_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 3, :default => @present_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 3, :default => @present_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 2, :default => @present_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 2, :default => @present_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 1, :default => @present_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 1, :default => @present_fluency.magnitude_other %>				
 				</td>
 			</tr>
 		</table>

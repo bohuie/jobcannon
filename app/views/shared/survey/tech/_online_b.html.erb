@@ -21,10 +21,10 @@
 <% @q10 = "Click Meeting" %>
 <% @q11 = "MeetingBurner" %>
 <% @q12 = "WebEx" %>
-<% @onlinecolab_fluentcy = OnlineColabFluentcy.find_by(:user_id=> @user.user_id) %>
+<% @onlinecolab_fluency = OnlineColabFluentcy.find_by(:user_id=> @user.user_id) %>
 
 <body>
-	<%= simple_form_for @onlinecolab_fluentcy, :remote=>true do |f| %>
+	<%= simple_form_for @onlinecolab_fluency, :remote=>true do |f| %>
 
 		<%= f.label @label %>
 		<br>
@@ -56,22 +56,22 @@
 					<%= @q1 %>
 				</td>
 				<td>
-					<%= f.radio_button :q1, 6, :default => @onlinecolab_fluentcy.q1 %>				
+					<%= f.radio_button :q1, 6, :default => @onlinecolab_fluency.q1 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q1, 5, :default => @onlinecolab_fluentcy.q1 %>				
+					<%= f.radio_button :q1, 5, :default => @onlinecolab_fluency.q1 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q1, 4, :default => @onlinecolab_fluentcy.q1 %>				
+					<%= f.radio_button :q1, 4, :default => @onlinecolab_fluency.q1 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q1, 3, :default => @onlinecolab_fluentcy.q1 %>				
+					<%= f.radio_button :q1, 3, :default => @onlinecolab_fluency.q1 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q1, 2, :default => @onlinecolab_fluentcy.q1 %>				
+					<%= f.radio_button :q1, 2, :default => @onlinecolab_fluency.q1 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q1, 1, :default => @onlinecolab_fluentcy.q1 %>				
+					<%= f.radio_button :q1, 1, :default => @onlinecolab_fluency.q1 %>				
 				</td>
 			</tr>
 			<tr>
@@ -79,22 +79,22 @@
 					<%= @q2 %>
 				</td>
 				<td>
-					<%= f.radio_button :q2, 6, :default => @onlinecolab_fluentcy.q2 %>				
+					<%= f.radio_button :q2, 6, :default => @onlinecolab_fluency.q2 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q2, 5, :default => @onlinecolab_fluentcy.q2 %>				
+					<%= f.radio_button :q2, 5, :default => @onlinecolab_fluency.q2 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q2, 4, :default => @onlinecolab_fluentcy.q2 %>				
+					<%= f.radio_button :q2, 4, :default => @onlinecolab_fluency.q2 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q2, 3, :default => @onlinecolab_fluentcy.q2 %>				
+					<%= f.radio_button :q2, 3, :default => @onlinecolab_fluency.q2 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q2, 2, :default => @onlinecolab_fluentcy.q2 %>				
+					<%= f.radio_button :q2, 2, :default => @onlinecolab_fluency.q2 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q2, 1, :default => @onlinecolab_fluentcy.q2 %>				
+					<%= f.radio_button :q2, 1, :default => @onlinecolab_fluency.q2 %>				
 				</td>
 			</tr>
 			<tr>
@@ -102,22 +102,22 @@
 					<%= @q3 %>
 				</td>
 				<td>
-					<%= f.radio_button :q3, 6, :default => @onlinecolab_fluentcy.q3 %>				
+					<%= f.radio_button :q3, 6, :default => @onlinecolab_fluency.q3 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q3, 5, :default => @onlinecolab_fluentcy.q3 %>				
+					<%= f.radio_button :q3, 5, :default => @onlinecolab_fluency.q3 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q3, 4, :default => @onlinecolab_fluentcy.q3 %>				
+					<%= f.radio_button :q3, 4, :default => @onlinecolab_fluency.q3 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q3, 3, :default => @onlinecolab_fluentcy.q3 %>				
+					<%= f.radio_button :q3, 3, :default => @onlinecolab_fluency.q3 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q3, 2, :default => @onlinecolab_fluentcy.q3 %>				
+					<%= f.radio_button :q3, 2, :default => @onlinecolab_fluency.q3 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q3, 1, :default => @onlinecolab_fluentcy.q3 %>				
+					<%= f.radio_button :q3, 1, :default => @onlinecolab_fluency.q3 %>				
 				</td>
 			</tr>
 			<tr>
@@ -125,22 +125,22 @@
 					<%= @q4 %>
 				</td>
 				<td>
-					<%= f.radio_button :q4, 6, :default => @onlinecolab_fluentcy.q4 %>				
+					<%= f.radio_button :q4, 6, :default => @onlinecolab_fluency.q4 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q4, 5, :default => @onlinecolab_fluentcy.q4 %>				
+					<%= f.radio_button :q4, 5, :default => @onlinecolab_fluency.q4 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q4, 4, :default => @onlinecolab_fluentcy.q4 %>				
+					<%= f.radio_button :q4, 4, :default => @onlinecolab_fluency.q4 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q4, 3, :default => @onlinecolab_fluentcy.q4 %>				
+					<%= f.radio_button :q4, 3, :default => @onlinecolab_fluency.q4 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q4, 2, :default => @onlinecolab_fluentcy.q4 %>				
+					<%= f.radio_button :q4, 2, :default => @onlinecolab_fluency.q4 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q4, 1, :default => @onlinecolab_fluentcy.q4 %>				
+					<%= f.radio_button :q4, 1, :default => @onlinecolab_fluency.q4 %>				
 				</td>
 			</tr>
 				<tr>
@@ -148,22 +148,22 @@
 					<%= @q5 %>
 				</td>
 				<td>
-					<%= f.radio_button :q5, 6, :default => @onlinecolab_fluentcy.q5 %>				
+					<%= f.radio_button :q5, 6, :default => @onlinecolab_fluency.q5 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q5, 5, :default => @onlinecolab_fluentcy.q5 %>				
+					<%= f.radio_button :q5, 5, :default => @onlinecolab_fluency.q5 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q5, 4, :default => @onlinecolab_fluentcy.q5 %>				
+					<%= f.radio_button :q5, 4, :default => @onlinecolab_fluency.q5 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q5, 3, :default => @onlinecolab_fluentcy.q5 %>				
+					<%= f.radio_button :q5, 3, :default => @onlinecolab_fluency.q5 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q5, 2, :default => @onlinecolab_fluentcy.q5 %>				
+					<%= f.radio_button :q5, 2, :default => @onlinecolab_fluency.q5 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q5, 1, :default => @onlinecolab_fluentcy.q5 %>				
+					<%= f.radio_button :q5, 1, :default => @onlinecolab_fluency.q5 %>				
 				</td>
 			</tr>
 			<tr>
@@ -171,22 +171,22 @@
 					<%= @q6 %>
 				</td>
 				<td>
-					<%= f.radio_button :q6, 6, :default => @onlinecolab_fluentcy.q6 %>				
+					<%= f.radio_button :q6, 6, :default => @onlinecolab_fluency.q6 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q6, 5, :default => @onlinecolab_fluentcy.q6 %>				
+					<%= f.radio_button :q6, 5, :default => @onlinecolab_fluency.q6 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q6, 4, :default => @onlinecolab_fluentcy.q6 %>				
+					<%= f.radio_button :q6, 4, :default => @onlinecolab_fluency.q6 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q6, 3, :default => @onlinecolab_fluentcy.q6 %>				
+					<%= f.radio_button :q6, 3, :default => @onlinecolab_fluency.q6 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q6, 2, :default => @onlinecolab_fluentcy.q6 %>				
+					<%= f.radio_button :q6, 2, :default => @onlinecolab_fluency.q6 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q6, 1, :default => @onlinecolab_fluentcy.q6 %>				
+					<%= f.radio_button :q6, 1, :default => @onlinecolab_fluency.q6 %>				
 				</td>
 			</tr>
 			<tr>
@@ -194,22 +194,22 @@
 					<%= @q7 %>
 				</td>
 				<td>
-					<%= f.radio_button :q7, 6, :default => @onlinecolab_fluentcy.q7 %>				
+					<%= f.radio_button :q7, 6, :default => @onlinecolab_fluency.q7 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q7, 5, :default => @onlinecolab_fluentcy.q7 %>				
+					<%= f.radio_button :q7, 5, :default => @onlinecolab_fluency.q7 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q7, 4, :default => @onlinecolab_fluentcy.q7 %>				
+					<%= f.radio_button :q7, 4, :default => @onlinecolab_fluency.q7 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q7, 3, :default => @onlinecolab_fluentcy.q7 %>				
+					<%= f.radio_button :q7, 3, :default => @onlinecolab_fluency.q7 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q7, 2, :default => @onlinecolab_fluentcy.q7 %>				
+					<%= f.radio_button :q7, 2, :default => @onlinecolab_fluency.q7 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q7, 1, :default => @onlinecolab_fluentcy.q7 %>				
+					<%= f.radio_button :q7, 1, :default => @onlinecolab_fluency.q7 %>				
 				</td>
 			</tr>
 			<tr>
@@ -217,22 +217,22 @@
 					<%= @q8 %>
 				</td>
 				<td>
-					<%= f.radio_button :q8, 6, :default => @onlinecolab_fluentcy.q8 %>				
+					<%= f.radio_button :q8, 6, :default => @onlinecolab_fluency.q8 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q8, 5, :default => @onlinecolab_fluentcy.q8 %>				
+					<%= f.radio_button :q8, 5, :default => @onlinecolab_fluency.q8 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q8, 4, :default => @onlinecolab_fluentcy.q8 %>				
+					<%= f.radio_button :q8, 4, :default => @onlinecolab_fluency.q8 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q8, 3, :default => @onlinecolab_fluentcy.q8 %>				
+					<%= f.radio_button :q8, 3, :default => @onlinecolab_fluency.q8 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q8, 2, :default => @onlinecolab_fluentcy.q8 %>				
+					<%= f.radio_button :q8, 2, :default => @onlinecolab_fluency.q8 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q8, 1, :default => @onlinecolab_fluentcy.q8 %>				
+					<%= f.radio_button :q8, 1, :default => @onlinecolab_fluency.q8 %>				
 				</td>
 			</tr>
 			<tr>
@@ -240,22 +240,22 @@
 					<%= @q9 %>
 				</td>
 				<td>
-					<%= f.radio_button :q9, 6, :default => @onlinecolab_fluentcy.q9 %>				
+					<%= f.radio_button :q9, 6, :default => @onlinecolab_fluency.q9 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q9, 5, :default => @onlinecolab_fluentcy.q9 %>				
+					<%= f.radio_button :q9, 5, :default => @onlinecolab_fluency.q9 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q9, 4, :default => @onlinecolab_fluentcy.q9 %>				
+					<%= f.radio_button :q9, 4, :default => @onlinecolab_fluency.q9 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q9, 3, :default => @onlinecolab_fluentcy.q9 %>				
+					<%= f.radio_button :q9, 3, :default => @onlinecolab_fluency.q9 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q9, 2, :default => @onlinecolab_fluentcy.q9 %>				
+					<%= f.radio_button :q9, 2, :default => @onlinecolab_fluency.q9 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q9, 1, :default => @onlinecolab_fluentcy.q9 %>				
+					<%= f.radio_button :q9, 1, :default => @onlinecolab_fluency.q9 %>				
 				</td>
 			</tr>
 			<tr>
@@ -263,22 +263,22 @@
 					<%= @q10 %>
 				</td>
 				<td>
-					<%= f.radio_button :q10, 6, :default => @onlinecolab_fluentcy.q10 %>				
+					<%= f.radio_button :q10, 6, :default => @onlinecolab_fluency.q10 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q10, 5, :default => @onlinecolab_fluentcy.q10 %>				
+					<%= f.radio_button :q10, 5, :default => @onlinecolab_fluency.q10 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q10, 4, :default => @onlinecolab_fluentcy.q10 %>				
+					<%= f.radio_button :q10, 4, :default => @onlinecolab_fluency.q10 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q10, 3, :default => @onlinecolab_fluentcy.q10 %>				
+					<%= f.radio_button :q10, 3, :default => @onlinecolab_fluency.q10 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q10, 2, :default => @onlinecolab_fluentcy.q10 %>				
+					<%= f.radio_button :q10, 2, :default => @onlinecolab_fluency.q10 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q10, 1, :default => @onlinecolab_fluentcy.q10 %>				
+					<%= f.radio_button :q10, 1, :default => @onlinecolab_fluency.q10 %>				
 				</td>
 			</tr>
 			<tr>
@@ -286,22 +286,22 @@
 					<%= @q11 %>
 				</td>
 				<td>
-					<%= f.radio_button :q11, 6, :default => @onlinecolab_fluentcy.q11 %>				
+					<%= f.radio_button :q11, 6, :default => @onlinecolab_fluency.q11 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q11, 5, :default => @onlinecolab_fluentcy.q11 %>				
+					<%= f.radio_button :q11, 5, :default => @onlinecolab_fluency.q11 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q11, 4, :default => @onlinecolab_fluentcy.q11 %>				
+					<%= f.radio_button :q11, 4, :default => @onlinecolab_fluency.q11 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q11, 3, :default => @onlinecolab_fluentcy.q11 %>				
+					<%= f.radio_button :q11, 3, :default => @onlinecolab_fluency.q11 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q11, 2, :default => @onlinecolab_fluentcy.q11 %>				
+					<%= f.radio_button :q11, 2, :default => @onlinecolab_fluency.q11 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q11, 1, :default => @onlinecolab_fluentcy.q11 %>				
+					<%= f.radio_button :q11, 1, :default => @onlinecolab_fluency.q11 %>				
 				</td>
 			</tr>
 			<tr>
@@ -309,22 +309,22 @@
 					<%= @q12 %>
 				</td>
 				<td>
-					<%= f.radio_button :q12, 6, :default => @onlinecolab_fluentcy.q12 %>				
+					<%= f.radio_button :q12, 6, :default => @onlinecolab_fluency.q12 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q12, 5, :default => @onlinecolab_fluentcy.q12 %>				
+					<%= f.radio_button :q12, 5, :default => @onlinecolab_fluency.q12 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q12, 4, :default => @onlinecolab_fluentcy.q12 %>				
+					<%= f.radio_button :q12, 4, :default => @onlinecolab_fluency.q12 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q12, 3, :default => @onlinecolab_fluentcy.q12 %>				
+					<%= f.radio_button :q12, 3, :default => @onlinecolab_fluency.q12 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q12, 2, :default => @onlinecolab_fluentcy.q12 %>				
+					<%= f.radio_button :q12, 2, :default => @onlinecolab_fluency.q12 %>				
 				</td>
 				<td>
-					<%= f.radio_button :q12, 1, :default => @onlinecolab_fluentcy.q12 %>				
+					<%= f.radio_button :q12, 1, :default => @onlinecolab_fluency.q12 %>				
 				</td>
 			</tr>
 			<tr id = "last_row">
@@ -332,22 +332,22 @@
 					<%= $other %>
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 6, :default => @onlinecolab_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 6, :default => @onlinecolab_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 5, :default => @onlinecolab_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 5, :default => @onlinecolab_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 4, :default => @onlinecolab_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 4, :default => @onlinecolab_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 3, :default => @onlinecolab_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 3, :default => @onlinecolab_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 2, :default => @onlinecolab_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 2, :default => @onlinecolab_fluency.magnitude_other %>				
 				</td>
 				<td>
-					<%= f.radio_button :magnitude_other, 1, :default => @onlinecolab_fluentcy.magnitude_other %>				
+					<%= f.radio_button :magnitude_other, 1, :default => @onlinecolab_fluency.magnitude_other %>				
 				</td>
 			</tr>
 		</table>

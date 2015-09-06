@@ -29,9 +29,9 @@ autocomplete_skilllabel_label_skills GET    /skills/autocomplete_skilllabel_labe
                                      DELETE /skills/:id(.:format)                           skills#destroy
           word_processing_fluentcies GET    /word_processing_fluentcies(.:format)           survey/tech/word_processing_fluentcies#index {:formats=>"js"}
                                      POST   /word_processing_fluentcies(.:format)           survey/tech/word_processing_fluentcies#create {:formats=>"js"}
-        new_word_processing_fluentcy GET    /word_processing_fluentcies/new(.:format)       survey/tech/word_processing_fluentcies#new {:formats=>"js"}
-       edit_word_processing_fluentcy GET    /word_processing_fluentcies/:id/edit(.:format)  survey/tech/word_processing_fluentcies#edit {:formats=>"js"}
-            word_processing_fluentcy GET    /word_processing_fluentcies/:id(.:format)       survey/tech/word_processing_fluentcies#show {:formats=>"js"}
+        new_word_processing_fluency GET    /word_processing_fluentcies/new(.:format)       survey/tech/word_processing_fluentcies#new {:formats=>"js"}
+       edit_word_processing_fluency GET    /word_processing_fluentcies/:id/edit(.:format)  survey/tech/word_processing_fluentcies#edit {:formats=>"js"}
+            word_processing_fluency GET    /word_processing_fluentcies/:id(.:format)       survey/tech/word_processing_fluentcies#show {:formats=>"js"}
                                      PATCH  /word_processing_fluentcies/:id(.:format)       survey/tech/word_processing_fluentcies#update {:formats=>"js"}
                                      PUT    /word_processing_fluentcies/:id(.:format)       survey/tech/word_processing_fluentcies#update {:formats=>"js"}
                                      DELETE /word_processing_fluentcies/:id(.:format)       survey/tech/word_processing_fluentcies#destroy {:formats=>"js"}
@@ -101,9 +101,9 @@ autocomplete_skilllabel_label_skills GET    /skills/autocomplete_skilllabel_labe
                                      DELETE /spreadsheet_skills/:id(.:format)               survey/tech/spreadsheet_skills#destroy {:formats=>"js"}
               spreadsheet_fluentcies GET    /spreadsheet_fluentcies(.:format)               survey/tech/spreadsheet_fluentcies#index {:formats=>"js"}
                                      POST   /spreadsheet_fluentcies(.:format)               survey/tech/spreadsheet_fluentcies#create {:formats=>"js"}
-            new_spreadsheet_fluentcy GET    /spreadsheet_fluentcies/new(.:format)           survey/tech/spreadsheet_fluentcies#new {:formats=>"js"}
-           edit_spreadsheet_fluentcy GET    /spreadsheet_fluentcies/:id/edit(.:format)      survey/tech/spreadsheet_fluentcies#edit {:formats=>"js"}
-                spreadsheet_fluentcy GET    /spreadsheet_fluentcies/:id(.:format)           survey/tech/spreadsheet_fluentcies#show {:formats=>"js"}
+            new_spreadsheet_fluency GET    /spreadsheet_fluentcies/new(.:format)           survey/tech/spreadsheet_fluentcies#new {:formats=>"js"}
+           edit_spreadsheet_fluency GET    /spreadsheet_fluentcies/:id/edit(.:format)      survey/tech/spreadsheet_fluentcies#edit {:formats=>"js"}
+                spreadsheet_fluency GET    /spreadsheet_fluentcies/:id(.:format)           survey/tech/spreadsheet_fluentcies#show {:formats=>"js"}
                                      PATCH  /spreadsheet_fluentcies/:id(.:format)           survey/tech/spreadsheet_fluentcies#update {:formats=>"js"}
                                      PUT    /spreadsheet_fluentcies/:id(.:format)           survey/tech/spreadsheet_fluentcies#update {:formats=>"js"}
                                      DELETE /spreadsheet_fluentcies/:id(.:format)           survey/tech/spreadsheet_fluentcies#destroy {:formats=>"js"}
@@ -117,9 +117,9 @@ autocomplete_skilllabel_label_skills GET    /skills/autocomplete_skilllabel_labe
                                      DELETE /presenting_skills/:id(.:format)                survey/tech/presenting_skills#destroy {:formats=>"js"}
                presenting_fluentcies GET    /presenting_fluentcies(.:format)                survey/tech/presenting_fluentcies#index {:formats=>"js"}
                                      POST   /presenting_fluentcies(.:format)                survey/tech/presenting_fluentcies#create {:formats=>"js"}
-             new_presenting_fluentcy GET    /presenting_fluentcies/new(.:format)            survey/tech/presenting_fluentcies#new {:formats=>"js"}
-            edit_presenting_fluentcy GET    /presenting_fluentcies/:id/edit(.:format)       survey/tech/presenting_fluentcies#edit {:formats=>"js"}
-                 presenting_fluentcy GET    /presenting_fluentcies/:id(.:format)            survey/tech/presenting_fluentcies#show {:formats=>"js"}
+             new_presenting_fluency GET    /presenting_fluentcies/new(.:format)            survey/tech/presenting_fluentcies#new {:formats=>"js"}
+            edit_presenting_fluency GET    /presenting_fluentcies/:id/edit(.:format)       survey/tech/presenting_fluentcies#edit {:formats=>"js"}
+                 presenting_fluency GET    /presenting_fluentcies/:id(.:format)            survey/tech/presenting_fluentcies#show {:formats=>"js"}
                                      PATCH  /presenting_fluentcies/:id(.:format)            survey/tech/presenting_fluentcies#update {:formats=>"js"}
                                      PUT    /presenting_fluentcies/:id(.:format)            survey/tech/presenting_fluentcies#update {:formats=>"js"}
                                      DELETE /presenting_fluentcies/:id(.:format)            survey/tech/presenting_fluentcies#destroy {:formats=>"js"}
@@ -133,9 +133,9 @@ autocomplete_skilllabel_label_skills GET    /skills/autocomplete_skilllabel_labe
                                      DELETE /email_skills/:id(.:format)                     survey/tech/email_skills#destroy {:formats=>"js"}
                     email_fluentcies GET    /email_fluentcies(.:format)                     survey/tech/email_fluentcies#index {:formats=>"js"}
                                      POST   /email_fluentcies(.:format)                     survey/tech/email_fluentcies#create {:formats=>"js"}
-                  new_email_fluentcy GET    /email_fluentcies/new(.:format)                 survey/tech/email_fluentcies#new {:formats=>"js"}
-                 edit_email_fluentcy GET    /email_fluentcies/:id/edit(.:format)            survey/tech/email_fluentcies#edit {:formats=>"js"}
-                      email_fluentcy GET    /email_fluentcies/:id(.:format)                 survey/tech/email_fluentcies#show {:formats=>"js"}
+                  new_email_fluency GET    /email_fluentcies/new(.:format)                 survey/tech/email_fluentcies#new {:formats=>"js"}
+                 edit_email_fluency GET    /email_fluentcies/:id/edit(.:format)            survey/tech/email_fluentcies#edit {:formats=>"js"}
+                      email_fluency GET    /email_fluentcies/:id(.:format)                 survey/tech/email_fluentcies#show {:formats=>"js"}
                                      PATCH  /email_fluentcies/:id(.:format)                 survey/tech/email_fluentcies#update {:formats=>"js"}
                                      PUT    /email_fluentcies/:id(.:format)                 survey/tech/email_fluentcies#update {:formats=>"js"}
                                      DELETE /email_fluentcies/:id(.:format)                 survey/tech/email_fluentcies#destroy {:formats=>"js"}
@@ -205,9 +205,9 @@ autocomplete_skilllabel_label_skills GET    /skills/autocomplete_skilllabel_labe
                                      DELETE /online_colab_skills/:id(.:format)              survey/tech/online_colab_skills#destroy {:formats=>"js"}
              online_colab_fluentcies GET    /online_colab_fluentcies(.:format)              survey/tech/online_colab_fluentcies#index {:formats=>"js"}
                                      POST   /online_colab_fluentcies(.:format)              survey/tech/online_colab_fluentcies#create {:formats=>"js"}
-           new_online_colab_fluentcy GET    /online_colab_fluentcies/new(.:format)          survey/tech/online_colab_fluentcies#new {:formats=>"js"}
-          edit_online_colab_fluentcy GET    /online_colab_fluentcies/:id/edit(.:format)     survey/tech/online_colab_fluentcies#edit {:formats=>"js"}
-               online_colab_fluentcy GET    /online_colab_fluentcies/:id(.:format)          survey/tech/online_colab_fluentcies#show {:formats=>"js"}
+           new_online_colab_fluency GET    /online_colab_fluentcies/new(.:format)          survey/tech/online_colab_fluentcies#new {:formats=>"js"}
+          edit_online_colab_fluency GET    /online_colab_fluentcies/:id/edit(.:format)     survey/tech/online_colab_fluentcies#edit {:formats=>"js"}
+               online_colab_fluency GET    /online_colab_fluentcies/:id(.:format)          survey/tech/online_colab_fluentcies#show {:formats=>"js"}
                                      PATCH  /online_colab_fluentcies/:id(.:format)          survey/tech/online_colab_fluentcies#update {:formats=>"js"}
                                      PUT    /online_colab_fluentcies/:id(.:format)          survey/tech/online_colab_fluentcies#update {:formats=>"js"}
                                      DELETE /online_colab_fluentcies/:id(.:format)          survey/tech/online_colab_fluentcies#destroy {:formats=>"js"}

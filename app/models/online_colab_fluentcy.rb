@@ -5,6 +5,6 @@ class OnlineColabFluentcy < ActiveRecord::Base
   private
     def do_setID    
       newID = self.id
-      self.update_attributes(:online_colab_fluentcy_id => newID)
+      self.update_attributes(:online_colab_fluency_id => newID)
     end
 end

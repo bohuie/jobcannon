@@ -44,13 +44,13 @@ describe User do
   it { should have_one ( :multi_media_skill)}
   it { should have_one ( :technology_difference)}
   it { should have_one ( :word_processing_skill)}
-  it { should have_one ( :word_processing_fluentcy)}
+  it { should have_one ( :word_processing_fluency)}
   it { should have_one ( :presenting_skill)}
-  it { should have_one ( :presenting_fluentcy)}
+  it { should have_one ( :presenting_fluency)}
   it { should have_one ( :spreadsheet_skill)}
-  it { should have_one ( :spreadsheet_fluentcy)}
+  it { should have_one ( :spreadsheet_fluency)}
   it { should have_one ( :email_skill)}
-  it { should have_one ( :email_fluentcy)}
+  it { should have_one ( :email_fluency)}
   it { should have_one ( :internet_term)}
   it { should have_one ( :internet_task)}
   it { should have_one ( :internet_connection)}
@@ -59,7 +59,7 @@ describe User do
   it { should have_one ( :social_media_desc)}
   it { should have_one ( :social_media_platform)}
   it { should have_one ( :online_colab_skill)}
-  it { should have_one ( :online_colab_fluentcy)}
+  it { should have_one ( :online_colab_fluency)}
   it { should have_one ( :internet_term)}
   it { should have_one ( :internet_task)}
   it { should have_one ( :internet_connection)}  

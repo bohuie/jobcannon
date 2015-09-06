@@ -2,8 +2,8 @@ class Survey::Tech::PresentingFluentciesController < ApplicationController
 
 def update
 	@user = current_user
-	@present_fluentcy = PresentingFluentcy.find_by(:user_id=>@user.user_id)
-	@present_fluentcy.update_attributes(present_params)
+	@present_fluency = PresentingFluentcy.find_by(:user_id=>@user.user_id)
+	@present_fluency.update_attributes(present_params)
 	presentation_progression()
 	
 	respond_to do |f|		
@@ -14,7 +14,7 @@ end
 	private
 
 	def present_params
-		params.require(:presenting_fluentcy).permit(:powerpoint, :keynote, :impress, :prezi, :magnitude_other, :other)
+		params.require(:presenting_fluency).permit(:powerpoint, :keynote, :impress, :prezi, :magnitude_other, :other)
 	end
 
 

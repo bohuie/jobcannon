@@ -16,13 +16,13 @@ class User < ActiveRecord::Base
   has_one :multi_media_skill, dependent: :destroy
   has_one :technology_difference, dependent: :destroy
   has_one :word_processing_skill, dependent: :destroy
-  has_one :word_processing_fluentcy, dependent: :destroy
+  has_one :word_processing_fluency, dependent: :destroy
   has_one :presenting_skill, dependent: :destroy
-  has_one :presenting_fluentcy, dependent: :destroy
+  has_one :presenting_fluency, dependent: :destroy
   has_one :spreadsheet_skill, dependent: :destroy
-  has_one :spreadsheet_fluentcy, dependent: :destroy
+  has_one :spreadsheet_fluency, dependent: :destroy
   has_one :email_skill, dependent: :destroy
-  has_one :email_fluentcy, dependent: :destroy
+  has_one :email_fluency, dependent: :destroy
   has_one :internet_term, dependent: :destroy
   has_one :internet_task, dependent: :destroy
   has_one :internet_connection, dependent: :destroy
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   has_one :social_media_desc, dependent: :destroy
   has_one :social_media_platform, dependent: :destroy
   has_one :online_colab_skill, dependent: :destroy
-  has_one :online_colab_fluentcy, dependent: :destroy
+  has_one :online_colab_fluency, dependent: :destroy
   has_one :internet_term, dependent: :destroy
   has_one :internet_task, dependent: :destroy
   has_one :internet_connection, dependent: :destroy
