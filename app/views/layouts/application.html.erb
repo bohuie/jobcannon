@@ -3,26 +3,13 @@
   <head>
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application", media: "all","data-turbolinks-track" => true %>
-
-
     <%= javascript_include_tag "application", "data-turbolinks-track" => true%>     
-
     <%= javascript_include_tag "bootstrap.js", "data-turbolinks-track" => true%> 
-    <%= javascript_include_tag "http://localhost:9292/faye.js"%> 
     <%= javascript_include_tag "autocomplete-rails.js" %>    
     <%= include_gon %>
 
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
-    <script type = "text/javascript">
-      window.onload = function online(){
-        $.ajax({
-            type:'GET',
-            url:"/"
-          });
-        setTimeout(online, 10000);
-      }
-    </script>
     <script type="text/javascript">
 $(document).ready(function(){
   setTimeout(function(){

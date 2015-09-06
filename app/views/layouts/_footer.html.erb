@@ -25,29 +25,6 @@
 
       document.getElementsByTagName("html")[0].setAttribute("style","overflow:scroll");
     }
-    
-    window.onload = function SetUp(){
-      $.ajax({
-            type:'GET',
-            url:"layouts/chat.js",
-          });
-      checkOnline();
-    }
-
-    function checkOnline(){
-      if ($("#chat").is(':visible')){
-        $.ajax({
-            type:'GET',
-            url:"layouts/show.js",
-          });
-      } else{
-        $.ajax({
-            type:'GET',
-            url:"layouts/show.js",
-          });
-      }
-      setTimeout(checkOnline, 5000);
-    }
   </script>  
 </head>
 

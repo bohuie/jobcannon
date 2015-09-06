@@ -55,24 +55,22 @@
             <ul class="nav nav-tabs">
               <li class = "active"><a href="#do" data-toggle="tab">About Me</a></li>
               <li><a href="#jobs" data-toggle="tab">Flagged Jobs</a></li>
-              <!--<li><a href="#network" data-toggle="tab">Your Network</a></li> -->
+              <li><a href="#network" data-toggle="tab">Your Network</a></li> 
             </ul>
 
             <div class="tab-content">
                 <div class="tab-pane fade in active content" id="do"> 
                   <%= form_for (@owner),url: profile_path(@owner), :controller => "profile_controller", :action => 'update', :class => "form" do |f| %>
                   <%= f.text_area :info, :class => "change" %>
-
                   <%= f.submit "Change", :class => "btnChange", :id => "more" %>
                   <% end %>
-
                 </div>          
 
                 <div class = "tab-pane fade in content" id = "jobs">
-
-                  
-
                 </div>
+                <div class="tab-pane fade in content" id="network"> 
+                  <%= link_to "View your network", {controller: "friendships", action: "show"} %>
+                </div> 
             </div>
       </div>
 
